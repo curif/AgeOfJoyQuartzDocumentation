@@ -1,4 +1,6 @@
-
+---
+title: Index
+---
 ![[LoadScreen 1.png]]
 # AGE of Joy
 
@@ -19,7 +21,8 @@ A cabinet pack is a group of cabinets packed for distribution. You can read in [
 In July 2023, the [[Discord server]] community achieved a remarkable milestone of surpassing *300* cabinets, and *400* in October !!!! the count is still growing!
 
 ![[Pasted image 20231026092833.png]]
-(source [Angelicide](https://discord.com/channels/1066438667989696645/1066438854090965043/1163273805070880839))
+
+(image source [Angelicide](https://discord.com/channels/1066438667989696645/1066438854090965043/1163273805070880839))
 
 ### "Official" cabinet packs list
 

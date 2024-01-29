@@ -1,5 +1,5 @@
-# AGEBasic
 
+![[AGEBasicLogo.png]]
 `AGEBasic` allows the player to control some in-game behaviors by using a special version of the BASIC programming language.
 
 The `AGEBasic` compiler and runtime engine was specifically developed for [[Age of Joy]]. It is inspired in [tiny basic](https://en.wikipedia.org/wiki/Tiny_BASIC)

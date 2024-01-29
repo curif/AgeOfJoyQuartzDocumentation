@@ -4,9 +4,9 @@ Please read this document only if you have a previous version installed and you 
 
 ## Instructions
 
-[[Update from 0.1 to 0.2]]
-[[Update from 0.2 to 0.3]]
-[[Update from 0.3 to 0.4]]
-[[Update from 0.4 to 0.5]]
+[[Upgrade from 0.1 to 0.2]]
+[[Upgrade from 0.2 to 0.3]]
+[[Upgrade from 0.3 to 0.4]]
+[[Upgrade from 0.4 to 0.5]]
 
 
