@@ -1,34 +1,34 @@
 ---
-author: Aero
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_popeye.png
+marquee: marquee_xmen2p.png
 md5sum: null
 model: 'Yes'
 parts: 8
-rom: preisle2.zip
+rom: xmen2p.zip
 style: null
 tags:
 - cabinet
-- 1999
-title: preisle2
-version: 1.0
+- 1992
+title: X-Men
+version: 1.1
 video: 'Yes'
-year: 1999
+year: 1992
 ---
 
-![[marquee_popeye.png]]
+![[marquee_xmen2p.png]]
 
-Game published year: 1999
+Game published year: 1992
 
 ## Cabinet information
 
-- Author: Aero
-- File: preisle2.zip
-- Version: 1.0
+- Author: Elleby Katowitz
+- File: xmen2p.zip
+- Version: 1.1
 - Parts: 8
 - Introduction video: Yes
 - Own cabinet design: Yes

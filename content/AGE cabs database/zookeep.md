@@ -1,35 +1,35 @@
 ---
-author: Aero
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_popeye.png
+marquee: marquee_zookeep.png
 md5sum: null
 model: 'Yes'
-parts: 8
-rom: preisle2.zip
+parts: 7
+rom: zookeep.zip
 style: null
 tags:
 - cabinet
-- 1999
-title: preisle2
-version: 1.0
+- 1982
+title: Zoo Keeper
+version: 1.1
 video: 'Yes'
-year: 1999
+year: 1982
 ---
 
-![[marquee_popeye.png]]
+![[marquee_zookeep.png]]
 
-Game published year: 1999
+Game published year: 1982
 
 ## Cabinet information
 
-- Author: Aero
-- File: preisle2.zip
-- Version: 1.0
-- Parts: 8
+- Author: Elleby Katowitz
+- File: zookeep.zip
+- Version: 1.1
+- Parts: 7
 - Introduction video: Yes
 - Own cabinet design: Yes
 - Style: None

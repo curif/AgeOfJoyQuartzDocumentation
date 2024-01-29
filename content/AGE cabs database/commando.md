@@ -1,35 +1,39 @@
 ---
-author: 3D cabinet by Gozer conversion by Zydonian
+author: null
 comments: null
-crt: horizontal
+crt: vertical
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_ringking.png
-md5sum: null
+marquee: marquee_commando.png
+md5sum: 4e762e7a3f05e1341fd1bf780e692f0a
 model: 'Yes'
-parts: 5
-rom: roadblst.zip
+parts: 6
+rom: commando.zip
 style: null
 tags:
 - cabinet
 - 1985
-title: HangOn
-version: 1.0
+title: commando
+version: null
 video: 'Yes'
 year: 1985
 ---
 
-![[marquee_ringking.png]]
+![[marquee_commando.png]]
 
 Game published year: 1985
 
+## ROM information
+
+MD5 sum: `4e762e7a3f05e1341fd1bf780e692f0a` 
+
 ## Cabinet information
 
-- Author: 3D cabinet by Gozer conversion by Zydonian
-- File: roadblst.zip
-- Version: 1.0
-- Parts: 5
+- Author: None
+- File: commando.zip
+- Version: None
+- Parts: 6
 - Introduction video: Yes
 - Own cabinet design: Yes
 - Style: None

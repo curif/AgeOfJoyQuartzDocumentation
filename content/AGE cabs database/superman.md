@@ -1,38 +1,38 @@
 ---
-author: mAdbiLL
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_mspacman.png
+marquee: marquee_superman.png
 md5sum: null
-model: 'Yes'
+model: 'No'
 parts: 6
-rom: narc.zip
-style: null
+rom: superman.zip
+style: joust
 tags:
 - cabinet
 - 1988
-title: NARC
-version: 2.0
+title: Superman
+version: 1.1
 video: 'Yes'
 year: 1988
 ---
 
-![[marquee_mspacman.png]]
+![[marquee_superman.png]]
 
 Game published year: 1988
 
 ## Cabinet information
 
-- Author: mAdbiLL
-- File: narc.zip
-- Version: 2.0
+- Author: Elleby Katowitz
+- File: superman.zip
+- Version: 1.1
 - Parts: 6
 - Introduction video: Yes
-- Own cabinet design: Yes
-- Style: None
+- Own cabinet design: No
+- Style: joust
 - Light guns: no
 - AGEBasic enabled: no
 

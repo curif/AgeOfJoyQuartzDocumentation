@@ -16,6 +16,9 @@ AGE of Joy require some work to start. I suggest to read the [[AGE FAQ]] and the
 
 A cabinet pack is a group of cabinets packed for distribution. You can read in [[How to get and deploy cabinets assets]] about the installation in your Quest. You can also read the [[Short guide to make cabinets]]  if you can't find what you need.
 
+Access to the cabinets [[packs]]
+
+
 > [!note] There are many cabinets created by the community that are not mentioned or listed here. To access them, you can join the [Discord](https://discord.gg/b83ykCM9Xp)  server. However, it's important to note that discovering these additional cabinets may require some effort on your part. You will need to search through message groups to find the latest and newly shared cabinets.
 
 In July 2023, the [[Discord server]] community achieved a remarkable milestone of surpassing *300* cabinets, and *400* in October !!!! the count is still growing!
@@ -24,20 +27,9 @@ In July 2023, the [[Discord server]] community achieved a remarkable milestone o
 
 (image source [Angelicide](https://discord.com/channels/1066438667989696645/1066438854090965043/1163273805070880839))
 
-### "Official" cabinet packs list
+### Cabinets List
 
-```dataview 
-table without id file.link as Name, author as Author, "" + games as Games, link as Link
-from "packs"
-```
-
-
-### Cabinets Lists
-
-- [[Cabinet Database (alphabetical)]]
-- [[Cabinet Database by year]]
-- [[Cabinet Database by Artist]]
-
+[[cabinet]]
 ## About [[ROM]]s
 
 > [!warning]  👮🏼‍♂️ ROMs are digital copies of copyrighted material, such as games, and are protected by intellectual property laws. It is important to be aware of this and respect the legal rights of copyright holders. Distributing ROMs or engaging in any form of illegal sharing of copyrighted material is strictly prohibited.

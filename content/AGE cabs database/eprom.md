@@ -5,7 +5,7 @@ crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_dstlku.png
+marquee: marquee_elevator.png
 md5sum: 715e780d56ce85d63d3f2a0727c0be7b
 model: 'Yes'
 parts: 6
@@ -20,7 +20,7 @@ video: 'Yes'
 year: 1989
 ---
 
-![[marquee_dstlku.png]]
+![[marquee_elevator.png]]
 
 Game published year: 1989
 

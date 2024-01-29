@@ -1,35 +1,35 @@
 ---
-author: 3D cabinet by Gozer conversion by Zydonian
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_ringking.png
+marquee: marquee_gijoe.png
 md5sum: null
 model: 'Yes'
-parts: 5
-rom: roadblst.zip
+parts: 8
+rom: gijoe.zip
 style: null
 tags:
 - cabinet
-- 1985
-title: HangOn
+- 1992
+title: G.I. Joe
 version: 1.0
 video: 'Yes'
-year: 1985
+year: 1992
 ---
 
-![[marquee_ringking.png]]
+![[marquee_gijoe.png]]
 
-Game published year: 1985
+Game published year: 1992
 
 ## Cabinet information
 
-- Author: 3D cabinet by Gozer conversion by Zydonian
-- File: roadblst.zip
+- Author: Elleby Katowitz
+- File: gijoe.zip
 - Version: 1.0
-- Parts: 5
+- Parts: 8
 - Introduction video: Yes
 - Own cabinet design: Yes
 - Style: None

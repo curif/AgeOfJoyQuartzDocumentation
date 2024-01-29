@@ -1,4 +1,4 @@
-
+![[AGEBasicLogo.png]]
 - [[AGEBasic examples - core - debug and introspection]]
 - [[AGEBasic examples - cabinets]]
 - [[AGEBasic examples - screen]]
@@ -12,3 +12,4 @@
 
 More examples, related to Cabinets configuration: [[AGEBasic in cabinets]].
 
+#agebasic 

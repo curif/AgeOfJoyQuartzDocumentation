@@ -1,35 +1,35 @@
 ---
-author: 3D cabinet by Gozer conversion by Zydonian
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_ringking.png
+marquee: marquee_indytemp.png
 md5sum: null
 model: 'Yes'
-parts: 5
-rom: roadblst.zip
+parts: 4
+rom: indytemp.zip
 style: null
 tags:
 - cabinet
 - 1985
-title: HangOn
-version: 1.0
+title: Indiana Jones and the Temple of Doom
+version: 1.1
 video: 'Yes'
 year: 1985
 ---
 
-![[marquee_ringking.png]]
+![[marquee_indytemp.png]]
 
 Game published year: 1985
 
 ## Cabinet information
 
-- Author: 3D cabinet by Gozer conversion by Zydonian
-- File: roadblst.zip
-- Version: 1.0
-- Parts: 5
+- Author: Elleby Katowitz
+- File: indytemp.zip
+- Version: 1.1
+- Parts: 4
 - Introduction video: Yes
 - Own cabinet design: Yes
 - Style: None

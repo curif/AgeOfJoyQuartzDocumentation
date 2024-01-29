@@ -1,34 +1,34 @@
 ---
-author: Aero
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_popeye.png
+marquee: marquee_tmnt2po.png
 md5sum: null
 model: 'Yes'
 parts: 8
-rom: preisle2.zip
+rom: tmnt2po.zip
 style: null
 tags:
 - cabinet
-- 1999
-title: preisle2
-version: 1.0
+- 1989
+title: Teenage Mutant Ninja Turtles
+version: 1.1
 video: 'Yes'
-year: 1999
+year: 1989
 ---
 
-![[marquee_popeye.png]]
+![[marquee_tmnt2po.png]]
 
-Game published year: 1999
+Game published year: 1989
 
 ## Cabinet information
 
-- Author: Aero
-- File: preisle2.zip
-- Version: 1.0
+- Author: Elleby Katowitz
+- File: tmnt2po.zip
+- Version: 1.1
 - Parts: 8
 - Introduction video: Yes
 - Own cabinet design: Yes

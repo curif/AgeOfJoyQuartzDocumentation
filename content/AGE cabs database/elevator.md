@@ -1,35 +1,35 @@
 ---
-author: 3D cabinet by Gozer conversion by Zydonian
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_ringking.png
+marquee: marquee_elevator.png
 md5sum: null
 model: 'Yes'
-parts: 5
-rom: roadblst.zip
+parts: 7
+rom: elevator.zip
 style: null
 tags:
 - cabinet
-- 1985
-title: HangOn
+- 1983
+title: Elevator Action
 version: 1.0
 video: 'Yes'
-year: 1985
+year: 1983
 ---
 
-![[marquee_ringking.png]]
+![[marquee_elevator.png]]
 
-Game published year: 1985
+Game published year: 1983
 
 ## Cabinet information
 
-- Author: 3D cabinet by Gozer conversion by Zydonian
-- File: roadblst.zip
+- Author: Elleby Katowitz
+- File: elevator.zip
 - Version: 1.0
-- Parts: 5
+- Parts: 7
 - Introduction video: Yes
 - Own cabinet design: Yes
 - Style: None

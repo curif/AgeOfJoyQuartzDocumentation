@@ -1,34 +1,34 @@
 ---
-author: 3D cabinet by Gozer conversion by Zydonian
+author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
 enablestatefile: null
 ligth-gun: 'false'
-marquee: marquee_ringking.png
+marquee: marquee_roadrunn.png
 md5sum: null
 model: 'Yes'
 parts: 5
-rom: roadblst.zip
+rom: roadrunn.zip
 style: null
 tags:
 - cabinet
 - 1985
-title: HangOn
-version: 1.0
+title: Road Runner
+version: 1.1
 video: 'Yes'
 year: 1985
 ---
 
-![[marquee_ringking.png]]
+![[marquee_roadrunn.png]]
 
 Game published year: 1985
 
 ## Cabinet information
 
-- Author: 3D cabinet by Gozer conversion by Zydonian
-- File: roadblst.zip
-- Version: 1.0
+- Author: Elleby Katowitz
+- File: roadrunn.zip
+- Version: 1.1
 - Parts: 5
 - Introduction video: Yes
 - Own cabinet design: Yes
