@@ -50,6 +50,8 @@ A yaml document usually starts with `---`
 ---
 name: xevious
 year: 1982
+author: curif
+comments: is a vertically scrolling shooter arcade video game developed and published by Namco in 1982. It was released in Japan by Namco and in North America by Atari, Inc. Controlling the Solvalou starship, the player attacks Xevious forces before they destroy all of mankind. The Solvalou has two weapons at its disposal: a zapper to destroy flying craft, and a blaster to bomb ground installations and enemies. It runs on the Namco Galaga arcade system.
 
 rom: xevious.zip
 timetoload: 18
@@ -59,18 +61,26 @@ enablesavestate: false
 statefile: state.nv
 
 material: black
+
 ```
-* `name`: name of the cabinet, usually the same name of the ROM. if the ROM is `dkong.zip`, then the cabinet asset file name is `dkong.zip` too and the name of the cabinet is `dkong`. Please don't confuse files, that usually happens because cabinet assets and ROMs have the same file name, but, by using this way, it's easy to know witch cabinet asset is made for each ROM, just store those files in different folders. 
-> Remember: We are unable to distribute ROMs; you must be the owner of the ROM in order to use it.
+* `name`: name of the cabinet, usually the same name of the ROM. if the ROM is `dkong.zip`, then the cabinet asset file name is `dkong.zip` too and the name of the cabinet is `dkong`. Please don't confuse files, that usually happens because cabinet assets and ROMs have the same file name, but, by using this way, it's easy to know witch cabinet asset is made for each [[ROM]], just store those files in different folders. 
 * `year`: game distribution year[^1]
-* `rom`: file name of the rom file.
+* `rom`: file name of the [[ROM]] file.
 * `timetoload`: (optional) Time to load is the time that the engine wait after load the game. It tells MAME to load the game, wait N timetoload seconds, and then tells it to insert a coin. There isn't any way to know when MAME finished the boot phase, then the only way is to wait. Obviously not all games take the same, and because of that we need to configure `timetoload`. To obtain a `timetoload` just counts the seconds that the boot phase take.
-* `md5sum`: MD5 can be used as a [checksum](https://en.wikipedia.org/wiki/Checksum) to verify [data integrity](https://en.wikipedia.org/wiki/Data_integrity) against unintentional corruption ([Wikipedia](https://en.wikipedia.org/wiki/MD5)). We registered [in this database](https://curif.notion.site/AGE-of-Joy-Rom-compatibility-Database-a3793cebeb5c4a7f9b1cd2c3306d2ee1) the MD5 of each ROM that we knows works well in AGE of Joy. To verify if your ROM is the same that the one we tested, go to [this page](https://curif.github.io/AgeOfJoy-ROMCRC/index.html) and get the MD5 of your ROM, compare it with the registered, must be the same.
-* `enablesavestate`: Enable it (true) if AGE of Joy should save the state after the `timetoload` period. This key is optional, defaults to false. [^2]
-* `statefile`: file name of the state file. This key is optional, defaults to `state.nv`. [^2]
+* `md5sum`: MD5 can be used as a [checksum](https://en.wikipedia.org/wiki/Checksum) to verify [data integrity](https://en.wikipedia.org/wiki/Data_integrity) against unintentional corruption ([Wikipedia](https://en.wikipedia.org/wiki/MD5)). To verify if your ROM is the same that the one we tested, go to [this page](https://curif.github.io/AgeOfJoy-ROMCRC/index.html) and get the MD5 of your ROM, compare it with the registered, must be the same.
+* ~~`enablesavestate`: Enable it (true) if AGE of Joy should save the state after the `timetoload` period. This key is optional, defaults to false. [^2]~~
+* ~~`statefile`: file name of the state file. This key is optional, defaults to `state.nv`. [^2]~~
 * `material`: (optional) a material to use for all parts of the cabinet. materials are explained below.
+#### Optional keys:
+
+- author: cabinet author Nik name.
+- comments: any extra relevant information
 
 ### The `enablesavestate` key
+
+> [!warning] states isn't working and was  deprecated.
+
+
 Each game has its own boot process, which is initiated when the arcade gallery owner powers on the cabinet. Bypassing the boot process is a desirable feature that allows the player to skip the boot process every time he or she wants to play.
 
 To avoid this process, AGE of Joy saves the game's state (memory, CPU states, etc.) after the 'timetoload' period of time has passed. The game will re-start at that point the next time it is run, skipping the boot load phase and arriving at the point where the game is ready to accept the first coin. It's similar to how a computer goes and back from hibernation.
@@ -92,7 +102,7 @@ model:
 * `file`: Is the file name of the model. These models files are in `glb` (gLTF) binary format. The cabinet asset must contain the file unless a `style` key exists.
 * `style`: part of the model document, refers to a previous uploaded cabinet asset model. In the example, the `mslug.zip` file cabinet asset must contain a `NeoGeo.glb` model. This key is optional, defaults to the actual model.
 
-## Introduction videos
+## Attraction videos
 
 Every game runs it's own introduction when nobody is playing, showing the game play or instructions. Because of the limited power of some devices, not all games can be emulated at the same time to display these screens. To solve this problem and to obtain the more accurate experience possible an introduction video is playing when the player is not in game mode (playing the game). These videos are typically obtained using RetroArch (by running the game and recording the introduction part), the result is a `.mkv` file that can be included in the cabinet asset.
 
@@ -131,11 +141,12 @@ parts:
 
 Type parts:
 
-* default: For a common component, like the left wood.
-* bezel: to apply to a component that will show an image with transparency. Usually for a bezel.
-* marquee: to show images with background lights. Typically for the marquee, but some cabinets (such as xevious or tron) have more than one.
+* **default**: For a common component, like the left wood.
+* **bezel**: to apply to a component that will show an image with transparency. Usually for a bezel.
+* **marquee**: to show images with background lights. Typically for the marquee, but some cabinets (such as xevious or tron) have more than one.
 
 ### Coloring parts
+
 The [RGB color](https://en.wikipedia.org/wiki/RGB_color_model) to apply to the cabinet component.
 Example:
 ```yaml

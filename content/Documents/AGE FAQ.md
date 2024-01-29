@@ -13,7 +13,7 @@ The game is available for download and enjoyment without any strict cost require
 * Backup the previous version (from the Quest to your PC) if you already install it.
 * Install the game using [Sidequest](https://sidequestvr.com/) (follow [[Sidequest]] instructions to install it): [Instructions](https://learn.adafruit.com/sideloading-on-oculus-quest/install-and-use-sidequest)
 Note that you need to enable the developer mode to sideload programs. It's the way that developers run applications: [Enable developer mode](https://learn.adafruit.com/sideloading-on-oculus-quest/enable-developer-mode)
-**Important**: If you are upgrading to a new version please read this document: [[How to update to a new version]].
+**Important**: If you are upgrading to a new version please read this document: [[How to upgrade to a new version]].
 ## I install it but I only see black ugly cabinets! what is wrong?
 It is completely normal to see black cabinets when you first install AGE. This is the expected appearance as the initial installation does not include any cabinets. To populate the rooms with cabinets, you will need to upload cabinet files. Additionally, if you want to play games, you will also need to obtain ROMs for the specific games you wish to play.
 ## I have problems when play, what can I do?
