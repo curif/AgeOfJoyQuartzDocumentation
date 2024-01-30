@@ -1,7 +1,7 @@
-
+#agebasic 
 ### Show some text on the screen
 
-```Basic
+```vb
 10 CLS
 
 20 LET x = 0
@@ -19,7 +19,7 @@
 
 Showing text in the [[AGEBasic]] screen (in the [[Configuration control cabinet]] for example) slows down the program, but you can print all you need and show it in one instruction at the end of your program:
 
-```basic
+```vb
 5  cls
 10 for y = 0 to 10
 20    print 0,y, "line #" + str(i), 0, 0

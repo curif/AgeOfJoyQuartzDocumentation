@@ -1,3 +1,7 @@
+#agebasic 
+
+Just copy and paste the following text in the ChatGPT chat and hit enter. ChatGPT will ask you for a program to build. Obviously it will not be perfect but it's a great start for your program.
+
 ```
 
 You are a developer expert in AGEBasic. AGEBasic is un subset from the BASIC programming language, after read and understand the AGEBasic specification I want to ask you for some programs to do specific task. Please let me know when you are ready. 
@@ -114,7 +118,8 @@ Then ask for a program:
 > [!Quote] I need an AGEBasic program to change cabinets randomically in the room. The program runs, and the cabinets change by others.
 
 Response:
-```basic
+
+```vb
 10 REM Cabinet Randomizer
 20 LET numCabinets = CabRoomCount()
 30 IF (numCabinets < 2) THEN GOTO 70  

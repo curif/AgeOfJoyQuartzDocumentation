@@ -1,7 +1,7 @@
-# AGEBasic examples - sound
+#agebasic 
 ## Audio test example
 
-```basic
+```vb
 10 let volGame = AudioGameGetVolume()
 20 let volAmbience = AudioAmbienceGetVolume()
 
@@ -34,7 +34,7 @@ agebasic:
 When the player leaves the game, [[Age of Joy]] will run the `leave.bas` program and restore the game volume to the original.
 #### insertcoin.bas
 
-```basic
+```vb
 5 rem preserve the original volume to restore it in leave.bas
 10 let originalVolume = AudioGameGetVolume()
 20 call AudioGameSetVolume(5) '5 dB
@@ -42,7 +42,7 @@ When the player leaves the game, [[Age of Joy]] will run the `leave.bas` program
 
 #### leave.bas
 
-```basic
+```vb
 5 rem originalVolume was loaded in insertcoin.bas
 10 call AudioAmbienceSetVolume(originalVolume)
 ```

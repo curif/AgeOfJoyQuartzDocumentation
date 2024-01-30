@@ -164,7 +164,7 @@ Once DebugMode is activated (true), [[Age of Joy]] will generate a report upon c
 
 Example:
 
-```basic
+```vb
 1000 let i = 100
 1010 call DebugMode(1) 'activate the debug mode
 1020 let ERROR = "some error message to see in debug"

@@ -1,3 +1,4 @@
+#agebasic 
 ### How to execute AGEBasic programs in response to events related to a specific cabinet.
 
 [[Age of Joy]] can be configured to execute AGEBasic programs when the player produces actions on a cabinet, or in events related to a cabinet. You can find the AGEBasic subdocument specification in the [[CDL the Cabinet Description Language]]
@@ -16,7 +17,7 @@ Eg: this program will insert five extra coins after the player insert the first 
 
 `myinsertcoins.bas`
 
-```basic
+```vb
 10 for i = 1 to 5
 20   let result = cabInsertCoin()
 30   if result = -1 then goto 1000
@@ -44,7 +45,7 @@ Execute a program when the cabinet is fully loaded.
 
 Eg: this program will hide (disable) some parts of the cabinet after load
 
-```basic
+```vb
   
 100 let PartNumber = cabPartsPosition("joystick") 
 110 gosub 400 
@@ -66,7 +67,7 @@ The program will find the joystick, front and marquee parts to disable them.
 
 Eg: save all the parts in a variable string to see it on debug mode.
 
-```basic
+```vb
 10 let list = ""
 20 let count = CabPartsCount()
 30 for i = 0 to count - 1
