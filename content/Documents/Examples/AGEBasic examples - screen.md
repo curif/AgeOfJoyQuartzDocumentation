@@ -1,5 +1,6 @@
 
 ### Show some text on the screen
+
 ```Basic
 10 CLS
 
