@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_qix.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: qix.zip
 style: null
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Qix
 version: 1.1
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_qix.png]]

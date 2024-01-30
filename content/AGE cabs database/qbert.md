@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marq2_qbert.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: qbert.zip
 style: null
 tags:
 - cabinet
-- 1982
+- '1982'
 title: platform
 version: 1.0
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marq2_qbert.png]]

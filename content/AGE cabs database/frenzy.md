@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_frenzy.png
 md5sum: 24c254be264730bd28bad9161520575c
@@ -13,11 +12,11 @@ rom: frenzy.zip
 style: null
 tags:
 - cabinet
-- 1982
+- '1982'
 title: Frenzy
 version: 1.0
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_frenzy.png]]

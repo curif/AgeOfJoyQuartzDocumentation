@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_galaga88.png
 md5sum: bf3555f501310c81dc27c26545d3582e
@@ -13,11 +12,11 @@ rom: galaga88.zip
 style: joust
 tags:
 - cabinet
-- 1987
+- '1987'
 title: Galaga '88
 version: 1.1
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_galaga88.png]]

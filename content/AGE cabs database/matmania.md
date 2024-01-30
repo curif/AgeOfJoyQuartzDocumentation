@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_matmania.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: matmania.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: mat mania
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_matmania.png]]
@@ -28,7 +27,7 @@ Game published year: 1985
 
 - Author: mAdbiLL
 - File: matmania.zip
-- Version: None
+- Version: 0.0
 - Parts: 5
 - Introduction video: Yes
 - Own cabinet design: Yes

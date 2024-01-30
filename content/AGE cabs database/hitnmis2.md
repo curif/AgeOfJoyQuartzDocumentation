@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: marquee_hitnmis2.png
 md5sum: 3498159ed8f98db0cff3e134c48dfb58
@@ -14,12 +13,12 @@ style: null
 tags:
 - cabinet
 - agebasic
-- ligth-gun
-- 1987
+- light-gun
+- '1987'
 title: Hit 'N Miss
 version: 1.0
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_hitnmis2.png]]

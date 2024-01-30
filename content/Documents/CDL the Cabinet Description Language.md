@@ -217,6 +217,7 @@ You should use the `color` configuration to change the color of the lamps inside
 `illumination-type` options: `none`, `one-lamp`, `two-lamps`, `one-tube` and `two-tubes`. Any other value fallbacks to the default: `one-lamp`. 
 
 ## Configuring the monitor (CRT)
+
 A cathode-ray tube (CRT) is a [vacuum tube](https://en.wikipedia.org/wiki/Vacuum_tube) containing one or more [electron guns](https://en.wikipedia.org/wiki/Electron_gun), which emit [electron](https://en.wikipedia.org/wiki/Electron) beams that are manipulated to display images on a [phosphorescent](https://en.wikipedia.org/wiki/Phosphorescence) screen ([Wikipedia](https://en.wikipedia.org/wiki/Cathode-ray_tube))
 
 In short: is the screen.
@@ -248,6 +249,7 @@ crt:
 * `brightness`: adjust game bright, accepted values:  "0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0","1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","2.0". Optional, defaults to 1.0.
 
 ### Screen sub-document
+
 ```yaml
   screen:
     shader: damage
@@ -262,6 +264,7 @@ crt:
 * `inverty`: flip the game image by the y axis (optional).
 
 #### Damage shader
+
 ```yaml
   screen:
     shader: damage

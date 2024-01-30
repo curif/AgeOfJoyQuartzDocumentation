@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_phoenix.png
 md5sum: c15904337e5a769eac4542e34754df46
@@ -13,11 +12,11 @@ rom: phoenix.zip
 style: timeplt
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Phoenix
 version: 1.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_phoenix.png]]

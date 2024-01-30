@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_superman.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: superman.zip
 style: joust
 tags:
 - cabinet
-- 1988
+- '1988'
 title: Superman
 version: 1.1
 video: 'Yes'
-year: 1988
+year: '1988'
 ---
 
 ![[marquee_superman.png]]

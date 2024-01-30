@@ -3,7 +3,6 @@ author: Aero
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_popeye.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: preisle2.zip
 style: null
 tags:
 - cabinet
-- 1999
+- '1999'
 title: preisle2
 version: 1.0
 video: 'Yes'
-year: 1999
+year: '1999'
 ---
 
 ![[marquee_popeye.png]]

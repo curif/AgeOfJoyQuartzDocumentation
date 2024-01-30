@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_opwolf.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: opwolf.zip
 style: null
 tags:
 - cabinet
-- 1987
+- '1987'
 title: operation wolf
 version: 1.0
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_opwolf.png]]

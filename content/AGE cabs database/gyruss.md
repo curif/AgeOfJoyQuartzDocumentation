@@ -3,7 +3,6 @@ author: Vidar Bergh
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_gyruss.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: gyruss.zip
 style: null
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Gyruss
 version: 1.2
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_gyruss.png]]

@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_hbarrel.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: hbarrel.zip
 style: null
 tags:
 - cabinet
-- 1987
+- '1987'
 title: Heavy Barrel
 version: 1.0
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_hbarrel.png]]

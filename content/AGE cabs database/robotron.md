@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_robotron.png
 md5sum: e9a42201d5f7e5da45bfd7619392ae93
@@ -13,11 +12,11 @@ rom: robotron.zip
 style: defender
 tags:
 - cabinet
-- 1984
+- '1984'
 title: Robotron:2084
 version: 1.1
 video: 'Yes'
-year: 1984
+year: '1984'
 ---
 
 ![[marquee_robotron.png]]

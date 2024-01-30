@@ -3,7 +3,6 @@ author: 3D cabinet by Gozer conversion by Zydonian
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_ringking.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: roadblst.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: HangOn
 version: 1.0
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_ringking.png]]

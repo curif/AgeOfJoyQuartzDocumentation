@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_rocnrope.jpg
 md5sum: null
@@ -13,11 +12,11 @@ rom: rocnrope.zip
 style: null
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Roc N Rope
 version: 1.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_rocnrope.jpg]]

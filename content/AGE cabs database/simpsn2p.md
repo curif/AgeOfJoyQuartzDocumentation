@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_simpsn2p.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: simpsn2p.zip
 style: null
 tags:
 - cabinet
-- 1991
+- '1991'
 title: The Simpsons
 version: 1.0
 video: 'Yes'
-year: 1991
+year: '1991'
 ---
 
 ![[marquee_simpsn2p.png]]

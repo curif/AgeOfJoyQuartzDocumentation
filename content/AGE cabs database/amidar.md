@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_amidar.png
 md5sum: bb30642ea2c9798883382fd99238456e
@@ -13,11 +12,11 @@ rom: amidar.zip
 style: timeplt
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Amidar
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_amidar.png]]

@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mp_gaxe2.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: mp_gaxe2.zip
 style: null
 tags:
 - cabinet
-- 1992
+- '1992'
 title: Golden Axe 2 - Revenge of the Death Adder
 version: 1.0
 video: 'Yes'
-year: 1992
+year: '1992'
 ---
 
 ![[marquee_mp_gaxe2.png]]

@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_batman.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: batman.zip
 style: null
 tags:
 - cabinet
-- 1990
+- '1990'
 title: Batman
 version: 1.0
 video: 'Yes'
-year: 1990
+year: '1990'
 ---
 
 ![[marquee_batman.png]]

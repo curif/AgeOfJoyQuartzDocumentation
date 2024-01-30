@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_sectionz.png
 md5sum: 15e814dc25ec969050dfae219788b522
@@ -13,11 +12,11 @@ rom: sectionz.zip
 style: digdug
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Section Z
 version: 1.0
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_sectionz.png]]

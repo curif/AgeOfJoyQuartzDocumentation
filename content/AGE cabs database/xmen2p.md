@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_xmen2p.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: xmen2p.zip
 style: null
 tags:
 - cabinet
-- 1992
+- '1992'
 title: X-Men
 version: 1.1
 video: 'Yes'
-year: 1992
+year: '1992'
 ---
 
 ![[marquee_xmen2p.png]]

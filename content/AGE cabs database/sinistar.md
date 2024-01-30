@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_sinistar.png
 md5sum: de7ed15d431a22d42b4239cacc7c85c1
@@ -13,11 +12,11 @@ rom: sinistar.zip
 style: defender
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Sinistar
 version: 1.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_sinistar.png]]

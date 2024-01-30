@@ -3,7 +3,6 @@ author: Zydonian33
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_gwar.png
 md5sum: null
@@ -13,15 +12,16 @@ rom: gwar.zip
 style: null
 tags:
 - cabinet
+- unknown-year
 title: gwar
 version: 1.0
 video: 'Yes'
-year: null
+year: unknown-year
 ---
 
 ![[marquee_gwar.png]]
 
-Game published year: None
+Game published year: unknown-year
 
 ## Cabinet information
 

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mk3.png
 md5sum: ae7cdc5423cbcda9c1f2354086a65411
@@ -13,11 +12,11 @@ rom: mk3.zip
 style: null
 tags:
 - cabinet
-- 1995
+- '1995'
 title: Mortal Kombat 3
 version: 2.0
 video: 'Yes'
-year: 1995
+year: '1995'
 ---
 
 ![[marquee_mk3.png]]

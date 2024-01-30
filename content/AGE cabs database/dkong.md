@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_dkong.png
 md5sum: 394a7d367c9926c1d151dd87814c77f4
@@ -13,11 +12,11 @@ rom: dkong.zip
 style: donkeykong
 tags:
 - cabinet
-- 1981
+- '1981'
 title: dkong
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_dkong.png]]
@@ -32,7 +31,7 @@ MD5 sum: `394a7d367c9926c1d151dd87814c77f4`
 
 - Author: None
 - File: dkong.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

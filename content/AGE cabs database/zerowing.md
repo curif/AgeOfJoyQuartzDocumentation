@@ -3,7 +3,6 @@ author: Aero
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_zerowing.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: zerowing.zip
 style: defender
 tags:
 - cabinet
-- 1989
+- '1989'
 title: Zero Wing
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1989
+year: '1989'
 ---
 
 ![[marquee_zerowing.png]]
@@ -28,7 +27,7 @@ Game published year: 1989
 
 - Author: Aero
 - File: zerowing.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: No

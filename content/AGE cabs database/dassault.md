@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_dassault.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: dassault.zip
 style: null
 tags:
 - cabinet
-- 1991
+- '1991'
 title: Desert Assault
 version: 1.0
 video: 'Yes'
-year: 1991
+year: '1991'
 ---
 
 ![[marquee_dassault.png]]

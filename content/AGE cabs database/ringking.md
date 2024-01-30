@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_ringking.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: ringking.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Ring King
 version: 1.0
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_ringking.png]]

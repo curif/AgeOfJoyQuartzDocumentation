@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mpatrol.png
 md5sum: fb5adad707c6d0e14457b67348507d68
@@ -13,11 +12,11 @@ rom: mpatrol.zip
 style: joust
 tags:
 - cabinet
-- 1982
+- '1982'
 title: mpatrol
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_mpatrol.png]]
@@ -32,7 +31,7 @@ MD5 sum: `fb5adad707c6d0e14457b67348507d68`
 
 - Author: None
 - File: mpatrol.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marq2_armorcar.png
 md5sum: a1d7382edb4195edd828c84fc8dfec6c
@@ -13,11 +12,11 @@ rom: armorcar.zip
 style: null
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Armored Car
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marq2_armorcar.png]]

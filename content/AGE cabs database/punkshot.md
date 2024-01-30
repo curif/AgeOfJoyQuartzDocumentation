@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_punkshot.png
 md5sum: 20dbbd72b70929c92ca02ebe059cc19c
@@ -13,11 +12,11 @@ rom: punkshot.zip
 style: null
 tags:
 - cabinet
-- 1990
+- '1990'
 title: Punkshot
 version: 1.0
 video: 'Yes'
-year: 1990
+year: '1990'
 ---
 
 ![[marquee_punkshot.png]]

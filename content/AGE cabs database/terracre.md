@@ -3,7 +3,6 @@ author: Mike Gwynne
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_terracre.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: terracre.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Terra Cresta
 version: 1.2
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_terracre.png]]

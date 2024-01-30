@@ -3,7 +3,6 @@ author: Zydonian33 model by Gozer
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_kod.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: kod.zip
 style: null
 tags:
 - cabinet
-- 1991
+- '1991'
 title: King of the Dragons
 version: 1.0
 video: 'Yes'
-year: 1991
+year: '1991'
 ---
 
 ![[marquee_kod.png]]

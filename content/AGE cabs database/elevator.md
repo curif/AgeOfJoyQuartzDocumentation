@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_elevator.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: elevator.zip
 style: null
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Elevator Action
 version: 1.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_elevator.png]]

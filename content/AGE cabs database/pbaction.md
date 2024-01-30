@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_pbaction.png
 md5sum: e6a2b29c42150b04bb16ea91abd6c0cd
@@ -13,11 +12,11 @@ rom: pbaction.zip
 style: timeplt
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Pinball Action
 version: 1.0
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_pbaction.png]]

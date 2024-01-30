@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_frogger.png
 md5sum: c29313466cda404becce3c910d66f81b
@@ -13,11 +12,11 @@ rom: frogger.zip
 style: frogger
 tags:
 - cabinet
-- 1981
+- '1981'
 title: frogger
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_frogger.png]]
@@ -32,7 +31,7 @@ MD5 sum: `c29313466cda404becce3c910d66f81b`
 
 - Author: None
 - File: frogger.zip
-- Version: None
+- Version: 0.0
 - Parts: 8
 - Introduction video: Yes
 - Own cabinet design: No

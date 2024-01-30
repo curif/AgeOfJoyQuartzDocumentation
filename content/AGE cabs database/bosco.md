@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_bosco.png
 md5sum: 47feabbe7851182f4a799504cc64c9e5
@@ -13,11 +12,11 @@ rom: bosco.zip
 style: galaga
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Bosconian
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_bosco.png]]

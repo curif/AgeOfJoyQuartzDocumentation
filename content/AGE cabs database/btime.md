@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_btime.png
 md5sum: cdc1e128086501aba3f59dc6d4077753
@@ -13,11 +12,11 @@ rom: btime.zip
 style: galaga
 tags:
 - cabinet
-- 1981
+- '1981'
 title: BurgerTime
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_btime.png]]

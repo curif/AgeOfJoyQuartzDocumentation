@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_berzerk.png
 md5sum: 0e087a6714ab3bf1e6dc6c11a3598c0b
@@ -13,11 +12,11 @@ rom: berzerk.zip
 style: null
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Berzerk
 version: 2.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_berzerk.png]]

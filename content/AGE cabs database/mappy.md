@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mappy.png
 md5sum: efbb2a4568770cf08c78d68a93f4dede
@@ -13,11 +12,11 @@ rom: mappy.zip
 style: galaga
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Mappy
 version: 1.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_mappy.png]]

@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_krull.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: krull.zip
 style: null
 tags:
 - cabinet
-- 1983
+- '1983'
 title: krull
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_krull.png]]
@@ -28,7 +27,7 @@ Game published year: 1983
 
 - Author: None
 - File: krull.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: Yes

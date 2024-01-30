@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_starforc.png
 md5sum: dbe90fe908ed26496da200cf7644c661
@@ -13,11 +12,11 @@ rom: starforc.zip
 style: null
 tags:
 - cabinet
-- 1984
+- '1984'
 title: starforc
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1984
+year: '1984'
 ---
 
 ![[marquee_starforc.png]]
@@ -32,7 +31,7 @@ MD5 sum: `dbe90fe908ed26496da200cf7644c661`
 
 - Author: None
 - File: starforc.zip
-- Version: None
+- Version: 0.0
 - Parts: 4
 - Introduction video: Yes
 - Own cabinet design: Yes

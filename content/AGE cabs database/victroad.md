@@ -3,7 +3,6 @@ author: Mike Gwynne based on 3D cabinet design from mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_victroad.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: victroad.zip
 style: null
 tags:
 - cabinet
-- 1990
+- '1990'
 title: victroad
 version: 1.0
 video: 'Yes'
-year: 1990
+year: '1990'
 ---
 
 ![[marquee_victroad.png]]

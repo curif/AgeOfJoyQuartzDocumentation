@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_roadrunn.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: roadrunn.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Road Runner
 version: 1.1
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_roadrunn.png]]

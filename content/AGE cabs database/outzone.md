@@ -3,7 +3,6 @@ author: Vidar Bergh
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_outzone.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: outzone.zip
 style: null
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Salamander
 version: 1.1
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[marquee_outzone.png]]

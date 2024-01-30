@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mspacman.png
 md5sum: 1dbb47caa522f3c1849d83a88ce99f37
@@ -13,11 +12,11 @@ rom: mspacman.zip
 style: galaga
 tags:
 - cabinet
-- 1980
+- '1980'
 title: mspacman
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_mspacman.png]]
@@ -32,7 +31,7 @@ MD5 sum: `1dbb47caa522f3c1849d83a88ce99f37`
 
 - Author: None
 - File: mspacman.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: No

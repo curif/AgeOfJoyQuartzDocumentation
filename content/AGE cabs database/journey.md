@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_journey.png
 md5sum: 46e8adff4c12c1d2c83f28248337dd17
@@ -13,11 +12,11 @@ rom: journey.zip
 style: stargate
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Journey
 version: 1.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_journey.png]]

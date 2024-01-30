@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_sf2.png
 md5sum: 304373a21b565efe99598cf02417fd13
@@ -13,11 +12,11 @@ rom: sf2.zip
 style: digdug
 tags:
 - cabinet
-- 1991
+- '1991'
 title: Street Fighter II
 version: 1.0
 video: 'Yes'
-year: 1991
+year: '1991'
 ---
 
 ![[marquee_sf2.png]]

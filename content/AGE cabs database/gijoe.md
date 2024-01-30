@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_gijoe.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: gijoe.zip
 style: null
 tags:
 - cabinet
-- 1992
+- '1992'
 title: G.I. Joe
 version: 1.0
 video: 'Yes'
-year: 1992
+year: '1992'
 ---
 
 ![[marquee_gijoe.png]]

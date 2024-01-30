@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_pacmania.png
 md5sum: 4e762e7a3f05e1341fd1bf780e692f0a
@@ -13,11 +12,11 @@ rom: pacmania.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: pacmania
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_pacmania.png]]
@@ -32,7 +31,7 @@ MD5 sum: `4e762e7a3f05e1341fd1bf780e692f0a`
 
 - Author: None
 - File: pacmania.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: Yes

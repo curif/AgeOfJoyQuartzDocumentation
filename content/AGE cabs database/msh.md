@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_msh.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: msh.zip
 style: null
 tags:
 - cabinet
-- 1995
+- '1995'
 title: Marvel Super Heroes
 version: 1.0
 video: 'Yes'
-year: 1995
+year: '1995'
 ---
 
 ![[marquee_msh.png]]

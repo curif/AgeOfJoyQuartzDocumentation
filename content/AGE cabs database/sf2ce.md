@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_sf2ce.png
 md5sum: f7a6f9f68f0455da7f506618c857d28a
@@ -13,11 +12,11 @@ rom: sf2ce.zip
 style: null
 tags:
 - cabinet
-- 1992
+- '1992'
 title: Street Fighter II - Champion Edition
 version: 1.0
 video: 'Yes'
-year: 1992
+year: '1992'
 ---
 
 ![[marquee_sf2ce.png]]

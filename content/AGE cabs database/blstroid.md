@@ -3,7 +3,6 @@ author: Angelicide
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_blstroid.png
 md5sum: 353d49ca259585cf8c1e75303384334f
@@ -13,11 +12,11 @@ rom: blstroid.zip
 style: null
 tags:
 - cabinet
-- 1985
+- '1985'
 title: Blasteroids
 version: 1.0
 video: 'Yes'
-year: 1985
+year: '1985'
 ---
 
 ![[marquee_blstroid.png]]

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_gorf.png
 md5sum: 528abff5f92c28f116895c8bbc94e8aa
@@ -13,11 +12,11 @@ rom: gorf.zip
 style: null
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Gorf
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_gorf.png]]

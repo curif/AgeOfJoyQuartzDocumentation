@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_forgottn.png
 md5sum: ae5867cc6b15f53bac1cda763491220a
@@ -13,11 +12,11 @@ rom: forgottn.zip
 style: null
 tags:
 - cabinet
-- 1988
+- '1988'
 title: Forgotton Worlds
 version: 1.0
 video: 'Yes'
-year: 1988
+year: '1988'
 ---
 
 ![[marquee_forgottn.png]]

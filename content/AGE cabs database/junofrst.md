@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_junofrst.png
 md5sum: dd90985b84cc5e99b423b685a24ec206
@@ -13,11 +12,11 @@ rom: junofrst.zip
 style: junofrst
 tags:
 - cabinet
-- 1983
+- '1983'
 title: junofrst
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_junofrst.png]]
@@ -32,7 +31,7 @@ MD5 sum: `dd90985b84cc5e99b423b685a24ec206`
 
 - Author: None
 - File: junofrst.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

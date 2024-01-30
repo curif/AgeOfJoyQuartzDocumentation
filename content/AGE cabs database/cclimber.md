@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_cclimber.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: cclimber.zip
 style: null
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Crazy Climber
 version: 1.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_cclimber.png]]

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_hyperspt.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: hyperspt.zip
 style: stargate
 tags:
 - cabinet
-- 1984
+- '1984'
 title: Hyper Sports
 version: 1
 video: 'Yes'
-year: 1984
+year: '1984'
 ---
 
 ![[marquee_hyperspt.png]]

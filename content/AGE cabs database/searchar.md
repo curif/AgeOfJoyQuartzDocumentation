@@ -3,7 +3,6 @@ author: Zygar
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_searchar.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: searchar.zip
 style: null
 tags:
 - cabinet
-- 1990
+- '1990'
 title: searchar
 version: 1.0
 video: 'Yes'
-year: 1990
+year: '1990'
 ---
 
 ![[marquee_searchar.png]]

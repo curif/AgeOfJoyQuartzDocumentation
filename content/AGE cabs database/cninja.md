@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_cninja.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: cninja.zip
 style: null
 tags:
 - cabinet
-- 1991
+- '1991'
 title: Caveman Ninjas Joe & Mac
 version: 1.0
 video: 'Yes'
-year: 1991
+year: '1991'
 ---
 
 ![[marquee_cninja.png]]

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_trackfld.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: trackfld.zip
 style: stargate
 tags:
 - cabinet
-- 1983
+- '1983'
 title: Track&Field
 version: 1
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_trackfld.png]]

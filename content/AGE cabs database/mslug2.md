@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_mslug2.png
 md5sum: fa50f21110905e84e6ef9c273fc58a6c
@@ -13,11 +12,11 @@ rom: mslug2.zip
 style: null
 tags:
 - cabinet
-- 1998
+- '1998'
 title: mslug2
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1998
+year: '1998'
 ---
 
 ![[marquee_mslug2.png]]
@@ -32,7 +31,7 @@ MD5 sum: `fa50f21110905e84e6ef9c273fc58a6c`
 
 - Author: None
 - File: mslug2.zip
-- Version: None
+- Version: 0.0
 - Parts: 8
 - Introduction video: Yes
 - Own cabinet design: Yes

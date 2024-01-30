@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_wboy.png
 md5sum: 5d6d5a96c3b63c16de401364d383122f
@@ -13,11 +12,11 @@ rom: wboy.zip
 style: joust
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Wonderboy
 version: 1.0
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[marquee_wboy.png]]

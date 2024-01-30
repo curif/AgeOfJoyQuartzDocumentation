@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_tailg.png
 md5sum: 012e16da3c71ae8065a16d2347efc283
@@ -13,11 +12,11 @@ rom: tailg.zip
 style: null
 tags:
 - cabinet
-- 1979
+- '1979'
 title: Tail Gunner
 version: 1.0
 video: 'Yes'
-year: 1979
+year: '1979'
 ---
 
 ![[marquee_tailg.png]]

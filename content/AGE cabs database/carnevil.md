@@ -3,7 +3,6 @@ author: Aero
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: marquee_carnevil.png
 md5sum: null
@@ -13,12 +12,12 @@ rom: carnevil.zip
 style: null
 tags:
 - cabinet
-- ligth-gun
-- 1997
+- light-gun
+- '1997'
 title: CarnEvil
 version: 1.0
 video: 'Yes'
-year: 1997
+year: '1997'
 ---
 
 ![[marquee_carnevil.png]]

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_out_of_order.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: null
 style: donkeykong
 tags:
 - cabinet
-- 2023
+- '2023'
 title: Donkey Kong "Out of Order"
 version: 1.0
 video: 'Yes'
-year: 2023
+year: '2023'
 ---
 
 ![[marquee_out_of_order.png]]

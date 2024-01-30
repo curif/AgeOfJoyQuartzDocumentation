@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_vanguard.png
 md5sum: ed897eef2999c1edb72ea13c36d1cd10
@@ -13,11 +12,11 @@ rom: vanguard.zip
 style: timeplt
 tags:
 - cabinet
-- 1981
+- '1981'
 title: vanguard
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_vanguard.png]]
@@ -32,7 +31,7 @@ MD5 sum: `ed897eef2999c1edb72ea13c36d1cd10`
 
 - Author: None
 - File: vanguard.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

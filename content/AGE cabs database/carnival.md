@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_carnival.jpg
 md5sum: 1303194624c62bbf90f17d96a86e55b2
@@ -13,11 +12,11 @@ rom: carnival.zip
 style: null
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Carnival
 version: 2.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_carnival.jpg]]

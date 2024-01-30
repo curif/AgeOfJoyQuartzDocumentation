@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: marquee_cheyenne.png
 md5sum: 9e68f4d32679e95a0faef29ddd4eb7b2
@@ -14,12 +13,12 @@ style: null
 tags:
 - cabinet
 - agebasic
-- ligth-gun
-- 1984
+- light-gun
+- '1984'
 title: Cheyenne
 version: 1.0
 video: 'Yes'
-year: 1984
+year: '1984'
 ---
 
 ![[marquee_cheyenne.png]]

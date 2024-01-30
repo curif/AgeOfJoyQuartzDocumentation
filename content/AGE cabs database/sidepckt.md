@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_sidepckt.png
 md5sum: 81db4eb6bf15fe908e58d621e69bfc4a
@@ -13,11 +12,11 @@ rom: sidepckt.zip
 style: pacmancabaret
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Side Pocket
 version: 1.0
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[marquee_sidepckt.png]]

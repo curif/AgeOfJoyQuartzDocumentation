@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_arkanoid.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: arkanoid.zip
 style: null
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Arkanoid
 version: 1.0
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[marquee_arkanoid.png]]

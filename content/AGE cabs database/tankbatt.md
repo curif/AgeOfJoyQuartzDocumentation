@@ -3,7 +3,6 @@ author: BTRIBBLE modded for AOJ by mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_tankbatt.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: tankbatt.zip
 style: null
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Tank Battalion
 version: 1.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_tankbatt.png]]

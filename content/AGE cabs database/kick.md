@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_kick.png
 md5sum: dbe90fe908ed26496da200cf7644c661
@@ -13,11 +12,11 @@ rom: kick.zip
 style: timeplt
 tags:
 - cabinet
-- 1984
+- '1984'
 title: Kick
 version: 1.0
 video: 'Yes'
-year: 1984
+year: '1984'
 ---
 
 ![[marquee_kick.png]]

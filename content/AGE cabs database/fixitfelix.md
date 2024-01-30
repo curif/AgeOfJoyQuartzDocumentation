@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_fixitfelix.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: null
 style: donkeykong
 tags:
 - cabinet
-- 1983
+- '1983'
 title: fixitfelix
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_fixitfelix.png]]
@@ -28,7 +27,7 @@ Game published year: 1983
 
 - Author: None
 - File: None
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_stargate.png
 md5sum: 9ef0914a739b48b2a02d77423945bfd1
@@ -13,11 +12,11 @@ rom: stargate.zip
 style: stargate
 tags:
 - cabinet
-- 1981
+- '1981'
 title: stargate
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_stargate.png]]
@@ -32,7 +31,7 @@ MD5 sum: `9ef0914a739b48b2a02d77423945bfd1`
 
 - Author: None
 - File: stargate.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: No

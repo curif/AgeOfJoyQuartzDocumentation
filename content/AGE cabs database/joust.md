@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_joust.png
 md5sum: 65b26bfbbfb9f3081a348a2bdc84edeb
@@ -13,11 +12,11 @@ rom: joust.zip
 style: joust
 tags:
 - cabinet
-- 1982
+- '1982'
 title: joust
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_joust.png]]
@@ -32,7 +31,7 @@ MD5 sum: `65b26bfbbfb9f3081a348a2bdc84edeb`
 
 - Author: None
 - File: joust.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

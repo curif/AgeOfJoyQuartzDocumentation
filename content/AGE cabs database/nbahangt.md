@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_nbahangt.png
 md5sum: 2f64bc5c86422d396ae580d0087049e8
@@ -13,11 +12,11 @@ rom: nbahangt.zip
 style: null
 tags:
 - cabinet
-- 1996
+- '1996'
 title: NBA Hangtime
 version: 1.0
 video: 'Yes'
-year: 1996
+year: '1996'
 ---
 
 ![[marquee_nbahangt.png]]

@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_defender.png
 md5sum: 56a6c44c2d6678bdc085b8780bc51819
@@ -13,11 +12,11 @@ rom: defender.zip
 style: defender
 tags:
 - cabinet
-- 1981
+- '1981'
 title: defender
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_defender.png]]
@@ -32,7 +31,7 @@ MD5 sum: `56a6c44c2d6678bdc085b8780bc51819`
 
 - Author: None
 - File: defender.zip
-- Version: None
+- Version: 0.0
 - Parts: 6
 - Introduction video: Yes
 - Own cabinet design: No

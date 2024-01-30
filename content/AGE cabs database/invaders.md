@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_invaders.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: invaders.zip
 style: null
 tags:
 - cabinet
-- 1978
+- '1978'
 title: Space Invaders
 version: 1
 video: 'Yes'
-year: 1978
+year: '1978'
 ---
 
 ![[marquee_invaders.png]]

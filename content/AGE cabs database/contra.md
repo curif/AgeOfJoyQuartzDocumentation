@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_contra.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: contra.zip
 style: joust
 tags:
 - cabinet
-- 1987
+- '1987'
 title: Contra
 version: 1.0
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_contra.png]]

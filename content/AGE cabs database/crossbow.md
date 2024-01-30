@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: marquee_crossbow.png
 md5sum: null
@@ -14,12 +13,12 @@ style: null
 tags:
 - cabinet
 - agebasic
-- ligth-gun
-- 1983
+- light-gun
+- '1983'
 title: crossbow
 version: 3.0
 video: 'Yes'
-year: 1983
+year: '1983'
 ---
 
 ![[marquee_crossbow.png]]

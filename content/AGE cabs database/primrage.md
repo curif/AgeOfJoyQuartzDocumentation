@@ -3,7 +3,6 @@ author: mAdbiLL
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_primrage.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: primrage.zip
 style: null
 tags:
 - cabinet
-- 1994
+- '1994'
 title: Primal Rage
 version: 1.0
 video: 'Yes'
-year: 1994
+year: '1994'
 ---
 
 ![[marquee_primrage.png]]

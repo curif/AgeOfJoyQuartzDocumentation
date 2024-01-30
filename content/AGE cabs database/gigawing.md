@@ -3,7 +3,6 @@ author: Aero
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_gigawing.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: gigawing.zip
 style: null
 tags:
 - cabinet
-- 1999
+- '1999'
 title: gigawing
 version: 1.0
 video: 'Yes'
-year: 1999
+year: '1999'
 ---
 
 ![[marquee_gigawing.png]]

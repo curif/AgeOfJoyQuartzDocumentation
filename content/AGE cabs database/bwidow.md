@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_bwidow.png
 md5sum: 45ede1371ab13a8bbe8a375fb16f8220
@@ -13,11 +12,11 @@ rom: bwidow.zip
 style: digdug
 tags:
 - cabinet
-- 1982
+- '1982'
 title: Black Widow
 version: 1.0
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_bwidow.png]]

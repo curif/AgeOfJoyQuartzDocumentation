@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_rambo3.jpg
 md5sum: 4e762e7a3f05e1341fd1bf780e692f0a
@@ -13,11 +12,11 @@ rom: rambo3.zip
 style: null
 tags:
 - cabinet
-- 1989
+- '1989'
 title: Rambo III
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1989
+year: '1989'
 ---
 
 ![[marquee_rambo3.jpg]]
@@ -32,7 +31,7 @@ MD5 sum: `4e762e7a3f05e1341fd1bf780e692f0a`
 
 - Author: None
 - File: rambo3.zip
-- Version: None
+- Version: 0.0
 - Parts: 8
 - Introduction video: Yes
 - Own cabinet design: Yes

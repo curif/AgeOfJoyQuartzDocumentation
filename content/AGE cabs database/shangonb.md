@@ -3,7 +3,6 @@ author: Model by Gozer Converted by Zydonian33
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_shangon.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: shangonb.zip
 style: null
 tags:
 - cabinet
-- 1987
+- '1987'
 title: Super Hangon
 version: 1.0
 video: 'Yes'
-year: 1987
+year: '1987'
 ---
 
 ![[marquee_shangon.png]]

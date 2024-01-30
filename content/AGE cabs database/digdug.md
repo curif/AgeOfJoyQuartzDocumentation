@@ -3,7 +3,6 @@ author: null
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_digdug.png
 md5sum: f37e93ad55a3e21fd8fe50fc1b34e502
@@ -13,11 +12,11 @@ rom: digdug.zip
 style: digdug
 tags:
 - cabinet
-- 1982
+- '1982'
 title: digdug
-version: null
+version: '0.0'
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_digdug.png]]
@@ -32,7 +31,7 @@ MD5 sum: `f37e93ad55a3e21fd8fe50fc1b34e502`
 
 - Author: None
 - File: digdug.zip
-- Version: None
+- Version: 0.0
 - Parts: 7
 - Introduction video: Yes
 - Own cabinet design: No

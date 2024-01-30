@@ -3,7 +3,6 @@ author: zydonian33
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: marquee_area51.jpg
 md5sum: null
@@ -13,12 +12,12 @@ rom: area51.zip
 style: null
 tags:
 - cabinet
-- ligth-gun
-- 2023
+- light-gun
+- '2023'
 title: area51
 version: 1.0
 video: 'Yes'
-year: 2023
+year: '2023'
 ---
 
 ![[marquee_area51.jpg]]

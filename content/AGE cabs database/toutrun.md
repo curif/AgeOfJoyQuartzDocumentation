@@ -3,7 +3,6 @@ author: DangerMiaus
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: texture_toutrun.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: toutrun.zip
 style: null
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Turbo Out Run
 version: 1.1
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[texture_toutrun.png]]

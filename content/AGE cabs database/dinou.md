@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_dinou.png
 md5sum: fc8ec37cdb67806135b5d46601407297
@@ -13,11 +12,11 @@ rom: dinou.zip
 style: defender
 tags:
 - cabinet
-- 1993
+- '1993'
 title: Cadillacs and Dinosaurs
 version: 1.0
 video: 'Yes'
-year: 1993
+year: '1993'
 ---
 
 ![[marquee_dinou.png]]

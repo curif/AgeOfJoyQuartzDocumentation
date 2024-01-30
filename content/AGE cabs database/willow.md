@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_willow.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: willow.zip
 style: null
 tags:
 - cabinet
-- 1989
+- '1989'
 title: Willow
 version: 1.0
 video: 'Yes'
-year: 1989
+year: '1989'
 ---
 
 ![[marquee_willow.png]]

@@ -1,4 +1,6 @@
-## Documentation
+---
+Title: Documentation
+---
 
 ## Beginners
 

@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_stratvox.png
 md5sum: 77f28060eee3821c5253099224440eb8
@@ -13,11 +12,11 @@ rom: stratvox.zip
 style: null
 tags:
 - cabinet
-- 1980
+- '1980'
 title: Stratovox
 version: 1.0
 video: 'Yes'
-year: 1980
+year: '1980'
 ---
 
 ![[marquee_stratvox.png]]

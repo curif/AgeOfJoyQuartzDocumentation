@@ -3,7 +3,6 @@ author: cabinet by Gozer modded by mAdbiLL & DangerMiaus
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'true'
 marquee: controlpanel_alien3 FXD.png
 md5sum: null
@@ -14,12 +13,12 @@ style: null
 tags:
 - cabinet
 - agebasic
-- ligth-gun
-- 1992
+- light-gun
+- '1992'
 title: Alien 3 The Gun
 version: 1.0
 video: 'Yes'
-year: 1992
+year: '1992'
 ---
 
 ![[controlpanel_alien3 FXD.png]]

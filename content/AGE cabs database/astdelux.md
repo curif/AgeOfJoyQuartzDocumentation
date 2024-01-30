@@ -3,7 +3,6 @@ author: crusher124
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_astdelux.png
 md5sum: 988ccb722eacdf8935e9f5dffc393931
@@ -13,11 +12,11 @@ rom: astdelux.zip
 style: stargate
 tags:
 - cabinet
-- 1981
+- '1981'
 title: Asteroids Deluxe
 version: 1.0
 video: 'Yes'
-year: 1981
+year: '1981'
 ---
 
 ![[marquee_astdelux.png]]

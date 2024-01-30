@@ -3,7 +3,6 @@ author: Elleby Katowitz
 comments: null
 crt: horizontal
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_bublbobl.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: bublbobl.zip
 style: null
 tags:
 - cabinet
-- 1986
+- '1986'
 title: Bubble Bobble
 version: 1.0
 video: 'Yes'
-year: 1986
+year: '1986'
 ---
 
 ![[marquee_bublbobl.png]]

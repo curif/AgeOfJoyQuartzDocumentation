@@ -3,7 +3,6 @@ author: BOND1 modded by mAdbiLL
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_fastfred.png
 md5sum: null
@@ -13,11 +12,11 @@ rom: fastfred.zip
 style: null
 tags:
 - cabinet
-- 1982
+- '1982'
 title: Fast Freddie
 version: 1.0
 video: 'Yes'
-year: 1982
+year: '1982'
 ---
 
 ![[marquee_fastfred.png]]

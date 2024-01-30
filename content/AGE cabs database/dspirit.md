@@ -3,7 +3,6 @@ author: Dangermiaus and Crusher124
 comments: null
 crt: vertical
 dg-publish: true
-enablestatefile: null
 ligth-gun: 'false'
 marquee: marquee_dspirit.jpg
 md5sum: null
@@ -13,10 +12,11 @@ rom: dspirit.zip
 style: null
 tags:
 - cabinet
+- None
 title: Dragon Spirit
 version: null
 video: 'Yes'
-year: null
+year: None
 ---
 
 ![[marquee_dspirit.jpg]]
