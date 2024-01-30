@@ -1,6 +1,6 @@
-
+#agebasic 
 ### Calculate the sum of cabinets assigned in all rooms
-```Basic
+```vb
 10 REM Program to calculate the sum of cabinets assigned in all rooms
 20 LET totalRooms = RoomCount()
 30 LET sumOfCabinets = 0
@@ -16,7 +16,7 @@
 ```
 
 ### Replace each cabinet in all rooms with a random cabinet
-```Basic
+```vb
 5 call DebugMode(1)
 10 REM Replace each cabinet in all rooms with a random cabinet
 20 LET totalRooms = RoomCount()
@@ -78,7 +78,7 @@
 ```
 
 ### Randomize two cabinets in a room
-```Basic
+```vb
 10 REM Cabinet Randomizer
 20 LET numCabinets = CabRoomCount()
 30 IF (numCabinets < 2) THEN GOTO 70  

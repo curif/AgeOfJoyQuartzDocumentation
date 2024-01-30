@@ -1,3 +1,5 @@
+#agebasic 
+
 BASIC is a popular programming language known for its simplicity and ease of use. It has been used in various applications, especially in the early days of computing.
 
 `AGEBasic` draws its inspiration from another programming language called [Tiny Basic](https://en.wikipedia.org/wiki/Tiny_BASIC) which is a minimalistic version of BASIC. However, AGEBasic does not strictly adhere to all the rules and limitations of Tiny Basic. Instead, it takes inspiration from Tiny Basic and extends or modifies certain features to better suit the requirements and capabilities designed specifically to be executed in [[Age of Joy]].

@@ -1,4 +1,5 @@
 
+#agebasic 
 # Configure room lighting
 
 You can configure lights color and intensity. 
@@ -8,7 +9,7 @@ Using `GetLights()` you can get all the lights on the active rooms in a string w
 Read more in the [[AGEBasic programing]] manual, light section.
 ## Show actual room lights
 
-```BASIC
+```vb
 10 REM List Lights
 15 CLS
 20 LET lights = GetLights()
@@ -43,7 +44,7 @@ Read more in the [[AGEBasic programing]] manual, light section.
 
 This code increase the lights intensity in a 30%. Be careful, the results couldn't be as expected because the way Unity manage the illumination. 
 
-```BASIC
+```vb
 10 REM Increase Light Intensity
 20 LET lights = GetLights()
 30 LET count = CountMembers(lights, "|")
@@ -73,7 +74,7 @@ This program changes all the lights to blue.
 
 ![[Pasted image 20240109090047.png]]
 
-```basic
+```vb
 10  CALL DebugMode(1) 'activate the debug mode
 15  CLS
 

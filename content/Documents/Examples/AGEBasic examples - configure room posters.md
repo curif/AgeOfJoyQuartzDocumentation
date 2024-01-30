@@ -1,8 +1,9 @@
+#agebasic 
 ### Change Movie Posters
 
 This program changes the movie posters of the room by others in a path. The movie posters should be PNGs.
 
-```BASIC
+```vb
 10 REM Program to replace posters in the room in random order
 11 REM just change the path where you saved the poster pictures.
 13 REM You will need to execute it again every time you enter a room, 
