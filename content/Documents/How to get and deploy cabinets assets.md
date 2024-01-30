@@ -4,7 +4,7 @@
 
 ![[Steps to get and deploy cabinet assets.png]]
 
-1. Download [[Cabinet Asset]]s from itch.io or another source and decompress the file in a folder in your computer, you should obtain some zip files like `galaga.zip`. Each zip file are the instructions to deploy a cabinet in the game.
+1. Download [[Cabinet Asset]]s from itch.io or another source and decompress the file in a folder in your computer, you should obtain some zip files like `galaga.zip`. Each zip file are the instructions to deploy a cabinet in the game. Mostly of them are on [[Discord server]]
 2. Exit the game in the headset. Copy the zips files cabinets that you want to the  `/sdcard/Android/data/com.curif.AgeOfJoy/cabinets` path using [[Sidequest]].
 3. Run the game again, it should detect the new cabinets and deploys them in a room, search them.
 
