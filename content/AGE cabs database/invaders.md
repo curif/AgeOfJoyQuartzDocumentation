@@ -35,4 +35,3 @@ Game published year: 1978
 - Light guns: no
 - AGEBasic enabled: no
 
----

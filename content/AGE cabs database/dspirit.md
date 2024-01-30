@@ -35,4 +35,3 @@ Game published year: None
 - Light guns: no
 - AGEBasic enabled: no
 
----

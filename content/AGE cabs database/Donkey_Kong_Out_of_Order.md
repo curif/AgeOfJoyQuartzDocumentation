@@ -35,4 +35,3 @@ Game published year: 2023
 - Light guns: no
 - AGEBasic enabled: no
 
----

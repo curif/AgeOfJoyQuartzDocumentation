@@ -45,4 +45,3 @@ MD5 sum: `9e68f4d32679e95a0faef29ddd4eb7b2`
  
 ![[lightgun.png]]
  
----

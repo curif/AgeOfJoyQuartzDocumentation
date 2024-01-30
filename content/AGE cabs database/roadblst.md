@@ -35,4 +35,3 @@ Game published year: 1985
 - Light guns: no
 - AGEBasic enabled: no
 
----

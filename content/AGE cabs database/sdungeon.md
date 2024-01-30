@@ -35,4 +35,3 @@ Game published year: 1981
 - Light guns: no
 - AGEBasic enabled: no
 
----

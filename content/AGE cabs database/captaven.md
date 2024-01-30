@@ -35,4 +35,3 @@ Game published year: 1993
 - Light guns: no
 - AGEBasic enabled: no
 
----

@@ -41,4 +41,3 @@ Game published year: 1992
  
 ![[lightgun.png]]
  
----

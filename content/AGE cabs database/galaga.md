@@ -39,4 +39,3 @@ MD5 sum: `3d636648503fb06891ade8e751836108`
 - Light guns: no
 - AGEBasic enabled: no
 
----

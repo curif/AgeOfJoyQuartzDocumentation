@@ -38,4 +38,3 @@ Game published year: 1997
 
 ![[lightgun.png]]
  
----
