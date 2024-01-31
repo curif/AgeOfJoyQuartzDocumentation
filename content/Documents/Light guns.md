@@ -1,4 +1,5 @@
 ### Light guns
+![[lightgun.png]]
 
 > Only available on `V0.4` and superior
 
@@ -8,3 +9,5 @@ A light gun is a type of input device used to interact with video games. It is d
 
 [[Default controllers configuration mapping]]
 [[CDL the Cabinet Description Language#Light guns]]
+
+#light-gun 

@@ -78,7 +78,7 @@ Remember: `test.zip` is for testing purposes, we should rename the zip file late
 
 If the game didn't start or the cabinet didn't spawn correctly, check the description.yaml file in search of errors. But if you didn't find any issue, then probably you ROM is not compatible. Ask for help in forums and GitHub.
 
-If you find the issue (may be a typo) repeat all from the step 2.3. The corrected cabinet will replace the actual without need to restart AGE of Joy.
+If you find the issue (may be a typo) repeat all from the step 2.3. The corrected cabinet will replace the actual without need to restart AGE of Joy. Also read the [[CDL Debug mode]] information
 
 ### 4- Deploy the new cabinet
 

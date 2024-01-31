@@ -73,8 +73,8 @@ material: black
 * `material`: (optional) a material to use for all parts of the cabinet. materials are explained below.
 #### Optional keys:
 
-- author: cabinet author Nik name.
-- comments: any extra relevant information
+- `author`: cabinet author Nik name.
+- `comments`: any extra relevant information
 
 ### The `enablesavestate` key
 
@@ -416,6 +416,19 @@ agebasic:
 
 Read this document to fully understand how AGEBasic programs works in the cabinet's environment: [[AGEBasic in cabinets]].
 
+## Debug
+
+It easy to fail the task of writing a `yaml` file, It's common to introduce syntax or semantic error. [[Cabinet Artist]]s should analyze debug information about the cabinet they are making.
+
+### Activate the debug mode
+
+Just set to `true` the debug-mode key in the `description.yaml`:
+
+```yaml title="description.yaml"
+debug-mode: true
+```
+
+Recommended information in the [[CDL Debug mode]] page.
 
 ## References
 
@@ -423,3 +436,5 @@ Read this document to fully understand how AGEBasic programs works in the cabine
 [^2]: ignored in v0.2
 [^3]: the only available option.
  
+---
+#CDL 

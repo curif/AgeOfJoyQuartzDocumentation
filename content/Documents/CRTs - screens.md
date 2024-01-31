@@ -16,4 +16,3 @@ Cabinets have a way to configure the screen damage in the [[CDL the Cabinet Desc
 
 If the original game shows himself inverted in the screen you can invert the X and Y coordinates.
 
-
