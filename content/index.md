@@ -21,15 +21,13 @@ Access to the cabinets [[packs]]
 
 > [!note] There are many cabinets created by the community that are not mentioned or listed here. To access them, you can join the [Discord](https://discord.gg/b83ykCM9Xp)  server. However, it's important to note that discovering these additional cabinets may require some effort on your part. You will need to search through message groups to find the latest and newly shared cabinets.
 
-In July 2023, the [[Discord server]] community achieved a remarkable milestone of surpassing *300* cabinets, and *400* in October !!!! the count is still growing!
+In December of 2024, the [[Discord server]] already pass the goal of surpassing *500* cabinets!!!! the count is still growing!
+![[age 500 cabs.jpg]]
 
-![[Pasted image 20231026092833.png]]
-
-(image source [Angelicide](https://discord.com/channels/1066438667989696645/1066438854090965043/1163273805070880839))
 
 ### Cabinets List
 
-[[cabinet]]
+[[cabinet]] tag page.
 ## About [[ROM]]s
 
 > [!warning]  👮🏼‍♂️ ROMs are digital copies of copyrighted material, such as games, and are protected by intellectual property laws. It is important to be aware of this and respect the legal rights of copyright holders. Distributing ROMs or engaging in any form of illegal sharing of copyrighted material is strictly prohibited.
