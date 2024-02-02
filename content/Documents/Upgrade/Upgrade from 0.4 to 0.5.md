@@ -22,7 +22,7 @@ This latest iteration aims to empower users by expanding the capabilities of [[A
 - Sound samples tested and working. Check the [[MAME]] page for information.
 - A [[Cabinet Artist]] can change the game volume using [[AGEBasic]] in the [[Cabinet Asset]]
 - New [[CDL Debug mode]] so [[Cabinet Artist]]s can find issues in its cabinets quickly.
-- New blocker type part on [[CDL the Cabinet Description Language#Parts#`type` parts]]. Read how to use it in the [[Player Blockers]] manual page.
+- New blocker type part on [[CDL the Cabinet Description Language#Parts]]. Read how to use it in the [[Player Blockers]] manual page.
 
 ### AGEBasic change log
 

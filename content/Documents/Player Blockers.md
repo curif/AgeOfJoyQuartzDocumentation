@@ -4,7 +4,7 @@ It is useful for bigger cabinets for example or cabinets where the player can be
 
 You can add one or more `blocker` components to your model to delimit two or more areas.
 
-> [!tip] The `blocker` is used to calculate the base of your model to put the cabinet on the floor, so  you should align it to the base of your cabinet. The **last blocker** in the CDL `parts` list is used for that (remember you can have as many `blocker` parts as you need)
+> [!tip]   The `blocker` is used to calculate the base of your model to put the cabinet on the floor, so  you should align it to the base of your cabinet. The **last blocker** in the CDL `parts` list is used for that (remember you can have as many `blocker` parts as you need)
 
 ## How to add a Blocker
 
