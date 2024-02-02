@@ -10,7 +10,8 @@ To accomplish the task we need a *context prompt* that explain how to do it, so 
 - ask for [[YAML]] code as you wish
 - be critic, analyze the result before use it. LLMs like ChatGPT can fail.
 
-> [!note] Is easiest to create small code blocks and compose them in a big yaml file than ask for all the maps in one prompt.  
+> [!note] 
+> Is easiest to create small code blocks and compose them in a big yaml file than ask for all the maps in one prompt.  
 
 # Context Prompt
 

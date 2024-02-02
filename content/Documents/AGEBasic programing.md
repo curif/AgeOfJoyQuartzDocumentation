@@ -7,7 +7,8 @@ BASIC is a popular programming language known for its simplicity and ease of use
 With AGEBasic the player can develop it's own functions to run in the simulation. Allows to control parts of the game that there aren't available from the [[YAML]] configuration or the [[Visual configuration]].
 
 
-> [!warning] the contents of this document applies to [[Age of Joy]] version 0.4-RC04 or superior.
+> [!warning] 
+> The contents of this document applies to [[Age of Joy]] version 0.4-RC04 or superior.
 
 ## AGEBasic program storage
 

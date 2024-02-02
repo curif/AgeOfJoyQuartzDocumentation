@@ -2,7 +2,8 @@ There are [[Controllers]] of any type/model/brand/etc and it's impossible to map
 
 This document explains how to map your controller to any retro game, but it's not guaranteed that any control could be mapped.
 
-> [!note] this document apply to AGE of Joy version >= 0.4
+> [!note] 
+> this document apply to AGE of Joy version >= 0.4
 
 ## Visual configuration
 

@@ -60,6 +60,7 @@ Depending on you operative system there are diferent ways to compress files. Thi
 - Select all files in the `galaxian` folder
 - Mouse right button opens a menu, then `Compress...`
 - Create a new zip file with the name `test.zip` in any place in your disk.
+
 ![[sidequest screen file list.png]]
 
 ![[Sidequest create archive.png]]
@@ -90,3 +91,5 @@ If your game is running without any noticeable issue, then you can deploy the ne
 - After register the new cabinet, it will be deployed in an empty slot inside a Room in the game, replacing an "out of order" cabinet.
 
 Enjoy your new cabinet!
+
+#cabinet/artists 

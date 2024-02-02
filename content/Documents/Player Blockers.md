@@ -1,10 +1,16 @@
+ 
+> [!note] 
+> Available starting at version `v0.5`
+
+ 
  A `blocker` is a special component to limit the player movement over it (the player cannot cross the `blocker` area). If you don't add a `blocker` part Age of Joy will create one around the cabinet. 
 
 It is useful for bigger cabinets for example or cabinets where the player can be inside.
 
 You can add one or more `blocker` components to your model to delimit two or more areas.
 
-> [!tip]   The `blocker` is used to calculate the base of your model to put the cabinet on the floor, so  you should align it to the base of your cabinet. The **last blocker** in the CDL `parts` list is used for that (remember you can have as many `blocker` parts as you need)
+> [!tip]  
+> The `blocker` is used to calculate the base of your model to put the cabinet on the floor, so  you should align it to the base of your cabinet. The **last blocker** in the CDL `parts` list is used for that (remember you can have as many `blocker` parts as you need)
 
 ## How to add a Blocker
 
@@ -27,5 +33,7 @@ parts:
       inverty: true
 ```
 
-> [!note] The `blocker` part of your model will be removed. The user will not be able to see it and cannot cross its limits.
+> [!note] 
+> 
+> The `blocker` part of your model will be removed. The user will not be able to see it and cannot cross its limits.
 

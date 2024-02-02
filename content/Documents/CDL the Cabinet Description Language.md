@@ -78,7 +78,8 @@ material: black
 
 ### The `enablesavestate` key
 
-> [!warning] states isn't working and was  deprecated.
+> [!warning] 
+> states isn't working and was  deprecated.
 
 
 Each game has its own boot process, which is initiated when the arcade gallery owner powers on the cabinet. Bypassing the boot process is a desirable feature that allows the player to skip the boot process every time he or she wants to play.

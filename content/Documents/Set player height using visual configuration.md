@@ -1,6 +1,7 @@
 # Set player height using visual configuration
 
-> [!note] Available starting at v0.4
+> [!note] 
+> Available starting at v0.4
 
 To configure the player height:
 

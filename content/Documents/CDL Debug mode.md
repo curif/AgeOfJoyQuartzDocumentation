@@ -9,7 +9,8 @@ Just set to `true` the debug-mode key in the `description.yaml`:
 debug-mode: true
 ```
 
-> [!tip] Remove the `debug-mode` key or set it to `false` before distribute your cabinet. 
+> [!tip] 
+> Remove the `debug-mode` key or set it to `false` before distribute your cabinet. 
 ## Debug information 
 
 [[Age of Joy]] will save a debug `log` file in the folder `/debug` of your installation.

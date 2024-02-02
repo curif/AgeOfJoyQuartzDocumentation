@@ -2,6 +2,7 @@
 
 Before to proceed check if the latest version of Age of Joy, specifically version `0.5`, is available on the [Ithcio page](https://curifab.itch.io/age-of-joy). If not, stay tunned because it will be released soon.
 
+> 
 > Just install the APK using [[Sidequest]]
 
 **Backup**: Before proceeding with the installation, it's recommended to save all your game settings and progress (cabinets positions, cabinets, roms, [[MAME]] configurations, etc.) because it could be affected by the new version. You can do this by copying the entire folder `/sdcard/Android/data/com.curif.AgeOfJoy/` to your computer (using [[Sidequest]] for example). 
