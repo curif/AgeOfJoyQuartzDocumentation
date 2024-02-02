@@ -1,0 +1,11 @@
+![[Pasted image 20240202084834.png]]
+
+[Blender is a **free and open-source 3D creation suite** that supports the entire 3D pipeline, including modeling, rigging, animation, simulation, rendering, compositing, and motion tracking](https://www.blender.org/news/) [1](https://www.blender.org/news/)[2](https://www.blender.org/)[3](https://www.blendernation.com/newsletter/). [It is a popular 3D modeling software program known for being easy to use, while still offering many features](https://www.blender.org/news/) [1](https://www.blender.org/news/). [Blender’s suite of functionalities makes the software relevant for professionals in various industries, including video and graphic content creation, filmmaking, data visualization, and storytelling](https://www.blender.org/news/) [1](https://www.blender.org/news/).
+
+[Blender’s open source software has several free-to-use tools for creating 3D graphics and animation designs](https://www.blender.org/news/) [1](https://www.blender.org/news/). Blender was built using the Python programming language. The software automatically generates and stores the equivalent Python code when you create a design on the application. As a result, you can complete your designs on the app and integrate the codes into other programming environments or software. [You can then automate the deployment of repeating models, reuse the models, and manipulate your designs in real time by coding more specific functionalities](https://www.blender.org/news/) [1](https://www.blender.org/news/).
+
+Blender is a great tool for 3D modeling and animation. It is easy to use and offers many features that make it relevant for professionals in various industries. If you want to learn more about Blender, check out the . The newsletter provides daily updates on Blender news, including tutorials, tips, and tricks. You can also visit the [to download the software and start creating your own 3D designs today](https://www.blender.org/news/)[3](https://www.blendernation.com/newsletter/)
+
+---
+
+#cabinet/artists 

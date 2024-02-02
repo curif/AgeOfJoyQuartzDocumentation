@@ -22,6 +22,7 @@ This latest iteration aims to empower users by expanding the capabilities of [[A
 - Sound samples tested and working. Check the [[MAME]] page for information.
 - A [[Cabinet Artist]] can change the game volume using [[AGEBasic]] in the [[Cabinet Asset]]
 - New [[CDL Debug mode]] so [[Cabinet Artist]]s can find issues in its cabinets quickly.
+- New blocker type part on [[CDL the Cabinet Description Language#Parts#`type` parts]]. Read how to use it in the [[Player Blockers]] manual page.
 
 ### AGEBasic change log
 
@@ -39,4 +40,5 @@ This latest iteration aims to empower users by expanding the capabilities of [[A
 - New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
 #### Bug fixes
 
-- `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942"
+- `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
+- The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.

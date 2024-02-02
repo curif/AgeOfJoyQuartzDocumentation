@@ -134,16 +134,26 @@ parts:
       file: left.png
       invertx: true
       inverty: true
+  - name: right
+    art: 
+      file: right.png
 ```
 * `parts`: optional. A list of documents describing the parts of the model. If is missing, the engine will configure all the parts using the `material` key in the root of the document. Each `part` document describes the way the part is skinned: can be a `material`, a `color` or an `art`.
-* `name`: name of the part to be configured. Each part that is not described in the list is configured according the `material` key (root). Each part registered in 'description.yaml' must have a component in the cabinet model.
+* `name`: name of the part to be configured. Each part that is not described in the list is configured according the `material` key (root). Each part registered in 'description.yaml' must have a component in the cabinet model (the name of the object in [[Blender]])
 * type: can be `bezel`, `marquee` or `default`. Optional key, defaults to `default` if missing.
 
-Type parts:
+![[Pasted image 20240202085322.png]]
 
-* **default**: For a common component, like the left wood.
-* **bezel**: to apply to a component that will show an image with transparency. Usually for a bezel.
-* **marquee**: to show images with background lights. Typically for the marquee, but some cabinets (such as xevious or tron) have more than one.
+(parts in blender)
+
+#### `type` parts:
+
+[[Age of Joy]] reacts to the `type` key offering special characteristics and functions for each one.
+
+* `default`: For a common component, like the left wood.
+* `bezel`: to apply to a component that will show an image with transparency. Usually for a bezel.
+* `marquee`: to show images with background lights. Typically for the marquee, but some cabinets (such as xevious or tron) have more than one.
+* `blocker`: a component to limit the player movement on it. If you don't add a `blocker` part Age of Joy will create one around the cabinet. The player cannot cross the `blocker` area. Read the [[Player Blockers]] page to understand how to use it.
 
 ### Coloring parts
 
@@ -437,4 +447,4 @@ Recommended information in the [[CDL Debug mode]] page.
 [^3]: the only available option.
  
 ---
-#CDL 
+#CDL #cabinet/artists 
