@@ -3,10 +3,9 @@
 
 On some complex cabinets should be useful to position the player in a proper position to play a game. This example and guide will help you (as a [[Cabinet Artist]]) to position the player in a place to play a game when the game starts, and to recover the original position when it ends.
 
-To do this, you will need to create three [[AGEBasic]] programs and register them in cabinet's `registr.yaml` file.
+To do this, you will need to create three [[AGEBasic]] programs and register them in cabinet's `description.yaml` file.
 
 ```yaml title="description.yaml"
-
 agebasic:
   active: true
   debug: true
