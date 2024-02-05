@@ -1,4 +1,4 @@
-#agebasic 
+#agebasic #examples 
 ### Show some text on the screen
 
 ```vb

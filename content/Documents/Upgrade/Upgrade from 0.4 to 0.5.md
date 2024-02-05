@@ -3,13 +3,17 @@
 Before to proceed check if the latest version of Age of Joy, specifically version `0.5`, is available on the [Ithcio page](https://curifab.itch.io/age-of-joy). If not, stay tunned because it will be released soon.
 
 > 
-> Just install the APK using [[Sidequest]]
+> Just install the APK using [[Sidequest]] or your preferred installation method.
 
-**Backup**: Before proceeding with the installation, it's recommended to save all your game settings and progress (cabinets positions, cabinets, roms, [[MAME]] configurations, etc.) because it could be affected by the new version. You can do this by copying the entire folder `/sdcard/Android/data/com.curif.AgeOfJoy/` to your computer (using [[Sidequest]] for example). 
+**Backup**: Before proceeding with the installation, it's recommended to save all your game settings and progress (cabinets positions, cabinets, [[ROM]]s, [[MAME]] configurations, etc.) because it could be affected by the new version. You can do this by copying the entire folder `/sdcard/Android/data/com.curif.AgeOfJoy/` to your computer (using [[Sidequest]] for example). 
 
 ### News
 
 This latest iteration aims to empower users by expanding the capabilities of [[AGEBasic]], allowing for the customization of every facet of the game. Users can now configure Movie Posters and Lights using AGEBasic functionalities. They can run an AGEBasic program when a [[Room]] is loaded. 
+
+Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an AGEBasic program changes its position to look at the screen in an appropriate position.
+
+Another important enhancement is the possibility of design which part of a cabinet the player can pass through and which should be solid. Very useful for, for example, cockpit cabinets.
 ## 0.4 -> 0.5 General change log
 
 - Player behavior (performance):
@@ -41,8 +45,10 @@ This latest iteration aims to empower users by expanding the capabilities of [[A
 - Release candidate 4:
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
+	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate(string coord)`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
 #### Bug fixes
 
 - `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
 - Release candidate 4:
 	- The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.
+	- Imported models (GLB) are cached even when uploaded to the workshop, so they do not show new changes applied to the model for testing.

@@ -1,4 +1,4 @@
-#agebasic 
+#agebasic #examples 
 ### Change Movie Posters
 
 This program changes the movie posters of the room by others in a path. The movie posters should be PNGs.
@@ -37,5 +37,4 @@ This program changes the movie posters of the room by others in a path. The movi
 > [!note] you can change posters one by one.
 
 > [!tip] you can change posters when you insert a coin in a cabinet (for example to set some game's related posters)
-
 

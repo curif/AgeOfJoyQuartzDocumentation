@@ -1,4 +1,4 @@
-# Set player height using visual configuration
+
 
 > [!note] 
 > Available starting at v0.4

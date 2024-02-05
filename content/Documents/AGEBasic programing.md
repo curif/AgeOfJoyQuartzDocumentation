@@ -126,8 +126,9 @@ Functions that only applies to a cabinet. In programs related with the cabinet, 
 
 - `CabPartsCount()`: return the cabinet's parts count. Returns -1 when error (for example if the programmer tries to use it in other place than in a cabinet's asset)
 - `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, eg: "joystick". Returns `""` when error (not in a cabinet's asset, or the part number not exists)
-- `CabPartsPosition(name)`: given the name of a part return it's position. Returns `-1` when error (not in a cabinet's asset, or a part doesn't exists with the provider name)
+- `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. Returns `-1` when error (not in a cabinet's asset, or a part doesn't exists with the provider name)
 - `CabPartsEnable(idx, enable)`: given a part number and a boolean (remember booleans are numbers, `true` is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. Returns `-1` on error.
+- `CabPartsGetCoordinate(string coord, number idx)` to get the `coord` position in [[3D space]]. `coord` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
 
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 
@@ -155,6 +156,17 @@ If you write a script for a cabinet (read [[CDL the Cabinet Description Language
 
 - `AudioAmbienceGetVolume()` and `AudioGameGetVolume()` to get the volume in `dB`.
 - `AudioAmbienceSetVolume(number volume)` and `AudioGameSetVolume(number volume)` to set the volume, also in `dB`.
+
+## Player position manipulation
+
+It's possible to change the position of the player in the [[3D space]]:
+
+- `PlayerGetHeight()`, `PlayerSetHeight(number)`: to get and set the height of the player. It's recommended to get the height and changing it by adding or decrementing its value.
+- `PlayerGetCoordinate(string coord)`, `PlayerSetCoordinate(string coord)`: to get and set the coordinates in the [[3D space]] (force the player to a new position). `coord` should bet "X" or "Z". "Y" cant be changed, use `PlayerSetHeight` instead.
+- `PlayerLookAt(cabinet part number)`: to force the player to look at a part of the cabinet. For example the screen. Can be used only in [[AGEBasic in cabinets]] mode.
+
+It's recommended to read the [[AGEBasic examples - player to look at a screen when insert coin]].
+
 ## Debug mode
 
 The AGEBasic developer has the option to enable Debug Mode within a program or a setup, such as in a programming YAML subdocument within a cabinet's configuration.

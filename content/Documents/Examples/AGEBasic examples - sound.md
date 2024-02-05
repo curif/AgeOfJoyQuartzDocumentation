@@ -1,4 +1,4 @@
-#agebasic 
+#agebasic #examples 
 ## Audio test example
 
 ```vb
