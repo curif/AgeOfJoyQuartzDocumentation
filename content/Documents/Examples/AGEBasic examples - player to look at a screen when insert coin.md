@@ -56,7 +56,7 @@ The program disable the head (so the player can't see the head box).
 
 #### Insert coin
 
-The next stage is the insert coin, the program will run when the user insert a coin on the cabinet. The program will change the player height (previously it storage the actual value in the variable `playerH`) by the same height of the `head` component (`headH` on the `onload.bas`). After that in line 90 and 100 the program moves the player to the same `X` and `Z` coordinates than the `head` to position the player in the desired place.
+The next stage is the insert coin, the program will run when the user insert a coin on the cabinet. The program will change the player height (previously it storage the actual value in the variable `playerH`) by the same height of the `head` component (`headH` on the `onload.bas`). After that in line 90 and 100 the program moves the player to the same `X` and `Z` coordinates than the `head` to position the player on the desired place.
 In line 110 the program forces the player to look to the direction of the screen.
 
 ```vb title="insertcoin.bas"
@@ -77,7 +77,7 @@ In line 110 the program forces the player to look to the direction of the screen
 
 #### On leave
 
-When the player leaves the program will recover the player position before the insert coin event.
+When the player leaves the program will recover the player position and height stored during the insert coin event.
 
 ```vb title="onleave.bas"
 10 rem return the player to its previous position
