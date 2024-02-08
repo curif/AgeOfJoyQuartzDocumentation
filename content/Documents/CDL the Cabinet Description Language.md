@@ -17,13 +17,11 @@ Without any special knowledge, it is possible to reuse a cabinet model, personal
 
 > Note: You don’t need to be a programmer or a graphics designer to make new cabinets assets starting of a base model.
 
-# YAML
+## YAML
 
 CDL is written in [[YAML]]. 
 
 The special file ```description.yaml``` describes the parts of the cabinet.
-
-## description.yaml
 
 YAML is composed by `keys` and `values` in the form:
 ```yaml
@@ -43,6 +41,7 @@ Values can be anything:
 
 A detailed tutorial: [YAML Tutorial: Everything You Need to Get Started in Minutes](https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started).
 
+# description.yaml file
 ## description.yaml elements
 A yaml document usually starts with `---`
 
@@ -403,6 +402,47 @@ light-gun:
 
 Light guns controllers are configurable using the [[Controller configuration]]. Read the [[Default controllers configuration mapping]] too, focus on LIGHTGUN_* entries in the table.
 
+
+### MAME files distribution
+
+> [!warning]
+> Available on version >= 0.5 RC4
+>  It's important to note that while MAME itself is a legal project, the use of ROMs may have legal implications. Distributing or downloading copyrighted ROMs or related files without the proper ownership rights is generally illegal. It is recommended to only use ROMs and files for which you have the appropriate permissions or obtain them from legal sources, such as original arcade machine owners or authorized distributors.
+
+Beside the [[ROM]] files, there are others like configuration files, RAM files, etc. that are part of the [[MAME]] engine and sometimes are necessary to have the files to play a game or to complement it. Sound samples are a clear example, the game runs but some sounds are missing.
+To make the [[Cabinet Asset]] installation easier for the player, [[Cabinet Artist]]s could include those files in the cabinet asset zip file and describe in CDL the way [[Age of Joy]] will distribute the files so MAME could find and use them. 
+
+| File Type   | Description                                     |
+|-------------|-------------------------------------------------|
+| config      | Configuration files for MAME emulator settings  |
+| disk-image  | Disk images       |
+| sample      | Sample files containing audio for certain games |
+| nvram       | NVRAM files storing non-volatile memory data    |
+
+#### Describe the file distribution in the description.yaml file
+
+
+```yaml title="description.yaml"
+mame-files:
+  - file: isachd.chd
+    type: disk-image
+  - file: isasample.wav
+    type: sample
+  - file: isaconfig.cfg
+    type: config
+  - file: isaconfig2.cfg
+    type: config
+  - file: isanvram.nv
+    type: nvram
+```
+
+In this example:
+
+- `mame-files`: This indicates a list of files that MAME utilizes.
+	- `file`: Specifies the name of each file (must be in the zip file).
+	- `type`: Indicates the type of file (e.g., disk-image, sample, config, nvram).
+
+By including such information in the `description.yaml` file, it provides clear instructions for [[Age of Joy]] on where each file is located and its corresponding type, facilitating efficient file management and distribution.
 ## AGE Basic
 
 You can run [[AGEBasic]] programs designed for a specific cabinet. [[Age of Joy]] has the ability to execute programs in response to predefined events, like when a user inserts a coin for the first time.

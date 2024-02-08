@@ -9,18 +9,20 @@ Before to proceed check if the latest version of Age of Joy, specifically versio
 
 ### News
 
-This latest iteration aims to empower users by expanding the capabilities of [[AGEBasic]], allowing for the customization of every facet of the game. Users can now configure Movie Posters and Lights using AGEBasic functionalities. They can run an AGEBasic program when a [[Room]] is loaded. 
+The game environment now dynamically responds to player movements, enhancing overall performance. Updates include optimizations in how cabinets load and unload, as well as improvements in playing attraction videos.
 
-Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an AGEBasic program changes its position to look at the screen in an appropriate position.
+Also, this latest iteration aims to empower users by expanding the capabilities of [[AGEBasic]], allowing for the customization of every facet of the game. Users can now configure Movie Posters and Lights using AGEBasic functionalities. They can run an AGEBasic program when a [[Room]] is loaded. 
 
-Another important enhancement is the possibility of design which part of a cabinet the player can pass through and which should be solid. Very useful for, for example, cockpit cabinets.
+Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes its position to look at the screen in an appropriate position.
+
+Another important enhancement is the possibility of design which part of a cabinet the player can pass through and which should be solid. Very useful for, for example, cockpit cabinets. Also for cabinets the [[Cabinet Artist]]s now can distribute [[MAME]] files easily in the [[Cabinet Asset]].
 ## 0.4 -> 0.5 General change log
 
 - Player behavior (performance):
-	- Cabinets loads only when the player is static in a position close to the cabinet's group. Cabinets don't load while the player is walking to do not interrupt the movement.
+	- Cabinets loads only when the player is static in a position close to the cabinet's group. Cabinets don't load while the player is walking to do not interrupt the movement. But if the cabinet was loaded previously it pop up immediately.
 	- Presentation videos loads when the player are close to the cabinet.
-- More rooms. Some of them are big, with capacity to accommodate more than 30 cabinets.
-- Player can run a preconfigured [[AGEBasic]] program on Room load. Use this way to configure the Room (changing movie posters for example).
+- More rooms. Some of them are big, with capacity to accommodate more than 40 cabinets.
+- Player can run a preconfigured [[AGEBasic]] program on Room load. Use this way to configure the Room (changing movie posters or lighting for example).
 - Movie posters can be customized (change the image poster) using AGEBasic.
 - Using AGEBasic the player can query, change intensity and colors of the light in the room.
 - Rooms are darkest than the previous version.
@@ -29,6 +31,8 @@ Another important enhancement is the possibility of design which part of a cabin
 	- A [[Cabinet Artist]] can change the game volume using [[AGEBasic]] in the [[Cabinet Asset]] (RC4)
 	- New [[CDL Debug mode]] so [[Cabinet Artist]]s can find issues in its cabinets quickly. (RC4)
 	- New *blocker type* part on [[CDL the Cabinet Description Language#Parts]]. Read how to use it in the [[Player Blockers]] manual page.
+	- When a room loads, and there are cabinets not assigned, [[Age of Joy]] will assign a random cabinet to each free position.
+	- [[Cabinet Artist]]s could deploy [[MAME]] files using the new key `mame-files` key in [[CDL the Cabinet Description Language#MAME files distribution]].
 
 ### AGEBasic change log
 
@@ -45,7 +49,7 @@ Another important enhancement is the possibility of design which part of a cabin
 - Release candidate 4:
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
-	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate(string coord)`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
+	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate()`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
 #### Bug fixes
 
 - `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
