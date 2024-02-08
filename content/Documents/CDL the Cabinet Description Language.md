@@ -2,7 +2,9 @@
 
 The term CDL refers to the characteristics of a cabinet for a specific game.
 
-## Cabinets contains two main components:
+## Cabinet Asset structure
+
+Cabinets contains two main components:
 
 * **Cabinet Model**: Consider a piece of wood furniture that is unpainted and has the shape and components of an arcade cabinet.
 * **Cabinet assets**: is a zip file that contains the side art stickers, bezels, marquees, and so on, as well as a description file that describes how to paint, how to place the stickers, marquee color light, tv (crt) position, the video to play on the screen when nobody is playing, etc.
@@ -403,14 +405,15 @@ light-gun:
 Light guns controllers are configurable using the [[Controller configuration]]. Read the [[Default controllers configuration mapping]] too, focus on LIGHTGUN_* entries in the table.
 
 
-### MAME files distribution
+## MAME files distribution
 
 > [!warning]
 > Available on version >= 0.5 RC4
 >  It's important to note that while MAME itself is a legal project, the use of ROMs may have legal implications. Distributing or downloading copyrighted ROMs or related files without the proper ownership rights is generally illegal. It is recommended to only use ROMs and files for which you have the appropriate permissions or obtain them from legal sources, such as original arcade machine owners or authorized distributors.
 
-Beside the [[ROM]] files, there are others like configuration files, RAM files, etc. that are part of the [[MAME]] engine and sometimes are necessary to have the files to play a game or to complement it. Sound samples are a clear example, the game runs but some sounds are missing.
-To make the [[Cabinet Asset]] installation easier for the player, [[Cabinet Artist]]s could include those files in the cabinet asset zip file and describe in CDL the way [[Age of Joy]] will distribute the files so MAME could find and use them. 
+In addition to the art files, various other files such as configuration files, RAM files, and more are integral components of the [[MAME]] engine. At times, these files are essential for playing a game or complementing its functionality. Sound samples serve as a prime example; while the game may run, certain sounds may be absent.
+
+To streamline the installation process for players, [[Cabinet Artist]]s could consider including these files in the cabinet asset zip file. Furthermore, they could describe in CDL the method by which [[Age of Joy]] will distribute the files, enabling MAME to locate and utilize them seamlessly.
 
 | File Type   | Description                                     |
 |-------------|-------------------------------------------------|
