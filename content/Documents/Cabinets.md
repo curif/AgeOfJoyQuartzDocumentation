@@ -6,3 +6,4 @@ Once you have downloaded the cabinet file, you can then upload it to your Quest 
 
 [[How to get and deploy cabinets assets]]
 [[Short guide to make cabinets]]
+[[Automatic cabinet deployment how to]]

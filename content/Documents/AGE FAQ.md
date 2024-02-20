@@ -64,16 +64,21 @@ You must run AGE at least once to create the folders.
 
 # Playing games
 ## How can I play an emulated game?
+
 If you have a cabinet and a [[ROM]] you can play the game. Just put a coin on it: [video](https://youtu.be/MYOKp9lI_7o).
 
 Also read the [controller documentation](https://curifab.itch.io/age-of-joy/devlog/457164/age-of-joy-quest-2-controls).
 ## I'm playing now, how to leave?
+
 Press the grip button in your left control for some seconds.
 ## Can I insert a coin when I'm playing?
+
 Yes you can do it.
 ## Can I change the buttons distribution and actions?
+
 Yes you can, but you have to know that this is a MAME function, not is something related with AGE. To control the MAME emulation press the trigger and the joystick at same time in your right control when you are in game mode, a menu appears inside the game.
 ## I want to play sited, can I?
+
 Yes, you need to configure the Quest Accessibility Options. By doing so, you will see the world of virtual reality as if you were standing upright.
 
 # Cabinets

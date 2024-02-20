@@ -43,7 +43,7 @@ agebasic:
 
 Execute a program when the cabinet is fully loaded.
 
-Eg: this program will hide (disable) some parts of the cabinet after load
+E.g.: this program will hide (disable) some parts of the cabinet after load
 
 ```vb
   

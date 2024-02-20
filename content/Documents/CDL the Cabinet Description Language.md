@@ -60,10 +60,11 @@ md5sum: fe6e9e3d5d1faaab2f53d97fed83c562
 
 enablesavestate: false
 statefile: state.nv
+size: 1x1x2
 
 material: black
-
 ```
+
 * `name`: name of the cabinet, usually the same name of the ROM. if the ROM is `dkong.zip`, then the cabinet asset file name is `dkong.zip` too and the name of the cabinet is `dkong`. Please don't confuse files, that usually happens because cabinet assets and ROMs have the same file name, but, by using this way, it's easy to know witch cabinet asset is made for each [[ROM]], just store those files in different folders. 
 * `year`: game distribution year[^1]
 * `rom`: file name of the [[ROM]] file.
@@ -72,6 +73,8 @@ material: black
 * ~~`enablesavestate`: Enable it (true) if AGE of Joy should save the state after the `timetoload` period. This key is optional, defaults to false. [^2]~~
 * ~~`statefile`: file name of the state file. This key is optional, defaults to `state.nv`. [^2]~~
 * `material`: (optional) a material to use for all parts of the cabinet. materials are explained below.
+* `size`: Short of *Occupied Space*. Space in units that the cabinet will fill in the Room: [[Cabinet space sizes]]
+
 #### Optional keys:
 
 - `author`: cabinet author Nik name.
@@ -456,17 +459,44 @@ AGEBasic programs must be included in the [[Cabinet Asset]].
 agebasic:
   active: true
   debug: true
-  after-insert-coin: insertcoin.bas
-  after-leave: leave.bas
-  after-load: onload.bas
+  after-insert-coin: start_game.bas  # Run this program when a coin is inserted
+  after-load: initialize.bas     # Run this program on cabinet startup
+  after-leave: save_data.bas     # Run this program when the player leaves
+  variables:
+	  - name: myvar
+	    type: string
+	    value: This is a test
 ```
+This document details the `agebasic` configuration section within your arcade cabinet, controlling AGEBasic program behavior.
 
-- `agebasic`: description subdocument
-	- `active`: program execution is avoided when isn't active.
-	- `debug`: to create a debug file for each program.
-	- `after-load`: file name of the program to execute when the cabinet is fully loaded in the 
-	- `after-insert-coin`: file name of the program to execute when the player insert a coin for first time to start a game.
-	- `after-leave`: program to execute when the player leaves the game.
+**General Settings:**
+
+* **`active` (boolean):**
+    * **Enabled (true):** AGEBasic programs run normally (default).
+    * **Disabled (false):** All programs are inactive, useful for troubleshooting.
+* **`debug` (boolean):**
+    * **Enabled (true):** Creates debug files for each executed program.
+    * **Disabled (false):** No debug files generated.
+
+**Program Execution Triggers:**
+
+* **`after-insert-coin` (string):**
+    * Filename of the program that runs **once** when a coin is inserted to start the game.
+* **`after-load` (string):**
+    * Filename of the program that runs **once** after the cabinet fully loads (startup).
+* **`after-leave` (string):**
+    * Filename of the program that runs **once** when the player leaves the game.
+
+**Variables:**
+
+* **`variables` (list of objects):**
+    * Defines variables accessible to all AGEBasic programs.
+    * Each object specifies:
+        * **`name` (string):** Unique variable name following [[AGEBasic programing#Variables]] conventions.
+        * **`type` (string):** Data type (`string` or `number`).
+        * **`value` (string):** Initial value (converted to specified type).
+
+**Example Configuration:**
 
 Read this document to fully understand how AGEBasic programs works in the cabinet's environment: [[AGEBasic in cabinets]].
 

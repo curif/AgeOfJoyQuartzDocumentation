@@ -33,6 +33,7 @@ Another important enhancement is the possibility of design which part of a cabin
 	- New *blocker type* part on [[CDL the Cabinet Description Language#Parts]]. Read how to use it in the [[Player Blockers]] manual page.
 	- When a room loads, and there are cabinets not assigned, [[Age of Joy]] will assign a random cabinet to each free position.
 	- [[Cabinet Artist]]s could deploy [[MAME]] files using the new key `mame-files` key in [[CDL the Cabinet Description Language#MAME files distribution]].
+	- New CDL key for space metric on cabinets: 
 
 ### AGEBasic change log
 
@@ -50,6 +51,7 @@ Another important enhancement is the possibility of design which part of a cabin
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
 	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate()`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
+	- Added `AND()` and `OR()` functions.
 #### Bug fixes
 
 - `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".

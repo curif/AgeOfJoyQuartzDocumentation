@@ -5,7 +5,7 @@
 
 
 | MAME | Control | Behavior | Port | Unity Path |
-| --- | --- | --- | --- | --- |
+| ---- | ---- | ---- | ---- | ---- |
 | JOYPAD_B | quest-b | 0 | button | `<XRController>{RightHand}/secondaryButton` |
 | JOYPAD_B | gamepad-b | 0 | button | `<Gamepad>/buttonEast` |
 | JOYPAD_B | quest-right-trigger | 0 | button | `<OculusTouchController>{RightHand}/triggerPressed` |
@@ -104,7 +104,9 @@
 | LIGHTGUN_TRIGGER | quest-right-trigger | 0 | button | `<OculusTouchController>{RightHand}/triggerPressed` |
 | LIGHTGUN_TRIGGER | gamepad-right-trigger | 0 | button | `<Gamepad>/rightTrigger` |
 | LIGHTGUN_RELOAD | gamepad-start | 0 | button | `<Gamepad>/start` |
-| LIGHTGUN_RELOAD | quest-start | 0 | button | `<OculusTouchController>/start` |
+| LIGHTGUN_RELOAD | quest-start | 0 | button | `<OculusTouchController>/start`<br> |
+| JOYPAD_LEFT_RUMBLE<br> | quest-left-haptic-device |  |  |  |
+| JOYPAD_RIGHT_RUMBLE | quest-right-haptic-device |  |  |  |
 
 
 #v0_4 

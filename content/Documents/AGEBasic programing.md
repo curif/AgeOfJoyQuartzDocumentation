@@ -30,7 +30,7 @@ Each line of code should be numbered and be in ascending order.
 * `LETS`: assign multiple values, ex: `LETS a,b=10,20`
 * `REM`: a comment, ex: `REM this is a comment`. It's the only way to register comments in the program.
 * `END`: finish the program
-* `IF/THEN`: conditional, ELSE and ENDIF are not allowed. Ex: `IF x=1 THEN LET a=2`
+* `IF/THEN`: conditional, ELSE and ENDIF are not allowed. Ex: `IF x=1 THEN LET a=2`. There aren't available the usual conditional expressions like `AND` and `OR`, but there are functions to replace them.
 * `GOTO`: to jump to a line number. Ex: `GOTO 50`
 * `GOSUB`: to jump to a line, and to back using `RETURN`. Ex: `GOSUB 5000`
 * `RETURN`: jump back to the next line after the `GOSUB`
@@ -61,6 +61,8 @@ Functions can receive parameters. Parameters must be enclosed.
 - `MAX`, `MIN`: of two numbers, Ex: `LET a = max(10,20)` then `a` is 20
 - `RND`: a random between two numbers. `rnd(2,10)` could be `8`.
 - `NOT`: The inverse of the boolean expression. Ex: `if NOT(0) then goto 100`
+- `AND`: to combine two expressions. It returns `1` if both of the input conditions are `!= 0`, otherwise it returns `0`: `AND(a = 0, b = 1)`
+- `AND`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
 
 ### Strings
 
@@ -103,13 +105,13 @@ To get information about rooms
 
 ### Cabinets related
 
-Applies to cabinets deployed in the room where the cabinet controller is loaded.
+#### Applies to cabinets deployed in the room where the cabinet controller is loaded.
 
 - `CabRoomCount()`: how many cabinets are in the room
 - `CabRoomGetName(number)`: get the cabinet name by its index in the room.
 - `CabRoomReplace(number, cabinet name)`: replace a cabinet by another.
 
-Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storage]]. 
+#### Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storage]]. 
 
 - `CabDbCount()`: how many cabinets registered in the storage
 - `CabDbCountInRoom(string)`: how many cabinets are *assigned* to one particular room. Ex: `LET count = CabDbCountInRoom("Room001")` 
@@ -122,20 +124,22 @@ Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storag
 
 `CabDBDelete`,`CabDBAssign`, `CabDBSave` and `CabDBAdd` returns 0 if fails, 1 if not.
 
-Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a [[Cabinet Asset]].
+#### Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a [[Cabinet Asset]].
 
 - `CabPartsCount()`: return the cabinet's parts count. Returns -1 when error (for example if the programmer tries to use it in other place than in a cabinet's asset)
 - `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, eg: "joystick". Returns `""` when error (not in a cabinet's asset, or the part number not exists)
 - `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. Returns `-1` when error (not in a cabinet's asset, or a part doesn't exists with the provider name)
-- `CabPartsEnable(idx, enable)`: given a part number and a boolean (remember booleans are numbers, `true` is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. Returns `-1` on error.
-- `CabPartsGetCoordinate(string coord, number idx)` to get the `coord` position in [[3D space]]. `coord` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
+- `CabPartsEnable(idx, enable)`: given a part number and a Boolean (remember Booleans are numbers, `true` is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. Returns `-1` on error.
+- `CabPartsGetCoordinate(number part idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
+- `CabPartsSetCoordinate(number part idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
+- `CabPartsGetRotation(number part idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
 
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 
 #### Room Posters
 To replace posters in a Room
 - `PosterRoomCount()` returns the poster count of the actual room.
-- `PosterRoomReplace(position #, Image path)` to replace a poster by an image in disk. Example: `PosterRoomReplace(1, "/sdcard/Pictures/posters/terminator.png")` to replace the second poster in the room.
+- `PosterRoomReplace(position #, Image path)` to replace a poster by an image in disk. Example: `PosterRoomReplace(1, CombinePath(ConfigPath(), "posters/myposter.png"))` to replace the second poster in the room.
 
 
 ### Light configuration
@@ -166,6 +170,14 @@ It's possible to change the position of the player in the [[3D space]]:
 - `PlayerLookAt(cabinet part number)`: to force the player to look at a part of the cabinet. For example the screen. Can be used only in [[AGEBasic in cabinets]] mode.
 
 It's recommended to read the [[AGEBasic examples - player to look at a screen when insert coin]].
+
+
+### Controllers
+
+It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
+
+- `ControlActive(id)`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. The `id`s of the controls (like buttons) are in the table in the page: [[Default controllers configuration mapping]]. `ControlActive` can be used in [[AGEBasic in cabinets]] or in programs to execute on the [[Configuration control cabinet]].
+- `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be  
 
 ## Debug mode
 
