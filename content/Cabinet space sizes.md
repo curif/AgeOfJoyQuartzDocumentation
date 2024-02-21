@@ -6,7 +6,7 @@
 
 ## Cabinet units
 
-A cabinet unit is a string who represent width, large and height of a cabinet (`WxHxL`)
+A cabinet unit is a string who represent *width*, *large* and *height* of a cabinet (`WxHxL`)
 
 The minimal unit is `1` and the maximum is `2`. The default is `1x1x2` (one width, one large and double height).
 
@@ -28,9 +28,13 @@ author: curif
 size: 2x2x2
 ```
 
+
+> [!note]
+`spaces` are limited to: "1x1x1", "1x1x2", "1x2x1", "1x2x2", "2x1x1", "2x1x2", "2x2x1", "2x2x2"
+
 ## How it works
 
-
+When you enter for first time in a room, [[Age of Joy]] will assign cabinets from the [[Cabinets database storage]] in replacement of the *out of order cabinets* (the black ones with the Age Of Joy logo marquee). AOJ tries to find the best match cabinet in the database, because each position in a room is registered to accommodate a type of cabinet. For example if a space could accommodate a 2x2x2 cabinet AOJ will try to find an unassigned one with that size in the database, if there isn't one it will use a 1x2x1 or a 1x1x2 cabinet.
 ## Sizes
 
 ### 1x1x1
@@ -57,7 +61,5 @@ Cockpit cabinets, large light guns cabinets.
 Cocktail like cabinet where the user can put a drink for example.
 
 Usually the [[Cabinet Artist]] set the space to `2x1x1` leaving some space free around the cabinet to fit the player.
-
-
 
 

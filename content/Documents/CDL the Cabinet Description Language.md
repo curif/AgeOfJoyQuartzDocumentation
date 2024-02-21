@@ -60,7 +60,7 @@ md5sum: fe6e9e3d5d1faaab2f53d97fed83c562
 
 enablesavestate: false
 statefile: state.nv
-size: 1x1x2
+space: 1x1x2
 
 material: black
 ```
@@ -73,7 +73,7 @@ material: black
 * ~~`enablesavestate`: Enable it (true) if AGE of Joy should save the state after the `timetoload` period. This key is optional, defaults to false. [^2]~~
 * ~~`statefile`: file name of the state file. This key is optional, defaults to `state.nv`. [^2]~~
 * `material`: (optional) a material to use for all parts of the cabinet. materials are explained below.
-* `size`: Short of *Occupied Space*. Space in units that the cabinet will fill in the Room: [[Cabinet space sizes]]
+* `space`: Short of *Occupied Space*. Space in units that the cabinet will fill in the Room: [[Cabinet space sizes]]
 
 #### Optional keys:
 

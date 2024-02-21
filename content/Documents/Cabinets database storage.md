@@ -3,5 +3,5 @@ The Cabinets storage is a folder where [[Age of Joy]] register the cabinets to u
 The storage is the `/sdcard/Android/data/com.curif.AgeOfJoy/cabinetsdb` folder
 
 > [!warning] 
-> Don't touch that folder is for internal uses only.
+>Don't touch that folder unless you are sure what you are doing
 
