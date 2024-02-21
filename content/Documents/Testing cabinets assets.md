@@ -1,11 +1,15 @@
 
 Once your cabinet is complete, you can begin testing it. Normally, it should not work; some adjustments may be required, this happens a lot.
 
+## The workshop
+
 There are a special room *the workshop* where you can see and test the new cabinet. To deploy the cabinet there name it `test.zip` and copy to the `/sdcard/Android/data/com.curif.AgeOfJoy/cabinets` folder (as usual, but with that special name). AGE of Joy will reload the cabinet immediately (this only happens in the workshop with that cabinet, but not in the rest of the rooms). Repeat the process until you are confident with the result.
 
 At the end, rename the final cabinet with a unique name, two different cabinets can't have the same name. As a rule, I use the name of the ROM as the name of the cabinet, so your cabinet will be unique in the gallery and in the cabinet assets universe too.
 
 You can, of course, publish your cabinet.
+
+Read the [[CDL troubleshooting guide]] for a more detailed information about how to check a cabinet issue.
 
 ## Step by step
 

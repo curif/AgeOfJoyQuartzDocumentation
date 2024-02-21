@@ -514,6 +514,11 @@ debug-mode: true
 
 Recommended information in the [[CDL Debug mode]] page.
 
+## Further reading
+
+[[Cabinet building best practices]] To learn how to create a great cabinet that works smoothly in the virtual reality environment.
+[[CDL best practices checklist]]
+
 ## References
 
 [^1]: only for information, don't affect the game.
