@@ -1,7 +1,7 @@
 [[cabinet]]s space is the size of the cabinet measure in cabinet units.
 
 
-> > [!warning] 
+> [!warning] 
 > The contents of this document applies to [[Age of Joy]] version 0.4-RC04 or superior.
 
 ## Cabinet units
