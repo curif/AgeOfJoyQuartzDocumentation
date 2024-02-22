@@ -34,7 +34,7 @@ Another important enhancement is the possibility of design which part of a cabin
 	- When a room loads, and there are cabinets not assigned, [[Age of Joy]] will assign a random cabinet to each free position.
 	- [[Cabinet Artist]]s could deploy [[MAME]] files using the new key `mame-files` key in [[CDL the Cabinet Description Language#MAME files distribution]].
 	- New CDL key for `space` metric on cabinets: [[Cabinet space sizes]]. [[Cabinet Artist]]s could flag bigger cabinets to fulfill specifics spaces in the [[Room]]s and to not interfere with the Player transit.
-	- There aren't *required* [[Cabinets]] in the new version. On previous ones [[Cabinet Artist]]s **must** to include some specific parts. Those parts aren't required anymore so for example, it is possible to create a cabinet without a screen. 
+	- There aren't any *required* [[Cabinets]] parts in the new version. On previous ones [[Cabinet Artist]]s **must** include some specific parts. Those parts aren't required anymore, so, for example, it is possible to create a cabinet without a screen. 
 
 ### AGEBasic change log
 

@@ -107,6 +107,6 @@ Congratulations, your first cab!
 This guide is by no means comprehensive, but serves as a starting point to troubleshoot common problems when loading a cab for the first time.
 
 ---
-Author: @Geometrizer
+Author: @Geometrizer & @crusher124
 
 #CDL 
