@@ -119,7 +119,22 @@ We’ve done profiling and have confirmed that if you send a 4K texture to AOJ, 
 
 “I’m not sure I can edit my cabinet art if I have to do it all squished…”
 
-Think of the resizing as the last step. A lot of people just have an “Export” folder where they keep their inalized textures.
+Think of the resizing as the last step. A lot of people just have an “Export” folder where they keep their initalized textures.
+
+## Edge Case: Indexed Color
+
+In certain edge cases (or if you're modifying an existing cabinet to make sure it fits the power-of-two specifications), you might notice that some textures are stored as "Indexed Color," which reduces color depth to 16/256 colors to save space. You can tell an Indexed color image when it appears like this in Photoshop:
+
+![[Pasted image 20240222082015.png]]
+
+Since the Quest will ultimately be reading these textures as full RGB color, we should change the color mode to RGB. (Also, resizing Indexed Color images can have much worse results than resizing RGB images.)
+To switch to RGB, just go to Image → Mode → RGB Color.
+
+![[Pasted image 20240222082046.png]]
+
+You’ll be able to tell it worked when “Indexed” changes to “RGB.”
+
+![[Pasted image 20240222082109.png]]
 
 ## Loading a Cab for the First Time…
 
