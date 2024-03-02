@@ -61,8 +61,7 @@ Follow these steps: [[Set player height using visual configuration]]
 
 > [!note] available only in Global Configuration
 
-
-![[ConfigurationLocomotion.png]]
+![[locomotion.png]]
 
 ---
 ### Teleportation

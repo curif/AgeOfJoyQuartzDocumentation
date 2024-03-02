@@ -45,7 +45,8 @@ A detailed tutorial: [YAML Tutorial: Everything You Need to Get Started in Minut
 
 # description.yaml file
 ## description.yaml elements
-A yaml document usually starts with `---`
+
+A [[YAML]] document usually starts with `---`
 
 ```yaml
 ---
@@ -96,6 +97,8 @@ To avoid this process, AGE of Joy saves the game's state (memory, CPU states, et
 style: xevious
 ```
 * `style`: is the name of the *Cabinet Model*. The most common cabinets are bundled in the game and can be reused. Members of the AGE of Joy community frequently reuse cabinet models to create a new one.
+	* Available styles:  timeplt,  galaga, pacmancabaret, frogger, defender, donkeykong, xevious, 1942, stargate, junofrst, digdug, tron, joust, cocktail
+	
 
 ```yaml
 model:
@@ -107,6 +110,15 @@ model:
 * `file`: Is the file name of the model. These models files are in `glb` (gLTF) binary format. The cabinet asset must contain the file unless a `style` key exists.
 * `style`: part of the model document, refers to a previous uploaded cabinet asset model. In the example, the `mslug.zip` file cabinet asset must contain a `NeoGeo.glb` model. This key is optional, defaults to the actual model.
 
+## Cores
+
+[[Age of Joy]] has bundled [[Cores]] for your selection. Options:
+- `mame2003+`
+- `mame2010`
+
+```title="description.yaml"
+core: mame2003+
+```
 ## Attraction videos
 
 Every game runs it's own introduction when nobody is playing, showing the game play or instructions. Because of the limited power of some devices, not all games can be emulated at the same time to display these screens. To solve this problem and to obtain the more accurate experience possible an introduction video is playing when the player is not in game mode (playing the game). These videos are typically obtained using RetroArch (by running the game and recording the introduction part), the result is a `.mkv` file that can be included in the cabinet asset.
@@ -145,7 +157,7 @@ parts:
 ```
 * `parts`: optional. A list of documents describing the parts of the model. If is missing, the engine will configure all the parts using the `material` key in the root of the document. Each `part` document describes the way the part is skinned: can be a `material`, a `color` or an `art`.
 * `name`: name of the part to be configured. Each part that is not described in the list is configured according the `material` key (root). Each part registered in 'description.yaml' must have a component in the cabinet model (the name of the object in [[Blender]])
-* type: can be `bezel`, `marquee` or `default`. Optional key, defaults to `default` if missing.
+* type: can be `bezel`, `marquee`, `blocker` or `default`. Optional key, defaults to `default` if missing.
 
 ![[Pasted image 20240202085322.png]]
 
@@ -178,19 +190,29 @@ Example:
 * intensity: intensity multiplier, integer, can be negative to obtain darker variants of the color.
 
 ### Apply a material to parts
+
 A material is a pre-configured color, may be skinned (with textures) or not. They are included in the game.
+
 Example:
+
 ```yaml
   - name: bordercrt
     material: plastic
 ```
+
 * `material`: the name of one included material in the game.
-options:
-* black
-* base
-* lightwood
-* darkwood
-* plastic
+
+#### Material options:
+* `black`: black wood cabinet
+* `base`: base material to modify (colors for example)
+* wood:
+	* `lightwood`
+	* `darkwood`
+* `plastic`
+* glass:
+	* `dirty glass`: a dirty one.
+	* `clean glass:` a clean reflective glass.
+	* `layer glass`: allows transparency on pictures (like 1979 Space Invaders' screen layer)
 
 ### "Art" parts
 
@@ -207,7 +229,17 @@ Example:
 * `invertx`: flip the image by the x axis (optional).
 * `inverty`: flip the image by the y axis (optional).
 
+### Visibility
+
+The `visible` key allows  [[Cabinet Artist]]s to hide cabinet parts. Useful for example to set cabinets parts that acts like marks in the [[3D space]], the most usual use case is the player head position used to set the player in a specific position when inserts a coin (using [[AGEBasic]]). This is the started visibility, you can change it with the function `CabPartsEnable()`, read [[AGEBasic in cabinets]].
+
+Default: `true`
+
+```
+visible: false
+```
 ### Marquee
+
 There are exclusive keys for marquees:
 Example:
 ```yaml
@@ -231,6 +263,34 @@ You should use the `color` configuration to change the color of the lamps inside
 
 `illumination-type` options: `none`, `one-lamp`, `two-lamps`, `one-tube` and `two-tubes`. Any other value fallbacks to the default: `one-lamp`. 
 
+### Combinations
+
+Starting on v0.5 it is possible to combine materials with colors, transparency, etc. Some keys works better with specific materials, for example, `layer glass` material with `transparency`.
+
+Example 1: a glass with a colored layer and a bezel on top of it.
+
+```yaml
+ - name: bezel
+    material: layer glass
+    art:
+      file: LayerBezel.png
+    transparency: 70
+    color:
+      r: 200
+      g: 100
+      b: 100
+```
+
+Example 2: a tinted red wood.
+
+```yaml
+  - name: right
+    material: lightwood
+    color:
+      r: 255
+      g: 0
+      b: 0
+```
 ## Configuring the monitor (CRT)
 
 A cathode-ray tube (CRT) is a [vacuum tube](https://en.wikipedia.org/wiki/Vacuum_tube) containing one or more [electron guns](https://en.wikipedia.org/wiki/Electron_gun), which emit [electron](https://en.wikipedia.org/wiki/Electron) beams that are manipulated to display images on a [phosphorescent](https://en.wikipedia.org/wiki/Phosphorescence) screen ([Wikipedia](https://en.wikipedia.org/wiki/Cathode-ray_tube))
@@ -260,8 +320,15 @@ crt:
 * `orientation`: horizontal or vertical.
 * `screen`: screen description sub-document.
 * `geometry`: geometry description sub-document.
-* `gamma`: adjust game color gamma palette. Accepted values are "0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0","1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","2.0". Optional, defaults to 0.5
-* `brightness`: adjust game bright, accepted values:  "0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0","1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","2.0". Optional, defaults to 1.0.
+* `gamma`: adjust game color gamma palette. Optional, defaults to 0.5
+* `brightness`: adjust game brightness
+### Values by core
+| Property | core | values |
+| ---- | ---- | ---- |
+| **brightness** | mame2010 | default, +1%, +2%, +3%, +4%, +5%, +6%, +7%, +8%, +9%, +10%, +11%, +12%, +13%, +14%, +15%, +16%, +17%, +18%, +19%, +20%, -20%, -19%, -18%, -17%, -16%, -15%, -14%, -13%, -12%, -11%, -10%, -9%, -8%, -7%, -6%, -5%, -4%, -3%, -2%, -1% |
+|  | mame2003+ | 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0 |
+| **Gamma** | mame2010 | default, +1%, +2%, +3%, +4%, +5%, +6%, +7%, +8%, +9%, +10%, +11%, +12%, +13%, +14%, +15%, +16%, +17%, +18%, +19%, +20%, -20%, -19%, -18%, -17%, -16%, -15%, -14%, -13%, -12%, -11%, -10%, -9%, -8%, -7%, -6%, -5%, -4%, -3%, -2%, -1% |
+|  | mame2003+ | 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0 |
 
 ### Screen sub-document
 

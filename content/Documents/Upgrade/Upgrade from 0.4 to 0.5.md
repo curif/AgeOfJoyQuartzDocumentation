@@ -7,16 +7,24 @@ Before to proceed check if the latest version of Age of Joy, specifically versio
 
 **Backup**: Before proceeding with the installation, it's recommended to save all your game settings and progress (cabinets positions, cabinets, [[ROM]]s, [[MAME]] configurations, etc.) because it could be affected by the new version. You can do this by copying the entire folder `/sdcard/Android/data/com.curif.AgeOfJoy/` to your computer (using [[Sidequest]] for example). 
 
-### News
+## News
+
+### Improvements
 
 The game environment now dynamically responds to player movements, enhancing overall performance. Updates include optimizations in how cabinets load and unload, as well as improvements in playing attraction videos.
 
-Also, this latest iteration aims to empower users by expanding the capabilities of [[AGEBasic]], allowing for the customization of every facet of the game. Users can now configure Movie Posters and Lights using AGEBasic functionalities. They can run an AGEBasic program when a [[Room]] is loaded. 
+Also, this latest iteration aims to empower users by expanding the capabilities of [[AGEBasic]], allowing for the customization of a lot of facets of the game. Users can now configure Movie Posters and Lights using AGEBasic functionalities. They can run automatically an AGEBasic program when a [[Room]] is loaded. 
+
+#### Cabinets
 
 Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes its position to look at the screen in an appropriate position.
 
+Also it is possible to change the color, transparency level and set the emission color of a material using AGEBasic.
+
 Another important enhancement is the possibility of design which part of a cabinet the player can pass through and which should be solid. Very useful for, for example, cockpit cabinets. Also for cabinets the [[Cabinet Artist]]s now can distribute [[MAME]] files easily in the [[Cabinet Asset]].
-## 0.4 -> 0.5 General change log
+
+It's possible to select cores: [[Cores]]
+## 0.4 -> 0.5 Change log
 
 - Player behavior (performance):
 	- Cabinets loads only when the player is static in a position close to the cabinet's group. Cabinets don't load while the player is walking to do not interrupt the movement. But if the cabinet was loaded previously it pop up immediately.
@@ -34,7 +42,12 @@ Another important enhancement is the possibility of design which part of a cabin
 	- When a room loads, and there are cabinets not assigned, [[Age of Joy]] will assign a random cabinet to each free position.
 	- [[Cabinet Artist]]s could deploy [[MAME]] files using the new key `mame-files` key in [[CDL the Cabinet Description Language#MAME files distribution]].
 	- New CDL key for `space` metric on cabinets: [[Cabinet space sizes]]. [[Cabinet Artist]]s could flag bigger cabinets to fulfill specifics spaces in the [[Room]]s and to not interfere with the Player transit.
-	- There aren't any *required* [[Cabinets]] parts in the new version. On previous ones [[Cabinet Artist]]s **must** include some specific parts. Those parts aren't required anymore, so, for example, it is possible to create a cabinet without a screen. 
+	- There aren't any *required* [[Cabinets]] parts in the new version. On previous ones [[Cabinet Artist]]s **must** include some specific parts. Those parts aren't required anymore, so, for example, it is possible to create a cabinet without a screen or even create piece of furniture in place of cabinets.
+	- A new *Cocktail* standard cabinet style to select in yaml with the `style` key. 
+	- New `visible` property to hide cabinets parts (like the player head representation).
+	- Glass materials: A new `Layer Glass` material to create Bezels for games like Space Invaders (1979). Glass materials has been improved: [[CDL the Cabinet Description Language#Apply a material to parts#Material options]]
+	- Player can activate the **Snap Turn Movement** in the [[Visual configuration]] or [[AGE configuration using files]]
+	- MAME Core selection between `mame2003+` and `mame2010`.
 
 ### AGEBasic change log
 
@@ -47,15 +60,20 @@ Another important enhancement is the possibility of design which part of a cabin
 - File management functions: `GetFiles()` and `CombinePath()`
 	- Path functions: `ConfigPath()`,  `AGEBasicPath()`, `CabinetsDBPath()`, `CabinetsPath()` and `RootPath()`
 - New introspection function `type(var)`
-- Light configuration function: `GetLigths()`, `GetLightIntensity()`, `SetLightIntensity()` and `SetLightColor()`
+- Light configuration: `GetLigths()`, `GetLightIntensity()`, `SetLightIntensity()` and `SetLightColor()`
 - Release candidate 4:
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
 	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate()`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
 	- Added `AND()` and `OR()` functions.
+	- Cabinet parts [[AGEBasic programing#Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a Cabinet Asset .]]
+		- `CabPartsGetTransparency()` and `CabPartsSetTransparency()` to get and change the transparency level of a cabinet part. 
+		- `CabPartsSetColor()` to change the cabinet part's material color.
+		- `CabPartsSetEmission()` to activate and deactivate the emission of a part (a button for example)
+		- `CabPartsSetEmissionColor()` to set the color of the emission.
 #### Bug fixes
 
-- `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
+- fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
 - Release candidate 4:
-	- The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.
-	- Imported models (GLB) are cached even when uploaded to the workshop, so they do not show new changes applied to the model for testing.
+	- fixed: The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.
+	- fixed: Imported models (GLB) are cached even when uploaded to the workshop, so they do not show new changes applied to the model for testing.

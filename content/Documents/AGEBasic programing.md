@@ -126,13 +126,35 @@ To get information about rooms
 
 #### Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a [[Cabinet Asset]].
 
-- `CabPartsCount()`: return the cabinet's parts count. Returns -1 when error (for example if the programmer tries to use it in other place than in a cabinet's asset)
-- `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, eg: "joystick". Returns `""` when error (not in a cabinet's asset, or the part number not exists)
-- `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. Returns `-1` when error (not in a cabinet's asset, or a part doesn't exists with the provider name)
-- `CabPartsEnable(idx, enable)`: given a part number and a Boolean (remember Booleans are numbers, `true` is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. Returns `-1` on error.
-- `CabPartsGetCoordinate(number part idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
-- `CabPartsSetCoordinate(number part idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
-- `CabPartsGetRotation(number part idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
+Cabinet's parts are named (see the [[CDL the Cabinet Description Language#Configuring cabinet parts]]) and are identified by its position too. You can use one or each other when you need to call a function who uses a cabinet part, an index is preferred if you will call more than one function for the same part (by performance considerations).
+
+The program fail when you name a part incorrectly or when the index is incorrect. See [[AGEBasic programing#Debug mode]] to learn how to debug your program.
+
+- `CabPartsCount()`: return the cabinet's parts count.
+- `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, e.g.: `CabPartsName(7)` returns "joystick". 
+- `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. 
+- `CabPartsEnable(idx, enable)`: given a part number or a part name (`idx`),  and a Boolean (remember Booleans are numbers, a true value is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. 
+- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
+- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
+- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
+- `CabPartsGetTransparency(idx)`: returns the part's transparency percentage.
+- `CabPartsSetTransparency(idx, percentage)`: set part's transparency to a percentage (0 to 100).
+- `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.
+- `CabPartsSetEmissionColor(idx, r, g, b)` to set the *emission* color. The color will blend with the main texture, if any.
+- `CabPartsSetColor(idx, r, g, b)` to set the color. The color will blend with the main texture, if any.
+
+Examples:
+
+```vb file="onload.bas"
+10 let head = CabPartsPosition("player-head")
+20 lets headX, headZ, headH = CabPartsGetCoordinate(head, "X"), CabPartsGetCoordinate(head, "Z"), CabPartsGetCoordinate(head, "H")
+30 let transp = CabPartsGetTransparency("bezel")
+40 call CabPartsSetTransparency("bezel", transp + 10)
+
+70 call CabPartsEmission("joystick-button", 1)
+80 call CabPartsSetEmissionColor("joystick-button", 190, 20, 20)
+90 call CabPartsSetColor("left", 200, 0, 0)
+```
 
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 

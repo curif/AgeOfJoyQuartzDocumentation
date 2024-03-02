@@ -1,4 +1,3 @@
-# AGE configuration using files
 
 To change a configuration file you will need to know the [[YAML]] language that is widely used by the game. Like in CDL, there are some rules to follow.
 
@@ -66,6 +65,8 @@ locomotion:
   teleport-enabled: true
   speed: 2
   turn-speed: 80
+  snap-turn-amout: 30
+  snap-turn-active: false
 player:
   height: 1.6
 ```
@@ -94,6 +95,8 @@ Refers to the player's movement in the virtual space (walk, rotate, etc.)
 * `teleport-enabled`: `true` or `false`. Activate/deactivate the [[In Room Teleportation]] 
 * `speed`: is the translation velocity. The velocity used to walk.
 * `turn-speed`: is the velocity that the player used when rotate.
+* `snap-turn-active`: `true` or `false`. Activate/deactivate snap turn.
+* `snap-turn-amount`: number of degrees to rotate.
 
 ## Player
 
