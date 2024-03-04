@@ -71,6 +71,11 @@ It's possible to select cores: [[Cores]]
 		- `CabPartsSetColor()` to change the cabinet part's material color.
 		- `CabPartsSetEmission()` to activate and deactivate the emission of a part (a button for example)
 		- `CabPartsSetEmissionColor()` to set the color of the emission.
+	- Rotation and translation of cabinet parts:
+		- `CabPartsGetRotation(idx, axis)`: To get the rotation in degrees of the cabinet part. Axis must to be X,Y or Z.
+		- `CabPartsSetRotation(idx, axis, angle)` to change the ange of rotation of a cabinet part.
+		- `CabPartsGetCoordinate(idx, axis)`: to get the position in the [[3D space]]. Axis must to be X,Y,Z or H. (H is the height from the floor)
+		- `CabPartsSetCoordinate(idx, axis, coord)`: to get the position in the [[3D space]]. Axis must to be X,Y, Z or H. Coord is the new coordinate value.
 #### Bug fixes
 
 - fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
