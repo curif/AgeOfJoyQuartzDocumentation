@@ -6,4 +6,6 @@ A 3D coordinate system as a way to describe the position of objects or points in
 - Y-Axis: This runs vertically from bottom to top.
 - Z-Axis: This runs from front to back, or from near to far.
 
+![[Pasted image 20240305183110.png]]
+
 #agebasic 

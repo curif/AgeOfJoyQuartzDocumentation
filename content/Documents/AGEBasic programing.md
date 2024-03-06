@@ -199,7 +199,7 @@ It's recommended to read the [[AGEBasic examples - player to look at a screen wh
 It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
 
 - `ControlActive(id)`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. The `id`s of the controls (like buttons) are in the table in the page: [[Default controllers configuration mapping]]. `ControlActive` can be used in [[AGEBasic in cabinets]] or in programs to execute on the [[Configuration control cabinet]].
-- `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be  
+- `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
 
 ## Debug mode
 

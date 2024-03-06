@@ -184,10 +184,10 @@ Example:
       intensity: 1
 ```
 * color: the color document
-* r: red color component (integer 0-255)
-* g: green color component (integer 0-255)
-* b: blue color component (integer 0-255)
-* intensity: intensity multiplier, integer, can be negative to obtain darker variants of the color.
+	* r: red color component (integer 0-255)
+	* g: green color component (integer 0-255)
+	* b: blue color component (integer 0-255)
+	* intensity: intensity multiplier, integer, can be negative to obtain darker variants of the color.
 
 ### Apply a material to parts
 
@@ -228,6 +228,26 @@ Example:
 * `file`: file name of the image used as a texture for the part. The file must be included in the cabinet asset.
 * `invertx`: flip the image by the x axis (optional).
 * `inverty`: flip the image by the y axis (optional).
+
+### Emission
+
+A default part could be emissive: 
+
+```yaml
+- name: bulb
+	material: base
+	emission:
+		emissive: true
+		color: 
+		  r: 238
+	      g: 232
+	      b: 176
+	
+```
+
+This example should simulate bulbs lights. Also you can turn on/off using [[AGEBasic]].
+
+Read the [[Emission file mask]] example.
 
 ### Visibility
 
