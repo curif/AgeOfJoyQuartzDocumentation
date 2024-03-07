@@ -100,8 +100,10 @@ This version 0.5 comes with many new features, this is a recommendation on what 
 - Add `blockers` to block some parts of the cabinet and to free others, so the player can walk through them. [[Player Blockers]]
 - Activate and deactivate the [[CDL Debug mode]] to test if any issue appears on your cabinet so you can fix it.
 - Improvements you can add to your cabinet:
-	- Emissive parts.
-	- Change the player position for a better one on play.
+	- Emissive parts: [[Emission file mask]]
+	- Change the player position for a better one on play: [[AGEBasic examples - player to look at a screen when insert coin]]
 	- Move cabinet parts in reaction to player actions (like to move a virtual graphic joystick in reaction to the real one).
 	- Add files to distribute when the cabinet is uploaded to the game, `mame-files` on [[CDL the Cabinet Description Language#MAME files distribution]]. 
+	- Core selection: [[Cores]]
+	- 
 

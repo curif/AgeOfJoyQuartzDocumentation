@@ -25,12 +25,6 @@ To assign the blocker to your model you should declare it in [[CDL the Cabinet D
 parts:
   - name: blocker1
     type: blocker
-  - name: left
-    type: default
-    art: 
-      file: left.png
-      invertx: true
-      inverty: true
 ```
 
 > [!note] 
