@@ -30,9 +30,9 @@ Another important enhancement is the possibility of design which part of a cabin
 It's possible to select cores: [[Cores]]
 ## 0.4 -> 0.5 Change log
 
-- Player behavior (performance):
+- Player behavior was change to improve the performance:
 	- Cabinets loads only when the player is static in a position close to the cabinet's group. Cabinets don't load while the player is walking to do not interrupt the movement. But if the cabinet was loaded previously it pop up immediately.
-	- Presentation videos loads when the player are close to the cabinet.
+	- Presentation videos loads when the player are close to the cabinet. A picture will take the place of the video when the player is away or looking from the distance.
 - More rooms. Some of them are big, with capacity to accommodate more than 40 cabinets.
 - Player can run a preconfigured [[AGEBasic]] program on Room load. Use this way to configure the Room (changing movie posters or lighting for example).
 - Movie posters can be customized (change the image poster) using AGEBasic.
@@ -40,8 +40,8 @@ It's possible to select cores: [[Cores]]
 - Rooms are darkest than the previous version.
 - Sound samples tested and working. Check the [[MAME]] page for information.
 - Release candidate 4:
-	- A [[Cabinet Artist]] can change the game volume using [[AGEBasic]] in the [[Cabinet Asset]] (RC4)
-	- New [[CDL Debug mode]] so [[Cabinet Artist]]s can find issues in its cabinets quickly. (RC4)
+	- A [[Cabinet Artist]] can change the game volume using [[AGEBasic]] in the [[Cabinet Asset]] 
+	- New [[CDL Debug mode]] so [[Cabinet Artist]]s can find issues in its cabinets quickly. 
 	- New *blocker type* part on [[CDL the Cabinet Description Language#Parts]]. Read how to use it in the [[Player Blockers]] manual page.
 	- When a room loads, and there are cabinets not assigned, [[Age of Joy]] will assign a random cabinet to each free position.
 	- [[Cabinet Artist]]s could deploy [[MAME]] files using the new key `mame-files` key in [[CDL the Cabinet Description Language#MAME files distribution]].
@@ -95,15 +95,15 @@ It's possible to select cores: [[Cores]]
 This version 0.5 comes with many new features, this is a recommendation on what to do to best adapt the cabinets to the new version.
 
 - Follow the [[Cabinet building best practices]] and fulfill the [[CDL best practices checklist]] to improve your cabinet performance.
-- If your cabinet is not the usual standard size change your`description.yaml` according to the  [[Cabinet space sizes]].
-- If you have hidden parts inside a model, go and delete them, they are no longer required to be there.
+- If your cabinet is not identified with the usual standard size, change your `description.yaml` according to [[Cabinet Space Sizes]].
+- If you have hidden parts inside a model, go and delete them, they are no longer required to be there and consume resources.
 - Add `blockers` to block some parts of the cabinet and to free others, so the player can walk through them. [[Player Blockers]]
 - Activate and deactivate the [[CDL Debug mode]] to test if any issue appears on your cabinet so you can fix it.
+- Check your cabinets, some of them miscalculate the size and [[Age of Joy]] could create some glitches when position it, like floating cabinets for example. To solve the issue add a [[Player Blockers]].
 - Improvements you can add to your cabinet:
 	- Emissive parts: [[Emission file mask]]
 	- Change the player position for a better one on play: [[AGEBasic examples - player to look at a screen when insert coin]]
 	- Move cabinet parts in reaction to player actions (like to move a virtual graphic joystick in reaction to the real one).
 	- Add files to distribute when the cabinet is uploaded to the game, `mame-files` on [[CDL the Cabinet Description Language#MAME files distribution]]. 
 	- Core selection: [[Cores]]
-	- 
 
