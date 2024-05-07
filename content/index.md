@@ -21,7 +21,7 @@ Access to the cabinets [[packs]]
 
 > [!note] There are many cabinets created by the community that are not mentioned or listed here. To access them, you can join the [Discord](https://discord.gg/b83ykCM9Xp)  server. However, it's important to note that discovering these additional cabinets may require some effort on your part. You will need to search through message groups to find the latest and newly shared cabinets.
 
-In December of 2024, the [[Discord server]] already pass the goal of surpassing *500* cabinets!!!! the count is still growing!
+In December of 2023, the [[Discord server]] already pass the goal of surpassing *500* cabinets!!!! the count is still growing!
 ![[age 500 cabs.jpg]]
 
 

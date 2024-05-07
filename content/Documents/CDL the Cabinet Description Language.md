@@ -336,7 +336,9 @@ crt:
       x: -90
 ```
 * `crt`: the crt model document (optional)
-* `type`: 19i (optional) [^3]
+* `type`: 
+	* `19i` (optional) [^3]
+	* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
 * `orientation`: horizontal or vertical.
 * `screen`: screen description sub-document.
 * `geometry`: geometry description sub-document.
@@ -360,10 +362,35 @@ crt:
     invertx: true
 ```
 * `screen`: optional document.
-* `damage`: those old CRTs in the arcade galleries works for long periods of time, some of them 24/7. They usually fail and it's not uncommon to see the defects during the game play. games uses _shaders_ to simulate effects like the CRT damage. 
+	* `shader`: Shaders are utilized in [[Age of Joy]] to mimic the effects seen on old CRTs found in arcade galleries, which often operated for extended periods, sometimes 24/7. These CRTs commonly develop defects over time, which can be observed during gameplay.
+	* `damage`: how _damaged_ is the CRT. Usually `high`, `medium` and `low`
+	* `invertx`: flip the game image by the x axis (optional).
+	* `inverty`: flip the game image by the y axis (optional).
 
-* `invertx`: flip the game image by the x axis (optional).
-* `inverty`: flip the game image by the y axis (optional).
+The default `shader` is `crt`. 
+#### CRT shader
+
+Available after the version 0.5.0, This shader carefully recreates the look of old CRT monitors from that time period. You'll notice simulated dirt on the screen and realistic scanlines when you get close to the monitor, giving you an authentic retro feel.
+
+```yaml
+  screen:
+    shader: crt
+    damage: low
+```
+
+> [!note]
+> This shader heavily relies on the GPU, but it has been replaced by a more GPU-friendly version called `crtlod` for attraction videos. Joust select `crt` and it will replaced automatically for videos.
+
+#### CRT LOD shader
+
+Like CRT but GPU-friendly.
+
+
+```yaml
+  screen:
+    shader: crtlod
+    damage: low
+```
 
 #### Damage shader
 
@@ -378,7 +405,6 @@ This shader simulate a faulty TV. The grade of damage is regulated with the dama
 * `medium`: noise and scanlines
 * `high`: noise, scanlines and color slide. The game is hard to play with a screen with high damage.
 
-The damage shader is the default.
 
 In the v0.2 the only option is `low`.
 In the v0.3 you can use `medium` and `high` too.
@@ -403,6 +429,34 @@ The grade of damage is regulated with the `damage` key and can be:
 * `high`: more scanlines than medium and some bright in the center and obscurity in the borders.
 
 This shader is recommended for Vector Games.
+
+#### Advanced shader access
+
+You can change the shader properties by configuring the `materials` subdocument. e.g.:
+```
+materials:
+- name: ScreenCRTLow
+  properties:
+    __dirty: 0
+    _Damage_Vignette_Hardness: 0.812
+    _Damage_Desaturation: 0.555
+    _Damage_VIgnette_Radius: 0.464
+    _Scanline_GameScreenBrightness: 2
+    _Scanline_Amount: 1
+    _Distance_Scanline: 1
+    _Distance_Scanline_Power: 5
+    _CRTBrightnessFlickerMax: 0
+    _CRTBrightnessFlickerMin: 0
+    _CRTBrightnessFlickerTime: 18
+    _MaskVTXRedOnly: 1
+    _Distance_DotMask: 0.1
+    _Distance_DotMask_Power: 5
+    _Dotmask_GameScreenBrightness: 3.19
+    _Dotmask_ScanlineRemoval: 1
+    _MipBias: 0.5
+```
+
+
 
 ### CRT geometry
 If necessary, adjust the size and rotation of the CRT.
@@ -445,6 +499,19 @@ controllers:
 	  - control: gamepad-b
 	  - control: quest-right-trigger
 ```
+
+### Control scheme
+
+```yaml
+control-scheme: 6-buttons
+```
+
+A cab's `description.yaml` can be enriched with a control-scheme setting. 
+
+If set, this specifies a controller yaml configuration file to apply to this cab. Control schemes are located in `/configuration/controllers/schemes` (this directory is auto-created) Example: `/configuration/controllers/schemes/6-buttons.yaml`  
+
+> [!note] 
+> NOTE: If the description.yaml specifies a control map, it takes precedance. The scheme is functionally ignored.  Priority goes : description.yaml map > user game map > scheme map > global map
 
 You need to read the [[Controller configuration]] manual to fully understand how to map controllers and how the mapping merges with the rest of the configuration.
 
@@ -505,12 +572,13 @@ In addition to the art files, various other files such as configuration files, R
 
 To streamline the installation process for players, [[Cabinet Artist]]s could consider including these files in the cabinet asset zip file. Furthermore, they could describe in CDL the method by which [[Age of Joy]] will distribute the files, enabling MAME to locate and utilize them seamlessly.
 
-| File Type   | Description                                     |
-|-------------|-------------------------------------------------|
-| config      | Configuration files for MAME emulator settings  |
-| disk-image  | Disk images       |
-| sample      | Sample files containing audio for certain games |
-| nvram       | NVRAM files storing non-volatile memory data    |
+| File Type  | Description                                     |
+| ---------- | ----------------------------------------------- |
+| config     | Configuration files for MAME emulator settings  |
+| disk-image | Disk images                                     |
+| sample     | Sample files containing audio for certain games |
+| nvram      | NVRAM files storing non-volatile memory data    |
+| music      | music clips for the jukebox.                    |
 
 #### Describe the file distribution in the description.yaml file
 
@@ -527,6 +595,8 @@ mame-files:
     type: config
   - file: isanvram.nv
     type: nvram
+  - file: chiptune music.mp3
+    type: music
 ```
 
 In this example:

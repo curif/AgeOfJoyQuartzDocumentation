@@ -22,47 +22,54 @@ A variable name can contain letters a numbers only. AGEBasic isn't case sensitiv
 
 ## Numbered lines
 
-Each line of code should be numbered and be in ascending order.
+Each line of code should be numbered and be in ascending order. Multiline is supported.
 
 ## Sentences
 
 * `LET`: assign a value to a variable, ex: `LET a=10`
-* `LETS`: assign multiple values, ex: `LETS a,b=10,20`
+* `LETS`: assign multiple values, e.g.: `LETS a,b=10,20` is the same as `let a=10` and next `let b=20`
 * `REM`: a comment, ex: `REM this is a comment`. It's the only way to register comments in the program.
 * `END`: finish the program
-* `IF/THEN`: conditional, ELSE and ENDIF are not allowed. Ex: `IF x=1 THEN LET a=2`. There aren't available the usual conditional expressions like `AND` and `OR`, but there are functions to replace them.
+* `IF/THEN/ELSE`: conditional, . Ex: `IF x=1 THEN LET a=2 ELSE a=3`. There aren't available the usual conditional expressions like `AND` and `OR`, but there are functions to replace them. IMPORTANT: ENDIF doesn't exists
 * `GOTO`: to jump to a line number. Ex: `GOTO 50`
 * `GOSUB`: to jump to a line, and to back using `RETURN`. Ex: `GOSUB 5000`
 * `RETURN`: jump back to the next line after the `GOSUB`
-* `CALL`: to call a function discarding the result. Ex: `CALL CabRoomReplace(0, "pacman")`
+* `CALL`: to call a function discarding the result. e.g.: `CALL CabRoomReplace(0, "pacman")`
 * `FOR/TO/NEXT/STEP`: to create loops. Ex: `for x=0 to 10 step 2 ... next x`
 	* Initial, end  and step values can be expressions.
 	* Initial value is computed at start of the cycle.
 	* The end value is computed during the `NEXT` sentence execution.
 	* The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
+* `SLEEP` to sleep a number of seconds, doesn't work in programs executed in the control cabinet (has no sense). E.g.: `SLEEP 1` (sleeps the program during a second). `SLEEP 0.5` sleeps for half of a second. Values must be greater than `0.01`.
 
 ## Screen sentences
 
-* `PRINT` to show text on the screen: `PRINT x,y, text [, 0/1]`
+* `PRINT` to show text on the screen: `PRINT x,y, text [, 0/1] [, 0/1]`
 	* x,y screen coordinates (x: cols, y: rows)
 	* text: to print
 	* 1 inversed, 0 normal. Optional parameter, 0 is the default.
+	* 1 show immediately, 0 don't show and wait for the `SHOW` command (recomended)
 * `CLS` to clear the screen
-* `SHOW`: to show the last executed screen commands.
+* `SHOW`: to print in the screen the last executed screen commands.
 
+### Special characters
+
+You can escape [[AGEBasic characters map codes]] in a string only to print it. The rest of the string functions doesn't take in count the escaped characters, e.g. `STR("a\23") = 4`. 
 ## Functions
 
 
-Functions can receive parameters. Parameters must be enclosed.
+AGEBasic Functions can receive parameters. Parameters must be enclosed.
 
 ### Math
 
 - `ABS`, `COS`, `SIN`, `TAN`, `MOD`
+- `INT`: integer part of a number
 - `MAX`, `MIN`: of two numbers, Ex: `LET a = max(10,20)` then `a` is 20
 - `RND`: a random between two numbers. `rnd(2,10)` could be `8`.
 - `NOT`: The inverse of the boolean expression. Ex: `if NOT(0) then goto 100`
 - `AND`: to combine two expressions. It returns `1` if both of the input conditions are `!= 0`, otherwise it returns `0`: `AND(a = 0, b = 1)`
-- `AND`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
+- `OR`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
+- `IIF(condition, value1, value2)` returns `value1` if `condition` is `true` else returns `value2`
 
 ### Strings
 
@@ -70,8 +77,16 @@ Functions can receive parameters. Parameters must be enclosed.
 - `SUBSTR`: Ex: `susbtr("abc", 1, 2) ` is "bc", starting in 1 and getting two characters.
 - `TRIM`, `LTRIM`, `RTRIM`.
 - `STR`: Ex: `str(10)` is `"10"`
-- `GetMember(string, member #, separator)`: to get a slice of a string. Can be used to emulate lists. Example to get the first member of a list: `GetMember("AGE:of:Joy", 0, ":") == "AGE"`
-- `CountMembers(string, separator)` to count how many members a list have: `CountMembers("AGE:of:Joy", ":") == 3`
+#### List simulation
+
+AGEBasic can't manage arrays or list, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0` and `bbb` is the one in the position `1`, the separator is `:`.
+
+- `GetMember(string, member #, separator)`: to get a slice of a string. Can be used to emulate lists. Example to get the first member of a list: `GetMember("AGE:of:Joy", 0, ":") = "AGE"`
+- `CountMembers(string, separator)` to count how many members a list have: `CountMembers("AGE:of:Joy", ":") = 3`
+- `IsMember(string list, string member, separator)` returns `true` if the second string is a member of the first string list. 
+- `IndexMember(string list, string member, separator)` returns the index position of the string in the string list if found, or `-1` if not found. Index starts in `0` and ends in `CountMembers()-1`
+- `RemoveMember(string list, string member, separator)` returns a new string list without the specified string member.
+- `AddMember(string list, string member, separator)` returns a new string list with a new member at the end
 
 ### File management
 
@@ -87,6 +102,7 @@ Functions can receive parameters. Parameters must be enclosed.
 - `CabinetsDBPath()` returns the path to the cabinet database.
 - `CabinetsPath()` returns the path to the new cabinets. (usually empty)
 - `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
+- `MusicPath()` the base path to the music folder.
 
 ### Introspection
 
@@ -103,6 +119,10 @@ To get information about rooms
 - `RoomGetName(number)`: get the name of the room.
 - `RoomGetDesc(number)`: to get the description.
 
+## Screen functions
+
+- `ScreenWidth()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
+- `ScreenLines()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
 ### Cabinets related
 
 #### Applies to cabinets deployed in the room where the cabinet controller is loaded.
@@ -130,13 +150,15 @@ Cabinet's parts are named (see the [[CDL the Cabinet Description Language#Config
 
 The program fail when you name a part incorrectly or when the index is incorrect. See [[AGEBasic programing#Debug mode]] to learn how to debug your program.
 
+- `CabInsertCoin()`: insert a coin in the cabinet.
 - `CabPartsCount()`: return the cabinet's parts count.
 - `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, e.g.: `CabPartsName(7)` returns "joystick". 
 - `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. 
 - `CabPartsEnable(idx, enable)`: given a part number or a part name (`idx`),  and a Boolean (remember Booleans are numbers, a true value is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. 
-- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
-- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
-- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
+- Position in space: 
+	- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
+	- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
+	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
 - `CabPartsGetTransparency(idx)`: returns the part's transparency percentage.
 - `CabPartsSetTransparency(idx, percentage)`: set part's transparency to a percentage (0 to 100).
 - `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.
@@ -180,9 +202,23 @@ To mute a sound set its volume to `-80`, and to unmute it simply set it to the p
 If you write a script for a cabinet (read [[CDL the Cabinet Description Language]]) that changes the volume of a game (for example), remember to change it to its previous value in order to not affect other games.
 ### Get/Set Volume
 
-- `AudioAmbienceGetVolume()` and `AudioGameGetVolume()` to get the volume in `dB`.
-- `AudioAmbienceSetVolume(number volume)` and `AudioGameSetVolume(number volume)` to set the volume, also in `dB`.
+- `AudioAmbienceGetVolume()`, `AudioMusicGetVolume()` and `AudioGameGetVolume()` to get the volume in `dB`.
+- `AudioAmbienceSetVolume(number volume)`, `AudioMusicSetVolume(number volume)` and `AudioGameSetVolume(number volume)` to set the volume, also in `dB`.
+## Music
 
+To play music (Jukebox functions).
+All the audio files (like `mp3` or `ogg`) should be saved in the `/sdcard/Android/data/com.curif.AgeOfJoy/music` folder. To easily get that folder during an AGEBasic program execution use the `MusicPath() `function.
+The programmer should add all the audio files that the player want to ear in a queue, and the play it (the play action is in order)
+### Music functions
+
+- `MusicAdd(audio file path)`: add an audio file to the queue.
+- `MusicExists(audio file path)`: true if the file is in the jukebox queue.
+- `MusicRemove(audio file path)`: remove the file from the jukebox queue. Return `true` if removed.
+- `MusicClear()`: clear the audio queue.
+- `MusicAddList(files, separator)`: to add a group of audio files to the queue. Files is a list simulated string like `song1.mp3:song2.mp3`, you can use `FileGet` to get the files. 
+- `MusicLoop(true/false)`: to activate/deactivate the loop function. `MusicLoopStatus()` to query the music loop status.
+- `MusicNext()` and `MusicPrevious()` to jump to the next or previous song.
+- `MusicReset()` start playing again the music queue.
 ## Player position manipulation
 
 It's possible to change the position of the player in the [[3D space]]:
@@ -193,12 +229,11 @@ It's possible to change the position of the player in the [[3D space]]:
 
 It's recommended to read the [[AGEBasic examples - player to look at a screen when insert coin]].
 
-
 ### Controllers
 
 It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
 
-- `ControlActive(id)`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. The `id`s of the controls (like buttons) are in the table in the page: [[Default controllers configuration mapping]]. `ControlActive` can be used in [[AGEBasic in cabinets]] or in programs to execute on the [[Configuration control cabinet]].
+- `ControlActive(id [, port])`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. The `id`s of the controls (like buttons) are in the table in the page: [[Default controllers configuration mapping]]. `[port]` is an optional port number (`0` is the default). `ControlActive` can be used in [[AGEBasic in cabinets]] or in programs to execute in the [[Configuration control cabinet]]. Note: `port` is available in the `0.5` version and superior.
 - `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
 
 ## Debug mode

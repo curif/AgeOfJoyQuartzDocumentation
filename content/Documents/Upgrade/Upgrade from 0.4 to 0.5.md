@@ -52,6 +52,17 @@ It's possible to select cores: [[Cores]]
 	- Glass materials: A new `Layer Glass` material to create Bezels for games like Space Invaders (1979). Glass materials has been improved: [[CDL the Cabinet Description Language#Apply a material to parts#Material options]]
 	- Player can activate the **Snap Turn Movement** in the [[Visual configuration]] or [[AGE configuration using files]]
 	- MAME Core selection between `mame2003+`, `fbneo` and `mame2010`.
+- Release candidate 5:
+	- New `CRT` Shader: [[CDL the Cabinet Description Language#CRT shader]]
+	- If needed you can save your ROM for different cores using this pattern:  `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/<core>/` to separate your [[ROM]]s in different cores. For example: `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/fbneo/myrom.zip`
+	- New `control-scheme` to repeat the same control scheme configuration for a cabinet.
+	- New sliding doors.
+	- Added new `CRT`: `19i-agebasic` a CRT type to only process [[AGEBasic]] programs. ```
+				crt:
+				  type: 19i-agebasic
+				  orientation: horizontal
+				  screen:
+					    shader: CRT```
 
 ### AGEBasic change log
 
@@ -69,9 +80,10 @@ It's possible to select cores: [[Cores]]
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
 	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate()`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
-	- Added `AND()` and `OR()` functions.
+	- Added `IIF()`, `AND()` and `OR()` functions.
 	- `ControlHapticRumble(id, amplitude, duration)` to activate the haptic effect on a control.
 	- New CDL keys to manage the emission of a cabinet part: `emmission` [[CDL the Cabinet Description Language#Emission]] includes capacity for color change and [[Emission file mask]].
+- Release candidate 5:
 	- Cabinet parts [[AGEBasic programing#Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a Cabinet Asset .]]
 		- Colors:
 			- `CabPartsGetTransparency()` and `CabPartsSetTransparency()` to get and change the transparency level of a cabinet part. 
@@ -83,14 +95,21 @@ It's possible to select cores: [[Cores]]
 			- `CabPartsSetRotation(idx, axis, angle)` to change the ange of rotation of a cabinet part.
 			- `CabPartsGetCoordinate(idx, axis)`: to get the position in the [[3D space]]. Axis must to be X,Y,Z or H. (H is the height from the floor)
 			- `CabPartsSetCoordinate(idx, axis, coord)`: to get the position in the [[3D space]]. Axis must to be X,Y, Z or H. Coord is the new coordinate value.
+		- Jukebox/music AGEBasic functions: read the [[Jukebox]] manual: MusicPlay, MusicAdd, MusicRemove, MusicClear,  MusicLoop,  MusicAddList, MusicPrevious and  MusicNext
+		- `ControlActive()` accepts the port as parameter.
+		- Screen:   `ScreenWidth()` and `ScreenHeight()`
+		- String lists management:  `IsMember()`, `IndexMember()`, `AddMember()` and `RemoveMember()`
+
 #### Bug fixes
 
 - fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
 - Release candidate 4:
 	- fixed: The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.
 	- fixed: Imported models (GLB) are cached even when uploaded to the workshop, so they do not show new changes applied to the model for testing.
+- Release candidate 5:
+	- Fixed sound bug regarding duplicated cabinets in the same room.
 
-# Cabinet artists activities
+# Cabinet artists recommendation
 
 This version 0.5 comes with many new features, this is a recommendation on what to do to best adapt the cabinets to the new version.
 
