@@ -1,4 +1,3 @@
-# This document describes the CDL (Cabinet Description Language)
 
 The term CDL refers to the characteristics of a cabinet for a specific game.
 
@@ -343,6 +342,7 @@ crt:
     ratio:
       y: 0.33
       z: 0.1  
+      x: 1
 ```
 * `crt`: the crt model document (optional)
 * `type`: 
