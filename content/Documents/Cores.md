@@ -40,9 +40,4 @@ Cab environment takes precedence over core environment (merges)
 
 Users should upload emulation cores to the `/sdcard/Android/data/com.curif.AgeOfJoy/cores` folder.
 
-Examples:
-
-- `libflycast_libretro_android.so`
-- `libsnes9x_libretro_android.so`
-
 #CDL #cores 
