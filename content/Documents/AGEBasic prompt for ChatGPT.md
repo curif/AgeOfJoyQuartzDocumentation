@@ -148,6 +148,7 @@ The programmer should add all the audio files that the player want to ear in a q
 - `MusicLoop(true/false)`: to activate/deactivate the loop function. `MusicLoopStatus()` to query the music loop status.
 - `MusicNext()` and `MusicPrevious()` to jump to the next or previous song.
 - `MusicReset()` start playing again the music queue.
+- `MusicCount()` count of files in the music queue.
 
 ```
 
