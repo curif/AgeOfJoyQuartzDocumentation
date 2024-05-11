@@ -487,7 +487,7 @@ If necessary, adjust the size and rotation of the CRT.
     ratio:
       y: 0.33
       z: 0.1
-      x: 0
+      x: 1
 ```
 * `geometry`: optional geometry CRT sub-document.
 * `rotation`: to configure the rotation optional sub-document. Its possible to configure a rotation for each axis. The value is in degrees, the example rotates the screen -90 degrees in `x` axis. Optional, all axis optional too, defaults to 0.
