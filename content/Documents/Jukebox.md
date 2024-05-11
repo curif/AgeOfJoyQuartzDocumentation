@@ -9,3 +9,5 @@ Users have the option to transfer their own music files to the directory `/sdcar
 Given that [[AGEBasic]] is not limited to cabinets but also extends to the [[Configuration control cabinet]] and [[Room]]s (e.g., for room configuration), the possibilities are extensive. For instance, players can configure a room to play a specific album or set global music preferences for the overall experience.
 
 For further details, please refer to the [[AGEBasic programing]] manual for functions like `Music*()`.
+
+#jukebox #agebasic 

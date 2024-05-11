@@ -115,10 +115,12 @@ model:
 [[Age of Joy]] has bundled [[Cores]] for your selection. Options:
 - `mame2003+`
 - `mame2010`
+- `fbneo`
 
 ```title="description.yaml"
 core: mame2003+
 ```
+
 ## Attraction videos
 
 Every game runs it's own introduction when nobody is playing, showing the game play or instructions. Because of the limited power of some devices, not all games can be emulated at the same time to display these screens. To solve this problem and to obtain the more accurate experience possible an introduction video is playing when the player is not in game mode (playing the game). These videos are typically obtained using RetroArch (by running the game and recording the introduction part), the result is a `.mkv` file that can be included in the cabinet asset.
@@ -229,6 +231,10 @@ Example:
 * `invertx`: flip the image by the x axis (optional).
 * `inverty`: flip the image by the y axis (optional).
 
+#### Improving textures
+
+`file` could be and ASTC Texture to improve the cabinet performance, but you should convert the image. Read the [[ASTC textures]] manual.
+
 ### Emission
 
 A default part could be emissive: 
@@ -334,6 +340,9 @@ crt:
   geometry:
     rotation: 
       x: -90
+    ratio:
+      y: 0.33
+      z: 0.1  
 ```
 * `crt`: the crt model document (optional)
 * `type`: 
@@ -432,7 +441,10 @@ This shader is recommended for Vector Games.
 
 #### Advanced shader access
 
+##### Materials
+
 You can change the shader properties by configuring the `materials` subdocument. e.g.:
+
 ```
 materials:
 - name: ScreenCRTLow
@@ -456,9 +468,14 @@ materials:
     _MipBias: 0.5
 ```
 
+##### Override shader configuration materials
 
+To configure the shader for all games, overriding the registered in CDL.
+
+Just save a `/configuration/materials.yaml` file with your configuration.
 
 ### CRT geometry
+
 If necessary, adjust the size and rotation of the CRT.
 ```yaml
   geometry:
@@ -467,12 +484,18 @@ If necessary, adjust the size and rotation of the CRT.
       y: 0
       z: 0
     scalepercentage: 100
+    ratio:
+      y: 0.33
+      z: 0.1
+      x: 0
 ```
 * `geometry`: optional geometry CRT sub-document.
 * `rotation`: to configure the rotation optional sub-document. Its possible to configure a rotation for each axis. The value is in degrees, the example rotates the screen -90 degrees in `x` axis. Optional, all axis optional too, defaults to 0.
 * `scalepercentage`: increase or decrease the size of the element by a percentage. Optional, default to 100%. Integer, can be negative.
+* `ratio`: to change the scale (between `0` and `1` - `1`=100%)
 
 ## Coin slot configuration
+
 The place where to drop coins to start games.
 The coin slot position is configured in the model.
 ```yaml
@@ -484,6 +507,13 @@ coinslotgeometry:
 * `coinslot`: coin slot model to apply: `coin-slot-double` or `coin-slot-small`
 * `coinslotgeometry`: the same `geometry` sub-document than in CRT.
 
+### Insert coin
+
+Set to `true` to not start the game when you insert the first coin. Useful in games that you want to enjoy the start of the game (presentation activities).
+
+```yaml
+insert-coin-on-startup: false
+```
 ## Controllers
 
 Some games needs a specific controller configuration to be playable.
@@ -508,12 +538,7 @@ control-scheme: 6-buttons
 
 A cab's `description.yaml` can be enriched with a control-scheme setting. 
 
-If set, this specifies a controller yaml configuration file to apply to this cab. Control schemes are located in `/configuration/controllers/schemes` (this directory is auto-created) Example: `/configuration/controllers/schemes/6-buttons.yaml`  
-
-> [!note] 
-> NOTE: If the description.yaml specifies a control map, it takes precedance. The scheme is functionally ignored.  Priority goes : description.yaml map > user game map > scheme map > global map
-
-You need to read the [[Controller configuration]] manual to fully understand how to map controllers and how the mapping merges with the rest of the configuration.
+Read the [[Control schemes]] documentation.
 
 ## Light guns cabinet configuration
 
@@ -580,7 +605,7 @@ To streamline the installation process for players, [[Cabinet Artist]]s could co
 | nvram      | NVRAM files storing non-volatile memory data    |
 | music      | music clips for the jukebox.                    |
 
-#### Describe the file distribution in the description.yaml file
+#### Describes the file distribution in the description.yaml file
 
 
 ```yaml title="description.yaml"
@@ -683,4 +708,4 @@ Recommended information in the [[CDL Debug mode]] page.
 [^3]: the only available option.
  
 ---
-#CDL #cabinet/artists 
+#CDL #cabinet/artists #cores #agebasic #jukebox #light-gun 

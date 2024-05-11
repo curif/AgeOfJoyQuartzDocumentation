@@ -15,13 +15,17 @@ Massive graphics, sound and ambient improvements thanks to @Geometrizer.
 
 Game performance improved a lot, again, thanks @Geometrizer.
 
+Expanded emulation library! We've added more machine emulators (cores) and given you the ability to add your own. Be aware that some user-added cores may not work. @Emhashed
+
 The game environment now dynamically responds to player movements, enhancing overall performance. Updates include optimizations in how cabinets load and unload, as well as improvements in playing attraction videos.
+
+We've significantly improved NPCs with diverse styles and lifelike animations. @Geometrizer
 
 This update is all about giving players more control over the game using AGEBasic. You can now use AGEBasic to set up things like movie posters and lights, and even make AGEBasic programs run automatically when you enter a new room. 
 
 #### Cabinets
 
-Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes its position to look at the screen in an appropriate position.
+Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes the player to look at the screen in an appropriate position.
 
 Also it is possible to change the color, transparency level and set the emission color and material using AGEBasic.
 
@@ -30,7 +34,7 @@ Another important enhancement is the possibility of design which part of a cabin
 It's possible to select cores: [[Cores]]
 ## 0.4 -> 0.5 Change log
 
-- Player behavior was change to improve the performance:
+- Player behavior was changed to improve the performance:
 	- Cabinets loads only when the player is static in a position close to the cabinet's group. Cabinets don't load while the player is walking to do not interrupt the movement. But if the cabinet was loaded previously it pop up immediately.
 	- Presentation videos loads when the player are close to the cabinet. A picture will take the place of the video when the player is away or looking from the distance.
 - More rooms. Some of them are big, with capacity to accommodate more than 40 cabinets.
@@ -53,10 +57,19 @@ It's possible to select cores: [[Cores]]
 	- Player can activate the **Snap Turn Movement** in the [[Visual configuration]] or [[AGE configuration using files]]
 	- MAME Core selection between `mame2003+`, `fbneo` and `mame2010`.
 - Release candidate 5:
-	- New `CRT` Shader: [[CDL the Cabinet Description Language#CRT shader]]
-	- If needed you can save your ROM for different cores using this pattern:  `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/<core>/` to separate your [[ROM]]s in different cores. For example: `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/fbneo/myrom.zip`
-	- New `control-scheme` to repeat the same control scheme configuration for a cabinet.
-	- New sliding doors.
+	- New `CRT` Shader: [[CDL the Cabinet Description Language#CRT shader]] @geometrizer
+	- If needed you can save your ROM for different cores using this pattern:  `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/<core>/` to separate your [[ROM]]s in different cores. For example: `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/fbneo/myrom.zip` @emashzed
+	- New `control-scheme` to repeat the same control scheme configuration for a cabinet. @emashzed
+	- New sliding doors. @geometrizer
+	- `insert-coin-on-startup`: in CDL to do not start the game when you insert a coin. @emashzed
+	- CRT Ratio: to change the scale ratio of a CRT in CDL. @emashzed
+	- Device detection (Q2/Q3): @emashzed
+	- Adapted emulation cores to support VULKAN hardware interface: @emashzed
+	- Foveated rendering: optimize performance by concentrating rendering resources on the area of the display where the user is looking. @emashzed
+	- User core selection: [[Cores]] @emashzed
+	- Boost the resolution of the eye texture during gameplay. @emashzed
+	- Cache for GLB, parts and images has been improved (repeated GLB files are not stored multiple times). @emashzed
+	- [[ASTC textures]] to improve cabinets performance. @emashzed
 	- Added new `CRT`: `19i-agebasic` a CRT type to only process [[AGEBasic]] programs. ```
 				crt:
 				  type: 19i-agebasic
@@ -108,6 +121,7 @@ It's possible to select cores: [[Cores]]
 	- fixed: Imported models (GLB) are cached even when uploaded to the workshop, so they do not show new changes applied to the model for testing.
 - Release candidate 5:
 	- Fixed sound bug regarding duplicated cabinets in the same room.
+	- Fix color gamma from some shaders and image conversion @emashzed
 
 # Cabinet artists recommendation
 
@@ -126,3 +140,16 @@ This version 0.5 comes with many new features, this is a recommendation on what 
 	- Add files to distribute when the cabinet is uploaded to the game, `mame-files` on [[CDL the Cabinet Description Language#MAME files distribution]]. 
 	- Core selection: [[Cores]]
 
+## Special thanks
+
+- **To our amazing community:** Your ideas and bug reports are invaluable. They help us continuously improve Age of Joy.
+- **To all the talented cabinet artists:** You bring Age of Joy to life with your stunning creations. Without you, it would be a pale imitation of its full potential.
+- **A huge shout-out to @DangerMiaus:** Your tireless support, testing efforts, and dedication to the community are truly appreciated!
+- **to @flannelot and @zetaxis*** for the Pico version.
+- **to @ramiroramos**: for the effort to create a MR version (not ready yet)
+- **to @angellicide and @dmacell** for the cabinet database.
+- Sorry if I forget someone.
+
+Other honorable mentions to @VRCop for technical ideas. @WilsonVR for be there from the very start. @dedhead616, @flannelot, @Alyx_Hope...
+
+**And to anyone else who has contributed:** If we've missed you here, please know that we deeply appreciate your involvement in Age of Joy!
