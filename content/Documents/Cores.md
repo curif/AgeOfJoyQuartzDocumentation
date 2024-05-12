@@ -42,6 +42,6 @@ Users should upload emulation cores to the `/sdcard/Android/data/com.curif.AgeOf
 
 ## Guide
 
-Read [[The complete guide to configure cores by Emashzed]].
+Read [[The complete guide to configure cores]].
 
 #CDL #cores 
