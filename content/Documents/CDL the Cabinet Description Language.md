@@ -112,6 +112,7 @@ model:
 ## Cores
 
 [[Age of Joy]] has bundled [[Cores]] for your selection. Options:
+
 - `mame2003+`
 - `mame2010`
 - `fbneo`
@@ -120,6 +121,7 @@ model:
 core: mame2003+
 ```
 
+You can also add your preferred cores. Read the [[Cores]] documentation.
 ## Attraction videos
 
 Every game runs it's own introduction when nobody is playing, showing the game play or instructions. Because of the limited power of some devices, not all games can be emulated at the same time to display these screens. To solve this problem and to obtain the more accurate experience possible an introduction video is playing when the player is not in game mode (playing the game). These videos are typically obtained using RetroArch (by running the game and recording the introduction part), the result is a `.mkv` file that can be included in the cabinet asset.

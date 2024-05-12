@@ -40,4 +40,8 @@ Cab environment takes precedence over core environment (merges)
 
 Users should upload emulation cores to the `/sdcard/Android/data/com.curif.AgeOfJoy/cores` folder.
 
+## Guide
+
+Read [[The complete guide to configure cores by Emashzed]].
+
 #CDL #cores 
