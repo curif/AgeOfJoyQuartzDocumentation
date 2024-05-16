@@ -156,9 +156,9 @@ The program fail when you name a part incorrectly or when the index is incorrect
 - `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. 
 - `CabPartsEnable(idx, enable)`: given a part number or a part name (`idx`),  and a Boolean (remember Booleans are numbers, a true value is anything different to cero), will disable or enable it. When a part is disabled you can't see it in VR. 
 - Position in space: 
-	- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y", "Z" or "H". In particular `H` refers to the position of the object starting on the cabinet's base. 
-	- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position in space.
-	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part.
+	- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y" or "Z" . Refers to the position of the object starting on the cabinet's base (local coordinate). You can also use `CabPartsGetGlobalCoordinate()` to get the part coordinates in the Global 3D space.
+	- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position relative to the cabinet. `CabPartsSetGlobalCoordinate()` is also available.
+	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part. `CabPartsGetGlobalRotation()` and `CabPartsSetGlobalRotation()` to get set the global rotation. 
 - `CabPartsGetTransparency(idx)`: returns the part's transparency percentage.
 - `CabPartsSetTransparency(idx, percentage)`: set part's transparency to a percentage (0 to 100).
 - `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.

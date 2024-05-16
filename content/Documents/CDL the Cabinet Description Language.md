@@ -555,13 +555,14 @@ light-gun:
 
 - `light-gun`: light gun configuration section
 	- `active`: to activate the light gun. (`true`/`false`). Defaults to `false`.
+	- `device`: device id in the core if you know it, `260` is GunCon on swanstation. Omit it by default. 
 	- `model`: a `.glb` file with a model that represents the light gun. [[Age of Joy]] will change the right controller model by the model after load it. Remember: the load file operation is CPU intensive (even in async mode), you should use low poly models with little or not texture in order to not freeze the game for a long period of time. The model file must to be present in the [[Cabinet Asset]].
 		- The model metrics is in meters, [[Age of Joy]] makes none adjustment to the size or rotation. But if it is inverted you can use the `invert-pointer` property.
 		- If you download a model from internet, don't forget to give the credit to the author. You can write a file with the license in the [[Cabinet Asset]].
 	- `gun`: about the gun representation in VR
 		- `invert-pointer`: some meshes are inverted (they shoot to the opposite part of the gun)
 		- `adjust-sight`: allows you to adjust the point where the "bullet" will hit the screen in relation to the light gun. This property allows cabinets developers to adjust the sight point in the screen to the gun model. Start testing with a little value like 2 or 3.
-			- `horizontal`: measured in cms (centimeters), moves the gun up or down (without noticeable real movement of the gun) to adjust the shoot. Can be negative to move the sight down.
+			- `horizontal`: measured in cm (centimeters), moves the gun up or down (without noticeable real movement of the gun) to adjust the shoot. Can be negative to move the sight down.
 			- `vertical`: same as horizontal. A negative value moves to sight to the left.
 	- `debug`:
 		- `active`: to activate a mark where the gun hit the screen. Activate only when you are working in the cabinet development.
@@ -577,6 +578,7 @@ light-gun:
 ```yaml
 light-gun:
   active: true
+  device: 60
   gun:
     invert-pointer: true
     adjust-sight:
