@@ -2,7 +2,9 @@
 
 You can escape character map codes in a string to get the desired character printed in the screen.
 
-![[Pasted image 20240507085430.png]]
+# C64 skin style character map
+
+![[Pasted image 20240610112149.png]]
 
 
 For example, `let str = "this is an horizontal rule: \64"` the `\64` refers to the character # 64 in the character map (starting in zero).
@@ -15,7 +17,7 @@ E.g.
 140 PRINT 0,0, ("\64" * 15) + " JUKEBOX " + ("\64" * 15), 1, 0
 ```
 
-Result:
+Result for c64 charmap:
 
 ![[jukebox.png]]
 
@@ -44,5 +46,14 @@ This program prints the character map on screen:
 510 END
 ```
 
-![[charmap screenshot.png]]
-In this example, the `P` code is 16 and `"` is 34.
+### ZX Charmap
+![[Pasted image 20240610123326.png]]
+### C64 charmap
+![[Pasted image 20240610123441.png]]
+
+
+> [!note]
+> You can change the `system-skin` for the configuration cabinet using the [[AGE configuration using files]] to get access to a different character map.
+> 
+
+

@@ -441,6 +441,23 @@ The grade of damage is regulated with the `damage` key and can be:
 
 This shader is recommended for Vector Games.
 
+#### Projector Shader
+
+Useful to simulate old rear projection TVs or projectors
+
+```yaml
+  screen:
+    shader: projector
+    damage: none
+```
+
+You can use a GPU-friendly `LOD` version too. Example:
+```yaml
+  screen:
+    shader: projectorlod
+    damage: high
+```
+
 #### Advanced shader access
 
 ##### Materials
@@ -648,6 +665,7 @@ agebasic:
   after-insert-coin: start_game.bas  # Run this program when a coin is inserted
   after-load: initialize.bas     # Run this program on cabinet startup
   after-leave: save_data.bas     # Run this program when the player leaves
+  system-skin: c64
   variables:
 	  - name: myvar
 	    type: string
@@ -655,7 +673,7 @@ agebasic:
 ```
 This document details the `agebasic` configuration section within your arcade cabinet, controlling AGEBasic program behavior.
 
-**General Settings:**
+### General Settings:
 
 * **`active` (boolean):**
     * **Enabled (true):** AGEBasic programs run normally (default).
@@ -664,7 +682,7 @@ This document details the `agebasic` configuration section within your arcade ca
     * **Enabled (true):** Creates debug files for each executed program.
     * **Disabled (false):** No debug files generated.
 
-**Program Execution Triggers:**
+### Program Execution Triggers
 
 * **`after-insert-coin` (string):**
     * Filename of the program that runs **once** when a coin is inserted to start the game.
@@ -672,6 +690,15 @@ This document details the `agebasic` configuration section within your arcade ca
     * Filename of the program that runs **once** after the cabinet fully loads (startup).
 * **`after-leave` (string):**
     * Filename of the program that runs **once** when the player leaves the game.
+
+### System skin
+
+The `system-skin` key configures the look & feel of the AGEBasic screen to mimic retro-computers.
+
+At the moment these are the options:
+- `zx`: Sinclair look and feel
+- `cpc`: Amstrad
+- `c64`: Commodore 64
 
 **Variables:**
 

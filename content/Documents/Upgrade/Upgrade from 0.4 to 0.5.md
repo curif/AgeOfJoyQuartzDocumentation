@@ -23,6 +23,7 @@ We've significantly improved NPCs with diverse styles and lifelike animations. @
 
 This update is all about giving players more control over the game using AGEBasic. You can now use AGEBasic to set up things like movie posters and lights, and even make AGEBasic programs run automatically when you enter a new room. 
 
+Sharp quality increase in audio fidelity in most cores. Vulkan specific tweaks.
 #### Cabinets
 
 Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes the player to look at the screen in an appropriate position.
@@ -57,7 +58,7 @@ It's possible to select cores: [[Cores]]
 	- Player can activate the **Snap Turn Movement** in the [[Visual configuration]] or [[AGE configuration using files]]
 	- MAME Core selection between `mame2003+`, `fbneo` and `mame2010`.
 - Release candidate 5:
-	- New `CRT` Shader: [[CDL the Cabinet Description Language#CRT shader]] @geometrizer
+	- New `CRT` and `Projector` Shader: [[CDL the Cabinet Description Language#CRT shader]] @geometrizer
 	- If needed you can save your ROM for different cores using this pattern:  `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/<core>/` to separate your [[ROM]]s in different cores. For example: `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/fbneo/myrom.zip` @emashzed
 	- New `control-scheme` to repeat the same control scheme configuration for a cabinet. @emashzed
 	- New sliding doors. @geometrizer
@@ -123,7 +124,7 @@ It's possible to select cores: [[Cores]]
 	- Fixed sound bug regarding duplicated cabinets in the same room.
 	- Fix color gamma from some shaders and image conversion @emashzed
 
-# Cabinet artists recommendation
+# Cabinet artists recommendations
 
 This version 0.5 comes with many new features, this is a recommendation on what to do to best adapt the cabinets to the new version.
 
