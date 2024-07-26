@@ -55,6 +55,7 @@ author: curif
 comments: is a vertically scrolling shooter arcade video game developed and published by Namco in 1982. It was released in Japan by Namco and in North America by Atari, Inc. Controlling the Solvalou starship, the player attacks Xevious forces before they destroy all of mankind. The Solvalou has two weapons at its disposal: a zapper to destroy flying craft, and a blaster to bomb ground installations and enemies. It runs on the Namco Galaga arcade system.
 
 rom: xevious.zip
+
 timetoload: 18
 md5sum: fe6e9e3d5d1faaab2f53d97fed83c562
 
@@ -90,6 +91,19 @@ Each game has its own boot process, which is initiated when the arcade gallery o
 
 To avoid this process, AGE of Joy saves the game's state (memory, CPU states, etc.) after the 'timetoload' period of time has passed. The game will re-start at that point the next time it is run, skipping the boot load phase and arriving at the point where the game is ready to accept the first coin. It's similar to how a computer goes and back from hibernation.
 
+### roms
+
+You could create `roms` playlists to play a game and move to the next one if you want. This allow [[Cabinet Artist]] to create multi-rom cabinets.
+
+Cycle through games with Left Trigger + Left thumb click while playing.
+
+```yaml
+roms:
+  - samsho.zip
+  - samsho2.zip
+```
+
+The `rom` key is going to be ignored if you create a playlist.
 ### Cabinet models reference
 
 ```yaml
@@ -136,6 +150,18 @@ video:
 * `file`: file name of the video, must be included in the cabinet asset.
 * `invertx`: flip the video by the x axis (optional).
 * `inverty`: flip the video by the y axis (optional).
+## Memory persistence
+
+Allows memory persistence after the game is unloaded.
+
+persistent state and sram data are stored in the `/save` folder `[romname].state` and `[romname].srm` respectively.
+
+```
+persistent: true
+```
+
+it's disabled by default.
+
 
 ## Configuring cabinet parts
 
@@ -318,7 +344,7 @@ Example 2: a tinted red wood.
       g: 0
       b: 0
 ```
-## Configuring the monitor (CRT)
+## Monitor (CRT) Configuration
 
 A cathode-ray tube (CRT) is a [vacuum tube](https://en.wikipedia.org/wiki/Vacuum_tube) containing one or more [electron guns](https://en.wikipedia.org/wiki/Electron_gun), which emit [electron](https://en.wikipedia.org/wiki/Electron) beams that are manipulated to display images on a [phosphorescent](https://en.wikipedia.org/wiki/Phosphorescence) screen ([Wikipedia](https://en.wikipedia.org/wiki/Cathode-ray_tube))
 
@@ -326,7 +352,7 @@ In short: is the screen.
 
 The most used screen for cabinets was the 19i. AGE of Joy comes with that model included in the game, other models could be included in the future.
 
-The crt document comes in two parts: the root for a tube element configuration (orientation, geometry, etc) and the screen to configure how 
+The `crt` document comes in two parts: the root for a tube element configuration (orientation, geometry, etc) and the screen to configure how 
 the game and video looks when play.
 ```yaml
 crt:
@@ -348,8 +374,12 @@ crt:
 ```
 * `crt`: the crt model document (optional)
 * `type`: 
-	* `19i` (optional) [^3]
+	* `19i` (optional - default)
 	* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
+	* `32i`: 32 inches. Only supports the `CRT` shader (available in 0.5 and superior).
+	* `19i-2x1`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+	* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+	* `50i`: 50 inches. Only supports the `CRT` shader (available in 0.5 and superior).
 * `orientation`: horizontal or vertical.
 * `screen`: screen description sub-document.
 * `geometry`: geometry description sub-document.

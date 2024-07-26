@@ -71,7 +71,9 @@ It's possible to select cores: [[Cores]]
 	- Boost the resolution of the eye texture during gameplay. @emashzed
 	- Cache for GLB, parts and images has been improved (repeated GLB files are not stored multiple times). @emashzed
 	- [[ASTC textures]] to improve cabinets performance. @emashzed
-	- Added new `CRT`: `19i-agebasic` a CRT type to only process [[AGEBasic]] programs. ```
+	- Added new `CRT` types: [[CDL the Cabinet Description Language#Monitor (CRT) Configuration]] @geometrizer
+	- Default controller input changed: [[Quest Controllers#Exit emulation]]
+	- Added new [[AGEBasic]] `CRT`: `19i-agebasic` a CRT type to only process [[AGEBasic]] programs. ```
 				crt:
 				  type: 19i-agebasic
 				  orientation: horizontal
@@ -109,10 +111,12 @@ It's possible to select cores: [[Cores]]
 			- `CabPartsSetRotation(idx, axis, angle)` to change the ange of rotation of a cabinet part.
 			- `CabPartsGetCoordinate(idx, axis)`: to get the position in the [[3D space]]. Axis must to be X,Y,Z or H. (H is the height from the floor)
 			- `CabPartsSetCoordinate(idx, axis, coord)`: to get the position in the [[3D space]]. Axis must to be X,Y, Z or H. Coord is the new coordinate value.
+			- `DATA/READ/RESTORE` to add data to your programs.
 		- Jukebox/music AGEBasic functions: read the [[Jukebox]] manual: MusicPlay, MusicAdd, MusicRemove, MusicClear,  MusicLoop,  MusicAddList, MusicPrevious and  MusicNext
 		- `ControlActive()` accepts the port as parameter.
 		- Screen:   `ScreenWidth()` and `ScreenHeight()`
 		- String lists management:  `IsMember()`, `IndexMember()`, `AddMember()` and `RemoveMember()`
+		- Play lists: cycle through games with Left Trigger + Left thumb click while playing.
 
 #### Bug fixes
 

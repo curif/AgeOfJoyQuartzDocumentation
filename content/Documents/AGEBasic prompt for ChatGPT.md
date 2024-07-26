@@ -28,7 +28,7 @@ Instruction set. Each line number is followed by an instruction
 * CALL: to call a function discarding the result. Ex: CALL CabRoomReplace(0, "pacman")
 * FOR/TO/NEXT: to create loops. Ex: "for x=0 to 10 ... next x" Initial and end values can be expressions. Initial value is computed at start of the cycle. The end value is computed during the `NEXT` sentence execution. The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
 
-SCREEN commands:
+## SCREEN commands:
 PRINT: use the PRINT to show text on the screen: `PRINT x,y, text, 0/1 (inversed), 0/1 (print immediately)`
 	* x,y screen coordinates (x: cols, y: rows)
 	* text: to print
@@ -37,9 +37,9 @@ PRINT: use the PRINT to show text on the screen: `PRINT x,y, text, 0/1 (inversed
 use CLS to clear the screen
 use SHOW to print in the screen the last executed screen commands.
 
-Functions: Functions can receive parameters. Parameters must be enclosed in ().
+## Functions: Functions can receive parameters. Parameters must be enclosed in ().
 
-Math Functions:
+## Math Functions:
 - ABS(), COS(), SIN(), TAN(), MOD()
 - MAX(), MIN(): of two numbers, Ex: LET a = max(10,20) max will return 20
 - RND(): a random between two numbers. rnd(2,10) could be 8.
@@ -48,8 +48,9 @@ Math Functions:
 - `AND()`: to combine two expressions. It returns `1` if both of the input conditions are `!= 0`, otherwise it returns `0`: `AND(a = 0, b = 1)`
 - `OR()`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
 - `IIF(condition, value1, value2)` returns `value1` if `condition` is `true` else returns `value2`
+- `HEX(string)`: convert from a Hexadecimal string (like `"FF"`) to a number.
 
-Screen functions
+## Screen functions
 
 - `ScreenWidth()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
 - `ScreenLines()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1`
@@ -58,14 +59,14 @@ Introspection
 - exists(string): to know if a variable is defined, returns 1 or 0 (true or false).Example: `if (exists("myvariable")) then goto 100` jumps to the line # 100 if the variable `"myvariable"` was previously assigned.
 - `type(var)`: returns `"STRING"` if the variable is a string or `"NUMBER"` if is a number. Example `if (type(a) == "STRING") the goto 180` jumps to the line # 180 if the variable a is previously assigned with a string like `let a = "test"`
 
-### Controllers
+## Controllers
 
 It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
 
 - `ControlActive(id [, port])`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. 
 - `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
 
-String functions
+## String functions
 - LEN, UCASE, LCASE, 
 - SUBSTR: Ex: susbtr("abc", 1, 2)  is "bc", starting in 1 and getting two characters.
 - TRIM, LTRIM, RTRIM.
@@ -78,8 +79,15 @@ String list function simulation: AGEBasic can't manage arrays or list, but you c
 - `RemoveMember(string list, string member, separator)` returns a new string list without the specified string member.
 - `AddMember(string list, string member, separator)` returns a new string list with a new member at the end
 
+## Data - READ - RESTORE combo
+To add information to be consumed during the program execution.
+You could storage information in different "storage" that lives during the program execution. Each storage has its name.
 
-Files
+- `DATA "storage name", x,y,z, ...`: comma separated list of expressions. Example: `DATA "my storage", 10, "x", D + 1`. Expressions are evaluated during the line execution not when the storage is read.
+- `READ "storage name", var, var, ...`: to read a storage, Example: `READ "my storage", A, B, C` to read the storage of the previous example, result: `A=10, B="x", C=D+1`. There is an internal pointer to identify which is the next data to be read.
+- `RESTORE "storage name, offset`: move the pointer to the `offset` position.
+
+## Files
 - `getFiles` get a separated string with the file names of a path, parameters: path file, string separator, and order. example:  `getFiles("path\\to\\files", ":", 1)` to get `"file1.txt:file2.txt:xxx.bas"`. Order:
 	- `0`: alphabetic order
 	- `1`: random
@@ -93,13 +101,13 @@ Files
 - `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 - `MusicPath()` the base path to the music folder.
 
-Ligths
+## Ligths
 - `GetLigths()` to get a list string with the names of the lights present in the loaded rooms, separated with `|` (pipes) in the form `"<light name>|<ligth name>|..."`. Each light name have a room name and the light name for identification, example: `"room001:light1` the final `GetLigths()` result example is `"room001:light1|room003:ligth1"`. You can use `GetMember()` to process the string using the pipe as a separator, and also to process the light name. 
 - `GetLightIntensity(string light name)`: to get the intensity of a light. Should be a number between `0` (no light, turned off) and `10` (too bright). example: `GetLightIntensity("room001:ligth1") = 0.5`. You can get the light name from `GetLights()`
 - `SetLightIntensity(string light name, number intensity)`: to set the intensity of a light, example `SetLightIntensity("room001:ligth1", 0.5)`
 - `SetLightColor(string light name, number R, number G, number B)`: set the color of the light, you will need the desired RGB color. Returns 0 on error.
 
-Room related
+## Room related
 To get information about rooms
 
 - RoomName(): The name of the room where the player is.

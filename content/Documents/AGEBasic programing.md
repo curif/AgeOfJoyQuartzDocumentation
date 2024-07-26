@@ -42,21 +42,7 @@ Each line of code should be numbered and be in ascending order. Multiline is sup
 	* The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
 * `SLEEP` to sleep a number of seconds, doesn't work in programs executed in the control cabinet (has no sense). E.g.: `SLEEP 1` (sleeps the program during a second). `SLEEP 0.5` sleeps for half of a second. Values must be greater than `0.01`.
 
-## Screen sentences
-
-* `PRINT` to show text on the screen: `PRINT x,y, text [, 0/1] [, 0/1]`
-	* x,y screen coordinates (x: cols, y: rows)
-	* text: to print
-	* 1 inversed, 0 normal. Optional parameter, 0 is the default.
-	* 1 show immediately, 0 don't show and wait for the `SHOW` command (recomended)
-* `CLS` to clear the screen
-* `SHOW`: to print in the screen the last executed screen commands.
-
-### Special characters
-
-You can escape [[AGEBasic characters map codes]] in a string only to print it. The rest of the string functions doesn't take in count the escaped characters, e.g. `STR("a\23") = 4`. 
-## Functions
-
+## General functions
 
 AGEBasic Functions can receive parameters. Parameters must be enclosed.
 
@@ -70,6 +56,7 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 - `AND`: to combine two expressions. It returns `1` if both of the input conditions are `!= 0`, otherwise it returns `0`: `AND(a = 0, b = 1)`
 - `OR`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
 - `IIF(condition, value1, value2)` returns `value1` if `condition` is `true` else returns `value2`
+- `HEX(string)`: convert from a Hexadecimal string (like `"FF"`) to a number.
 
 ### Strings
 
@@ -79,7 +66,7 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 - `STR`: Ex: `str(10)` is `"10"`
 #### List simulation
 
-AGEBasic can't manage arrays or list, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0` and `bbb` is the one in the position `1`, the separator is `:`.
+AGEBasic can't manage arrays or lists, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0`, `bbb` is the one in the position `1` and the separator is `:`.
 
 - `GetMember(string, member #, separator)`: to get a slice of a string. Can be used to emulate lists. Example to get the first member of a list: `GetMember("AGE:of:Joy", 0, ":") = "AGE"`
 - `CountMembers(string, separator)` to count how many members a list have: `CountMembers("AGE:of:Joy", ":") = 3`
@@ -88,28 +75,31 @@ AGEBasic can't manage arrays or list, but you can simulate them using character 
 - `RemoveMember(string list, string member, separator)` returns a new string list without the specified string member.
 - `AddMember(string list, string member, separator)` returns a new string list with a new member at the end
 
-### File management
-
-- `GetFiles(path, separator, order)` get a list string with the file names of a path, parameters: path to scan, string separator, and order. You could use `CountMembers()` and `GetMember()` to process the result. Order:
-	- `0`: alphabetic order
-	- `1`: random
-	- `2`: Creation date from old to new
-	- `3`: Creation date from new to old
-		example:  `let f = getFiles("path\\to\\files", ":", 3)` to get `"file1.txt:file2.txt:xxx.bas"` then  `GetMember(f, 1) = "file2.txt"`
-- `CombinePath(path1, path2)` given two paths, return a string with the combination. Example: `CombinePath("/sdcard", "file.txt")` returns `/sdcard/file.txt`
-- `ConfigPath()` returns the path to the configuration files.
-- `AGEBasicPath()` returns the path to the AGEBasic programs.
-- `CabinetsDBPath()` returns the path to the cabinet database.
-- `CabinetsPath()` returns the path to the new cabinets. (usually empty)
-- `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
-- `MusicPath()` the base path to the music folder.
-
 ### Introspection
 
 - `exists(string)`: to know if a variable is defined, returns 1 or 0 (true or false). Example: `if (exists("myvariable")) then goto 100` jumps to the line # 100 if the variable `"myvariable"` was previously assigned.
 - `type(var)`: returns `"STRING"` if the variable is a string or `"NUMBER"` if is a number. Example `if (type(a) == "STRING") the goto 180` jumps to the line # 180 if the variable a is previously assigned with a string like `let a = "test"`
 
-### Room related
+## Screen
+
+* `PRINT` to show text on the screen: `PRINT x,y, text [, 0/1] [, 0/1]`
+	* x,y screen coordinates (x: cols, y: rows)
+	* text: to print
+	* 1 inversed, 0 normal. Optional parameter, 0 is the default.
+	* 1 show immediately, 0 don't show and wait for the `SHOW` command (recomended)
+* `CLS` to clear the screen
+* `SHOW`: to print in the screen the last executed screen commands.
+
+### Screen functions
+
+- `ScreenWidth()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
+- `ScreenLines()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
+
+### Special characters
+
+You can escape [[AGEBasic characters map codes]] in a string only to print it. The rest of the string functions doesn't take in count the escaped characters, e.g. `STR("a\23") = 4`. 
+
+# Room related
 
 To get information about rooms
 
@@ -119,19 +109,19 @@ To get information about rooms
 - `RoomGetName(number)`: get the name of the room.
 - `RoomGetDesc(number)`: to get the description.
 
-## Screen functions
+# Cabinets related
 
-- `ScreenWidth()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
-- `ScreenLines()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
-### Cabinets related
+## Functions for deployed cabinets in rooms
 
-#### Applies to cabinets deployed in the room where the cabinet controller is loaded.
+Applies to cabinets deployed in the room where the cabinet controller is loaded.
 
 - `CabRoomCount()`: how many cabinets are in the room
 - `CabRoomGetName(number)`: get the cabinet name by its index in the room.
 - `CabRoomReplace(number, cabinet name)`: replace a cabinet by another.
 
-#### Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storage]]. 
+## Functions for cabinets administration
+
+Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storage]]. 
 
 - `CabDbCount()`: how many cabinets registered in the storage
 - `CabDbCountInRoom(string)`: how many cabinets are *assigned* to one particular room. Ex: `LET count = CabDbCountInRoom("Room001")` 
@@ -144,7 +134,9 @@ To get information about rooms
 
 `CabDBDelete`,`CabDBAssign`, `CabDBSave` and `CabDBAdd` returns 0 if fails, 1 if not.
 
-#### Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a [[Cabinet Asset]].
+## Functions that only applies to a cabinet. 
+
+In programs related with the cabinet, and packed inside a [[Cabinet Asset]].
 
 Cabinet's parts are named (see the [[CDL the Cabinet Description Language#Configuring cabinet parts]]) and are identified by its position too. You can use one or each other when you need to call a function who uses a cabinet part, an index is preferred if you will call more than one function for the same part (by performance considerations).
 
@@ -180,30 +172,36 @@ Examples:
 
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 
-#### Room Posters
+# Room
+
+Functions related with the loaded rooms.
+
+## Room Posters
+
 To replace posters in a Room
 - `PosterRoomCount()` returns the poster count of the actual room.
 - `PosterRoomReplace(position #, Image path)` to replace a poster by an image in disk. Example: `PosterRoomReplace(1, CombinePath(ConfigPath(), "posters/myposter.png"))` to replace the second poster in the room.
 
 
-### Light configuration
+## Light configuration
 
 - `GetLigths()` to get a list string with the names of the lights present in the loaded rooms, separated with `|` (pipes) in the form `"<light name>|<ligth name>|..."`. Each light name have a room name and the light name for identification, example: `"room001:light1` the final `GetLigths()` result example is `"room001:light1|room003:ligth1"`. You can use `GetMember()` to process the string using the pipe as a separator, and also to process the light name. 
 - `GetLightIntensity(string light name)`: to get the intensity of a light. Should be a number between `0` (no light, turned off) and `10` (too bright). example: `GetLightIntensity("room001:ligth1") = 0.5`. You can get the light name from `GetLights()`
 - `SetLightIntensity(string light name, number intensity)`: to set the intensity of a light, example `SetLightIntensity("room001:ligth1", 0.5)`
 - `SetLightColor(string light name, number R, number G, number B)`: set the color of the light, you will need the desired RGB color.  Returns `0` on error.
 
-## Audio
+# Audio
 
 [[Age of Joy]] plays two type of sounds: *ambience* (noise in rooms) and *games* sound. The volume of the audio is expressed in `dB`: `0` is normal, `20` as loud max, and -`-80` as silent. These values affect all the rooms and all the games.
 
 To mute a sound set its volume to `-80`, and to unmute it simply set it to the previous volume value.
 
 If you write a script for a cabinet (read [[CDL the Cabinet Description Language]]) that changes the volume of a game (for example), remember to change it to its previous value in order to not affect other games.
-### Get/Set Volume
+## Get/Set Volume
 
 - `AudioAmbienceGetVolume()`, `AudioMusicGetVolume()` and `AudioGameGetVolume()` to get the volume in `dB`.
 - `AudioAmbienceSetVolume(number volume)`, `AudioMusicSetVolume(number volume)` and `AudioGameSetVolume(number volume)` to set the volume, also in `dB`.
+
 ## Music
 
 To play music (Jukebox functions). 
@@ -220,7 +218,8 @@ The programmer should add all the audio files that the player want to ear in a q
 - `MusicNext()` and `MusicPrevious()` to jump to the next or previous song.
 - `MusicReset()` start playing again the music queue.
 - `MusicCount()` count of files in the music queue.
-## Player position manipulation
+
+# Player
 
 It's possible to change the position of the player in the [[3D space]]:
 
@@ -230,14 +229,42 @@ It's possible to change the position of the player in the [[3D space]]:
 
 It's recommended to read the [[AGEBasic examples - player to look at a screen when insert coin]].
 
-### Controllers
+# Controllers
 
 It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
 
 - `ControlActive(id [, port])`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. The `id`s of the controls (like buttons) are in the table in the page: [[Default controllers configuration mapping]]. `[port]` is an optional port number (`0` is the default). `ControlActive` can be used in [[AGEBasic in cabinets]] or in programs to execute in the [[Configuration control cabinet]]. Note: `port` is available in the `0.5` version and superior.
 - `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
 
-## Debug mode
+# Data manipulation
+Sometimes you will need to storage and read information for your programs.
+
+## Data - READ - RESTORE combo
+To add information to be consumed during the program execution.
+You could storage information in different "storage" that lives during the program execution. Each storage has its name.
+
+- `DATA "storage name", x,y,z, ...`: comma separated list of expressions. Example: `DATA "my storage", 10, "x", D + 1`. Expressions are evaluated during the line execution not when the storage is read.
+- `READ "storage name", var, var, ...`: to read a storage, Example: `READ "my storage", A, B, C` to read the storage of the previous example, result: `A=10, B="x", C=D+1`. There is an internal pointer to identify which is the next data to be read.
+- `RESTORE "storage name, offset`: move the pointer to the `offset` position.
+
+## File management
+
+- `GetFiles(path, separator, order)` get a list string with the file names of a path, parameters: path to scan, string separator, and order. You could use `CountMembers()` and `GetMember()` to process the result. Order:
+	- `0`: alphabetic order
+	- `1`: random
+	- `2`: Creation date from old to new
+	- `3`: Creation date from new to old
+		example:  `let f = getFiles("path\\to\\files", ":", 3)` to get `"file1.txt:file2.txt:xxx.bas"` then  `GetMember(f, 1) = "file2.txt"`
+- `CombinePath(path1, path2)` given two paths, return a string with the combination. Example: `CombinePath("/sdcard", "file.txt")` returns `/sdcard/file.txt`
+- `ConfigPath()` returns the path to the configuration files.
+- `AGEBasicPath()` returns the path to the AGEBasic programs.
+- `CabinetsDBPath()` returns the path to the cabinet database.
+- `CabinetsPath()` returns the path to the new cabinets. (usually empty)
+- `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
+- `MusicPath()` the base path to the music folder.
+
+
+# Debug mode
 
 The AGEBasic developer has the option to enable Debug Mode within a program or a setup, such as in a programming YAML subdocument within a cabinet's configuration.
 
