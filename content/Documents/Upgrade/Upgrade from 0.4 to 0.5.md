@@ -11,11 +11,11 @@ Before to proceed check if the latest version of Age of Joy, specifically versio
 
 ### Improvements
 
-Massive graphics, sound and ambient improvements thanks to @Geometrizer.
+Massive graphics, sound, NPCs and ambient improvements thanks to @Geometrizer.
 
 Game performance improved a lot, again, thanks @Geometrizer.
 
-Expanded emulation library! We've added more machine emulators (cores) and given you the ability to add your own. Be aware that some user-added cores may not work. @Emhashed
+Expanded emulation library! We've added more machine emulators (cores) and given you the ability to add your own. Be aware that some user-added cores may not work. @**Emashzed**
 
 The game environment now dynamically responds to player movements, enhancing overall performance. Updates include optimizations in how cabinets load and unload, as well as improvements in playing attraction videos.
 
@@ -25,6 +25,8 @@ This update is all about giving players more control over the game using AGEBasi
 
 Sharp quality increase in audio fidelity in most cores. Vulkan specific tweaks.
 #### Cabinets
+
+A new event system, combined with the introduction of physical parts, empowers [[Cabinet Artist]]s to create more dynamic and interactive environments. Artists can now define whether specific cabinet parts should respond to environmental factors like gravity or player interaction by marking them as "physical." When used with the new **AGEBasic** event system, this unlocks a wide range of creative possibilities, enabling cabinets to react to the player's actions or changes in the environment, resulting in more immersive experiences.
 
 Now it is possible to change the player position in reaction to some events. The typical use case is when the player inserts a coin and an *AGEBasic program* changes the player to look at the screen in an appropriate position.
 
@@ -79,7 +81,14 @@ It's possible to select cores: [[Cores]]
 				  orientation: horizontal
 				  screen:
 					    shader: CRT```
-
+- Release candidate 6:
+	- New physical system for cabinets parts: [[Cabinet physical parts manual]]
+	- Posters and pictures remade.
+	- New CRT models (read [[CDL the Cabinet Description Language#Monitor (CRT) Configuration]])
+	- Strong cache system to avoid memory problems and speedup cabinet loading.
+	- NPC refactoring and new actions/movements.
+	- fbneo lightguns.
+	- Multiple cores per cabinet.
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]
@@ -108,7 +117,7 @@ It's possible to select cores: [[Cores]]
 			- `CabPartsSetEmissionColor()` to set the color of the emission.
 		- Rotation and translation of cabinet parts:
 			- `CabPartsGetRotation(idx, axis)`: To get the rotation in degrees of the cabinet part. Axis must to be X,Y or Z.
-			- `CabPartsSetRotation(idx, axis, angle)` to change the ange of rotation of a cabinet part.
+			- `CabPartsSetRotation(idx, axis, angle)` to change the ange of rotation of a cabinet part counting from the origin.
 			- `CabPartsGetCoordinate(idx, axis)`: to get the position in the [[3D space]]. Axis must to be X,Y,Z or H. (H is the height from the floor)
 			- `CabPartsSetCoordinate(idx, axis, coord)`: to get the position in the [[3D space]]. Axis must to be X,Y, Z or H. Coord is the new coordinate value.
 			- `DATA/READ/RESTORE` to add data to your programs.
@@ -117,7 +126,16 @@ It's possible to select cores: [[Cores]]
 		- Screen:   `ScreenWidth()` and `ScreenHeight()`
 		- String lists management:  `IsMember()`, `IndexMember()`, `AddMember()` and `RemoveMember()`
 		- Play lists: cycle through games with Left Trigger + Left thumb click while playing.
-
+- Release candidate 6:
+	- New [[AGEBasic event system]]
+	- It's possible to change the CPU performance.
+	- To work with a data collection the DATA/READ/RESTORE commands combination has been added.
+	- `CabPartsRotate(idx, axis, angle)` to rotate a part from the actual position.
+	- `VAL()` to coarse strings to numbers.
+	- `PlayerTeleport()` to jump to a room.
+	- `HEXTODEC()` to use hexadecimal numbers.
+	- `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. `SETCOLORSPACE` allows to simulate a computer type (like "c64")
+		
 #### Bug fixes
 
 - fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
@@ -127,6 +145,8 @@ It's possible to select cores: [[Cores]]
 - Release candidate 5:
 	- Fixed sound bug regarding duplicated cabinets in the same room.
 	- Fix color gamma from some shaders and image conversion @emashzed
+- Release candidate 6.
+	- Too many to count them...
 
 # Cabinet artists recommendations
 
@@ -150,11 +170,10 @@ This version 0.5 comes with many new features, this is a recommendation on what 
 - **To our amazing community:** Your ideas and bug reports are invaluable. They help us continuously improve Age of Joy.
 - **To all the talented cabinet artists:** You bring Age of Joy to life with your stunning creations. Without you, it would be a pale imitation of its full potential.
 - **A huge shout-out to @DangerMiaus:** Your tireless support, testing efforts, and dedication to the community are truly appreciated!
-- **to @flannelot and @zetaxis*** for the Pico version.
 - **to @ramiroramos**: for the effort to create a MR version (not ready yet)
 - **to @angellicide and @dmacell** for the cabinet database.
 - Sorry if I forget someone.
 
-Other honorable mentions to @VRCop for technical ideas. @WilsonVR for be there from the very start. @dedhead616, @flannelot, @Alyx_Hope...
+Other honorable mentions to @VRCop for technical ideas. @WilsonVR for be there from the very start. @dedhead616, @flannelot...
 
 **And to anyone else who has contributed:** If we've missed you here, please know that we deeply appreciate your involvement in Age of Joy!

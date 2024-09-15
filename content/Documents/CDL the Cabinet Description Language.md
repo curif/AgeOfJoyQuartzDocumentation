@@ -192,7 +192,7 @@ parts:
 
 (parts in blender)
 
-#### `type` parts:
+#### `type` parts
 
 [[Age of Joy]] reacts to the `type` key offering special characteristics and functions for each one.
 
@@ -258,9 +258,6 @@ Example:
 * `invertx`: flip the image by the x axis (optional).
 * `inverty`: flip the image by the y axis (optional).
 
-#### Improving textures
-
-`file` could be and ASTC Texture to improve the cabinet performance, but you should convert the image. Read the [[ASTC textures]] manual.
 
 ### Emission
 
@@ -291,10 +288,14 @@ Default: `true`
 ```
 visible: false
 ```
+Here’s an improved explanation for the `Marquee` section:
+
 ### Marquee
 
-There are exclusive keys for marquees:
-Example:
+The Marquee in CDL represents not only the glass where the `art` image is displayed but also the lighting system inside the cabinet. This system can consist of one or two lamps or tubes, and you can also opt to have no illumination.
+
+#### Example
+
 ```yaml
   - name: marquee
     type: marquee
@@ -303,18 +304,40 @@ Example:
       inverty: true
       invertx: true
     marquee:
-      illumination-type: two-lamps
+	  illumination-type: two-lamps
+	  color:
+		  r: 255
+		  g: 255
+		  b: 255
     color:
       r: 238
       g: 232
       b: 176
       intensity: -2
 ```
-The Marquee in CDL is made up of not only the glass where the `art` image is stuck, but also the illumination system inside the cabinet. The illumination is composed by one or two lamps or tubes, and it's possible to avoid the illumination too.
 
-You should use the `color` configuration to change the color of the lamps inside the marquee. Prefer a color that is close to yellow because incandescent lamps in the 1980s produce a warm color in that tone. Instead, choose a white color for fluorescent tubes.
+#### Key Elements
 
-`illumination-type` options: `none`, `one-lamp`, `two-lamps`, `one-tube` and `two-tubes`. Any other value fallbacks to the default: `one-lamp`. 
+1. **`art`:** Specifies the image (`left.png`) to be displayed on the marquee, with options to invert the image vertically (`inverty`) or horizontally (`invertx`).
+   
+2. **`marquee` > `illumination-type`:** Defines the type of lighting used inside the marquee. Options include:
+   - `none`: No illumination.
+   - `one-lamp`: Single lamp.
+   - `two-lamps`: Two lamps.
+   - `one-tube`: Single fluorescent tube.
+   - `two-tubes`: Two fluorescent tubes.
+   Any unrecognized value defaults to `one-lamp`.
+   
+3. **`marquee` > `color`:** Defines the color tint applied to the marquee texture (added in the v0.6),
+
+4. **`color`:** Configures the color and brightness of the lamps inside the marquee. 
+   - For a vintage look (incandescent lamps from the 1980s), choose a warm, yellowish hue.
+   - For a more modern appearance (fluorescent tubes), opt for a white color.
+   - `r`, `g`, `b` values set the RGB color of the light, and `intensity` adjusts the brightness.
+
+#### Summary
+
+The `marquee` system simulates both the image and the lighting that illuminates it, providing flexibility to recreate the classic look of older arcade machines or a more modern feel with different light sources.
 
 ### Combinations
 
@@ -344,6 +367,77 @@ Example 2: a tinted red wood.
       g: 0
       b: 0
 ```
+
+## Physical parts
+
+> [!note] Available in [[Age of Joy]] v0.6 or superior.
+
+Typically, cabinet parts represent decorative or static objects that the player does not interact with. However, in certain cases, a part may need to respond to its environment—such as gravity or player interactions. In those situations, the part should be marked as `physical`.
+
+Please read the [[Cabinet physical parts manual]].
+
+
+## Audio parts
+
+Here’s a description of the YAML specification for configuring audio in the cabinet parts:
+
+#### YAML Audio Configuration Specification
+
+- **`audio:`** Defines the audio configuration for a specific cabinet part. This section includes various settings related to audio playback, volume, looping, and 3D sound effects.
+  - **`file:`**  Specifies the path to the audio file that should be assigned to the cabinet part. The file can be in WAV, MP3, or OGG format.  
+    Example:  
+    ```yaml
+    file: "gong.mp3"
+    ```
+    This assigns the "gong.mp3" file to the part.
+  - **`volume:`** Sets the volume level for the audio playback. The value should be a float between `0.0` (muted) and `1.0` (full volume).  
+    Example:  
+    ```yaml
+    volume: 0.5
+    ```
+    This sets the audio volume to 50%.
+  - **`loop:`**  Defines whether the audio should loop continuously. The value can be `true` (looping enabled) or `false` (looping disabled).  
+    Example:  
+    ```yaml
+    loop: false
+    ```
+    This disables looping for the audio.
+  - **`distance:`** Specifies the minimum and maximum distances for 3D audio effects, which determine how the audio is perceived spatially within the game environment.
+    - **`min:`**  Sets the minimum distance at which the audio starts being audible.  
+      Example:  
+      ```yaml
+      min: 1
+      ```
+      This sets the minimum distance to 1 unit.
+
+    - **`max:`** Sets the maximum distance at which the audio is fully attenuated or fades out completely.  
+      Example:  
+      ```yaml
+      max: 5
+      ```
+      This sets the maximum distance to 5 units.
+
+#### Complete Example
+
+Here’s how a complete YAML configuration for a cabinet part might look:
+
+```yaml
+part:
+- name: speaker
+  audio:
+	  file: "gong.mp3"
+	  volume: 0.5
+	  loop: false
+	  distance:
+	    min: 1
+	    max: 5
+```
+
+This configuration assigns the "gong.mp3" audio file to the cabinet part, sets the volume to 50%, disables looping, and applies 3D sound settings with a minimum distance of 1 unit and a maximum distance of 5 units.
+
+You can play, pause or change properties using AGEBasic.
+
+
 ## Monitor (CRT) Configuration
 
 A cathode-ray tube (CRT) is a [vacuum tube](https://en.wikipedia.org/wiki/Vacuum_tube) containing one or more [electron guns](https://en.wikipedia.org/wiki/Electron_gun), which emit [electron](https://en.wikipedia.org/wiki/Electron) beams that are manipulated to display images on a [phosphorescent](https://en.wikipedia.org/wiki/Phosphorescence) screen ([Wikipedia](https://en.wikipedia.org/wiki/Cathode-ray_tube))
@@ -378,7 +472,8 @@ crt:
 	* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
 	* `32i`: 32 inches. Only supports the `CRT` shader (available in 0.5 and superior).
 	* `19i-2x1`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
-	* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+	* `19i-1x2`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+	* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior). A variant exists: `19i-3x1-18deg`.
 	* `50i`: 50 inches. Only supports the `CRT` shader (available in 0.5 and superior).
 * `orientation`: horizontal or vertical.
 * `screen`: screen description sub-document.
@@ -614,10 +709,10 @@ light-gun:
 	- `debug`:
 		- `active`: to activate a mark where the gun hit the screen. Activate only when you are working in the cabinet development.
 	- `crt`: to adapt the light gun behavior's to the CRT measurement. Don't touch it, is loaded by default, unless the CRT changes.
-		- `mesh-factor-scale-x`: Screen mesh scale factor to adjust in width. 0.01 by default
-		- `mesh-factor-scale-y`: idem previous. 0.01 by default
-		- `border-size-x`: CRT border size left to exclude.  1.5 by default
-		- `border-size-y`: idem previous. 1.0 by default
+		- `mesh-factor-scale-x`: Screen mesh scale factor to adjust in width. 0.01 by default (deprecated in version >=0.5)
+		- `mesh-factor-scale-y`: idem previous. 0.01 by default (deprecated in version >=0.5)
+		- `border-size-x`: CRT border size left to exclude.  1.5 by default (deprecated in version >=0.5)
+		- `border-size-y`: idem previous. 1.0 by default (deprecated in version >=0.5)
 		- `invertx`: Invert to negative/positive the x point where the gun shoot the screen, true by default.
 		- `inverty`: idem previous. true by default.
 #### Example:
@@ -682,6 +777,7 @@ In this example:
 	- `type`: Indicates the type of file (e.g., disk-image, sample, config, nvram).
 
 By including such information in the `description.yaml` file, it provides clear instructions for [[Age of Joy]] on where each file is located and its corresponding type, facilitating efficient file management and distribution.
+
 ## AGE Basic
 
 You can run [[AGEBasic]] programs designed for a specific cabinet. [[Age of Joy]] has the ability to execute programs in response to predefined events, like when a user inserts a coin for the first time.

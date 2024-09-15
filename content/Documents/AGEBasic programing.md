@@ -6,9 +6,8 @@ BASIC is a popular programming language known for its simplicity and ease of use
 
 With AGEBasic the player can develop it's own functions to run in the simulation. Allows to control parts of the game that there aren't available from the [[YAML]] configuration or the [[Visual configuration]].
 
+> [!important] read about the new [[AGEBasic event system]] (version >= 0.6)
 
-> [!warning] 
-> The contents of this document applies to [[Age of Joy]] version 0.4-RC04 or superior.
 
 ## AGEBasic program storage
 
@@ -16,9 +15,19 @@ The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/co
 
 ## Variables
 
-AGEBasic supports `numbers` (double precision) and `strings`.
+AGEBasic supports `numbers` (double precision), hexadecimal (preceded by a `&`) and `strings`.
 A variable name can contain letters a numbers only. AGEBasic isn't case sensitive, the variable `A` is the same as `a`. 
 `booleans` are not variable type, but anything different than `0` is considered `true`.
+
+Examples:
+
+```vb
+10 LET A = 10 'a number 
+20 LET A = 10.10 'a number
+30 LET A = "AGE of Joy" 'a string
+40 LET A = "10" 'a string
+50 LET A = 0 'an hex number
+```
 
 ## Numbered lines
 
@@ -42,6 +51,12 @@ Each line of code should be numbered and be in ascending order. Multiline is sup
 	* The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
 * `SLEEP` to sleep a number of seconds, doesn't work in programs executed in the control cabinet (has no sense). E.g.: `SLEEP 1` (sleeps the program during a second). `SLEEP 0.5` sleeps for half of a second. Values must be greater than `0.01`.
 
+# Operators
+
+- Adding, subtraction, etc.: `+`, `-`,`*`,`/`
+- Comparison: `=`,`!=`,`<>`,`<`,`>`,`<=`,`>=`
+- Logical: and: `&&` or: `||`
+
 ## General functions
 
 AGEBasic Functions can receive parameters. Parameters must be enclosed.
@@ -56,7 +71,8 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 - `AND`: to combine two expressions. It returns `1` if both of the input conditions are `!= 0`, otherwise it returns `0`: `AND(a = 0, b = 1)`
 - `OR`: to combine two expressions. It returns `1` if at least one of the input conditions is `!= 0`, otherwise it returns `0`.
 - `IIF(condition, value1, value2)` returns `value1` if `condition` is `true` else returns `value2`
-- `HEX(string)`: convert from a Hexadecimal string (like `"FF"`) to a number.
+- `HEXTODEC(string)`: convert from a Hexadecimal string (like `"FF"`) to a number. Remember an hex number is represented by a `&` also. Example `HEXTODEC("FF") = &FF`
+- `VAL(string)`: to coarse a string to a number, inversed of `STR(number)`. Example: `VAL("10.5") = 10.5`
 
 ### Strings
 
@@ -89,6 +105,17 @@ AGEBasic can't manage arrays or lists, but you can simulate them using character
 	* 1 show immediately, 0 don't show and wait for the `SHOW` command (recomended)
 * `CLS` to clear the screen
 * `SHOW`: to print in the screen the last executed screen commands.
+* `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. `SETCOLORSPACE` allows to simulate a computer type (like "c64"):
+	* c64
+	* ibmpc
+	* amstrad
+	* cpc
+	* zx
+	* apple2
+	* cpc_mono
+	* msx
+	* msx_mono
+	* to7
 
 ### Screen functions
 
@@ -150,7 +177,9 @@ The program fail when you name a part incorrectly or when the index is incorrect
 - Position in space: 
 	- `CabPartsGetCoordinate(idx, string type)` to get the position in [[3D space]]. `type` could be "X", "Y" or "Z" . Refers to the position of the object starting on the cabinet's base (local coordinate). You can also use `CabPartsGetGlobalCoordinate()` to get the part coordinates in the Global 3D space.
 	- `CabPartsSetCoordinate(idx, string type, number coord)`, like `CabPartsGetCoordinate` but to set the part's position relative to the cabinet. `CabPartsSetGlobalCoordinate()` is also available.
-	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part. `CabPartsGetGlobalRotation()` and `CabPartsSetGlobalRotation()` to get set the global rotation. 
+	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part. **NOTE**: The `CabPartsRotate` could get better results.
+	- `CabPartsRotate(idx, string type, number angle)` to rotate locally a part. Available in v0.6.
+	- `CabPartsGetGlobalRotation()` and `CabPartsSetGlobalRotation()` to get set the global rotation. 
 - `CabPartsGetTransparency(idx)`: returns the part's transparency percentage.
 - `CabPartsSetTransparency(idx, percentage)`: set part's transparency to a percentage (0 to 100).
 - `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.
@@ -160,8 +189,8 @@ The program fail when you name a part incorrectly or when the index is incorrect
 Examples:
 
 ```vb file="onload.bas"
-10 let head = CabPartsPosition("player-head")
-20 lets headX, headZ, headH = CabPartsGetCoordinate(head, "X"), CabPartsGetCoordinate(head, "Z"), CabPartsGetCoordinate(head, "H")
+10 let base = CabPartsPosition("joystick-base")
+20 lets baseX, baseZ, baseH = CabPartsGetCoordinate(base, "X"), CabPartsGetCoordinate(base, "Z"), CabPartsGetCoordinate(base, "H")
 30 let transp = CabPartsGetTransparency("bezel")
 40 call CabPartsSetTransparency("bezel", transp + 10)
 
@@ -170,7 +199,24 @@ Examples:
 90 call CabPartsSetColor("left", 200, 0, 0)
 ```
 
+### Audio parts in cabinets
+
+According to the yaml cabinet configuration you can set a `part` of a cabinet to be a _speaker_. You can also change some properties on AGEBasic:
+
+- `CabPartsAudioPlay(name)`: Play the audio associated with the specified part. Given the name of a part, it triggers the audio playback. For example, `CabPartsAudioPlay("speaker")` will start playing the audio from the part named "speaker".
+- `CabPartsAudioStop(name)`: Stop the audio associated with the specified part. Given the name of a part, it stops the audio playback. For example, `CabPartsAudioStop("speaker")` will stop the audio from the part named "speaker".
+- `CabPartsAudioPause(name)`: Pause the audio associated with the specified part. Given the name of a part, it pauses the audio playback. For example, `CabPartsAudioPause("speaker")` will pause the audio from the part named "speaker".
+- `CabPartsAudioVolume(name, volume)`: Set the audio volume for the specified part. Given the name of a part and a volume value (0.0 to 1.0), it adjusts the volume. For example, `CabPartsAudioVolume("speaker", 0.5)` will set the audio volume of the part named "speaker" to 50%.
+- `CabPartsAudioDistance(name, minDistance, maxDistance)`: Set the minimum and maximum distance for 3D audio effects for the specified part. Given the name of a part and the min/max distances, it adjusts the 3D audio settings. For example, `CabPartsAudioDistance("speaker", 1.0, 5.0)` sets the 3D audio distance for the part named "speaker".
+- `CabPartsAudioFile(name, filePath)`: Assign an audio file to the specified part. Given the name of a part and the file path, it loads the audio file into the part. For example, `CabPartsAudioFile("speaker", "gong.mp3")` assigns the "gong.mp3" file to the part named "speaker".
+- `CabPartsAudioLoop(name, loop)`: Set the looping behavior for the specified part's audio. Given the name of a part and a boolean value (`true` or `false`), it enables or disables audio looping. For example, `CabPartsAudioLoop("speaker", true)` enables looping for the part named "speaker".
+
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
+### Cabinet events
+
+Functions that interacts with the [[AGEBasic event system]].
+
+- `EventTrigger(event name string)`: activate an event.
 
 # Room
 
@@ -224,8 +270,9 @@ The programmer should add all the audio files that the player want to ear in a q
 It's possible to change the position of the player in the [[3D space]]:
 
 - `PlayerGetHeight()`, `PlayerSetHeight(number)`: to get and set the height of the player. It's recommended to get the height and changing it by adding or decrementing its value.
-- `PlayerGetCoordinate(string coord)`, `PlayerSetCoordinate(string coord)`: to get and set the coordinates in the [[3D space]] (force the player to a new position). `coord` should bet "X" or "Z". "Y" cant be changed, use `PlayerSetHeight` instead.
+- `PlayerGetCoordinate(string coord)`, `PlayerSetCoordinate(string coord, value)`: to get and set the coordinates in the [[3D space]] (force the player to a new position). `coord` should bet "X" or "Z". "Y" cant be changed, use `PlayerSetHeight` instead.
 - `PlayerLookAt(cabinet part number)`: to force the player to look at a part of the cabinet. For example the screen. Can be used only in [[AGEBasic in cabinets]] mode.
+- `PlayerTeleport(string room)`: to teleport the player to a room. The string is the room name (like "room001" for example.)
 
 It's recommended to read the [[AGEBasic examples - player to look at a screen when insert coin]].
 
@@ -245,7 +292,7 @@ You could storage information in different "storage" that lives during the progr
 
 - `DATA "storage name", x,y,z, ...`: comma separated list of expressions. Example: `DATA "my storage", 10, "x", D + 1`. Expressions are evaluated during the line execution not when the storage is read.
 - `READ "storage name", var, var, ...`: to read a storage, Example: `READ "my storage", A, B, C` to read the storage of the previous example, result: `A=10, B="x", C=D+1`. There is an internal pointer to identify which is the next data to be read.
-- `RESTORE "storage name, offset`: move the pointer to the `offset` position.
+- `RESTORE "storage name", offset`: move the pointer to the `offset` position.
 
 ## File management
 
@@ -263,6 +310,13 @@ You could storage information in different "storage" that lives during the progr
 - `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 - `MusicPath()` the base path to the music folder.
 
+# CPU control
+
+You can increase the CPU load, but take in consideration that it could affect the overall game performance. The use of CPU is administered internally by using delays in the program execution (interline execution).
+- `GetCPU()`: obtain the actual CPU percentage used for program executions. 
+- `SetCPU(percentage)` to set the maximum CPU percentage. `100` is the max value.
+
+The default CPU percentage is `76%`
 
 # Debug mode
 
