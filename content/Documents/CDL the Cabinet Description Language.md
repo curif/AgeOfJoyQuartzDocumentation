@@ -368,7 +368,7 @@ Example 2: a tinted red wood.
       b: 0
 ```
 
-## Physical parts
+### Physical parts
 
 > [!note] Available in [[Age of Joy]] v0.6 or superior.
 
@@ -377,11 +377,11 @@ Typically, cabinet parts represent decorative or static objects that the player 
 Please read the [[Cabinet physical parts manual]].
 
 
-## Audio parts
+#### Audio parts
 
 Here’s a description of the YAML specification for configuring audio in the cabinet parts:
 
-#### YAML Audio Configuration Specification
+##### YAML Audio Configuration Specification
 
 - **`audio:`** Defines the audio configuration for a specific cabinet part. This section includes various settings related to audio playback, volume, looping, and 3D sound effects.
   - **`file:`**  Specifies the path to the audio file that should be assigned to the cabinet part. The file can be in WAV, MP3, or OGG format.  
@@ -417,7 +417,7 @@ Here’s a description of the YAML specification for configuring audio in the ca
       ```
       This sets the maximum distance to 5 units.
 
-#### Complete Example
+##### Complete Example
 
 Here’s how a complete YAML configuration for a cabinet part might look:
 
@@ -683,6 +683,49 @@ control-scheme: 6-buttons
 A cab's `description.yaml` can be enriched with a control-scheme setting. 
 
 Read the [[Control schemes]] documentation.
+
+### Device configuration
+
+Available starting at v0.5
+
+Some games need a non-standard control to work, you can assign  a device type to the cabinet and game. 
+
+```yaml
+devices:
+  - slot: 0
+    type: pointer
+```
+
+#### Pre-configured type devices:
+
+```yaml
+ empty
+ gamepad
+ mouse
+ mouse_pointer
+ keyboard
+ lightgun
+ analog
+ pointer
+ psx_standard
+ psx_analog
+ psx_dual_shock
+ psx_negcon
+ psx_guncon
+ psx_justifier
+ psx_mouse
+ snes_superscope
+ snes_justifier
+ snes_justifier_2
+ snes_macs_rifle
+ sega_phaser
+ sega_menacer
+ sega_justifiers
+ nes_zapper
+ nes_arkanoid
+ nes_powerpad_a
+ nes_powerpad_b
+```
 
 ## Light guns cabinet configuration
 

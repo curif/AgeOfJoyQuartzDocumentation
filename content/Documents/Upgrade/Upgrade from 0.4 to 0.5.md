@@ -135,6 +135,8 @@ It's possible to select cores: [[Cores]]
 	- `PlayerTeleport()` to jump to a room.
 	- `HEXTODEC()` to use hexadecimal numbers.
 	- `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. `SETCOLORSPACE` allows to simulate a computer type (like "c64")
+- Release candidate 7:
+	- `CabPartsList()` to get a list of cabinet parts.
 		
 #### Bug fixes
 
