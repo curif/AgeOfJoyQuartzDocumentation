@@ -1,4 +1,5 @@
-
+> [!note]
+> This version was made before v0.6 and should be refactor using the [[AGEBasic event system]].
 # CDL
 
 ```YAML
