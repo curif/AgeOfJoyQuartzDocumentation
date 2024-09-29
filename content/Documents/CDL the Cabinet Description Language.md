@@ -183,6 +183,8 @@ parts:
   - name: right
     art: 
       file: right.png
+    material-properties:
+      - metallic: 1.0
 ```
 * `parts`: optional. A list of documents describing the parts of the model. If is missing, the engine will configure all the parts using the `material` key in the root of the document. Each `part` document describes the way the part is skinned: can be a `material`, a `color` or an `art`.
 * `name`: name of the part to be configured. Each part that is not described in the list is configured according the `material` key (root). Each part registered in 'description.yaml' must have a component in the cabinet model (the name of the object in [[Blender]])
@@ -334,6 +336,20 @@ The Marquee in CDL represents not only the glass where the `art` image is displa
    - For a vintage look (incandescent lamps from the 1980s), choose a warm, yellowish hue.
    - For a more modern appearance (fluorescent tubes), opt for a white color.
    - `r`, `g`, `b` values set the RGB color of the light, and `intensity` adjusts the brightness.
+### Properties
+
+`material-properties` is a dictionary that configures the shader properties of a material applied to a part. The available properties depend on the specific material shader being used, but the most common ones are:
+
+- **metallic**: Ranges from 0 to 1.
+- **color**: Red, green, and blue values, each ranging from 0 to 1.
+- **smoothness**: Ranges from 0 to 1.
+- **emission-color**: Red, green, and blue values, each ranging from 0 to 1.
+
+Other properties from Unity's Standard Shader may be supported, depending on the material being used.
+
+
+
+
 
 #### Summary
 
@@ -495,13 +511,12 @@ crt:
 
 ```yaml
   screen:
-    shader: damage
+    shader: crt
     damage: low
     inverty: true
     invertx: true
     properties:
 	    rotation: 1,0,0,0
-	    metalic: 1.0
     
 ```
 * `screen`: optional document.
@@ -520,6 +535,8 @@ Available after the version 0.5.0, This shader carefully recreates the look of o
   screen:
     shader: crt
     damage: low
+	
+    
 ```
 
 > [!note]

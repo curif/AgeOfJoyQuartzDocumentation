@@ -88,10 +88,11 @@ It's possible to select cores: [[Cores]]
 	- New CRT models (read [[CDL the Cabinet Description Language#Monitor (CRT) Configuration]])
 	- Strong cache system to avoid memory problems and speedup cabinet loading.
 	- NPC refactoring and new actions/movements.
-	- fbneo lightguns.
-	- Multiple cores per cabinet.
+	- Lightguns / mouse / pointer devices in all cores.
+	- Multiple games per cabinet.
 - Release candidate 9:
-	- New shader screen `properties` yaml key to change the shader behavior.
+	- New shader `Screen` -> `properties` yaml key to change the shader behavior.
+	- `material-properties` is a dictionary for configuring material shader properties on a part. Common settings include metallic, color, smoothness, and emission-color, with values typically ranging from 0 to 1.
 	- A new c64 program to see test cabinet's problems (in Workshop). Read the screen instructions in the workshop.
 ### AGEBasic change log
 
