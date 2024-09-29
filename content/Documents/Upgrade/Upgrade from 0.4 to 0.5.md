@@ -91,7 +91,7 @@ It's possible to select cores: [[Cores]]
 	- fbneo lightguns.
 	- Multiple cores per cabinet.
 - Release candidate 9:
-	- New shader `properties` yaml key to change the shader behavior.
+	- New shader screen `properties` yaml key to change the shader behavior.
 	- A new c64 program to see test cabinet's problems (in Workshop). Read the screen instructions in the workshop.
 ### AGEBasic change log
 
@@ -153,7 +153,7 @@ It's possible to select cores: [[Cores]]
 - Release candidate 5:
 	- Fixed sound bug regarding duplicated cabinets in the same room.
 	- Fix color gamma from some shaders and image conversion @emashzed
-- Release candidate 6.
+- Release candidate 6/7/8/9....
 	- Too many to count them...
 
 # Cabinet artists recommendations
