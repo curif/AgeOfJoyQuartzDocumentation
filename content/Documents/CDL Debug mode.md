@@ -11,6 +11,10 @@ debug-mode: true
 
 > [!tip] 
 > Remove the `debug-mode` key or set it to `false` before distribute your cabinet. 
+
+## Test environment
+
+The `debug-mode` is automatically activated for the cabinet tested in the workshop.
 ## Debug information 
 
 [[Age of Joy]] will save a debug `log` file in the folder `/debug` of your installation.

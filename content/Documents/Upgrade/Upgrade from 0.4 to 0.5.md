@@ -75,6 +75,7 @@ It's possible to select cores: [[Cores]]
 	- [[ASTC textures]] to improve cabinets performance. @emashzed
 	- Added new `CRT` types: [[CDL the Cabinet Description Language#Monitor (CRT) Configuration]] @geometrizer
 	- Default controller input changed: [[Quest Controllers#Exit emulation]]
+	- New `material` key in `description.yaml` to configure the shader behavior for all the games.
 	- Added new [[AGEBasic]] `CRT`: `19i-agebasic` a CRT type to only process [[AGEBasic]] programs. ```
 				crt:
 				  type: 19i-agebasic
@@ -89,6 +90,9 @@ It's possible to select cores: [[Cores]]
 	- NPC refactoring and new actions/movements.
 	- fbneo lightguns.
 	- Multiple cores per cabinet.
+- Release candidate 9:
+	- New shader `properties` yaml key to change the shader behavior.
+	- A new c64 program to see test cabinet's problems (in Workshop). Read the screen instructions in the workshop.
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]
@@ -135,9 +139,11 @@ It's possible to select cores: [[Cores]]
 	- `PlayerTeleport()` to jump to a room.
 	- `HEXTODEC()` to use hexadecimal numbers.
 	- `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. `SETCOLORSPACE` allows to simulate a computer type (like "c64")
-- Release candidate 7:
+- Release candidate 9:
 	- `CabPartsList()` to get a list of cabinet parts.
-		
+	- `FileOpen, FileRead, FileWrite, FileClose`: to open, read, write or append, and to close files.
+	- `StringMatch()`: compares if a string contains other string.
+
 #### Bug fixes
 
 - fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".

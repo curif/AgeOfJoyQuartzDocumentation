@@ -458,6 +458,9 @@ crt:
     invertx: true
     gamma: 0.5
     brightness: 1.0
+    properties:
+	    rotation: 1,0,0,0
+	    metalic: 1.0
   geometry:
     rotation: 
       x: -90
@@ -496,13 +499,18 @@ crt:
     damage: low
     inverty: true
     invertx: true
+    properties:
+	    rotation: 1,0,0,0
+	    metalic: 1.0
+    
 ```
 * `screen`: optional document.
-	* `shader`: Shaders are utilized in [[Age of Joy]] to mimic the effects seen on old CRTs found in arcade galleries, which often operated for extended periods, sometimes 24/7. These CRTs commonly develop defects over time, which can be observed during gameplay.
+	* `shader`: [[Shader]]s in `screen` are utilized in [[Age of Joy]] to mimic the effects seen on old CRTs found in arcade galleries, which often operated for extended periods, sometimes 24/7. These CRTs commonly develop defects over time, which can be observed during gameplay.
 	* `damage`: how _damaged_ is the CRT. Usually `high`, `medium` and `low`
 	* `invertx`: flip the game image by the x axis (optional).
 	* `inverty`: flip the game image by the y axis (optional).
-
+	* `properties`: a list of shader's properties. You can change the shader's behavior changing these properties (hard to do it and you need to know every property effect on each different shader. Is not recommended). Version >= 0.5. See the `Materials` example below.
+	
 The default `shader` is `crt`. 
 #### CRT shader
 
@@ -521,13 +529,22 @@ Available after the version 0.5.0, This shader carefully recreates the look of o
 
 Like CRT but GPU-friendly.
 
+> CRT LOD is forced for attraction videos when CRT Shader is selected.
+
 
 ```yaml
   screen:
     shader: crtlod
     damage: low
+    properties:
+	    rotation: 1,0,0,0
 ```
 
+CRT LOD has a Vector4 property called `rotation`.
+- 1,0,0,0 = No rotation
+- 0,1,0,0 = 90 degrees
+- 0,0,1,0 = 180 degrees
+- 0,0,0,1 = 270 degrees
 #### Damage shader
 
 ```yaml
@@ -583,11 +600,16 @@ You can use a GPU-friendly `LOD` version too. Example:
     damage: high
 ```
 
-#### Advanced shader access
+#### Override shader configuration materials
 
-##### Materials
+You can change the shader properties by configuring the `materials` subdocument in the YAML's root . 
 
-You can change the shader properties by configuring the `materials` subdocument. e.g.:
+Just save a `/configuration/materials.yaml` file with your configuration.
+
+> [!important] 
+> To change shader's properties requires detailed information about each shader. 
+
+Example:
 
 ```
 materials:
@@ -612,15 +634,12 @@ materials:
     _MipBias: 0.5
 ```
 
-##### Override shader configuration materials
-
-To configure the shader for all games, overriding the registered in CDL.
-
-Just save a `/configuration/materials.yaml` file with your configuration.
-
 ### CRT geometry
 
-If necessary, adjust the size and rotation of the CRT.
+If necessary, adjust the size and rotation of the CRT. 
+
+> This doesn't changes the material (shader) but the object in the scene (CRT).
+
 ```yaml
   geometry:
     rotation: 
