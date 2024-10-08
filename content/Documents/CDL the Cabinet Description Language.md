@@ -136,32 +136,56 @@ core: mame2003+
 ```
 
 You can also add your preferred cores. Read the [[Cores]] documentation.
-## Attraction videos
+
+## Attraction mode
+
+Attraction mode in arcade machines refers to the visual and audio display that plays automatically when the machine is idle and no one is actively playing. It serves as a way to grab the attention of passersby and entice them to play the game.
+### Attraction videos
 
 Every game runs it's own introduction when nobody is playing, showing the game play or instructions. Because of the limited power of some devices, not all games can be emulated at the same time to display these screens. To solve this problem and to obtain the more accurate experience possible an introduction video is playing when the player is not in game mode (playing the game). These videos are typically obtained using RetroArch (by running the game and recording the introduction part), the result is a `.mkv` file that can be included in the cabinet asset.
 
 ```yaml
 video: 
   file: video12.mkv
-    inverty: true
-    invertx: true
+  inverty: true
+  invertx: true
+  max-player-distance: 3
 ```
 * `video`: optional, a document describing the video to play.
 * `file`: file name of the video, must be included in the cabinet asset.
 * `invertx`: flip the video by the x axis (optional).
 * `inverty`: flip the video by the y axis (optional).
+* `max-player-distance`:  is the distance between the cabinet and the player in which the video plays. If the player is far away the video stops and the attraction audio start playing. v0.6 and sup.
+
+In **Age of Joy**, attraction videos play near arcade cabinets when players are close and looking at the screen. It’s a clever way to save CPU resources while enhancing the gaming experience. 
+
+Attraction videos usually plays when the player is close to the arcade cabinet and looking to the screen direction. [[Age of Joy]] tries to save CPU using this method, because the device isn't capable to play all the rooms attraction videos at the same time.
+
+An audio clip could be configured to play when the player is not looking at screen.
+### Attraction audio clip
+
+An audio clip could be played when the player is far away the cabinet or looking to other side.  It is a way to get the same effect of the attraction video playing, without the CPU cost of decompress and play a video.
+
+Attraction audios uses spatialization to create the effect of position in the 3d space.
+
+Read the [[Attraction audio recommendations]]
+
+```yaml
+audio: 
+  file: aburner.mp3
+  max-player-distance: 6
+```
 ## Memory persistence
 
 Allows memory persistence after the game is unloaded.
 
-persistent state and sram data are stored in the `/save` folder `[romname].state` and `[romname].srm` respectively.
+Persistent state and sram data are stored in the `/save` folder `[romname].state` and `[romname].srm` respectively.
 
 ```
 persistent: true
 ```
 
-it's disabled by default.
-
+It's disabled by default.
 
 ## Configuring cabinet parts
 
@@ -220,7 +244,7 @@ Example:
 	* b: blue color component (integer 0-255)
 	* intensity: intensity multiplier, integer, can be negative to obtain darker variants of the color.
 
-### Apply a material to parts
+### Applying a material to a part
 
 A material is a pre-configured color, may be skinned (with textures) or not. They are included in the game.
 
@@ -233,7 +257,8 @@ Example:
 
 * `material`: the name of one included material in the game.
 
-#### Material options:
+#### Materials included:
+
 * `black`: black wood cabinet
 * `base`: base material to modify (colors for example)
 * wood:
@@ -244,6 +269,24 @@ Example:
 	* `dirty glass`: a dirty one.
 	* `clean glass:` a clean reflective glass.
 	* `layer glass`: allows transparency on pictures (like 1979 Space Invaders' screen layer)
+
+### Normal maps
+
+A normal is a small texture that contains information about the surface geometry of an object. They create the illusion of detailed surface geometry.
+
+```yaml
+normal: wood
+```
+
+They are useful to simulate a surface at low cost, the other way, adding an `art` picture is more expensive (the system needs to load the picture from disk). Example: you can set a brown `color` to a part and the `wood` normal to simulate wood. 
+#### Included:
+
+- `wood`
+- `plastic`
+- `rubber`
+- `scratches`
+- `treadplate round`
+- `treadplate diamond`
 
 ### "Art" parts
 
@@ -294,6 +337,8 @@ Here’s an improved explanation for the `Marquee` section:
 
 ### Marquee
 
+The `marquee` system simulates both the image and the lighting that illuminates it, providing flexibility to recreate the classic look of older arcade machines or a more modern feel with different light sources.
+
 The Marquee in CDL represents not only the glass where the `art` image is displayed but also the lighting system inside the cabinet. This system can consist of one or two lamps or tubes, and you can also opt to have no illumination.
 
 #### Example
@@ -330,12 +375,13 @@ The Marquee in CDL represents not only the glass where the `art` image is displa
    - `two-tubes`: Two fluorescent tubes.
    Any unrecognized value defaults to `one-lamp`.
    
-3. **`marquee` > `color`:** Defines the color tint applied to the marquee texture (added in the v0.6),
+3. **`color`:** Defines the color tint applied to the marquee texture (added in the v0.6),
 
-4. **`color`:** Configures the color and brightness of the lamps inside the marquee. 
+4. **`marquee` > `color`:** Configures the color and brightness of the lamps inside the marquee. 
    - For a vintage look (incandescent lamps from the 1980s), choose a warm, yellowish hue.
    - For a more modern appearance (fluorescent tubes), opt for a white color.
    - `r`, `g`, `b` values set the RGB color of the light, and `intensity` adjusts the brightness.
+
 ### Properties
 
 `material-properties` is a dictionary that configures the shader properties of a material applied to a part. The available properties depend on the specific material shader being used, but the most common ones are:
@@ -346,14 +392,6 @@ The Marquee in CDL represents not only the glass where the `art` image is displa
 - **emission-color**: Red, green, and blue values, each ranging from 0 to 1.
 
 Other properties from Unity's Standard Shader may be supported, depending on the material being used.
-
-
-
-
-
-#### Summary
-
-The `marquee` system simulates both the image and the lighting that illuminates it, providing flexibility to recreate the classic look of older arcade machines or a more modern feel with different light sources.
 
 ### Combinations
 
@@ -875,7 +913,10 @@ agebasic:
 	  - name: myvar
 	    type: string
 	    value: This is a test
-```
+  events:
+    - event: on-always
+      program: move.bas
+      ```
 This document details the `agebasic` configuration section within your arcade cabinet, controlling AGEBasic program behavior.
 
 ### General Settings:
@@ -895,6 +936,7 @@ This document details the `agebasic` configuration section within your arcade ca
     * Filename of the program that runs **once** after the cabinet fully loads (startup).
 * **`after-leave` (string):**
     * Filename of the program that runs **once** when the player leaves the game.
+* events: read the [[AGEBasic event system]] for a full description.
 
 ### System skin
 

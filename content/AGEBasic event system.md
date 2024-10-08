@@ -7,9 +7,9 @@ Here's a refined version of your text:
 
 # Events
 
-Events are triggered by specific actions in *[[Age of Joy]]*. While not all actions produce events, key interactions do, and developers will continue to introduce new ones in the future. Each event can execute an [[AGEBasic]] program when activated.
+Events are triggered by specific actions in [[Age of Joy]]. While not all actions produce events, key interactions do, and developers will continue to introduce new ones in the future. Each event can execute an [[AGEBasic]] program when activated.
 
-The system is initiated when the when a player inserts a coin in the cabinet. From that point, the event system operates in a continuous loop, starting with the coin insertion and concluding when the game ends on the cabinet. This system is exclusive to cabinets and cannot run in rooms.
+The system is initiated when a player inserts a coin in the cabinet. From that point, the event system operates in a continuous loop, starting with the coin insertion and concluding when the game ends on the cabinet. This event system is exclusive to cabinets and cannot run in rooms.
 
 Currently, the following events are available:
 
@@ -25,14 +25,38 @@ Currently, the following events are available:
 - `on-touch-start/end`: Activated when the player touches a cabinet part.
 
 > [!important] 
-> - only one program executes at the same time. The event loop will wait for a program to finish to evaluate the next event.
+> - only one program can execute at the same time. The event loop will wait for a program to finish to evaluate the next event.
 > - The event system evaluate the triggers in order in a loop, when the last one is evaluated the loops restart.
 > - These events require a part name to work: "on-collision-start", "on-collision-stay", "on-collision-end", "on-touch-start", "on-grab-start", "on-touch-end" and "on-grab-end"
 > - Parts that interact with the player, [[Light guns]] or with other parts must to be `physical`. Read the [[Cabinet physical parts manual]] for details.
 
+# Event syntax
 
 
-# Events description
+```yaml
+agebasic:
+  debug: false
+  after-load: onload.bas
+  after-leave: onleave.bas
+  after-insert-coin: oninsertcoin.bas
+  events:
+    - event: on-always
+      name: my event name
+      program: move.bas
+      goto: 400
+      delay: 0.001
+      when:
+        variable: myvar
+        value: 1
+```
+
+- `events`: event list, is evaluated in order.
+	- `name`: of the event (see `on-custom`). Optional.
+	- `program`: [[AGEBasic]] program file to execute. Required.
+	- `goto`: line number to start program execution. Optional, if it is missing the program will start at the first line.
+	- `delay`: an optional interval to delay the evaluation between executions.
+	- `when`: conditions the event's evaluation. Optional.
+# Event types description
 
 ## `on-always`
 
@@ -47,6 +71,7 @@ agebasic:
   events:
     - event: on-always
       program: move.bas
+      goto: 400
       #delay: 0.001
 ```
 
@@ -62,9 +87,7 @@ In the example the program is executed approximately once per second.
       delay: 1
 ```
 
-Here’s a corrected explanation for the `on-control-active` event and YAML example:
-
-## `on-control-active-press/held/release`
+## `on-control-active-pressed/held/release`
 
 This event is triggered when a player interacts with a control (like a button or joystick) in the game. The event can handle different states of the control such as when it's pressed, held, or released.
 
@@ -112,14 +135,14 @@ Read the manual for [[Controller configuration]] to understand how controls are 
 
 ## `on-insert-coin`
 
-This event is triggered any time the player insert a coin in the cabinet but not the first time. If you want to perform an action when the player insert a coin for first time in the cabinet (to activate the game) use the `after-load` program.
+This event is triggered any time the player insert a coin in the cabinet but not the first time. If you want to perform an action when the player insert a coin for first time in the cabinet (to activate the game) use the `after-insert-coin` program.
 
 ## `on-custom`
 
 The event is triggered by the execution of `EventTrigger(event name string)` function in AGEBasic.
 
 ```yaml
-    - event: on-name
+    - event: on-custom
       name: my-custom-event
       program: dosomething.bas
 ```
@@ -129,8 +152,6 @@ In any AGEBasic program you could call the `EventTrigger` function to execute th
 ```vb
 10 CALL EventTrigger("my-custom-event")
 ```
-Here’s an improved explanation for the `on-collision-start/stay/end` event:
-
 ## `on-collision-start/stay/end`
 
 These events are triggered when a part in your game collides with another object, and they are useful for detecting when an object begins, continues, or ends a collision with another part.
@@ -170,8 +191,6 @@ These events are triggered when a part in your game collides with another object
 - **`on-collision-end`:** Triggered when the collision **ends**.
 
 These events allow you to detect and respond to different stages of a collision between parts, enabling more dynamic interactions in your game.
-Here’s an improved version of your explanation:
-
 ## `on-touch-start/end`
 
 This event is triggered when the player interacts by touching a specific cabinet part.
@@ -231,4 +250,80 @@ Example:
         - name: velocity
           type: number
           value: 10
+```
+
+---
+
+# Conditionals
+
+You can execute or not an event based on a conditional. If the condition doesn't accomplish the event is not evaluated and isn't executed.
+
+A conditional could contain constant values and variables in the comparison. `and` and `or` is also available.
+
+Example:
+
+```yaml
+    - event: on-control-active-pressed
+      name: Loop on/off
+      control:
+        libretro-id: JOYPAD_B
+      program: menu.bas
+      goto: 400
+      when: 
+        and: 
+          - variable: menuType
+            value: 1
+          - variable: option
+            comparison: "greater than"
+            value: 4
+          - variable: volume
+	        comparison: ">"
+	        compare-to: minDB
+```
+
+- `when`: Optional. The condition must accomplish to evaluate the event.
+	- `and`: contains a list of conditions. All of them should evaluate to true.
+	- `or`: At least one of them should evaluate to true.
+	- `variable`: [[AGEBasic]] variable to compare.
+	- `value`: constant to compare
+	- `compare-to`: a variable to compare in place of `value`.
+	- `comparison`: options: `equals`, `=`, `greater than`, `>`, `less than`, `<`, `greater than or equals`, `>=`, `less than or equals`, `<=`, `not equals`, `<>` or `!=`. Defaults to `=` if missing.
+
+A conditional could be as complex as needed:
+
+```yaml
+	when: 
+        and: 
+          - variable: menuType
+            value: 1
+          - variable: option
+            comparison: "greater than"
+            value: 4
+          - variable: volume
+	        comparison: ">"
+	        compare-to: minDB
+	      - or:
+			  - variable myvar2
+				value: 30
+			  - variable myvar3
+				condition: greater than
+				value: 30
+			      
+```
+
+> [!warning]
+> It is not possible to mix `and`, `or` and `variable` at same level.
+
+Erroneous construction:
+
+```yaml
+    when:
+        and: 
+          - variable: menuType
+            value: 1
+          - variable: option
+            comparison: "greater than"
+            value: 4
+	    variable: volume
+		compare-to: 0
 ```

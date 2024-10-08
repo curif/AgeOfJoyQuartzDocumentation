@@ -92,8 +92,11 @@ It's possible to select cores: [[Cores]]
 	- Multiple games per cabinet.
 - Release candidate 9:
 	- New shader `Screen` -> `properties` yaml key to change the shader behavior.
-	- `material-properties` is a dictionary for configuring material shader properties on a part. Common settings include metallic, color, smoothness, and emission-color, with values typically ranging from 0 to 1.
+	- `material-properties` is a dictionary for configuring material shader properties on a part. Common settings include `metallic`, `color`, `smoothness`, and `emission-color`, with values typically ranging from 0 to 1.
 	- A new c64 program to see test cabinet's problems (in Workshop). Read the screen instructions in the workshop.
+- Release candidate 10:
+	- Attraction audio clips in cabinets [[CDL the Cabinet Description Language#Attraction audio clip]]
+	- Normal textures in cabinet's parts: refers to a bump map or normal map.
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]
@@ -144,6 +147,8 @@ It's possible to select cores: [[Cores]]
 	- `CabPartsList()` to get a list of cabinet parts.
 	- `FileOpen, FileRead, FileWrite, FileClose`: to open, read, write or append, and to close files.
 	- `StringMatch()`: compares if a string contains other string.
+- Release candidate 10:
+	- Added conditionals to the Event System (`when`)
 
 #### Bug fixes
 
