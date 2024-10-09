@@ -108,6 +108,11 @@ You could storage information in different "storage" that lives during the progr
 - `CabinetsPath()` returns the path to the new cabinets. (usually empty)
 - `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 - `MusicPath()` the base path to the music folder.
+- `FileOpen(string path, string mode)`: returns an file pointer number to identify the file opened or `-1` if fails. Mode must be: `R` read mode, `W` write mode (will rewrite the file if it exists), `A` to append to the end of the file. Only 256 files can be opened at the same time.
+- `FileRead(file pointer number)`: Read the next file string line. Use `FileEOF()` to know if you can read a next line. If it is EOF the function return an empty string (`""`). Use Returns the next line or `-1` if it fails. `type(var)` to detect if the result is a number (error) or the read string. 
+- `FileClose(file pointer number)` to close the file.
+- `FileEOF(file pointer number)`: `1` if it is closed or `0` if not. `-1` if the file is not open or the number is invalid.
+
 
 ## Ligths
 - `GetLigths()` to get a list string with the names of the lights present in the loaded rooms, separated with `|` (pipes) in the form `"<light name>|<ligth name>|..."`. Each light name have a room name and the light name for identification, example: `"room001:light1` the final `GetLigths()` result example is `"room001:light1|room003:ligth1"`. You can use `GetMember()` to process the string using the pipe as a separator, and also to process the light name. 
