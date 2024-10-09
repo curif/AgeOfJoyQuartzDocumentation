@@ -1,0 +1,41 @@
+---
+author: null
+comments: null
+crt: vertical
+dg-publish: true
+ligth-gun: 'false'
+marquee: marquee_pacman.png
+md5sum: 619648a432cf163c4fbe5cc0d1bac177
+model: 'No'
+parts: 7
+rom: pacman.zip
+style: pacmancabaret
+tags:
+- cabinet
+- '1980'
+title: pacman
+version: '0.0'
+video: 'Yes'
+year: '1980'
+---
+
+![[marquee_pacman.png]]
+
+Game published year: 1980
+
+## ROM information
+
+MD5 sum: `619648a432cf163c4fbe5cc0d1bac177` 
+
+## Cabinet information
+
+- Author: None
+- File: pacman.zip
+- Version: 0.0
+- Parts: 7
+- Introduction video: Yes
+- Own cabinet design: No
+- Style: pacmancabaret
+- Light guns: no
+- AGEBasic enabled: no
+
