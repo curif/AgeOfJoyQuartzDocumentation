@@ -262,7 +262,7 @@ The programmer should add all the audio files that the player want to ear in a q
 ### Music functions
 
 - `MusicAdd(audio file path)`: add an audio file to the queue.
-- `MusicExists(audio file path)`: true if the file is in the jukebox queue.
+- `MusicExist(audio file path)`: true if the file is in the jukebox queue.
 - `MusicRemove(audio file path)`: remove the file from the jukebox queue. Return `true` if removed.
 - `MusicClear()`: clear the audio queue.
 - `MusicAddList(files, separator)`: to add a group of audio files to the queue. Files is a list simulated string like `song1.mp3:song2.mp3`, you can use `FileGet` to get the files. 
