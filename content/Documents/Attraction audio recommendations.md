@@ -3,17 +3,19 @@
 
 For optimal performance, consider using short audio clips that loop seamlessly without noticeable interruptions. This approach helps reduce memory consumption and ensures a smoother user experience.
 
-To achieve this, it's essential to choose an audio clip that supports loop mode. When editing the video, extract only the desired audio track and shorten it to a length that can be effectively looped.
+To achieve this, it's essential to choose an audio clip that supports loop mode. 
 
-You can use mono channels to reduce the clip even more. Because we are using spatialization a stereo clip isn't necessary.
+One possibility is to edit the attraction video, extract only the desired audio track and shorten it to a length that can be effectively looped.
+
+You should use mono channels to reduce the clip even more. Because we are using spatialization a stereo clip isn't necessary.
 
 ## Recommended audio properties
 
 - channels: mono
 - sample rate: 48000hz
-- audio code: mp3
+- audio codec: mp3
 
-To get the audio clip you could upload the attraction video to a site like https://www.online-convert.com/ or https://cloudconvert.com/mkv-to-mp3.
+To get the audio clip you could upload the attraction video to a site like https://www.online-convert.com/ or https://cloudconvert.com/mkv-to-mp3 and transform it to mp3.
 
 A site like https://mp3cut.net/es/ could help to cut the audio file.
 
