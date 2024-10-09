@@ -1,4 +1,4 @@
 ---
-Title: Cabinets packs
+title: Cabinets packs
 ---
 List of defined cabinets packs.
