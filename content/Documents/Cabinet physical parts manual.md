@@ -103,6 +103,6 @@ Cabinet Artists can design their cabinets to respond to player interactions, suc
 
 ## AGEBasic event system
 
-To complete the cabinet functionality [[Cabinet Artist]]s should use the [[AGEBasic event system]] (available on version 0.6 and superior).
+To complete the cabinet functionality [[Cabinet Artist]]s should use the [[AGEBasic cabinet event system]] (available on version 0.6 and superior).
 
-Using [[AGEBasic event system]] is possible to program [[AGEBasic]] scripts to react to physics and interactions. It is possible to execute code when a part touch another or when the player touch a cabinet part (for example). 
+Using [[AGEBasic cabinet event system]] is possible to program [[AGEBasic]] scripts to react to physics and interactions. It is possible to execute code when a part touch another or when the player touch a cabinet part (for example). 

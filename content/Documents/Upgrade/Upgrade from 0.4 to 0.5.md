@@ -135,7 +135,7 @@ It's possible to select cores: [[Cores]]
 		- String lists management:  `IsMember()`, `IndexMember()`, `AddMember()` and `RemoveMember()`
 		- Play lists: cycle through games with Left Trigger + Left thumb click while playing.
 - Release candidate 6:
-	- New [[AGEBasic event system]]
+	- New [[AGEBasic cabinet event system]]
 	- It's possible to change the CPU performance.
 	- To work with a data collection the DATA/READ/RESTORE commands combination has been added.
 	- `CabPartsRotate(idx, axis, angle)` to rotate a part from the actual position.

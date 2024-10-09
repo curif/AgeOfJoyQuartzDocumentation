@@ -6,7 +6,7 @@ BASIC is a popular programming language known for its simplicity and ease of use
 
 With AGEBasic the player can develop it's own functions to run in the simulation. Allows to control parts of the game that there aren't available from the [[YAML]] configuration or the [[Visual configuration]].
 
-> [!important] read about the new [[AGEBasic event system]] (version >= 0.6)
+> [!important] read about the new [[AGEBasic cabinet event system]] (version >= 0.6)
 
 
 ## AGEBasic program storage
@@ -220,7 +220,7 @@ According to the yaml cabinet configuration you can set a `part` of a cabinet to
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 ### Cabinet events
 
-Functions that interacts with the [[AGEBasic event system]].
+Functions that interacts with the [[AGEBasic cabinet event system]].
 
 - `EventTrigger(event name string)`: activate an event.
 

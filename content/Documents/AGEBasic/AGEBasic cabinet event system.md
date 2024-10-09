@@ -1,10 +1,5 @@
 The AGEBasic event system is a new engine available starting at version 0.6.
 The system allows program execution when a event arise.
-
-Here's a refined version of your text:
-
----
-
 # Events
 
 Events are triggered by specific actions in [[Age of Joy]]. While not all actions produce events, key interactions do, and developers will continue to introduce new ones in the future. Each event can execute an [[AGEBasic]] program when activated.
@@ -325,5 +320,5 @@ Erroneous construction:
             comparison: "greater than"
             value: 4
 	    variable: volume
-		compare-to: 0
+		value: 0
 ```
