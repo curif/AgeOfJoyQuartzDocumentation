@@ -88,6 +88,14 @@ It's the background sound, you can change the volume or mute it.
 ### `in-game-background` 
 It's the background sound when you play a game. The keys and values are the same. Maybe you want to mute the background sound when you are playing, or decrement to a 20% (like the example)
 
+## System skin
+
+The `system-skin` key configures the look & feel of the configuration controller screen used in the [[Visual configuration]].
+
+At the moment these are the options:
+- `zx`: Sinclair look and feel
+- `cpc`: Amstrad
+- `c64`: Commodore 64
 ## Locomotion
 
 Refers to the player's movement in the virtual space (walk, rotate, etc.)
@@ -186,3 +194,4 @@ audio:
 npc:
   status: enabled
 ```
+

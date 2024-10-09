@@ -6,7 +6,7 @@
 - [[AGEBasic examples - configure room lighting]]
 - [[AGEBasic examples - sound]]
 - [[AGEBasic examples - player to look at a screen when insert coin]]
-
+- [[AGEBasic examples - jukebox]]
 
 ---
 

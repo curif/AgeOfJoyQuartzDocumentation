@@ -113,6 +113,7 @@ The below shows memory usage:
 
 This won’t actually affect how much memory the texture takes up in the game itself, since the image has to be converted into a texture once it’s loaded. PNG can result in a larger zip file size for the cabinet, but the resulting texture will generally be better quality in the game. If you’re trying to make a super tiny cabinet size for some reason, use JPEG. Save textures as optimized PNGs to save a bit of filesize.
 
+Use [[ASTC textures]]s when possible.
 #### What about 4K textures?
 
 We’ve done profiling and have confirmed that if you send a 4K texture to AOJ, the Unity engine refuses to use it and bumps it down to a 2K texture, so it’s just going to make the cabinet’s zip file bigger.
@@ -149,7 +150,7 @@ Your cabinet model MUST have the following parts.  They are left (side), right 
 
 - [ ] You've checked your model for correct normals and reset scale, rotation, and origin. (EXCEPT for the two screens and coin-slot, leave those parts alone)
 - [ ] Your `cabinet.glb` model has all the required parts, named correctly. (existing cabs that work in AOJ have all the required parts)
-- [ ] Your art files have been saved as PNG (preferred), or JPG using the rule-of-two, video files saved as MKV or MP4.
+- [ ] Your art files have been saved as PNG (preferred), or JPG using the rule-of-two, video files saved as MKV or MP4. Using [[ASTC textures]] will improve a lot the performance, but requires a extra effort.
 - [ ] You are going to edit a known working `description.yaml` from an existing, working cab. (the formatting of the yaml is CRITICAL)
 - [ ] Set [[CDL Debug mode]] and [[AGEBasic programing#Debug mode]] if needed.
 - [ ] Check the [[CDL best practices checklist]]

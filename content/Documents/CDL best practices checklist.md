@@ -13,5 +13,6 @@ This is a checklist to follow in order to create a correct `description.yaml` fo
 	- [ ] set the `year` of publication of the game
 	- [ ] set the `version` (increment it to know that the cabinet was modified. Follow a [[semantic version system]])
 - [ ] If your game have [[AGEBasic]] programs on it, check the [[AGEBasic programing#Debug mode]] and check for issues in the log files. Delete it upon distribution.
+- [ ] Use [[ASTC textures]] when possible
 
 #CDL 

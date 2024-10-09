@@ -20,6 +20,9 @@ Remember: cabinets have two parts,
 
 To play the games, you'll also need the [ROMs](https://en.wikipedia.org/wiki/ROM_image) compatible with [MAME](https://en.wikipedia.org/wiki/MAME). Copy them to `/sdcard/Android/data/com.curif.AgeOfJoy/downloads`. If not, you can still run the simulation but not play the games.
 
+Alternatively you can save your ROM for different cores using this pattern:  `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/<core>/` to separate your [[ROM]]s in different cores. For example: `/sdcard/Android/data/com.curif.AgeOfJoy/downloads/fbneo/myrom.zip`
+
+
 👮🏼‍♂️ Some ROMs are copyrighted material, check it on the internet.
 
 There are a [MAME 2003-Plus Reference: Full Non-Merged Romsets](https://www.google.com/search?q=MAME+2003-Plus+Reference%3A+Full+Non-Merged+Romsets&sourceid=chrome&ie=UTF-8) on internet.
