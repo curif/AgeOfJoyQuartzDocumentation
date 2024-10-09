@@ -1,4 +1,4 @@
-# Visual configuration manual
+
 
 The Arcade Owners stumbled upon a lot forgotten *Commodore 64* in a auction. They enclosed it each one in a custom cabinet and developed a program to control the gallery's configurations. This retro-meets-modern integration permits anyone with a coin to configure the Arcade Gallery functions.
 
@@ -61,8 +61,7 @@ Follow these steps: [[Set player height using visual configuration]]
 
 > [!note] available only in Global Configuration
 
-
-![[ConfigurationLocomotion.png]]
+![[locomotion.png]]
 
 ---
 ### Teleportation

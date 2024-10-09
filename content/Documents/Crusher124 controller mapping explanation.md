@@ -1,4 +1,4 @@
-# Crusher124 controller mapping explanation
+
 
 This post explains what I've learned about yaml controller mapping, something I've spent some time on, setting up custom maps and resolving button conflicts.  
 

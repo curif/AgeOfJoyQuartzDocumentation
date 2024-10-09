@@ -6,7 +6,8 @@ MAME aims to recreate the original arcade gaming experience by emulating the beh
 
 The project began in 1997 and has since evolved with the contributions of a dedicated community of developers and enthusiasts. MAME supports various platforms, including Windows, macOS, Linux, and more, making it accessible to a wide range of users.
 
-> [!warning] It's important to note that while MAME itself is a legal project, the use of ROMs may have legal implications. Distributing or downloading copyrighted ROMs without the proper ownership rights is generally illegal. It is recommended to only use ROMs for which you have the appropriate permissions or obtain them from legal sources, such as original arcade machine owners or authorized distributors.
+> [!warning]
+>  It's important to note that while MAME itself is a legal project, the use of ROMs may have legal implications. Distributing or downloading copyrighted ROMs without the proper ownership rights is generally illegal. It is recommended to only use ROMs for which you have the appropriate permissions or obtain them from legal sources, such as original arcade machine owners or authorized distributors.
 
 ## Cores
 

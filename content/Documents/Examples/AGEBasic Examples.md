@@ -5,10 +5,11 @@
 - [[AGEBasic examples - configure room posters]]
 - [[AGEBasic examples - configure room lighting]]
 - [[AGEBasic examples - sound]]
-
+- [[AGEBasic examples - player to look at a screen when insert coin]]
+- [[AGEBasic examples - jukebox]]
 
 ---
 
 More examples, related to Cabinets configuration: [[AGEBasic in cabinets]].
 
-#agebasic 
+#agebasic #examples 

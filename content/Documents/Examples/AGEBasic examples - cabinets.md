@@ -1,4 +1,4 @@
-#agebasic 
+#agebasic #examples 
 ### Calculate the sum of cabinets assigned in all rooms
 ```vb
 10 REM Program to calculate the sum of cabinets assigned in all rooms

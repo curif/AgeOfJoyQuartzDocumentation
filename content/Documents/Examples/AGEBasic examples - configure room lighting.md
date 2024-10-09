@@ -1,5 +1,5 @@
 
-#agebasic 
+#agebasic #examples 
 # Configure room lighting
 
 You can configure lights color and intensity. 
@@ -104,4 +104,3 @@ This program changes all the lights to blue.
 10060 GOTO 10050
 
 ```
-

@@ -1,14 +1,16 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 import { QuartzPluginData } from "../plugins/vfile"
+import { classNames } from "../util/lang"
+import { i18n } from "../i18n"
+import { VNode } from "preact"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
-  title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
@@ -43,12 +45,10 @@ export default ((userOpts?: Partial<Options>) => {
   // memoized
   let fileTree: FileNode
   let jsonTree: string
+  let component: VNode
+  let lastBuildId: string = ""
 
   function constructFileTree(allFiles: QuartzPluginData[]) {
-    if (fileTree) {
-      return
-    }
-
     // Construct tree from allFiles
     fileTree = new FileNode("")
     allFiles.forEach((file) => fileTree.add(file))
@@ -74,42 +74,56 @@ export default ((userOpts?: Partial<Options>) => {
     jsonTree = JSON.stringify(folders)
   }
 
-  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
-    constructFileTree(allFiles)
-    return (
-      <div class={`explorer ${displayClass ?? ""}`}>
-        <button
-          type="button"
-          id="explorer"
-          data-behavior={opts.folderClickBehavior}
-          data-collapsed={opts.folderDefaultState}
-          data-savestate={opts.useSavedState}
-          data-tree={jsonTree}
-        >
-          <h1>{opts.title}</h1>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="5 8 14 8"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="fold"
+  const Explorer: QuartzComponent = ({
+    ctx,
+    cfg,
+    allFiles,
+    displayClass,
+    fileData,
+  }: QuartzComponentProps) => {
+    if (ctx.buildId !== lastBuildId) {
+      lastBuildId = ctx.buildId
+      constructFileTree(allFiles)
+      const tree = ExplorerNode({ node: fileTree, opts, fileData })
+      component = (
+        <div class={classNames(displayClass, "explorer")}>
+          <button
+            type="button"
+            id="explorer"
+            data-behavior={opts.folderClickBehavior}
+            data-collapsed={opts.folderDefaultState}
+            data-savestate={opts.useSavedState}
+            data-tree={jsonTree}
+            aria-controls="explorer-content"
+            aria-expanded={opts.folderDefaultState === "open"}
           >
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-        <div id="explorer-content">
-          <ul class="overflow" id="explorer-ul">
-            <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
-            <li id="explorer-end" />
-          </ul>
+            <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="5 8 14 8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="fold"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="explorer-content">
+            <ul class="overflow" id="explorer-ul">
+              {tree}
+              <li id="explorer-end" />
+            </ul>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+
+    return component
   }
 
   Explorer.css = explorerStyle
