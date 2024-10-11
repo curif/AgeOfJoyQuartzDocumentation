@@ -6,7 +6,6 @@ The term CDL refers to the characteristics of a cabinet for a specific game.
 Cabinets contains two main components:
 
 * **Cabinet Model**: Consider a piece of wood furniture that is unpainted and has the shape and components of an arcade cabinet.
-* **Cabinet assets**: is a zip file that contains the side art stickers, bezels, marquees, and so on, as well as a description file that describes how to paint, how to place the stickers, marquee color light, tv (crt) position, the video to play on the screen when nobody is playing, etc.
 
 The **models** of the cabinets, such as Galaga and Xevious, are included in the game, developed by an graphic artist, in a way that its design allows you to *re-skin* them. New versions of the game should include new models.
 
@@ -287,6 +286,10 @@ They are useful to simulate a surface at low cost, the other way, adding an `art
 - `scratches`
 - `treadplate round`
 - `treadplate diamond`
+- `cloth`
+- `paint`
+- `scratches 2`
+- `corroed metal`
 
 ### "Art" parts
 
