@@ -100,7 +100,7 @@ Yes, it is not strictly necessary but it is a convention. We can know that the c
 ## I want to make my own cabinets, can I?
 Yes you can, but first check it if someone didn't made it. Then you please read the [[Short guide to make cabinets]]. If you are good enough, you can considered yourself as an [[Cabinet Artist]].
 ## I made my first cabinet! I want to share it with the world!
-You can sell it or ask for donations on itchio. Or you can just share it with the community by posting it on the [[Discord server]]. Don't keep the cabinets for yourself, share them somehow!
+You can sell it or ask for donations on [[itchio]]. Or you can just share it with the community by posting it on the [[Discord server]]. Don't keep the cabinets for yourself, share them somehow!
 ## I have the cabinet, but the game don't runs, what can I do?
 Read the ROM section in this document.
 ## I upload a cabinet, but I can see it.

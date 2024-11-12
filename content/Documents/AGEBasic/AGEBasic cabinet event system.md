@@ -82,7 +82,7 @@ In the example the program is executed approximately once per second.
       delay: 1
 ```
 
-## `on-control-active-pressed/held/release`
+## `on-control-active-pressed/held/released`
 
 This event is triggered when a player interacts with a control (like a button or joystick) in the game. The event can handle different states of the control such as when it's pressed, held, or released.
 

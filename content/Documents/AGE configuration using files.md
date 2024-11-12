@@ -69,6 +69,9 @@ locomotion:
   snap-turn-active: false
 player:
   height: 1.6
+cabinet:
+  insert-coin-on-startup: true
+  screen-glow-intensity: 5
 ```
 
 ## `npc`
@@ -76,8 +79,8 @@ player:
 Non playing characters configuration.
 
 `status` can be:
-* `enabled`: the walk and play as usual.
-* `static`: they will walk to a position in the room and stay there forever.
+* `enabled`: they walk and play as usual.
+* `static`: they walk to a position in the room and stay there forever.
 * `disabled`: to disable the NPC. They will left you alone in the room.
 
 ## `audio`
@@ -138,6 +141,17 @@ player:
   height: 1.6
 ```
 
+## Cabinet
+
+Global cabinet configuration
+
+`insert-coin-on-startup`: Set to `true` to not start the game when you insert the first coin. Useful in games that you want to enjoy the start of the game (presentation activities).
+
+```yaml
+insert-coin-on-startup: false
+```
+
+`screen-glow-intensity`: set a value from `0` (no glow) to `5` to control the intensity of the CRT screen light. This setting allows the screen's glow to realistically affect the surrounding cabinet parts. 
 # AGEBasic
 
 [[AGEBasic]]  a special version of the BASIC programming language. To learn how to program in AGEBasic read the  [[AGEBasic programing]] document.

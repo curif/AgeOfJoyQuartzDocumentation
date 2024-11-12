@@ -7,6 +7,4 @@ In order to play arcade games on MAME, you need to provide the ROM files of the 
 
 I you don't own ROMs you can use AGE of Joy without play any game, the experience is there anyway.
 
-AGE of Joy is compatible with [libretro-mame2003-plus](https://github.com/libretro/mame2003-plus-libretro).
-
 To confirm if your ROM is the same used to test the game use [this tool](https://curif.github.io/AgeOfJoy-ROMCRC/index.html) 👈🏼 please compare yours with the `MD5 hash` information in the game page in this site.

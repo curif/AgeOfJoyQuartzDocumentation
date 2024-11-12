@@ -278,7 +278,7 @@ normal: wood
 ```
 
 They are useful to simulate a surface at low cost, the other way, adding an `art` picture is more expensive (the system needs to load the picture from disk). Example: you can set a brown `color` to a part and the `wood` normal to simulate wood. 
-#### Included:
+#### Included
 
 - `wood`
 - `plastic`
@@ -336,8 +336,37 @@ Default: `true`
 ```
 visible: false
 ```
-Here’s an improved explanation for the `Marquee` section:
 
+### Bezel Configuration
+
+The `bezel` type allows the use of specialized shaders to create a bezel effect, simulating a glass overlay with a large decorative sticker.
+
+There are several `sub-type` options available to customize the bezel behavior. Each `sub-type` uses alternate shaders, enabling different visual and performance characteristics:
+
+- **No sub-type or `sub-type = default`:**  
+  Uses the classic bezel shader, which is the standard rendering option.
+
+- **`sub-type = simple`:**  
+  Utilizes a new, highly optimized shader that handles the alpha channel much faster. In this mode, pixels are either fully transparent or fully opaque—no partial transparency. This shader is ideal for simple bezels and stickers where precise transparency is unnecessary. It reduces VRAM usage and improves performance, especially for textured areas of the cabinet (such as sides).
+
+- **`sub-type = dirty glass`:**  
+  Combines a "dirty glass" effect with alpha transparency in a single rendering pass, eliminating the need to layer multiple shaders. This approach reduces draw calls and enhances performance. This shader also includes two new properties, `glossiness` and `dirtiness`, which can be adjusted to fine-tune the effect.
+#### Bezel Example
+
+```yaml
+ - name: bezel1
+    type: bezel
+    sub-type: dirty glass
+    art:
+      file: bezel.png
+    material-properties:
+      smoothness: 1
+      metallic: 0
+      dirtiness: .01
+      glass-translucency: .5
+      glossiness-low: 0.5
+      glossiness-high: 0.95
+```
 ### Marquee
 
 The `marquee` system simulates both the image and the lighting that illuminates it, providing flexibility to recreate the classic look of older arcade machines or a more modern feel with different light sources.
@@ -481,7 +510,7 @@ Here’s how a complete YAML configuration for a cabinet part might look:
 ```yaml
 part:
 - name: speaker
-  audio:
+  speaker:
 	  file: "gong.mp3"
 	  volume: 0.5
 	  loop: false

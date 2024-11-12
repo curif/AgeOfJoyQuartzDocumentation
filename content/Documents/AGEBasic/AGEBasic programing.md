@@ -11,7 +11,7 @@ With AGEBasic the player can develop it's own functions to run in the simulation
 
 ## AGEBasic program storage
 
-The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic` . AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
+The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
 
 ## Variables
 
@@ -103,14 +103,15 @@ AGEBasic can't manage arrays or lists, but you can simulate them using character
 	* `x,y` screen coordinates (x: cols, y: rows) 
 	* `text`: to print
 	* `1` inversed, `0` normal. Optional parameter, 0 is the default.
-	* `1` show immediately, `0` don't show and wait for the `SHOW` command (recomended)
+	* `1` show immediately, `0` don't show and wait for the `SHOW` command (recommended)
 * `PRINTLN` to show text on the screen with internal `x, y` control: `PRINTLN text [, 0/1 [, 0/1]`]
 	* `text`: to print
 	* `1` inversed, `0` normal. Optional parameter, 0 is the default.
-	* `1` show immediately, `0` don't show and wait for the `SHOW` command (recomended)
+	* `1` show immediately, `0` don't show and wait for the `SHOW` command (recommended)
 * `CLS` to clear the screen
 * `SHOW`: to print in the screen the last executed screen commands.
-* `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. `SETCOLORSPACE` allows to simulate a computer type (like "c64"):
+* `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. 
+* `SETCOLORSPACE` allows to simulate a computer type (like "c64"):
 	* c64
 	* ibmpc
 	* amstrad
@@ -143,7 +144,7 @@ To get information about rooms
 
 # Cabinets related
 
-## Functions for deployed cabinets in rooms
+ ## Functions for deployed cabinets in rooms
 
 Applies to cabinets deployed in the room where the cabinet controller is loaded.
 
@@ -158,6 +159,7 @@ Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storag
 - `CabDbCount()`: how many cabinets registered in the storage
 - `CabDbCountInRoom(string)`: how many cabinets are *assigned* to one particular room. Ex: `LET count = CabDbCountInRoom("Room001")` 
 - `CabDBGetName(number)`: get a cabinet name using the position in the storage. Ex: `CabDBGetName(30)` could return "pacman"
+- `CabDBSearch(string name, string separator)`: returns a _simulated list_ separated by `separator` of cabinets that starts with `name`. Example: `CabDBSearch("ju", "|")` could return `"junofst|jupiter"`. if `name` is `"#"` will return all the games starting with special characters.
 - `CabDBGetAssigned(room, cabinetIndex)`: returns the cabinet name assigned to a position in a room.
 - `CabDBDelete(currentRoomName, cabinetIndex)`: delete the cabinet assignment to a room in the database (frees the position).
 - `CabDBAdd(room, cabinetIndex, newCabinetName)`: to add a new room/position/cabinet in the database, if the position is taken the program will fail. 
@@ -265,6 +267,7 @@ The programmer should add all the audio files that the player want to ear in a q
 - `MusicExist(audio file path)`: true if the file is in the jukebox queue.
 - `MusicRemove(audio file path)`: remove the file from the jukebox queue. Return `true` if removed.
 - `MusicClear()`: clear the audio queue.
+- `MusicGetList(separator)`: get the list of current audio files in the queue. Returns a simulated list string like `song1.mp3:song2.mp3`. 
 - `MusicAddList(files, separator)`: to add a group of audio files to the queue. Files is a list simulated string like `song1.mp3:song2.mp3`, you can use `FileGet` to get the files. 
 - `MusicLoop(true/false)`: to activate/deactivate the loop function. `MusicLoopStatus()` to query the music loop status.
 - `MusicNext()` and `MusicPrevious()` to jump to the next or previous song.
@@ -314,6 +317,7 @@ You could storage information in different "storage" that lives during the progr
 	- `AGEBasicPath()` returns the path to the AGEBasic programs.
 	- `CabinetsDBPath()` returns the path to the cabinet database.
 	- `CabinetsPath()` returns the path to the new cabinets. (usually empty)
+	- `CabinetPath()` returns the path to the actual cabinet (only available in [[AGEBasic in cabinets]]).
 	- `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 	- `MusicPath()` the base path to the music folder.
 - File management (v0.6 and sup)
@@ -321,6 +325,7 @@ You could storage information in different "storage" that lives during the progr
 	- `FileRead(file pointer number)`: Read the next file string line. Use `FileEOF()` to know if you can read a next line. If it is EOF the function return an empty string (`""`). Use Returns the next line or `-1` if it fails. `type(var)` to detect if the result is a number (error) or the read string. 
 	- `FileClose(file pointer number)` to close the file.
 	- `FileEOF(file pointer number)`: `1` if it is closed or `0` if not. `-1` if the file is not open or the number is invalid.
+	- `FileWrite(file pointer number, string line)`: add the line to the file.
 
 # CPU control
 

@@ -1,7 +1,15 @@
 #agebasic 
+
+[[AGEBasic]] can be executed in a cabinet and you can use special functions to control the cabinet and game behavior.
+
+---
 ### How to execute AGEBasic programs in response to events related to a specific cabinet.
 
-[[Age of Joy]] can be configured to execute AGEBasic programs when the player produces actions on a cabinet, or in events related to a cabinet. You can find the AGEBasic subdocument specification in the [[CDL the Cabinet Description Language]]
+[[Age of Joy]] can be configured to execute AGEBasic programs when the player produces actions on a cabinet, or in events related to a cabinet. 
+
+You can find the AGEBasic subdocument specification in the [[CDL the Cabinet Description Language]]
+
+Also read the [[AGEBasic cabinet event system]]
 
 All [[AGEBasic]] programs that run in a cabinet preserve the same variable's space, that means, you can set a variable in a program and read its value in another program. The variable's space is initialized when the cabinet loads.
 

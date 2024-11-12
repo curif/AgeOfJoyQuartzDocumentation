@@ -97,6 +97,11 @@ It's possible to select cores: [[Cores]]
 - Release candidate 10:
 	- Attraction audio clips in cabinets [[CDL the Cabinet Description Language#Attraction audio clip]]
 	- Normal textures in cabinet's parts: refers to a bump map or normal map.
+- Release candidate 11:
+	- New bezel `sub-type`
+- Release candidate 11:
+	- Jukebox M3U support
+
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]
@@ -149,6 +154,9 @@ It's possible to select cores: [[Cores]]
 	- `StringMatch()`: compares if a string contains other string.
 - Release candidate 10:
 	- Added conditionals to the Event System (`when`)
+- Release candidate 11:
+	- `CabDBSearch(string name, string separator)` to search cabinets in the [[Cabinets database storage]]
+	- `OR()` and `AND()` supports more than two parameters.
 
 #### Bug fixes
 

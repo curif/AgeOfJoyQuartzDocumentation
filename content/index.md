@@ -47,7 +47,6 @@ If a game you own is not listed, it does not mean that the game cannot run. It s
 - [@curifab](https://twitter.com/curifab)
 - [/r/arcadeVR](https://www.reddit.com/r/arcadeVR/)
 - [Sidequest](https://sidequestvr.com/app/11839/age-of-joy-a-retro-arcade-gallery-experience-in-vr)
-- [Discussions](https://github.com/curif/AgeOfJoy-2022.1/discussions) on GitHub 
 - [YouTube](https://www.youtube.com/watch?v=CGsnz_nbK78&list=PLY9n9w5xQ2NE5KNs4YvOgKl8CQfCZqI4_)
 
 

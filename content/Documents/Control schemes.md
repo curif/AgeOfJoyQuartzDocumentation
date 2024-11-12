@@ -12,7 +12,7 @@ control-scheme: 6-buttons
 > [!note] 
 > NOTE: If the `description.yaml` specifies a control map, it takes precedence and the control scheme is functionally ignored.  Priority goes : description.yaml map > user game map > scheme map > global map
 
-You should read the [[Controller configuration]] manual to fully understand how to map controllers and how the mapping merges with the rest of the configuration.
+You should read the [[Controller configuration]] manual to fully understand how to map controllers and how the mapping merges with the rest of the configuration. There is a way to make your controller the default for every cabinet.
 
 Example: `keyboard.yaml`
 
