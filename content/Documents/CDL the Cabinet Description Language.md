@@ -463,14 +463,14 @@ Typically, cabinet parts represent decorative or static objects that the player 
 Please read the [[Cabinet physical parts manual]].
 
 
-#### Audio parts
+#### Audio parts / speakers
 
 Here’s a description of the YAML specification for configuring audio in the cabinet parts:
 
 ##### YAML Audio Configuration Specification
 
 - **`audio:`** Defines the audio configuration for a specific cabinet part. This section includes various settings related to audio playback, volume, looping, and 3D sound effects.
-  - **`file:`**  Specifies the path to the audio file that should be assigned to the cabinet part. The file can be in WAV, MP3, or OGG format.  
+  - **`file:`**  Specifies the name of the audio file that should be assigned to the cabinet part. The file can be in WAV, MP3, or OGG format and must be distributed in the [[Cabinet pack]].
     Example:  
     ```yaml
     file: "gong.mp3"
@@ -888,9 +888,11 @@ Light guns controllers are configurable using the [[Controller configuration]]. 
 > Available on version >= 0.5 RC4
 >  It's important to note that while MAME itself is a legal project, the use of ROMs may have legal implications. Distributing or downloading copyrighted ROMs or related files without the proper ownership rights is generally illegal. It is recommended to only use ROMs and files for which you have the appropriate permissions or obtain them from legal sources, such as original arcade machine owners or authorized distributors.
 
-In addition to the art files, various other files such as configuration files, RAM files, and more are integral components of the [[MAME]] engine. At times, these files are essential for playing a game or complementing its functionality. Sound samples serve as a prime example; while the game may run, certain sounds may be absent.
+In addition to the art files, various other files such as configuration files, RAM files, and more are integral components of the [[MAME]] engine (or any other core). At times, these files are essential for playing a game or complementing its functionality. Sound samples serve as a prime example; while the game may run, certain sounds may be absent.
 
 To streamline the installation process for players, [[Cabinet Artist]]s could consider including these files in the cabinet asset zip file. Furthermore, they could describe in CDL the method by which [[Age of Joy]] will distribute the files, enabling MAME to locate and utilize them seamlessly.
+
+It is also used to distribute other files types like music for the Jukebox.
 
 | File Type  | Description                                     |
 | ---------- | ----------------------------------------------- |
