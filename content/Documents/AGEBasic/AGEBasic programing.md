@@ -326,6 +326,8 @@ You could storage information in different "storage" that lives during the progr
 	- `FileClose(file pointer number)` to close the file.
 	- `FileEOF(file pointer number)`: `1` if it is closed or `0` if not. `-1` if the file is not open or the number is invalid.
 	- `FileWrite(file pointer number, string line)`: add the line to the file.
+	- `FileDelete(path)`: to delete a file, returns `false` if fail.
+	- `FileExists(path)`: returns `true` if the file exists.
 
 # CPU control
 
