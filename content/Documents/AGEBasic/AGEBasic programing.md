@@ -32,7 +32,6 @@ Examples:
 ## Numbered lines
 
 Each line of code should be numbered and be in ascending order. Multiline is supported.
-
 ## Sentences
 
 * `LET`: assign a value to a variable, ex: `LET a=10`
