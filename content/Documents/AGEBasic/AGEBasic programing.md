@@ -8,11 +8,9 @@ With AGEBasic the player can develop it's own functions to run in the simulation
 
 > [!important] read about the new [[AGEBasic cabinet event system]] (version >= 0.6)
 
-
 ## AGEBasic program storage
 
 The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
-
 ## Variables
 
 AGEBasic supports `numbers` (double precision), hexadecimal (preceded by a `&`) and `strings`.
@@ -59,7 +57,6 @@ Each line of code should be numbered and be in ascending order. Multiline is sup
 ## General functions
 
 AGEBasic Functions can receive parameters. Parameters must be enclosed.
-
 ### Math
 
 - `ABS`, `COS`, `SIN`, `TAN`, `MOD`
@@ -83,7 +80,7 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 
 #### List simulation
 
-AGEBasic can't manage arrays or lists, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0`, `bbb` is the one in the position `1` and the separator is `:`.
+AGEBasic can't handle arrays or lists, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0`, `bbb` is the one in the position `1` and the separator is `:`.
 
 - `GetMember(string, member #, separator)`: to get a slice of a string. Can be used to emulate lists. Example to get the first member of a list: `GetMember("AGE:of:Joy", 0, ":") = "AGE"`
 - `CountMembers(string, separator)` to count how many members a list have: `CountMembers("AGE:of:Joy", ":") = 3`
