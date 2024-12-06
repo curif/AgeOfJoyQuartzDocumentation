@@ -98,8 +98,7 @@ It's possible to select cores: [[Cores]]
 	- Attraction audio clips in cabinets [[CDL the Cabinet Description Language#Attraction audio clip]]
 	- Normal textures in cabinet's parts: refers to a bump map or normal map.
 - Release candidate 11:
-	- New bezel `sub-type`
-- Release candidate 11:
+	- New bezel `sub-type` in [[CDL the Cabinet Description Language#Bezel Configuration]]
 	- Jukebox M3U support
 
 ### AGEBasic change log
