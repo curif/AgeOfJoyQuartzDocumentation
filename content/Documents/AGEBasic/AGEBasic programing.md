@@ -364,7 +364,11 @@ ERROR: some error message to see in debug [string]
 
 You can find the result file in the folder: `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`
 
-The name of the file sould be:  `myprogram.bas.debug` (the file name of the program with the `.debug` suffix)
+The name of the file should be:  `myprogram.bas.debug` (the file name of the program with the `.debug` suffix)
+
+> [!warning]
+> Don't distribute [[Cabinet Asset]]s with `DebugMode` active. [[Age of Joy]] will write a file every time a program ends. If you are using [[AGEBasic cabinet event system]] the situation is worse because some programs runs more than one time (like the ones attached to `on-allways` events).
+> Use `DebugMode` only in your tests.
 
 ---
 

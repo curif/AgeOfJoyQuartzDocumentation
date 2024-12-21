@@ -556,19 +556,21 @@ crt:
       x: 1
 ```
 * `crt`: the crt model document (optional)
-* `type`: 
-	* `19i` (optional - default)
-	* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
-	* `32i`: 32 inches. Only supports the `CRT` shader (available in 0.5 and superior).
-	* `19i-2x1`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
-	* `19i-1x2`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
-	* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior). A variant exists: `19i-3x1-18deg`.
-	* `50i`: 50 inches. Only supports the `CRT` shader (available in 0.5 and superior).
-* `orientation`: horizontal or vertical.
-* `screen`: screen description sub-document.
-* `geometry`: geometry description sub-document.
-* `gamma`: adjust game color gamma palette. Optional, defaults to 0.5
-* `brightness`: adjust game brightness
+	* `type`: 
+		* `19i` (optional - default)
+		* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
+		* `32i`: 32 inches. Only supports the `CRT` shader (available in 0.5 and superior).
+		* `19i-2x1`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+		* `19i-1x2`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
+		* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior). A variant exists: `19i-3x1-18deg`.
+		* `50i`: 50 inches. Only supports the `CRT` shader (available in 0.5 and superior).
+		* `dome-concave`: A dome concave screen (like a half sphere)
+		* `dome-convex`: Like the concave but convex.
+	* `orientation`: horizontal or vertical.
+	* `screen`: screen description sub-document.
+	* `geometry`: geometry description sub-document.
+	* `gamma`: adjust game color gamma palette. Optional, defaults to 0.5
+	* `brightness`: adjust game brightness
 ### Values by core
 | Property | core | values |
 | ---- | ---- | ---- |
@@ -669,6 +671,21 @@ The grade of damage is regulated with the `damage` key and can be:
 * `high`: more scanlines than medium and some bright in the center and obscurity in the borders.
 
 This shader is recommended for Vector Games.
+
+#### crt-additive shader
+
+Use it with concave or convex shaders.
+
+Example:
+```yaml
+crt:
+  type: dome-concave
+  orientation: horizontal
+  screen:
+    shader: crt-additive
+    damage: low
+    inverty: true
+```
 
 #### Projector Shader
 
