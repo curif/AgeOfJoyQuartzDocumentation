@@ -15,7 +15,6 @@ If you decide to do not grant the permission, the alternative folder path is use
 > 
 > You could find references for both folders paths in the documentation.
 
-
 ## Older versions
 
 If you are using an old version and you want to conserve the old folder access (`/sdcard/Android/data/com.curif.AgeOfJoy`) you don't need to do anything.
