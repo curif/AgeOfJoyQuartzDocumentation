@@ -35,9 +35,9 @@ Refers to how AGE will merge the different mappings to get a complete one.
 When a game starts:
 
 1. AGE analyze in the  [[CDL the Cabinet Description Language]] to see if there is a section that describe the mapping, if not, it fallback to the User Cabinet Configuration.
-2. AGE uses the user cabinet configuration yaml if the file exists, if not, it uses the Global Configuration.
-3. Again, if the file doesn't exists, AGE will uses the global configuration.
-4. If all others are missing AGE will use the default configuration.
+2. AGE uses the user cabinet configuration yaml if the file exists (like *galaga.yaml*)
+3. Again, if the file doesn't exists, AGE will uses the global configuration (global.yaml) if exists.
+4. If all others are missing AGE will use the default internal configuration.
 
 ### Merge
 
