@@ -1,7 +1,7 @@
 
 ## If you are new in AGE of Joy
 
-- [[AGE FAQ]]
+- [[AGE FAQ]] the must-read information.
 - [[How to get and deploy cabinets assets]]
 	- Cabinet #packs 
 	- #cabinet Database: a incomplete list of cabinet in the [[Discord server]]
@@ -28,13 +28,10 @@ Cabinets are an essential part of the experience, you should search for them and
 ### AGEbasic
 
 - What is [[AGEBasic]]
-- [[AGEBasic programing]]
-	- [[AGEBasic in cabinets]]
+- [[AGEBasic programing]]: The complete guide.
+	- [[AGEBasic in cabinets]]: Special enhancements to execute AGEBasic inside cabinets
 		- [[AGEBasic cabinet event system]]
 	- [[AGEBasic prompt for ChatGPT]]
 	- [[AGEBasic Examples]]
 	- Screens:
 		- [[AGEBasic characters map codes]]
-## General information
-
--
