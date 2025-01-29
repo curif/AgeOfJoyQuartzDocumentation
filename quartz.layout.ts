@@ -27,7 +27,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(
+    /*Component.DesktopOnly(
       Component.Explorer({
         title: "Explorer", // title of the explorer component
         folderClickBehavior: "collapse", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
@@ -35,9 +35,10 @@ export const defaultContentPageLayout: PageLayout = {
         useSavedState: true, // whether to use local storage to save "state" (which folders are opened) of explorer
       })
       ),
+      */
+    Component.Graph(),
   ],
   right: [
-    Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],

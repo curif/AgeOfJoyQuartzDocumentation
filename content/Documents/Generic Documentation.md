@@ -1,11 +1,14 @@
 
-## Beginners
+## If you are new in AGE of Joy
 
 - [[AGE FAQ]]
 - [[How to get and deploy cabinets assets]]
+	- Cabinet #packs 
+	- #cabinet Database: a incomplete list of cabinet in the [[Discord server]]
 - [[Quest Controllers]]
-- [[How to upgrade to a new version]]
 - [[Visual configuration]]
+- [[CRTs - screens]]
+- [[How to upgrade to a new version]]
 
 ## Advanced 
 
@@ -17,13 +20,21 @@ Cabinets are an essential part of the experience, you should search for them and
 
 - [[Short guide to make cabinets]]
 - [[CDL the Cabinet Description Language]]
-- [[AGEBasic programing]]
-
 ### About how to configure  AGE of Joy
 
 - [[AGE configuration using files]]
 - [[Controller configuration]]
 
+### AGEbasic
+
+- What is [[AGEBasic]]
+- [[AGEBasic programing]]
+	- [[AGEBasic in cabinets]]
+		- [[AGEBasic cabinet event system]]
+	- [[AGEBasic prompt for ChatGPT]]
+	- [[AGEBasic Examples]]
+	- Screens:
+		- [[AGEBasic characters map codes]]
 ## General information
 
-- [[CRTs - screens]]
+-

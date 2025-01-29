@@ -8,4 +8,4 @@ Blender is a great tool for 3D modeling and animation. It is easy to use and off
 
 ---
 
-#cabinet/artists 
+#artists 

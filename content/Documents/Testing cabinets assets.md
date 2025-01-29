@@ -96,4 +96,4 @@ If your game is running without any noticeable issue, then you can deploy the ne
 
 Enjoy your new cabinet!
 
-#cabinet/artists 
+#artists 

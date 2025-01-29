@@ -1037,4 +1037,4 @@ Recommended information in the [[CDL Debug mode]] page.
 [^3]: the only available option.
  
 ---
-#CDL #cabinet/artists #cores #agebasic #jukebox #light-gun 
+#CDL #artists #cores #agebasic #jukebox #light-gun 

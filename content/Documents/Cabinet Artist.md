@@ -4,4 +4,4 @@ Some of them knows about 3D modeling and uses software like Blender to create hi
 [[Short guide to make cabinets]]
 [[Blender]]
 
-#cabinet/artists 
+#artists 
