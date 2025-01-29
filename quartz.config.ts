@@ -16,6 +16,7 @@ const config: QuartzConfig = {
     baseUrl: "curif.github.io/AgeOfJoyQuartzDocumentation",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
+    generateSocialImages: false,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
