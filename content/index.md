@@ -8,7 +8,7 @@ If you don't know what AGE of Joy is please follow [this link](https://curifab.i
 
 ## Documentation
 
-AGE of Joy require some work to start. I suggest to read the [[AGE FAQ]] and the [[Documentation]]. 
+AGE of Joy require some work to start. I suggest to read the [[AGE FAQ]] and the [[Generic Documentation]]. 
 
 ## Cabinets
 

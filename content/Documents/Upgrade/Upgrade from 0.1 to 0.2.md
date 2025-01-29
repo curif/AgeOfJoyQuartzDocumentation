@@ -13,7 +13,7 @@ This release brings new content, bug fixes and improvements to Age of Joy.
 - Access MAME OSD Menu with a combination of the right thumb joystick and right grip. However, your changes will not be saved.
 - Cabinets size adjustments and components positions
 - Game general color and lights.
-- Neon ligths
+- Neon lights
 - Carpets
 - Added compatibility to others image formats (for Neo Geo)
 - Discord server space

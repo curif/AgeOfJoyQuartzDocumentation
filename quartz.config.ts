@@ -11,11 +11,9 @@ const config: QuartzConfig = {
     pageTitle: " AGE of Joy Docs",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: null,
-    },
+    analytics: null,
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "curif.github.io/AgeOfJoyQuartzDocumentation",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
@@ -70,7 +68,7 @@ const config: QuartzConfig = {
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
+      //Plugin.Latex({ renderEngine: "katex" }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
