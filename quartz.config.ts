@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: " AGE of Joy Docs",
+    pageTitle: " AGE of Joy Documentation",
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
