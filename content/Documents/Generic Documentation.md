@@ -19,7 +19,10 @@ This documentation is dedicated to users who want to control all the internal as
 Cabinets are an essential part of the experience, you should search for them and install the cabinets in your Quest. You can make yours too.
 
 - [[Short guide to make cabinets]]
+- [[Cabinet Artist]]s
 - [[CDL the Cabinet Description Language]]
+	- [[YAML]] files
+	- 
 ### About how to configure  AGE of Joy
 
 - [[AGE configuration using files]]

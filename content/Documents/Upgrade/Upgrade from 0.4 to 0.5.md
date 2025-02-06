@@ -118,7 +118,7 @@ It's possible to select cores: [[Cores]]
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.
 	- Functions to query and set the player and cabinet parts in [[3D space]]: `PlayerGetHeight()`, `PlayerSetHeight()`, `PlayerGetCoordinate()`, `PlayerSetCoordinate()`, `PlayerLookAt()`. Check the [[AGEBasic examples - player to look at a screen when insert coin]] for a use case.
 	- Added `IIF()`, `AND()` and `OR()` functions.
-	- `ControlHapticRumble(id, amplitude, duration)` to activate the haptic effect on a control.
+	- `ControlRumble(id, amplitude, duration)` to activate the haptic effect on a control.
 	- New CDL keys to manage the emission of a cabinet part: `emmission` [[CDL the Cabinet Description Language#Emission]] includes capacity for color change and [[Emission file mask]].
 - Release candidate 5:
 	- Cabinet parts [[AGEBasic programing#Functions that only applies to a cabinet. In programs related with the cabinet, and packed inside a Cabinet Asset .]]

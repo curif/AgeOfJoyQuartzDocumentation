@@ -72,7 +72,7 @@ Introspection
 It's possible to query the control status, for example, to know if a user is pressing some button on the controller.
 
 - `ControlActive(id [, port])`: to know the status of a control. Returns `True (1)` if the control is active on the moment of execution, or `False (0)` if not. 
-- `ControlHapticRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
+- `ControlRumble(id, amplitude, duration)`: to create a vibration on the controller. `duration` is a decimal where `1` means *one second*. `amplitude` is a decimal number too. `id` should be `JOYPAD_LEFT_RUMBLE` or `JOYPAD_RIGHT_RUMBLE`. Returns `true` if the controller support haptic feedback.
 
 ## String functions
 - LEN, UCASE, LCASE, 

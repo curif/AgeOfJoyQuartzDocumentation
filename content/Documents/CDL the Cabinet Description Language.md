@@ -946,6 +946,7 @@ In this example:
 
 By including such information in the `description.yaml` file, it provides clear instructions for [[Age of Joy]] on where each file is located and its corresponding type, facilitating efficient file management and distribution.
 
+> [!note] this configuration is useful for any file, not only for mame [[Cores]]
 ## AGE Basic
 
 You can run [[AGEBasic]] programs designed for a specific cabinet. [[Age of Joy]] has the ability to execute programs in response to predefined events, like when a user inserts a coin for the first time.
