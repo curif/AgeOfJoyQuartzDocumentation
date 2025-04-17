@@ -100,7 +100,10 @@ It's possible to select cores: [[Cores]]
 - Release candidate 11:
 	- New bezel `sub-type` in [[CDL the Cabinet Description Language#Bezel Configuration]]
 	- Jukebox M3U support
-
+- Release candidate 13:
+	- Rescale cabinet images to power of two.
+	- Adjusted image cache to protect memory.
+		- Enforcing cache clean on low memory alert
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]
@@ -153,9 +156,11 @@ It's possible to select cores: [[Cores]]
 	- `StringMatch()`: compares if a string contains other string.
 - Release candidate 10:
 	- Added conditionals to the Event System (`when`)
-- Release candidate 11:
+- - Release candidate 11:
 	- `CabDBSearch(string name, string separator)` to search cabinets in the [[Cabinets database storage]]
 	- `OR()` and `AND()` supports more than two parameters.
+- Release candidate 16:
+	- Better texture cache and memory administration.
 
 #### Bug fixes
 

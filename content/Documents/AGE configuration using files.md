@@ -143,15 +143,33 @@ player:
 
 ## Cabinet
 
-Global cabinet configuration
+Global cabinet configuration. This configuration applies to all cabinets across the game.
 
-`insert-coin-on-startup`: Set to `true` to not start the game when you insert the first coin. Useful in games that you want to enjoy the start of the game (presentation activities).
+- `insert-coin-on-startup`: Set to `true` to not start the game when you insert the first coin. Useful in games that you want to enjoy the start of the game (presentation activities).
+- `screen-glow-intensity`: set a value from `0` (no glow) to `5` to control the intensity of the CRT screen light. This setting allows the screen's glow to realistically affect the surrounding cabinet parts. 
+- `hi-res-textures`: Controls the texture quality of cabinets.
+	- **`true`**: Retains the original, high-detail cabinet textures. This provides the best visual fidelity but consumes more memory.
+	- **`false`** (Default): Converts textures to a more memory-efficient format, reducing the memory footprint by roughly 30% on your Quest.
+
+**Memory Management and Potential Black Cabinets:**
+
+How `hi-res-textures` affects the game behavior.
+
+The system employs an internal cache to store textures in memory for faster loading. This cache has a maximum capacity. If the system needs to free up space and the textures of a currently loaded cabinet are chosen for removal, that cabinet will appear black if the cabinet is running.
+
+**This is intentional behavior to prevent the game from crashing due to insufficient memory.** Using high-resolution textures significantly increases the likelihood of the cache filling up and this situation occurring.
+
+**Effect of Changing This Setting:**
+
+Modifying this setting only impacts textures loaded _after_ the change is applied. Textures already present in the cache will remain until the system's memory management decides to remove them. Newly loaded cabinet textures will then adhere to the new `hi-res-textures` setting.
+### Defaults
 
 ```yaml
 insert-coin-on-startup: false
+screen-glow-intensity: 0
+hi-res-textures: false
 ```
 
-`screen-glow-intensity`: set a value from `0` (no glow) to `5` to control the intensity of the CRT screen light. This setting allows the screen's glow to realistically affect the surrounding cabinet parts. 
 # AGEBasic
 
 [[AGEBasic]]  a special version of the BASIC programming language. To learn how to program in AGEBasic read the  [[AGEBasic programing]] document.
