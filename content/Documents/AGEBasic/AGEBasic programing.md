@@ -13,12 +13,17 @@ With AGEBasic the player can develop it's own functions to run in the simulation
 The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
 ## Variables
 
-AGEBasic supports `numbers` (double precision), hexadecimal (preceded by a `&`) and `strings`.
-A variable name can contain letters a numbers only. AGEBasic isn't case sensitive, the variable `A` is the same as `a`. 
-`booleans` are not variable type, but anything different than `0` is considered `true`.
+- A variable name can contain only letters and numbers  
+- A variable name must start with a letter.
+- A variable name cannot contain special characters (like `_`)
+- Can't be a reserved word (a name of a function or command). You can't name a variable with the same name as a function or command, example musicPath is an invalid name because the MUSICPATH function exists.
+
+AGEBasic variables can contain `numbers` (double precision), hexadecimal (preceded by a `&`) and `strings`.`booleans` are not variable type, but anything different than `0` is considered `true`.
 
 Examples:
 
+ Correct:
+ 
 ```vb
 10 LET A = 10 'a number 
 20 LET A = 10.10 'a number
@@ -27,19 +32,44 @@ Examples:
 50 LET A = 0 'an hex number
 ```
 
+Incorrect:
+
+```vb
+10 LET MY_VARIABLE = 10
+20 LET TEXT = "text"
+30 A = 10
+```
+# Sentences
+
+Refers to a single, complete instruction or command that the program executes.
 ## Numbered lines
 
 Each line of code should be numbered and be in ascending order. Multiline is supported.
-## Sentences
+A Command must be the first after a line number. Functions can be called using a `CALL` function
 
+```vb
+10 PRINT "Hello world"
+```
+## Line separation
+
+One line number could contain two sentences using `:` as separator. 
+
+```vb
+10 LET a = 10 : REM value of a is 10
+20 PRINTLN a : PRINTLN "Hello world"
+```
+## Commands
+
+Each line must begin with a line number and a command. 
 * `LET`: assign a value to a variable, ex: `LET a=10`
 * `LETS`: assign multiple values, e.g.: `LETS a,b=10,20` is the same as `let a=10` and next `let b=20`
+* `DIM`: create an array variable.
 * `REM`: a comment, ex: `REM this is a comment`. It's the only way to register comments in the program.
 * `END`: finish the program
 * `IF/THEN/ELSE`: conditional, . Ex: `IF x=1 THEN LET a=2 ELSE a=3`. There aren't available the usual conditional expressions like `AND` and `OR`, but there are functions to replace them. IMPORTANT: ENDIF doesn't exists
 * `GOTO`: to jump to a line number. Ex: `GOTO 50`
 * `GOSUB`: to jump to a line, and to back using `RETURN`. Ex: `GOSUB 5000`
-* `RETURN`: jump back to the next line after the `GOSUB`
+* `RETURN`: jump back to the next sentence after the `GOSUB`
 * `CALL`: to call a function discarding the result. e.g.: `CALL CabRoomReplace(0, "pacman")`
 * `FOR/TO/NEXT/STEP`: to create loops. Ex: `for x=0 to 10 step 2 ... next x`
 	* Initial, end  and step values can be expressions.
@@ -48,11 +78,190 @@ Each line of code should be numbered and be in ascending order. Multiline is sup
 	* The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
 * `SLEEP` to sleep a number of seconds, doesn't work in programs executed in the control cabinet (has no sense). E.g.: `SLEEP 1` (sleeps the program during a second). `SLEEP 0.5` sleeps for half of a second. Values must be greater than `0.01`.
 
-# Operators
+## Operators
 
 - Adding, subtraction, etc.: `+`, `-`,`*`,`/`
 - Comparison: `=`,`!=`,`<>`,`<`,`>`,`<=`,`>=`
 - Logical: and: `&&` or: `||`
+
+## Arrays
+### 1. What is an Array?
+
+At its core, an **array** is a structured collection of data items, all stored under a single variable name. Imagine a series of numbered compartments, where each compartment can hold a piece of data. Instead of creating many individual variables (e.g., `ITEM1`, `ITEM2`, `ITEM3`), an array allows you to store and access these related pieces of data using a single name followed by an **index** (or subscript) that indicates the specific position of the item you want to access.
+
+This makes it incredibly efficient to store and process lists or tables of information, especially when the number of items is large or varies during program execution.
+
+### 2. The Dimensional Concept of Arrays
+
+Arrays can be designed with different "dimensions," which essentially refers to the number of indices required to pinpoint a specific element.
+
+*   **One-Dimensional (1D) Arrays:**
+    These are like a simple list or a single row of data. You need only one index to access an element.
+    *Example:* `A[0]`, `A[1]`, `A[2]`, ...
+    Think of it as a column of numbers:
+    ```
+    +-----+
+    | A[0]|
+    +-----+
+    | A[1]|
+    +-----+
+    | A[2]|
+    +-----+
+    ```
+
+*   **Two-Dimensional (2D) Arrays:**
+    These are like a table or a grid (rows and columns). You need two indices to access an element: one for the row and one for the column.
+    *Example:* `B[0,0]`, `B[0,1]`, `B[1,0]`, `B[1,1]`, ...
+    Think of it as a spreadsheet:
+    ```
+    +----------+----------+----------+
+    | B[0,0]   | B[0,1]   | B[0,2]   |
+    +----------+----------+----------+
+    | B[1,0]   | B[1,1]   | B[1,2]   |
+    +----------+----------+----------+
+    ```
+
+*   **Multi-Dimensional Arrays (3D and beyond):**
+    AGEBasic supports arrays with more than two dimensions. A three-dimensional array, for instance, can be visualized as a cube or a stack of tables. You would need three indices to access an element (e.g., `MULTI[F,G,X]`). While higher dimensions are supported, they become increasingly abstract to visualize but are extremely useful for complex data structures.
+
+**Important Note on Indexing:**
+AGEBasic arrays utilize **zero-based indexing**. This means the first element in any dimension is at index `0`, the second at `1`, and so on, up to `N-1` where `N` is the declared size for that dimension.
+
+### 3. Declaring Arrays with `DIM`
+
+Before you can use an array, you must declare it using the `DIM` (Dimension) statement. This tells AGEBasic the name of your array and how much space to reserve for it in memory by specifying the size of each dimension.
+
+**Syntax:**
+`DIM arrayName[size1 [, size2, ...]]`
+
+*   `arrayName`: The name of your array. Follows standard variable naming rules (starts with a letter, contains only letters and numbers, not a reserved word).
+*   `size1, size2, ...`: The size of each dimension. This number represents the *total count of elements* in that specific dimension. For example, `DIM A[5]` declares an array with 5 elements, accessible from `A[0]` to `A[4]`.
+
+**Examples:**
+
+*   **One-Dimensional Array:**
+    ```vb
+    10 DIM myNumbers[10] : REM Declares an array named 'myNumbers' with 10 elements (indices 0 to 9)
+    ```
+
+*   **Two-Dimensional Array:**
+    ```vb
+    20 DIM gridData[3, 5] : REM Declares a 2D array: 3 rows (indices 0-2), 5 columns (indices 0-4)
+    ```
+
+*   **Multi-Dimensional Array (e.g., 3D):**
+    ```vb
+    30 DIM cubeData[2, 3, 4] : REM Declares a 3D array with dimensions: (indices 0-1, 0-2, 0-3)
+    ```
+
+### 4. Accessing and Assigning Array Elements
+
+Once an array is declared, you can access individual elements for reading or writing by specifying the array name followed by the appropriate indices enclosed in square brackets `[]`.
+
+**Assigning Values:**
+Use the `LET` command to assign a value to a specific array element.
+
+**Syntax:**
+`LET arrayName[index1 [, index2, ...]] = value`
+
+**Example:**
+```vb
+10 DIM prices[5]
+20 LET prices[0] = 10.50
+30 LET prices[1] = 22.99
+40 LET prices[4] = 5.00
+50 DIM matrix[2,2]
+60 LET matrix[0,0] = "Top-Left"
+70 LET matrix[1,1] = "Bottom-Right"
+```
+
+**Dinamic array creation:**
+
+You can create an array using the `ARRAY()` function:
+```vb
+10 LET RGB_BLUE = ARRAY(0,0,255)
+20 PRINTLN "B:" = STR(RGB_BLUE[2])
+```
+
+**Retrieving Values:**
+You can use array elements just like regular variables in expressions, `PRINT` statements, or other `LET` assignments.
+
+**Syntax:**
+`arrayName[index1 [, index2, ...]]`
+
+**Example:**
+```vb
+100 DIM myValues[3]
+110 LET myValues[0] = 100
+120 LET myValues[1] = myValues[0] * 2 : REM myValues[1] becomes 200
+130 PRINTLN "Value at index 0: " + STR(myValues[0])
+140 PRINTLN "Value at index 1: " + STR(myValues[1])
+```
+
+### 5. Getting Array Length with `LEN()`
+
+The `LEN()` function, traditionally used for string lengths, has been extended to provide the *total number of elements* in an array. This is particularly useful for certain iteration patterns or for determining the overall capacity of an array.
+
+**Syntax:**
+`LEN(arrayName)`
+
+**Return Value:** A number representing the total count of elements in the array (product of all dimension sizes).
+
+**Example:**
+```vb
+10 DIM singleDim[5]
+20 LET totalElements1 = LEN(singleDim) : REM totalElements1 will be 5
+
+30 DIM twoDim[2,3]
+40 LET totalElements2 = LEN(twoDim) : REM totalElements2 will be 2 * 3 = 6
+
+50 DIM multiDim[2,3,4]
+60 LET totalElements3 = LEN(multiDim) : REM totalElements3 will be 2 * 3 * 4 = 24
+```
+
+### 6. Mixed-Type Arrays
+
+Unlike some programming languages, AGEBasic arrays are **flexible in type**. This means a single array can store a mix of numbers (double precision, hexadecimal) and strings within its elements. The `TYPE()` function can be used to check the specific type of an element if needed during runtime.
+
+**Example:**
+```vb
+10 DIM mixedData[2]
+20 LET mixedData[0] = 123.45 : REM A number
+30 LET mixedData[1] = "Hello, AGEBasic!" : REM A string
+
+40 IF TYPE(mixedData[0]) = "NUMBER" THEN PRINTLN "Element 0 is a number."
+50 IF TYPE(mixedData[1]) = "STRING" THEN PRINTLN "Element 1 is a string."
+```
+
+### Short Example of Array Use
+
+Here's a concise AGEBasic program demonstrating a one-dimensional array to store and print a list of scores.
+
+```vb
+10 REM Short Array Example: High Scores
+20 CLS
+30 DIM highScores[5] ' Declare an array to hold 5 scores
+
+40 LET highScores[0] = 1000
+50 LET highScores[1] = 750
+60 LET highScores[2] = 900
+70 LET highScores[3] = 500
+80 LET highScores[4] = 1200
+
+90 PRINTLN "--- High Scores ---", 0, 0
+100 FOR i = 0 TO 4
+110  LOCATE 0, GETY() + 1 ' Move cursor to next line
+120  PRINTLN "Score " + STR(i+1) + ": " + STR(highScores[i]), 0, 0
+130 NEXT i
+140 SHOW
+150 SLEEP 3 ' Wait for 3 seconds
+160 END
+```
+
+**Explanation:**
+This program first clears the screen. It then declares a one-dimensional array `highScores` capable of holding 5 numeric elements. It populates this array with example scores. A `FOR` loop then iterates from index 0 to 4 (the valid range for a 5-element array), printing each score along with its position. The `LOCATE` and `GETY()` functions ensure each score appears on a new line. Finally, `SHOW` updates the screen and the program pauses before ending.
+
+We hope this comprehensive overview of arrays in AGEBasic helps you leverage this powerful new feature in your programs! Happy coding!
 
 ## General functions
 
@@ -69,6 +278,7 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 - `IIF(condition, value1, value2)` returns `value1` if `condition` is `true` else returns `value2`
 - `HEXTODEC(string)`: convert from a Hexadecimal string (like `"FF"`) to a number. Remember an hex number is represented by a `&` also. Example `HEXTODEC("FF") = &FF`
 - `VAL(string)`: to coarse a string to a number, inversed of `STR(number)`. Example: `VAL("10.5") = 10.5`
+- `ARRAY(val1, val2[, val3,...]`: Create an array with the specified values.
 
 ### Strings
 
@@ -95,6 +305,8 @@ AGEBasic can't handle arrays or lists, but you can simulate them using character
 
 ## Screen
 
+### Character functions
+
 * `PRINT` to show text on the screen: `PRINT x,y, text [, 0/1 [, 0/1]]`
 	* `x,y` screen coordinates (x: cols, y: rows) 
 	* `text`: to print
@@ -106,7 +318,43 @@ AGEBasic can't handle arrays or lists, but you can simulate them using character
 	* `1` show immediately, `0` don't show and wait for the `SHOW` command (recommended)
 * `CLS` to clear the screen
 * `SHOW`: to print in the screen the last executed screen commands.
+* `LOCATE X, Y`: Moves the text cursor to character column `X` and row `Y`.
+    *   `X`: Horizontal character position. `0` (left) to `SCREENWIDTH() - 1` (right).
+    *   `Y`: Vertical character line. `0` (top) to `SCREENHEIGHT() - 1` (bottom).
+-   `GETX()`: Returns the current horizontal character column of the text cursor.
+    *   Return value is a Number, from `0` (leftmost) to `SCREENWIDTH() - 1` (rightmost).
+-   `GETY()`: Returns the current vertical character row (line) of the text cursor.
+    *   Return value is a Number, from `0` (topmost) to `SCREENHEIGHT() - 1` (bottommost).
+-   `PRINTCENTERED Y, TEXT [, INVERTED [, DRAW_FLAG]]`: Prints `TEXT` centered horizontally on character row `Y`.
+    *   `Y` (Number): The character row (line) to print on. `0` is the top row.
+    *   `TEXT` (String or Number): The text or number to print. Numbers will be converted to strings.
+    *   `INVERTED` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), uses inverted foreground/background colors for this print.
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately after printing. Set to `0` (or `FALSE`) to batch multiple drawing operations before calling `SHOW` or another command that draws.
 * `FGCOLOR` and `BGCOLOR` commands to set colors depending on the type of screen. `RESETCOLOR` and `INVERTCOLOR` as variants. 
+* `SCROLL N_LINES [, FILL_COLOR_SPEC [, DRAW_FLAG]]`: Scrolls the entire character display area vertically.
+    *   `N_LINES` (Number): The number of character lines to scroll.
+        *   Positive values scroll content **DOWN** (new blank space appears at the top).
+        *   Negative values scroll content **UP** (new blank space appears at the bottom).
+        *   A value of `0` results in no scroll.
+    *   `FILL_COLOR_SPEC` (Color, optional): The color to fill the new blank lines created by scrolling.
+        *   Can be a string color name (e.g., `"black"`, `"blue"`).
+        *   Can be three numbers representing R, G, B values (e.g., `0,0,0` for black).
+        *   If omitted, the current default background color .
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately. Set to `0` (or `FALSE`) to defer the screen update.
+-   `SCROLLRECT CX, CY, CW, CH, N_LINES [, FILL_COLOR_SPEC [, DRAW_FLAG]]`: Scrolls a rectangular sub-region of the character display vertically.
+    *   `CX` (Number): The starting character column (X-coordinate) of the rectangle's top-left corner.
+    *   `CY` (Number): The starting character row (Y-coordinate) of the rectangle's top-left corner.
+    *   `CW` (Number): The width of the rectangle in characters. Must be greater than 0.
+    *   `CH` (Number): The height of the rectangle in characters. Must be greater than 0.
+    *   `N_LINES` (Number): The number of character lines to scroll within the specified rectangle.
+        *   Positive values scroll content **DOWN** within the rectangle.
+        *   Negative values scroll content **UP** within the rectangle.
+        *   A value of `0` results in no scroll.
+    *   `FILL_COLOR_SPEC` (Color, optional): The color to fill the new blank lines created by scrolling within the rectangle.
+        *   Can be a string color name (e.g., `"black"`, `"blue"`).
+        *   Can be three numbers representing R, G, B values (e.g., `0,0,0` for black).
+        *   If omitted, the current default background color (`ScreenGenerator.charBackgroundColor`) is used.
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately. Set to `0` (or `FALSE`) to defer the screen update.
 * `SETCOLORSPACE` allows to simulate a computer type (like "c64"):
 	* c64
 	* ibmpc
@@ -118,11 +366,74 @@ AGEBasic can't handle arrays or lists, but you can simulate them using character
 	* msx
 	* msx_mono
 	* to7
+- `SCREENWIDTH()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
+- `SCREENHEIGHT()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
+- `SCREENSIZE()` : returns an array with two positions: Width and Height.
+### Drawing functions
 
-### Screen functions
+All of them starts with`D`.
 
-- `ScreenWidth()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
-- `ScreenLines()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
+-   `DCHARPIXELX(CHAR_X, CHAR_Y)`: Returns the screen pixel X-coordinate of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
+    *   `CHAR_X` (Number): The character column, from `0` (left) to `SCREENWIDTH() - 1`.
+    *   `CHAR_Y` (Number): The character row, from `0` (top) to `SCREENHEIGHT() - 1`.
+    *   Returns a Number. If character coordinates are invalid or out of bounds, may return `-1`.
+-   `DCHARPIXELY(CHAR_X, CHAR_Y)`: Returns the screen pixel Y-coordinate of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
+    *   `CHAR_X` (Number): The character column, from `0` (left) to `SCREENWIDTH() - 1`.
+    *   `CHAR_Y` (Number): The character row, from `0` (top) to `SCREENHEIGHT() - 1`.
+    *   Returns a Number. If character coordinates are invalid or out of bounds, may return `-1`.
+-   `DPSET PX, PY, COLOR_SPEC [, DRAW_FLAG]`: Draws a single pixel at the specified pixel coordinates `(PX, PY)` with the given color.
+    *   `PX` (Number): The horizontal pixel coordinate (X-axis). `0` is typically the leftmost pixel.
+    *   `PY` (Number): The vertical pixel coordinate (Y-axis). `0` is typically the bottommost pixel in Unity's texture coordinate system (but can vary based on screen setup).
+    *   `COLOR_SPEC` (Color): The color for the pixel.
+        *   Can be a string color name (e.g., `"red"`, `"white"`).
+        *   Can be three numbers representing R, G, B values (e.g., `255,0,0` for red).
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately after setting the pixel. Set to `0` (or `FALSE`) to defer the screen update (useful for batching multiple `PSET` or other drawing calls before a single `SHOW`.
+-   `DLINE PX1, PY1, PX2, PY2, COLOR_SPEC [, DRAW_FLAG]`: Draws a line from pixel coordinates `(PX1, PY1)` to `(PX2, PY2)` using the specified color.
+    *   `PX1` (Number): The horizontal pixel coordinate (X-axis) of the line's starting point.
+    *   `PY1` (Number): The vertical pixel coordinate (Y-axis) of the line's starting point.
+    *   `PX2` (Number): The horizontal pixel coordinate (X-axis) of the line's ending point.
+    *   `PY2` (Number): The vertical pixel coordinate (Y-axis) of the line's ending point.
+    *   `COLOR_SPEC` (Color): The color for the line.
+        *   Can be a string color name (e.g., `"blue"`, `"yellow"`).
+        *   Can be three numbers representing R, G, B values (e.g., `0,255,0` for green).
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately after drawing the line. Set to `0` (or `FALSE`) to defer the screen update.
+-  `DBOX PX, PY, PWIDTH, PHEIGHT, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws a rectangle (box).
+    *   `PX, PY` (Numbers): Pixel coordinates of the top-left corner.
+    *   `PWIDTH, PHEIGHT` (Numbers): Width and height of the box in pixels. Must be > 0.
+    *   `BORDER_COLOR_SPEC` (Color): Color for the box's border.
+        *   Can be a string color name or 3 numbers (R,G,B).
+    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the box is filled.
+    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the box if `FILL_FLAG` is true.
+        *   Can be a string color name or 3 numbers (R,G,B).
+        *   If `FILL_FLAG` is true and `FILL_COLOR_SPEC` is omitted, the fill color may default to the `BORDER_COLOR_SPEC` (behavior defined by `ScreenGenerator.DrawBox`).
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
+-   `DCIRCLE PCX, PCY, PRADIUS, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws a circle.
+    *   `PCX, PCY` (Numbers): Pixel coordinates of the circle's center.
+    *   `PRADIUS` (Number): Radius of the circle in pixels. Must be > 0.
+    *   `BORDER_COLOR_SPEC` (Color): Color for the circle's border.
+    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the circle is filled.
+    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the circle if `FILL_FLAG` is true.
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
+-   `DOVAL PCX, PCY, PRADIUSX, PRADIUSY, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws an ellipse (oval).
+    *   `PCX, PCY` (Numbers): Pixel coordinates of the oval's center.
+    *   `PRADIUSX` (Number): Horizontal radius (half-width) of the oval in pixels. Must be > 0.
+    *   `PRADIUSY` (Number): Vertical radius (half-height) of the oval in pixels. Must be > 0.
+    *   `BORDER_COLOR_SPEC` (Color): Color for the oval's border.
+    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the oval is filled.
+    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the oval if `FILL_FLAG` is true.
+    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
+*  `DSCREENWIDTH()` : returns the screen width in pixels. First is `0` last is `DSCREENWIDTH() - 1` 
+- `DSCREENHEIGHT()` : returns the Height in pixels. First is `0` last is `DSCREENHEIGHT() - 1` 
+- `DSCREENSIZE()` : returns an array with two positions: Width and Height in pixels.
+### Screen `SHOW` Command
+
+```vb
+100 SHOW
+```
+
+The `SHOW` command is responsible for updating the visible screen with any pending graphical changes. Many drawing and text manipulation commands make modifications to an internal screen buffer. These changes are not immediately visible on the screen until `SHOW` is called, or until a command with an implicit or explicit "draw immediately" flag is executed.
+
+Think of it like an artist painting on a canvas hidden behind a curtain. The `SHOW` command pulls back the curtain to reveal all the changes made since the last time the curtain was pulled back.
 
 ### Special characters
 
@@ -156,6 +467,7 @@ Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storag
 - `CabDbCountInRoom(string)`: how many cabinets are *assigned* to one particular room. Ex: `LET count = CabDbCountInRoom("Room001")` 
 - `CabDBGetName(number)`: get a cabinet name using the position in the storage. Ex: `CabDBGetName(30)` could return "pacman"
 - `CabDBSearch(string name, string separator)`: returns a _simulated list_ separated by `separator` of cabinets that starts with `name`. Example: `CabDBSearch("ju", "|")` could return `"junofst|jupiter"`. if `name` is `"#"` will return all the games starting with special characters.
+- `CabDBSearchArray(string name)`: like `CabDBSearch` but returns an array.
 - `CabDBGetAssigned(room, cabinetIndex)`: returns the cabinet name assigned to a position in a room.
 - `CabDBDelete(currentRoomName, cabinetIndex)`: delete the cabinet assignment to a room in the database (frees the position).
 - `CabDBAdd(room, cabinetIndex, newCabinetName)`: to add a new room/position/cabinet in the database, if the position is taken the program will fail. 
@@ -232,14 +544,64 @@ To replace posters in a Room
 - `PosterRoomCount()` returns the poster count of the actual room.
 - `PosterRoomReplace(position #, Image path)` to replace a poster by an image in disk. Example: `PosterRoomReplace(1, CombinePath(ConfigPath(), "posters/myposter.png"))` to replace the second poster in the room.
 
+## Room Light configuration
 
-## Light configuration
 
-- `GetLigths()` to get a list string with the names of the lights present in the loaded rooms, separated with `|` (pipes) in the form `"<light name>|<ligth name>|..."`. Each light name have a room name and the light name for identification, example: `"room001:light1` the final `GetLigths()` result example is `"room001:light1|room003:ligth1"`. You can use `GetMember()` to process the string using the pipe as a separator, and also to process the light name. 
-- `GetLightIntensity(string light name)`: to get the intensity of a light. Should be a number between `0` (no light, turned off) and `10` (too bright). example: `GetLightIntensity("room001:ligth1") = 0.5`. You can get the light name from `GetLights()`
-- `SetLightIntensity(string light name, number intensity)`: to set the intensity of a light, example `SetLightIntensity("room001:ligth1", 0.5)`
-- `SetLightColor(string light name, number R, number G, number B)`: set the color of the light, you will need the desired RGB color.  Returns `0` on error.
+> [!WARNING] **Important:** Room-specific light configuration is now deprecated. Please use the Global Light Configuration for managing lights.
 
+This section describes the legacy methods for interacting with individual room lights. While still functional, these methods are superseded by the global light system.
+
+- **`GetLights()`:** Retrieves a string containing the names of all lights in the currently loaded rooms. The light names are concatenated using the pipe (`|`) character as a separator. Each individual light name follows the format `"roomName:lightName"` for easy identification.    
+    **Example:** `"livingRoom:ceilingLight|bedroom01:nightLamp|kitchen:overhead"`
+    To work with this string:
+    1. Use a string processing function (like `GetMember()`, if available in your system) to split the string into individual light names using the `|` delimiter.
+    2. Further process each individual light name string to separate the room name from the specific light name (e.g., using the `:` delimiter).
+- **`GetLightIntensity(lightName)`:** Returns the current intensity of the specified light.
+    - **Parameter:** `lightName` (string) - The unique identifier of the light (e.g., `"room001:light1"`), obtained from the `GetLights()` method.
+    - **Return Value:** A number between `0` (off) and `10` (maximum brightness).
+    - **Example:** `GetLightIntensity("study:deskLamp")` might return `7.2`.
+- **`SetLightIntensity(lightName, intensity)`:** Sets the intensity of the specified light.
+    - **Parameters:**
+        - `lightName` (string) - The unique identifier of the light (e.g., `"room001:light1"`).
+        - `intensity` (number) - The desired brightness level, ranging from `0` to `10`.
+    - **Example:** `SetLightIntensity("bedroom02:readingLight", 5)` will set the reading light in bedroom 02 to a medium intensity.
+- **`SetLightColor(lightName, R, G, B)`:** Sets the color of the specified light using RGB values.    
+    - **Parameters:**
+        - `lightName` (string) - The unique identifier of the light (e.g., `"room001:light1"`).
+        - `R` (number) - The red color component (typically 0-255 or 0.0-1.0, depending on your system's color model).
+        - `G` (number) - The green color component (typically 0-255 or 0.0-1.0).
+        - `B` (number) - The blue color component (typically 0-255 or 0.0-1.0).
+    - **Return Value:** `0` if an error occurred during the color setting process.
+    - **Example:** `SetLightColor("livingRoom:ambientLight", 255, 165, 0)` would set the ambient light in the living room to orange (assuming 0-255 color range).
+
+# Configuring Global/Room Lighting
+
+This section details how to manage the global lighting system, the recommended method for controlling illumination within the gallery.
+
+The global lighting system provides the flexibility to adjust the color tint and intensity of light either for individual rooms or uniformly across all spaces. 
+To execute a program to change the light when a room is loaded utilize the AGEBasic entries in the configuration room yaml (like `room001.yaml`):
+#### Example `room001.yaml`
+```yaml
+agebasic:
+  after-load: changelights.bas
+  active: true
+  debug: false
+```
+
+#### Global lighting functions
+
+Utilize the following functions to configure the gallery's ambiance:
+
+- **`GetGlobalLight(separator)`:** Retrieves the current global light configuration as a string. The output follows the format `r|g|b|i`, where `r`, `g`, and `b` represent the red, green, and blue color components, respectively, and `i` denotes the light intensity. This format emulates an AGEBasic list.
+    
+- **`SetGlobalLight(r, g, b, intensity)`:** Modifies the intensity and color of the global light.
+    - `r` (number): The red color value, ranging from 0 to 255.
+    - `g` (number): The green color value, ranging from 0 to 255.
+    - `b` (number): The blue color value, ranging from 0 to 255.
+    - `intensity` (number): The desired light intensity level.
+    - **Example:** Executing `SetGlobalLight(0, 0, 255, 1.7)` would set the global light to a blue hue with an intensity of 1.7 (assuming a 0-255 color range).
+    
+Read about light configuration in [[AGE configuration using files#Lights Configuration]]
 # Audio
 
 [[Age of Joy]] plays two type of sounds: *ambience* (noise in rooms) and *games* sound. The volume of the audio is expressed in `dB`: `0` is normal, `20` as loud max, and -`-80` as silent. These values affect all the rooms and all the games.
@@ -295,9 +657,9 @@ Sometimes you will need to storage and read information for your programs.
 To add information to be consumed during the program execution.
 You could storage information in different "storage" that lives during the program execution. Each storage has its name.
 
-- `DATA "storage name", x,y,z, ...`: comma separated list of expressions. Example: `DATA "my storage", 10, "x", D + 1`. Expressions are evaluated during the line execution not when the storage is read.
-- `READ "storage name", var, var, ...`: to read a storage, Example: `READ "my storage", A, B, C` to read the storage of the previous example, result: `A=10, B="x", C=D+1`. There is an internal pointer to identify which is the next data to be read.
-- `RESTORE "storage name", offset`: move the pointer to the `offset` position.
+- `DATA "storage name", x[,y,z, ...]`: comma separated list of expressions. Example: `DATA "my storage", 10, "x", D + 1`. Expressions are evaluated during the line execution not when the storage is read.
+- `READ "storage name", var[, var, ...]`: to read a storage, Example: `READ "my storage", A, B, C` to read the storage of the previous example, result: `A=10, B="x", C=D+1`. There is an internal pointer to identify which is the next data to be read.
+- `RESTORE "storage name"[, offset]`: move the pointer to the `offset` position. Defaults to 0.
 
 ## File management
 

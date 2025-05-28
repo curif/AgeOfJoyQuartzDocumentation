@@ -115,7 +115,7 @@ It's possible to select cores: [[Cores]]
 - File management AGEBasic functions: `GetFiles()` and `CombinePath()`
 	- Path functions: `ConfigPath()`,  `AGEBasicPath()`, `CabinetsDBPath()`, `CabinetsPath()` and `RootPath()`
 - New introspection function `type(var)`
-- Light configuration: `GetLigths()`, `GetLightIntensity()`, `SetLightIntensity()` and `SetLightColor()`
+- Light configuration:  `GetGlobalLightIntensity()`, `SetGlobalLightIntensity()` and `SetGlobalLightColor()`
 - Release candidate 4:
 	- Functions to change the volume of the sound globally: `AudioAmbienceGetVolume()`, `AudioGameGetVolume()`, `AudioAmbienceSetVolume()` and `AudioGameSetVolume()`.
 	- New AGEBasic functions to query files in the file system. To access the most common paths in the game (like the configuration path, cabinet's path, etc.) They are useful in AGEBasic programs.

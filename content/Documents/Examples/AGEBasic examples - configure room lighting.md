@@ -1,106 +1,42 @@
+To configure the lighting for a specific room using AGEBasic, you need to designate a program to run when that room is loaded. For instance, to set a program for "room001", you would modify the `configuration/room001.yaml` file.
 
-#agebasic #examples 
-# Configure room lighting
+Read [[AGE configuration using files#Files types]]
+### Example `room001.yaml` Configuration
 
-You can configure lights color and intensity. 
+YAML
 
-Using `GetLights()` you can get all the lights on the active rooms in a string with the structure: `"<light name>|<ligth name>|..."`. Where the light name have the format `"<room>:<lightname>"`.
-
-Read more in the [[AGEBasic programing]] manual, light section.
-## Show actual room lights
-
-```vb
-10 REM List Lights
-15 CLS
-20 LET lights = GetLights()
-30 LET count = CountMembers(lights, "|")
-40 PRINT 0, 0, "Room ID"
-50 PRINT 10, 0, "Light Name"
-60 PRINT 30, 0, "Intensity"
-
-70 FOR i = 0 TO count - 1
-80   LET lightInfo = GetMember(lights, i, "|")
-90   LET roomID = GetMember(lightInfo, 0, ":")
-100  LET lightName = GetMember(lightInfo, 1, ":")
-110  LET intensity = GetLightIntensity(lightInfo)
-
-120  PRINT 0, i + 2, roomID
-130  PRINT 10, i + 2, lightName
-140  PRINT 30, i + 2, intensity
-150 NEXT i
-
-160 SHOW
-
-10010 print 0, 24, "PRESS B to end", 1
-10050 IF ControlActive("JOYPAD_B") THEN END
-10060 goto 10050
+```yaml
+agebasic:
+  after-load: changelights.bas
+  active: true
+  debug: false
 ```
 
-#### Result
+In this configuration:
 
-![[Pasted image 20240105104436.png]]
+- `after-load`: Specifies the AGEBasic program (`changelights.bas`) to be executed immediately after "room001" is loaded.
+- `active`: Indicates whether AGEBasic programs are enabled for this room.
+- `debug`: Sets the debugging mode for AGEBasic execution in this room.
 
-## Change lights intensity
+### `changelights.bas` Examples
 
-This code increase the lights intensity in a 30%. Be careful, the results couldn't be as expected because the way Unity manage the illumination. 
+Below are examples of AGEBasic programs that can be used to manipulate the global lighting when a room is loaded:
 
-```vb
-10 REM Increase Light Intensity
-20 LET lights = GetLights()
-30 LET count = CountMembers(lights, "|")
+**Example 1: Setting a red and luminous ambient light.**
 
-40 FOR i = 0 TO count - 1
-50   LET lightInfo = GetMember(lights, i, "|")
-60   LET intensity = GetLightIntensity(lightInfo)
-
-70   REM Increase intensity by 30%
-80   LET newIntensity = intensity + (intensity * 0.3)
-
-90   REM Ensure the intensity doesn't exceed 10 (maximum intensity)
-100  IF newIntensity > 10 THEN LET newIntensity = 10
-
-110  REM Set the new intensity
-120  call SetLightIntensity(lightInfo, newIntensity)
-130 NEXT i
-
-140 SHOW
-150 END
-
-```
-
-## Change light color
-
-This program changes all the lights to blue.
-
-![[Pasted image 20240109090047.png]]
 
 ```vb
-10  CALL DebugMode(1) 'activate the debug mode
-15  CLS
-
-20  LET lights = GetLights()
-30  REM Check if lights are present
-40  IF LEN(lights) > 0 THEN GOTO 100
-
-50  REM No lights available, end program
-60  PRINT 0, 0, "No lights in the room", 0
-70  END
-
-80  REM Lights are present, proceed to change color
-100 LET numLights = CountMembers(lights, "|")
-110 FOR i = 0 TO numLights - 1
-120     LET light = GetMember(lights, i, "|")
-140     IF NOT(SetLightColor(light, 0, 0, 1)) THEN GOTO 180
-150 NEXT i
-
-160 PRINT 0, 23, "Lights changed to blue", 0
-170 GOTO 10010
-
-180 PRINT 0, 23, "ERROR setting light color #" + STR(i) + " " + light
-190 goto 10010
-
-10010 PRINT 0, 24, "PRESS B to end", 1
-10050 IF ControlActive("JOYPAD_B") THEN END
-10060 GOTO 10050
-
+10 CALL SetGlobalLight(255, 0, 0, 1.5)
 ```
+
+This simple program directly calls the `SetGlobalLight` function to set the red color component to its maximum (255), the green and blue components to zero, and the light intensity to 1.5, resulting in a bright red ambient light.
+
+**Example 2: Increasing the intensity of the current global light.**
+
+```vb
+10 LET s = GetGlobalLight("|")
+20 LET r, g, b = GetMember(s, 0, "|"), GetMember(s, 1, "|"), GetMember(s, 2, "|")
+30 CALL SetGlobalLight(VAL(r), VAL(g), VAL(b), 2)
+```
+
+This program first retrieves the current global light configuration as a string using `GetGlobalLight("|")`, where "|" acts as the separator. Then, it extracts the red, green, and blue color components using the `GetMember` function, parsing the string based on the "|" delimiter. Finally, it uses the `SetGlobalLight` function to apply the same color values but increases the intensity to 2, effectively "turning on" or brightening the existing light color.

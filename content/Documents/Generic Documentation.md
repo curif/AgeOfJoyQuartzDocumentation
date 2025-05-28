@@ -22,7 +22,6 @@ Cabinets are an essential part of the experience, you should search for them and
 - [[Cabinet Artist]]s
 - [[CDL the Cabinet Description Language]]
 	- [[YAML]] files
-	- 
 ### About how to configure  AGE of Joy
 
 - [[AGE configuration using files]]

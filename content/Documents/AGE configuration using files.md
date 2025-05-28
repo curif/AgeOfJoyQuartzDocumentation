@@ -49,7 +49,7 @@ At start, only the `configuration.yaml` file exists, it is global and all the ro
 
 Both type of files share the same yaml structure.
 
-## configuration.yaml elements
+# configuration.yaml elements
 
 ```yaml
 npc:
@@ -72,9 +72,15 @@ player:
 cabinet:
   insert-coin-on-startup: true
   screen-glow-intensity: 5
+light:
+  color:
+    r: 0
+    b: 255
+    g: 0
+  intensity: 1.7
 ```
 
-## `npc`
+## `NPC`
 
 Non playing characters configuration.
 
@@ -170,7 +176,7 @@ screen-glow-intensity: 0
 original-textures: false
 ```
 
-# AGEBasic
+## AGEBasic
 
 [[AGEBasic]]  a special version of the BASIC programming language. To learn how to program in AGEBasic read the  [[AGEBasic programing]] document.
 
@@ -204,7 +210,7 @@ Or if the program runs without any problem:
 
 ---
 
-## Merging Example
+# Merging Example
 
 In this example, you disabled all NPCs except those in room001.
 
@@ -226,4 +232,29 @@ audio:
 npc:
   status: enabled
 ```
+
+## Lights Configuration
+
+You can customize the lighting in your setup either **globally** (affecting all rooms) or **locally** (specific to individual rooms). Local configurations, defined within each room's YAML file, will override global settings.
+
+Both color and intensity of the lights can be adjusted.
+
+Light color is specified using **Red (r), Green (g), and Blue (b) values**, each ranging from 0 to 255.
+Light intensity is a decimal value. A value upper 2 or 3 is too intense so you probably want to play in ranges of 0 to 3 and increasing values in 0.1 variations.
+### Example (Local Room Configuration)
+
+To configure the light within a specific room, add a `light` section to that room's YAML file, as shown below:
+
+Example room001.yaml
+
+```yaml
+light:
+  color:
+    r: 0    # Red value (0-255)
+    g: 255  # Green value (0-255)
+    b: 0    # Blue value (0-255)
+  intensity: 1.7 # Light intensity (numerical value)
+```
+
+You can write a similar configuration in your `configuration.yaml` file if you want to set the same colors and intensity for the game in general.
 
