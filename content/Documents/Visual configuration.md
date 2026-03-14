@@ -7,7 +7,7 @@ The visual configuration feature provides players with a convenient and user-fri
 
 
 [[Configuration control cabinet]]
-[[Visual configuration manual]]
+[[Visual configuration documentation]]
 
 
 #v0_4 

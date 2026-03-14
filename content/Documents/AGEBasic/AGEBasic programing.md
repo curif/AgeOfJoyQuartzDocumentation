@@ -13,12 +13,36 @@ With AGEBasic the player can develop it's own functions to run in the simulation
 The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
 ## Variables
 
-- A variable name can contain only letters and numbers  
-- A variable name must start with a letter.
-- A variable name cannot contain special characters (like `_`)
-- Can't be a reserved word (a name of a function or command). You can't name a variable with the same name as a function or command, example musicPath is an invalid name because the MUSICPATH function exists.
+### Understanding Variables: Your Program's Memory Boxes
 
-AGEBasic variables can contain `numbers` (double precision), hexadecimal (preceded by a `&`) and `strings`.`booleans` are not variable type, but anything different than `0` is considered `true`.
+Imagine you're writing a recipe. Instead of always writing "add 2 cups of sugar," you might say "add sugarAmount cups of sugar," and then somewhere else define sugarAmount = 2. If you later decide to use 3 cups, you only change it in one place!
+
+In programming, a **variable** is very similar. It's essentially a **named storage location** in your computer's memory that holds a piece of information, or "data." Think of it like a labeled container or a box where you can store values.
+
+**Why do we use variables?**
+
+- **To store data:** From numbers to text, variables remember information your program needs.    
+- **To make code flexible:** Instead of hardcoding values directly into your commands, you can use variables. If the value changes, you only update the variable, not every instance where it's used.
+- **To improve readability:** Giving meaningful names to your data (playerScore instead of just 100) makes your code much easier to understand.
+    
+#### Naming Your Variables: The Rules of the Label
+
+Just like you give a box a clear label so you know what's inside, variables need names. These names have specific rules to follow:
+
+- **Allowed Characters:** A variable name can contain only **letters** (A-Z, a-z), **numbers** (0-9), and the **underscore character** (`_`).
+- **Starting Character:** A variable name **must start with a letter**. You can't start a variable name with a number or an underscore.
+- **No Special Characters:** You cannot use special characters (like $, @, %, ! etc.) in a variable name.
+- **No Reserved Words:** You can't name a variable with the same name as a function or command that already exists in the programming language. These are called "reserved words." For example, in AGEBasic, `musicPath` would be an invalid variable name because the MUSICPATH function already exists.
+#### Types of Data Variables Can Hold (in AGEBasic)
+
+Variables aren't just empty boxes; they're designed to hold different types of information. In AGEBasic, your variables can contain:
+
+- **Numbers:** These are stored as **double precision** values, meaning they can hold both whole numbers (integers) and numbers with decimal points very accurately. You can also represent numbers in **hexadecimal** format by preceding them with an & (e.g., &FF represents 255).
+- **Strings:** These are sequences of text or characters, like a name, a sentence, or a file path.
+- **Arrays:** These are special variables that can hold a collection of multiple values under a single name, like a list of numbers or a list of names.
+
+> [!note] 
+> **Booleans:** While "booleans" (which represent true or false values) aren't a distinct variable type in AGEBasic, the language interprets any numerical value **different from 0 as true**, and the number **0 itself as false**. A string variable not empty (`<>""`) is evaluated as `true`. A non empty array is also evaluated as `true`.
 
 Examples:
 
@@ -29,14 +53,15 @@ Examples:
 20 LET A = 10.10 'a number
 30 LET A = "AGE of Joy" 'a string
 40 LET A = "10" 'a string
-50 LET A = 0 'an hex number
+50 LET A = &0 'an hex number
+60 LET MY_VARIABLE = &FF
 ```
 
 Incorrect:
 
 ```vb
-10 LET MY_VARIABLE = 10
-20 LET TEXT = "text"
+10 LET MYVARIABLE$ = 10
+20 LET  = "text"
 30 A = 10
 ```
 # Sentences
@@ -58,6 +83,25 @@ One line number could contain two sentences using `:` as separator.
 10 LET a = 10 : REM value of a is 10
 20 PRINTLN a : PRINTLN "Hello world"
 ```
+## Multiline
+
+It is possible to separate lines for clarity:
+
+```vb
+100 IF A = 1
+    THEN LET A = 2
+    ELSE LET A = 3 
+```
+
+> [!warning]
+> This sentence will create an error because every new sentence starts with a number.
+
+```vb
+100 LET A = 
+        200
+```
+
+
 ## Commands
 
 Each line must begin with a line number and a command. 
@@ -77,12 +121,14 @@ Each line must begin with a line number and a command.
 	* The end value is computed during the `NEXT` sentence execution.
 	* The `NEXT` sentence evaluates if the cycle should repeat. At least one cycle is executed always.
 * `SLEEP` to sleep a number of seconds, doesn't work in programs executed in the control cabinet (has no sense). E.g.: `SLEEP 1` (sleeps the program during a second). `SLEEP 0.5` sleeps for half of a second. Values must be greater than `0.01`.
+* Graphic sentences (DDRAW, DPSET, etc.)
+* `RUN "path/to/my/myprogram.bas" [LINE 30]`: to run a program (optionally starting at specified line #). The main program will continue after the called program finish.
 
 ## Operators
 
 - Adding, subtraction, etc.: `+`, `-`,`*`,`/`
 - Comparison: `=`,`!=`,`<>`,`<`,`>`,`<=`,`>=`
-- Logical: and: `&&` or: `||`
+- Logical: **and**: `&&` **or**: `||`
 
 ## Arrays
 ### 1. What is an Array?
@@ -233,6 +279,19 @@ Unlike some programming languages, AGEBasic arrays are **flexible in type**. Thi
 50 IF TYPE(mixedData[1]) = "STRING" THEN PRINTLN "Element 1 is a string."
 ```
 
+
+### 7. Sort an array
+
+*   `SORT` to sort elements within an array: `SORT(array_variable, [descending_flag])`
+    *   `array_variable`: The array to be sorted. Must be a `BasicValue` of type `Array`.
+    *   `descending_flag`: Optional `BasicValue` of type `Number` (or convertible to boolean).
+        *   `0` (or `false`): Sorts in ascending order (default).
+        *   Non-`0` (e.g., `1` or `true`): Sorts in descending order.
+    *   **Returns:** The `BasicValue` array after it has been sorted in-place.
+    *   **Behavior:**
+        *   Performs an in-place sort; the original `array_variable` is modified.
+        *   Elements are compared using `BasicValue`'s intrinsic comparison rules for numbers and strings (lexicographical).
+        *   Throws `InvalidOperationException` if array elements are `BasicValueType.Array` or `BasicValueType.empty`, or if mixed types cannot be implicitly converted for comparison (e.g., an unparseable string with a number).
 ### Short Example of Array Use
 
 Here's a concise AGEBasic program demonstrating a one-dimensional array to store and print a list of scores.
@@ -249,8 +308,8 @@ Here's a concise AGEBasic program demonstrating a one-dimensional array to store
 80 LET highScores[4] = 1200
 
 90 PRINTLN "--- High Scores ---", 0, 0
+95 LET highScores = SORT(highScores, 1) : REM descending
 100 FOR i = 0 TO 4
-110  LOCATE 0, GETY() + 1 ' Move cursor to next line
 120  PRINTLN "Score " + STR(i+1) + ": " + STR(highScores[i]), 0, 0
 130 NEXT i
 140 SHOW
@@ -259,9 +318,7 @@ Here's a concise AGEBasic program demonstrating a one-dimensional array to store
 ```
 
 **Explanation:**
-This program first clears the screen. It then declares a one-dimensional array `highScores` capable of holding 5 numeric elements. It populates this array with example scores. A `FOR` loop then iterates from index 0 to 4 (the valid range for a 5-element array), printing each score along with its position. The `LOCATE` and `GETY()` functions ensure each score appears on a new line. Finally, `SHOW` updates the screen and the program pauses before ending.
-
-We hope this comprehensive overview of arrays in AGEBasic helps you leverage this powerful new feature in your programs! Happy coding!
+This program first clears the screen. It then declares a one-dimensional array `highScores` capable of holding 5 numeric elements. It populates this array with example scores. A `FOR` loop then iterates from index 0 to 4 (the valid range for a 5-element array), printing each score along with its position.  Finally, `SHOW` updates the screen and the program pauses before ending.
 
 ## General functions
 
@@ -290,7 +347,10 @@ AGEBasic Functions can receive parameters. Parameters must be enclosed.
 
 #### List simulation
 
-AGEBasic can't handle arrays or lists, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0`, `bbb` is the one in the position `1` and the separator is `:`.
+AGEBasic versions (previous to `0.5.0 RC15`) can't handle arrays or lists, but you can simulate them using character separated strings like `aaa:bbb` for example. `aaa` is the member in the position `0`, `bbb` is the one in the position `1` and the separator is `:`.
+
+> [!warning]
+> These functions are maintained for retro compatibility (programs before `0.5.0 RC15`. New programs should use `ARRAY`s
 
 - `GetMember(string, member #, separator)`: to get a slice of a string. Can be used to emulate lists. Example to get the first member of a list: `GetMember("AGE:of:Joy", 0, ":") = "AGE"`
 - `CountMembers(string, separator)` to count how many members a list have: `CountMembers("AGE:of:Joy", ":") = 3`
@@ -301,7 +361,7 @@ AGEBasic can't handle arrays or lists, but you can simulate them using character
 ### Introspection
 
 - `exists(string)`: to know if a variable is defined, returns 1 or 0 (true or false). Example: `if (exists("myvariable")) then goto 100` jumps to the line # 100 if the variable `"myvariable"` was previously assigned.
-- `type(var)`: returns `"STRING"` if the variable is a string or `"NUMBER"` if is a number. Example `if (type(a) == "STRING") the goto 180` jumps to the line # 180 if the variable a is previously assigned with a string like `let a = "test"`
+- `type(var)`: returns `"STRING"` if the variable is a string or `"NUMBER"` if is a number or "ARRAY". Example `if (type(a) == "STRING") the goto 180` jumps to the line # 180 if the variable a is previously assigned with a string like `let a = "test"`
 
 ## Screen
 
@@ -366,63 +426,70 @@ AGEBasic can't handle arrays or lists, but you can simulate them using character
 	* msx
 	* msx_mono
 	* to7
+* `GETCOLOR(string)`: returns an `ARRAY` with (r, g, b). E.g. `LET A=GETCOLOR("blue") : PRINTLN A[3]` must print `255`.
 - `SCREENWIDTH()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
 - `SCREENHEIGHT()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
 - `SCREENSIZE()` : returns an array with two positions: Width and Height.
+- Sprites: sprites are graphics game components that can overlap one each other. Read the  [[Working with Sprites in AGEBasic]]
 ### Drawing functions
 
 All of them starts with`D`.
+Here is a markdown manual for the provided BASIC graphics commands:
 
--   `DCHARPIXELX(CHAR_X, CHAR_Y)`: Returns the screen pixel X-coordinate of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
-    *   `CHAR_X` (Number): The character column, from `0` (left) to `SCREENWIDTH() - 1`.
-    *   `CHAR_Y` (Number): The character row, from `0` (top) to `SCREENHEIGHT() - 1`.
-    *   Returns a Number. If character coordinates are invalid or out of bounds, may return `-1`.
--   `DCHARPIXELY(CHAR_X, CHAR_Y)`: Returns the screen pixel Y-coordinate of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
-    *   `CHAR_X` (Number): The character column, from `0` (left) to `SCREENWIDTH() - 1`.
-    *   `CHAR_Y` (Number): The character row, from `0` (top) to `SCREENHEIGHT() - 1`.
-    *   Returns a Number. If character coordinates are invalid or out of bounds, may return `-1`.
--   `DPSET PX, PY, COLOR_SPEC [, DRAW_FLAG]`: Draws a single pixel at the specified pixel coordinates `(PX, PY)` with the given color.
-    *   `PX` (Number): The horizontal pixel coordinate (X-axis). `0` is typically the leftmost pixel.
-    *   `PY` (Number): The vertical pixel coordinate (Y-axis). `0` is typically the bottommost pixel in Unity's texture coordinate system (but can vary based on screen setup).
-    *   `COLOR_SPEC` (Color): The color for the pixel.
-        *   Can be a string color name (e.g., `"red"`, `"white"`).
-        *   Can be three numbers representing R, G, B values (e.g., `255,0,0` for red).
-    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately after setting the pixel. Set to `0` (or `FALSE`) to defer the screen update (useful for batching multiple `PSET` or other drawing calls before a single `SHOW`.
--   `DLINE PX1, PY1, PX2, PY2, COLOR_SPEC [, DRAW_FLAG]`: Draws a line from pixel coordinates `(PX1, PY1)` to `(PX2, PY2)` using the specified color.
-    *   `PX1` (Number): The horizontal pixel coordinate (X-axis) of the line's starting point.
-    *   `PY1` (Number): The vertical pixel coordinate (Y-axis) of the line's starting point.
-    *   `PX2` (Number): The horizontal pixel coordinate (X-axis) of the line's ending point.
-    *   `PY2` (Number): The vertical pixel coordinate (Y-axis) of the line's ending point.
-    *   `COLOR_SPEC` (Color): The color for the line.
-        *   Can be a string color name (e.g., `"blue"`, `"yellow"`).
-        *   Can be three numbers representing R, G, B values (e.g., `0,255,0` for green).
-    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen is updated immediately after drawing the line. Set to `0` (or `FALSE`) to defer the screen update.
--  `DBOX PX, PY, PWIDTH, PHEIGHT, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws a rectangle (box).
-    *   `PX, PY` (Numbers): Pixel coordinates of the top-left corner.
-    *   `PWIDTH, PHEIGHT` (Numbers): Width and height of the box in pixels. Must be > 0.
-    *   `BORDER_COLOR_SPEC` (Color): Color for the box's border.
-        *   Can be a string color name or 3 numbers (R,G,B).
-    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the box is filled.
-    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the box if `FILL_FLAG` is true.
-        *   Can be a string color name or 3 numbers (R,G,B).
-        *   If `FILL_FLAG` is true and `FILL_COLOR_SPEC` is omitted, the fill color may default to the `BORDER_COLOR_SPEC` (behavior defined by `ScreenGenerator.DrawBox`).
-    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
--   `DCIRCLE PCX, PCY, PRADIUS, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws a circle.
-    *   `PCX, PCY` (Numbers): Pixel coordinates of the circle's center.
-    *   `PRADIUS` (Number): Radius of the circle in pixels. Must be > 0.
-    *   `BORDER_COLOR_SPEC` (Color): Color for the circle's border.
-    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the circle is filled.
-    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the circle if `FILL_FLAG` is true.
-    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
--   `DOVAL PCX, PCY, PRADIUSX, PRADIUSY, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]]`: Draws an ellipse (oval).
-    *   `PCX, PCY` (Numbers): Pixel coordinates of the oval's center.
-    *   `PRADIUSX` (Number): Horizontal radius (half-width) of the oval in pixels. Must be > 0.
-    *   `PRADIUSY` (Number): Vertical radius (half-height) of the oval in pixels. Must be > 0.
-    *   `BORDER_COLOR_SPEC` (Color): Color for the oval's border.
-    *   `FILL_FLAG` (Boolean, optional, default `0` or `FALSE`): If `1` (or `TRUE`), the oval is filled.
-    *   `FILL_COLOR_SPEC` (Color, optional): Color to fill the oval if `FILL_FLAG` is true.
-    *   `DRAW_FLAG` (Boolean, optional, default `1` or `TRUE`): If `1` (or `TRUE`), the screen updates immediately.
-*  `DSCREENWIDTH()` : returns the screen width in pixels. First is `0` last is `DSCREENWIDTH() - 1` 
+---
+
+## Graphics Commands
+
+This section describes the graphics commands, which allow you to draw various shapes and retrieve screen information.
+
+-   `DCHARPIXELX(CHAR_X, CHAR_Y)`: Returns the screen pixel X-coordinate of the top-left corner of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
+    *   `CHAR_X` (Number): The character column. Typically ranges from `0` (leftmost) to `SCREENWIDTH() - 1` (rightmost character column).
+    *   `CHAR_Y` (Number): The character row. Typically ranges from `0` (topmost) to `SCREENHEIGHT() - 1` (bottommost character row).
+    *   Returns a `Number`. If character coordinates are invalid or out of bounds, may return `-1`.
+-   `DCHARPIXELY(CHAR_X, CHAR_Y)`: Returns the screen pixel Y-coordinate of the top-left corner of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
+    *   `CHAR_X` (Number): The character column. Typically ranges from `0` (leftmost) to `SCREENWIDTH() - 1` (rightmost character column).
+    *   `CHAR_Y` (Number): The character row. Typically ranges from `0` (topmost) to `SCREENHEIGHT() - 1` (bottommost character row).
+    *   Returns a `Number`. If character coordinates are invalid or out of bounds, may return `-1`.
+-   `DCHARPIXEL(CHAR_X, CHAR_Y)`: Returns an array containing the screen pixel X and Y coordinates `[PX, PY]` of the top-left corner of the character cell specified by `CHAR_X` (column) and `CHAR_Y` (row).
+    *   `CHAR_X` (Number): The character column. Typically ranges from `0` (leftmost) to `SCREENWIDTH() - 1` (rightmost character column).
+    *   `CHAR_Y` (Number): The character row. Typically ranges from `0` (topmost) to `SCREENHEIGHT() - 1` (bottommost character row).
+    *   Returns an `Array of Numbers` (`[PX, PY]`). If character coordinates are invalid or out of bounds, may return `[-1, -1]`.
+-   `DPSET(PX, PY, COLOR_SPEC [, DRAW_FLAG])`: Draws a single pixel at the specified `(PX, PY)` pixel coordinates on the screen.
+    *   `PX` (Number): The X-coordinate of the pixel.
+    *   `PY` (Number): The Y-coordinate of the pixel.
+    *   `COLOR_SPEC` (Color): The color to draw the pixel. This can be:
+        *   A `String` representing a predefined color name (e.g., `"RED"`, `"BLUE"`).
+        *   A `Number` representing an RGB color value (e.g., `&HFFFFFF` for white).
+        *   An `Array of Numbers` `[R, G, B]` or `[R, G, B, A]`, where each component is an integer from `0` to `255`.
+    *   `DRAW_FLAG` (Boolean, Optional): If `TRUE` (default), the screen is immediately updated and redrawn after the pixel is drawn. If `FALSE`, the pixel is drawn to an internal buffer and not immediately displayed, requiring a subsequent `DRAWSCREEN` (or similar update) command to show changes.
+-   `DLINE(PXY1, PXY2, COLOR_SPEC [, DRAW_FLAG])`: Draws a line between two specified pixel coordinate pairs.
+    *   `PXY1` (Array of Numbers): The starting pixel coordinates, specified as `[PX1, PY1]`.
+    *   `PXY2` (Array of Numbers): The ending pixel coordinates, specified as `[PX2, PY2]`.
+    *   `COLOR_SPEC` (Color): The color of the line. See `DPSET` for `COLOR_SPEC` format.
+    *   `DRAW_FLAG` (Boolean, Optional): Controls immediate screen redraw. See `DPSET` for details.
+-   `DOVAL(CORNER, PRADIUSX, PRADIUSY, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]])`: Draws an ellipse (oval).
+    *   `CORNER` (Array of Numbers): The top-left pixel coordinates `[PX, PY]` of the bounding box that encloses the oval.
+    *   `PRADIUSX` (Number): The horizontal radius of the oval. Must be a positive number.
+    *   `PRADIUSY` (Number): The vertical radius of the oval. Must be a positive number.
+    *   `BORDER_COLOR_SPEC` (Color): The color of the oval's border. See `DPSET` for `COLOR_SPEC` format.
+    *   `FILL_FLAG` (Boolean, Optional): If `TRUE`, the oval will be filled. Defaults to `FALSE` (only border drawn).
+    *   `FILL_COLOR_SPEC` (Color, Optional): The color to fill the oval with. Only applicable if `FILL_FLAG` is `TRUE`. If omitted, defaults to `BORDER_COLOR_SPEC`. See `DPSET` for `COLOR_SPEC` format.
+    *   `DRAW_FLAG` (Boolean, Optional): Controls immediate screen redraw. See `DPSET` for details.
+-   `DCIRCLE(CENTER, PRADIUS, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]])`: Draws a circle.
+    *   `CENTER` (Array of Numbers): The pixel coordinates `[PX, PY]` of the center of the circle.
+    *   `PRADIUS` (Number): The radius of the circle. Must be a positive number.
+    *   `BORDER_COLOR_SPEC` (Color): The color of the circle's border. See `DPSET` for `COLOR_SPEC` format.
+    *   `FILL_FLAG` (Boolean, Optional): If `TRUE`, the circle will be filled. Defaults to `FALSE` (only border drawn).
+    *   `FILL_COLOR_SPEC` (Color, Optional): The color to fill the circle with. Only applicable if `FILL_FLAG` is `TRUE`. If omitted, defaults to `BORDER_COLOR_SPEC`. See `DPSET` for `COLOR_SPEC` format.
+    *   `DRAW_FLAG` (Boolean, Optional): Controls immediate screen redraw. See `DPSET` for details.
+-   `DBOX(CORNER, SIZE, BORDER_COLOR_SPEC [, FILL_FLAG [, FILL_COLOR_SPEC [, DRAW_FLAG]]])`: Draws a rectangle (box).
+    *   `CORNER` (Array of Numbers): The top-left pixel coordinates `[PX, PY]` of the rectangle.
+    *   `SIZE` (Array of Numbers): The width and height of the rectangle, specified as `[WIDTH, HEIGHT]`.
+    *   `BORDER_COLOR_SPEC` (Color): The color of the rectangle's border. See `DPSET` for `COLOR_SPEC` format.
+    *   `FILL_FLAG` (Boolean, Optional): If `TRUE`, the rectangle will be filled. Defaults to `FALSE` (only border drawn).
+    *   `FILL_COLOR_SPEC` (Color, Optional): The color to fill the rectangle with. Only applicable if `FILL_FLAG` is `TRUE`. If omitted, defaults to `BORDER_COLOR_SPEC`. See `DPSET` for `COLOR_SPEC` format.
+    *   `DRAW_FLAG` (Boolean, Optional): Controls immediate screen redraw. See `DPSET` for details.
+* `DSCREENWIDTH()` : returns the screen width in pixels. First is `0` last is `DSCREENWIDTH() - 1` 
 - `DSCREENHEIGHT()` : returns the Height in pixels. First is `0` last is `DSCREENHEIGHT() - 1` 
 - `DSCREENSIZE()` : returns an array with two positions: Width and Height in pixels.
 ### Screen `SHOW` Command
@@ -505,14 +572,14 @@ The program fail when you name a part incorrectly or when the index is incorrect
 Examples:
 
 ```vb file="onload.bas"
-10 let base = CabPartsPosition("joystick-base")
-20 lets baseX, baseZ, baseH = CabPartsGetCoordinate(base, "X"), CabPartsGetCoordinate(base, "Z"), CabPartsGetCoordinate(base, "H")
-30 let transp = CabPartsGetTransparency("bezel")
-40 call CabPartsSetTransparency("bezel", transp + 10)
+10 LET base = CABPARTSPOSITION("joystick-base")
+20 LET baseX, baseZ, baseH = CABPARTSGETCOORDINATE(base, "X"), CABPARTSGETCOORDINATE(base, "Z"), CABPARTSGETCOORDINATE(base, "H")
+30 LET transp = CABPARTSGETTRANSPARENCY("bezel")
+40 CALL CABPARTSSETTRANSPARENCY("bezel", transp + 10)
 
-70 call CabPartsEmission("joystick-button", 1)
-80 call CabPartsSetEmissionColor("joystick-button", 190, 20, 20)
-90 call CabPartsSetColor("left", 200, 0, 0)
+70 CALL CABPARTSEMISSION("joystick-button", 1)
+80 CALL CABPARTSSETEMISSIONCOLOR("joystick-button", 190, 20, 20)
+90 CALL CABPARTSSETCOLOR("left", 200, 0, 0)
 ```
 
 ### Audio parts in cabinets
@@ -689,11 +756,14 @@ You could storage information in different "storage" that lives during the progr
 
 # CPU control
 
-You can increase the CPU load, but take in consideration that it could affect the overall game performance. The use of CPU is administered internally by using delays in the program execution (interline execution).
-- `GetCPU()`: obtain the actual CPU percentage used for program executions. 
-- `SetCPU(percentage)` to set the maximum CPU percentage. `100` is the max value.
+You can increase the CPU load, but take in consideration that it could affect the overall game performance. You can control how many lines of BASIC code the interpreter attempts to execute in a single frame.
 
-The default CPU percentage is `76%`
+- `GetCPU()`: obtain the actual CPU multiplier used for program executions. 
+- `SetCPU(multiplier)`: change multiplier,  it's positive number representing lines-per-frame.
+
+The default CPU value is `1`.
+
+Read [[Optimizing Performance with SETCPU in AGEBasic ]]
 
 # Debug mode
 

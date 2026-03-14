@@ -37,4 +37,4 @@ The game perform its initialization process when the emulation starts, this is a
 ## Advanced
 
 [[Controller configuration]]
-[[Visual configuration manual#Setup Controllers]]
+[[Visual configuration documentation#Setup Controllers]]

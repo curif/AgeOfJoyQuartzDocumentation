@@ -2,6 +2,6 @@ The concept revolves around the extraordinary ability to move instantly from one
 
 They can effortlessly transport themselves from one room to another, bypassing obstacles, overcoming challenges, and reaching their desired destinations in an instant.
 
-[[Visual configuration manual#Teleportation]]
+[[Visual configuration documentation#Teleportation]]
 
 #v0_4 

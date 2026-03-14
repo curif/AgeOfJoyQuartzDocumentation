@@ -6,7 +6,7 @@
 To configure the player height:
 
 - Go to any cabinet controller 
-- Change from *room configuration* to *global configuration* (refer to [[Visual configuration manual]])
+- Change from *room configuration* to *global configuration* (refer to [[Visual configuration documentation]])
 - Select `PLAYER` from the main menu.
 - Change the player type. The player type refers to the height of the player, "pac-man" is the shortest and "NBA Jam" is the tallest.
 - Save. The height should change almost immediately, if it not suit you, change and save it again.

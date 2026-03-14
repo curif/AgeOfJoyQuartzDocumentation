@@ -104,6 +104,8 @@ It's possible to select cores: [[Cores]]
 	- Rescale cabinet images to power of two.
 	- Adjusted image cache to protect memory.
 		- Enforcing cache clean on low memory alert
+- Release candidate 16:
+	- Cached and compressed cabinet textures. Flag in config.
 ### AGEBasic change log
 
 [[AGEBasic]] is the integrated programing language for [[Age of Joy]]. For more information read the [[AGEBasic programing]] documentation and [[AGEBasic Examples]]

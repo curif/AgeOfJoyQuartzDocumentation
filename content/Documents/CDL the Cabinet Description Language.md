@@ -968,7 +968,8 @@ agebasic:
   events:
     - event: on-always
       program: move.bas
-      ```
+```
+
 This document details the `agebasic` configuration section within your arcade cabinet, controlling AGEBasic program behavior.
 
 ### General Settings:
@@ -988,7 +989,7 @@ This document details the `agebasic` configuration section within your arcade ca
     * Filename of the program that runs **once** after the cabinet fully loads (startup).
 * **`after-leave` (string):**
     * Filename of the program that runs **once** when the player leaves the game.
-* events: read the [[AGEBasic event system]] for a full description.
+* events: read the [[AGEBasic cabinet event system]] for a full description.
 
 ### System skin
 
@@ -1012,11 +1013,11 @@ At the moment these are the options:
 
 Read this document to fully understand how AGEBasic programs works in the cabinet's environment: [[AGEBasic in cabinets]].
 
-## Debug
+### Debug
 
 It easy to fail the task of writing a `yaml` file, It's common to introduce syntax or semantic error. [[Cabinet Artist]]s should analyze debug information about the cabinet they are making.
 
-### Activate the debug mode
+#### Activate the debug mode
 
 Just set to `true` the debug-mode key in the `description.yaml`:
 
@@ -1025,6 +1026,45 @@ debug-mode: true
 ```
 
 Recommended information in the [[CDL Debug mode]] page.
+
+### AGEBasic Performance & Safety Tuning
+
+To ensure optimal performance and framerate stability—especially on standalone VR hardware like Meta Quest—AGEBasic allows you to tune how scripts execute on a per-cabinet basis. 
+
+These settings are defined inside the `agebasic:` block of your `description.yaml` file.
+
+#### Configuration Parameters
+
+| Parameter           | YAML Key                     | Default     | Description                                                                                                                                                             |
+| :------------------ | :--------------------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Execution Limit** | `max-execution-lines`        | `5,000,000` | The total number of lines a program can run before it is forcibly stopped. This is a safety fail-safe to kill accidental infinite loops.                                |
+| **Execution Speed** | `max-lines-per-frame`        | `5`         | Controls how many lines of BASIC code run in a single Unity frame. Increasing this makes your scripts faster but consumes more CPU time.                                |
+| **FPS Guard**       | `max-milliseconds-per-frame` | `2.0`       | A strict time budget (in milliseconds). If script execution exceeds this time in a single frame, it will pause and resume in the next frame, protecting the game's FPS. |
+
+#### Example usage in `description.yaml`
+
+```yaml
+# ... other cabinet settings ...
+agebasic:
+  active: true
+  system-skin: "c64"
+  # Performance Tuning
+  max-lines-per-frame: 50           # Run faster than default
+  max-milliseconds-per-frame: 1.5   # Be more aggressive about protecting FPS
+  max-execution-lines: 10000000     # Allow very long running scripts
+  variables:
+    - name: "SCORE"
+      type: "NUMBER"
+      value: "0"
+  after-insert-coin: "start.bas"
+```
+
+#### Best Practices
+
+1.  **Legacy Compatibility:** If you have an older script that uses the interpreter's natural lag for timing (e.g., a slow-moving text animation), leave `max-lines-per-frame` at the default of `5`. Setting it to `1` will exactly mimic the original legacy performance.
+2.  **Heavy Calculations:** If your script performs complex math or string processing, increase `max-lines-per-frame` to `100` or higher. The **FPS Guard** will automatically ensure that your math doesn't cause the VR view to stutter.
+3.  **Infinite Loops:** If your script is designed to run forever (a main game loop), ensure you use the `SLEEP` command occasionally. Even if you don't, the system will now safely background the loop using the time budget, but `SLEEP` is more efficient for the hardware.
+4.  **VR Performance:** On Meta Quest, every millisecond counts. If you notice "micro-stutters" when your script triggers, try lowering the `max-milliseconds-per-frame` to `1.0`.
 
 ## Further reading
 

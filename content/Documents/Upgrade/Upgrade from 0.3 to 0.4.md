@@ -21,7 +21,7 @@ Before to proceed check if the latest version of Age of Joy, specifically versio
 The [[Discord server]] community exceeded 400 cabinets!
 
 * New [[Visual configuration]]:
-	* Follow the [[Visual configuration manual]] to fully understand how it works.
+	* Follow the [[Visual configuration documentation]] to fully understand how it works.
 	* Additionally, the configuration settings that were previously available in the [[AGE configuration using files]]  can now also be accessed and modified through the new Visual configuration too.
 * [[AGEBasic]] to control in-game behavior using the BASIC programming language. You can write your own programs to change the game as you wish. There are examples about how to mix cabinets for example.
 * External controls: The game now supports gamepad and compatible controls. You can connect and use a gamepad, as well as other compatible control devices like Bluetooth controllers. USB controllers have not undergone testing yet; however, they are expected to be compatible and function properly.

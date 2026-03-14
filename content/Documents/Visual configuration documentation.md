@@ -135,6 +135,13 @@ At the end of the screen the system shows the folder where you should upload you
 ![[Pasted image 20230731132539.png]]
 Example of a program running.
 
+# Global Debug Mode
+
+
+![[global debug mode.png]]
+
+Read about how to report bugs and debug mode in [[Global debug mode]].
+
 
 ---
 
