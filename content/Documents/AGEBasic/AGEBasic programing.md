@@ -10,7 +10,7 @@ With AGEBasic the player can develop it's own functions to run in the simulation
 
 ## AGEBasic program storage
 
-The main storage for [[Documents/AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
+The main storage for [[AGEBasic]] programs is `/sdcard/Android/data/com.curif.AgeOfJoy/AGEBasic`. AGEBasic programs must to end with the `.bas` prefix, like `mixcabinets.bas` or `changecontrols.bas`.
 ## Variables
 
 ### Understanding Variables: Your Program's Memory Boxes
@@ -429,8 +429,7 @@ AGEBasic versions (previous to `0.5.0 RC15`) can't handle arrays or lists, but y
 * `GETCOLOR(string)`: returns an `ARRAY` with (r, g, b). E.g. `LET A=GETCOLOR("blue") : PRINTLN A[3]` must print `255`.
 - `SCREENWIDTH()` : returns the screen width in characters. First is `0` last is `ScreenWidth() - 1` 
 - `SCREENHEIGHT()` : returns the Height in lines. First is `0` last is `ScreenHeight() - 1` 
-- `SCREENSIZE()` : returns an array with two positions: Width and Height.
-- Sprites: sprites are graphics game components that can overlap one each other. Read the  [[Working with Sprites in AGEBasic]]
+- `SCREENSIZE()` : returns an array with two positions: Width and Height.]]
 ### Drawing functions
 
 All of them starts with`D`.
@@ -492,6 +491,11 @@ This section describes the graphics commands, which allow you to draw various sh
 * `DSCREENWIDTH()` : returns the screen width in pixels. First is `0` last is `DSCREENWIDTH() - 1` 
 - `DSCREENHEIGHT()` : returns the Height in pixels. First is `0` last is `DSCREENHEIGHT() - 1` 
 - `DSCREENSIZE()` : returns an array with two positions: Width and Height in pixels.
+
+### Sprites
+
+Sprites: sprites are graphics game components that can overlap one each other. Read the  [[Working with Sprites in AGEBasic]]
+
 ### Screen `SHOW` Command
 
 ```vb

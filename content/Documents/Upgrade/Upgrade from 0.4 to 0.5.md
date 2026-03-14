@@ -181,7 +181,7 @@ It's possible to select cores: [[Cores]]
 This version 0.5 comes with many new features, this is a recommendation on what to do to best adapt the cabinets to the new version.
 
 - Follow the [[Cabinet building best practices]] and fulfill the [[CDL best practices checklist]] to improve your cabinet performance.
-- If your cabinet is not identified with the usual standard size, change your `description.yaml` according to [[Cabinet Space Sizes]].
+- If your cabinet is not identified with the usual standard size, change your `description.yaml` according to [[Cabinet space sizes]].
 - If you have hidden parts inside a model, go and delete them, they are no longer required to be there and consume resources.
 - Add `blockers` to block some parts of the cabinet and to free others, so the player can walk through them. [[Player Blockers]]
 - Activate and deactivate the [[CDL Debug mode]] to test if any issue appears on your cabinet so you can fix it.

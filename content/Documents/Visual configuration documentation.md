@@ -113,7 +113,7 @@ Excludes:
 
 ### AGEBasic programs
 
-This section shows how to control the [[Documents/AGEBasic]] programs execution.
+This section shows how to control the [[AGEBasic]] programs execution.
 
 
 ![[ConfigurationAGEBasic.png]]
