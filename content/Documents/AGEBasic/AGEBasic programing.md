@@ -677,32 +677,9 @@ Read about light configuration in [[AGE configuration using files#Lights Configu
 
 [[Age of Joy]] plays two type of sounds: *ambience* (noise in rooms) and *games* sound. The volume of the audio is expressed in `dB`: `0` is normal, `20` as loud max, and -`-80` as silent. These values affect all the rooms and all the games.
 
-To mute a sound set its volume to `-80`, and to unmute it simply set it to the previous volume value.
+A SID (commodore 64 audio files) implementation has been added in version 0.5.0-RC19.
 
-If you write a script for a cabinet (read [[CDL the Cabinet Description Language]]) that changes the volume of a game (for example), remember to change it to its previous value in order to not affect other games.
-## Get/Set Volume
-
-- `AudioAmbienceGetVolume()`, `AudioMusicGetVolume()` and `AudioGameGetVolume()` to get the volume in `dB`.
-- `AudioAmbienceSetVolume(number volume)`, `AudioMusicSetVolume(number volume)` and `AudioGameSetVolume(number volume)` to set the volume, also in `dB`.
-
-## Music
-
-To play music (Jukebox functions). 
-All the audio files (like `mp3` or `ogg`) should be saved in the `/sdcard/Android/data/com.curif.AgeOfJoy/music` folder. To easily get that folder during an AGEBasic program execution use the `MusicPath() `function.
-The programmer should add all the audio files that the player want to ear in a queue, and the play it (the play action is in order)
-### Music functions
-
-- `MusicAdd(audio file path)`: add an audio file to the queue.
-- `MusicExist(audio file path)`: true if the file is in the jukebox queue.
-- `MusicRemove(audio file path)`: remove the file from the jukebox queue. Return `true` if removed.
-- `MusicClear()`: clear the audio queue.
-- `MusicGetList(separator)`: get the list of current audio files in the queue. Returns a simulated list string like `song1.mp3:song2.mp3`. 
-- `MusicAddList(files, separator)`: to add a group of audio files to the queue. Files is a list simulated string like `song1.mp3:song2.mp3`, you can use `FileGet` to get the files. 
-- `MusicLoop(true/false)`: to activate/deactivate the loop function. `MusicLoopStatus()` to query the music loop status.
-- `MusicNext()` and `MusicPrevious()` to jump to the next or previous song.
-- `MusicReset()` start playing again the music queue.
-- `MusicCount()` count of files in the music queue.
-
+Read [[AGEBasic Audio Reference]]
 # Player
 
 It's possible to change the position of the player in the [[3D space]]:

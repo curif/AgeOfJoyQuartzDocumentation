@@ -163,6 +163,7 @@ It's possible to select cores: [[Cores]]
 	- `OR()` and `AND()` supports more than two parameters.
 - Release candidate 16:
 	- Better texture cache and memory administration.
+- Release candidate 19: new SID audio implementation, read [[AGEBasic Audio Reference]]
 
 #### Bug fixes
 

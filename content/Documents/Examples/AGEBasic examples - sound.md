@@ -1,4 +1,10 @@
 #agebasic #examples 
+
+
+# Audio documentation
+
+[[AGEBasic Audio Reference]]
+
 ## Audio test example
 
 ```vb
