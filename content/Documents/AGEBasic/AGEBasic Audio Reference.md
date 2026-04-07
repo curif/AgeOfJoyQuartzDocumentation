@@ -234,3 +234,10 @@ When mixing multiple SIDs, reduce individual volumes to avoid clipping:
 | An AGEBasic game needs short sound effects (explosions, pickups, hits) | **SID Player** (separate named instance, re-trigger with `SIDPLAY`) |
 | You need to duck or mute entire audio categories globally | **Global Audio Mixer** |
 | Background music + chiptune game music at the same time | **Global Music Player** + **SID Player** |
+
+# Sound Creation Guide
+
+How to add sound effects and music to your AGEBasic cabinet, from finding
+ready-made audio to creating it yourself.
+
+[[AGEBasic Sound & FX Guide]]

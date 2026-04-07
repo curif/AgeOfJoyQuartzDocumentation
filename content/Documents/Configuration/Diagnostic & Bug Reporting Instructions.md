@@ -1,4 +1,3 @@
-# ## Diagnostic & Bug Reporting Instructions
 
 How to use the built-in diagnostic utility to report technical issues.
 

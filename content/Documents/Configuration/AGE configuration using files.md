@@ -154,8 +154,8 @@ Global cabinet configuration. This configuration applies to all cabinets across 
 - `insert-coin-on-startup`: Set to `true` to not start the game when you insert the first coin. Useful in games that you want to enjoy the start of the game (presentation activities).
 - `screen-glow-intensity`: set a value from `0` (no glow) to `5` to control the intensity of the CRT screen light. This setting allows the screen's glow to realistically affect the surrounding cabinet parts. 
 - `original-textures`: Controls the texture quality of cabinets.
-	- **`true`**: Retains the original, high-detail cabinet textures. This provides the best visual fidelity but consumes more memory.
-	- **`false`** (Default): Converts textures to a more memory-efficient format, reducing the memory footprint by roughly 30% on your Quest.
+	- **`true`** (Default): Retains the original, high-detail cabinet textures. This provides the best visual fidelity but consumes more memory.
+	- **`false`**: Converts textures to a more memory-efficient format, reducing the memory footprint by roughly 30% on your Quest.
 
 **Memory Management and Potential Black Cabinets:**
 
@@ -167,13 +167,13 @@ The system employs an internal cache to store textures in memory for faster load
 
 **Effect of Changing This Setting:**
 
-Modifying this setting only impacts textures loaded _after_ the change is applied. Textures already present in the cache will remain until the system's memory management decides to remove them. Newly loaded cabinet textures will then adhere to the new `hi-res-textures` setting.
+Modifying this setting only impacts textures loaded _after_ the change is applied. Textures already present in the cache will remain until the system's memory management decides to remove them. Newly loaded cabinet textures will then adhere to the new `original-textures` setting.
 ### Defaults
 
 ```yaml
 insert-coin-on-startup: false
 screen-glow-intensity: 0
-original-textures: false
+original-textures: true
 ```
 
 ## AGEBasic

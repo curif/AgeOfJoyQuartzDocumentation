@@ -18,6 +18,8 @@ Currently, the following events are available:
 - `on-lightgun-exit`: Activated when the light gun doesn't points anymore at a specific cabinet part.
 - `on-collision-start/stay/end`: Triggered when a cabinet part begins colliding with another part, maintain collision or end.
 - `on-touch-start/end`: Activated when the player touches a cabinet part.
+- `on-led-change`: Triggered when an arcade LED signal changes state (on/off). Requires a core that implements the LibRetro LED interface (mame2003-plus). See [[AGEBasic LED interface]].
+- `on-memory-change`: Triggered when a specific byte in emulator memory changes value. Uses MAMEhook-style addresses from Pugsy's cheat XML files. **Experimental — probably not working** with current cores. See the event description below.
 
 > [!important] 
 > - only one program can execute at the same time. The event loop will wait for a program to finish to evaluate the next event.
@@ -219,6 +221,63 @@ In [[AGEBasic]] events:
 - **`on-touch-end`:** This event is triggered when the player stops touching the `wall2` part, executing the `untouchwall2.bas` program.
 
 In this example, when the player begins touching the part, the `touchwall2.bas` program runs, and when the touch ends, the `untouchwall2.bas` program is executed.
+
+## `on-memory-change` ⚠ Experimental
+
+> [!warning] Probably not working
+> This event is implemented but **most likely will not fire** with the currently supported cores (mame2003-plus, mame2010, fbneo). It relies on the LibRetro `SET_MEMORY_MAPS` environment call, which MAME cores do not make. The only core that may support it in some games is fbneo, and this has not been confirmed in production.
+>
+> If you are familiar with **MAMEhook** and want to drive cabinet effects from game memory values, use `on-led-change` instead — it uses the LibRetro LED interface, which mame2003-plus fully implements.
+>
+> This event is safe to declare: if the core does not expose memory maps, it self-disables silently with no error and no CPU cost.
+
+The `on-memory-change` event fires whenever a specific byte in emulator memory changes value. Addresses follow the MAMEhook / Pugsy's Cheats convention (e.g. `maincpu.mb@0x8880`).
+
+### YAML syntax — raw address
+
+```yaml
+agebasic:
+  events:
+    - event: on-memory-change
+      address: 0x8880
+      region: 2
+      var: LIVES
+      program: hooks.bas
+      goto: 1000
+```
+
+### YAML syntax — cheat name (from `cheat.xml`)
+
+```yaml
+agebasic:
+  events:
+    - event: on-memory-change
+      cheat: "Infinite Lives"
+      var: LIVES
+      program: hooks.bas
+      goto: 1000
+```
+
+The cheat name form looks up the address and region from the cabinet's `cheat.xml` file (Pugsy's format), so you don't need to hard-code addresses.
+
+| Field | Description |
+|-------|-------------|
+| `address` | Memory offset to watch (hex or decimal) |
+| `region` | Memory region: `0`=SAVE_RAM, `1`=RTC, `2`=SYSTEM_RAM, `3`=VIDEO_RAM |
+| `cheat` | Cheat description string from the `cheat.xml` file (alternative to address+region) |
+| `var` | AGEBasic variable that receives the new byte value |
+| `program` | AGEBasic file to execute |
+| `goto` | Line number to jump to |
+
+### AGEBasic — `ONMEMORY` function (used with `ONEVENT`)
+
+```vb
+REM Raw address form
+10 ONEVENT ONMEMORY(34944, 2, "LIVES") GOTO 1000
+
+REM Cheat name form (requires cheat.xml)
+20 ONEVENT ONMEMORY("Infinite Lives", "LIVES") GOTO 1000
+```
 
 ---
 

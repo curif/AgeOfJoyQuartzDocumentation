@@ -773,6 +773,12 @@ coinslotgeometry:
 ```
 * `coinslot`: coin slot model to apply: `coin-slot-double` or `coin-slot-small`
 * `coinslotgeometry`: the same `geometry` sub-document than in CRT.
+* `coinslot-sound`: set to `false` to suppress the coin-drop sound for this cabinet (default: `true`). Useful for NES cores where coin-insert acts as the select button and no sound is needed.
+
+```yaml
+coinslot: coin-slot-small
+coinslot-sound: false
+```
 
 ### Insert coin
 
@@ -797,13 +803,28 @@ controllers:
 	  - control: quest-right-trigger
 ```
 
+### Control axis inversion
+
+```yaml
+controllers:
+  invertx: true
+  inverty: false
+```
+
+Flips the analog input axes for the entire cabinet. Applies to thumbstick and mouse/trackball movement (both joystick directions and mouse axes). Useful for games where the default axis direction feels inverted — for example, FPS-style camera control or trackball games where the y-axis is naturally reversed.
+
+- `invertx`: (optional, default `false`) Inverts the horizontal axis.
+- `inverty`: (optional, default `false`) Inverts the vertical axis.
+
+These can be combined with `maps:` in the same `controllers:` block.
+
 ### Control scheme
 
 ```yaml
 control-scheme: 6-buttons
 ```
 
-A cab's `description.yaml` can be enriched with a control-scheme setting. 
+A cab's `description.yaml` can be enriched with a control-scheme setting.
 
 Read the [[Control schemes]] documentation.
 

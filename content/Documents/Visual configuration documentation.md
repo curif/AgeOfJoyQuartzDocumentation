@@ -140,7 +140,7 @@ Example of a program running.
 
 ![[global debug mode.png]]
 
-Read about how to report bugs and debug mode in [[Global debug mode]].
+Read about how to report bugs and debug mode in [[Diagnostic & Bug Reporting Instructions]].
 
 
 ---

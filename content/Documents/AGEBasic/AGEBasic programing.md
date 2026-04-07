@@ -556,6 +556,7 @@ Cabinet's parts are named (see the [[CDL the Cabinet Description Language#Config
 The program fail when you name a part incorrectly or when the index is incorrect. See [[AGEBasic programing#Debug mode]] to learn how to debug your program.
 
 - `CabInsertCoin()`: insert a coin in the cabinet.
+- `CabCoinSlotSound(enabled)`: enable (`1`) or silence (`0`) the coin-drop sound at runtime. Useful for NES cores where coin-insert acts as the select button and no sound is needed. Example: `CALL CabCoinSlotSound(0)` to silence, `CALL CabCoinSlotSound(1)` to restore.
 - `CabPartsCount()`: return the cabinet's parts count.
 - `CabPartsName(idx)`: given a part number (starting in cero), return the name of the part, e.g.: `CabPartsName(7)` returns "joystick". 
 - `CabPartsPosition(name)`: given the name of a part return it's position on the Cabinet parts list. 
@@ -572,6 +573,7 @@ The program fail when you name a part incorrectly or when the index is incorrect
 - `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.
 - `CabPartsSetEmissionColor(idx, r, g, b)` to set the *emission* color. The color will blend with the main texture, if any.
 - `CabPartsSetColor(idx, r, g, b)` to set the color. The color will blend with the main texture, if any.
+- `CabPartsSetTexture(idx, filename [, invertX [, invertY]])`: apply a PNG or JPG image from the cabinet folder to the part's main material texture. `filename` is relative to the cabinet folder — path traversal is not allowed. `invertX` and `invertY` are optional booleans (0/1, default 0). The texture load is asynchronous: the call returns immediately and the surface updates once the file is fetched from cache or disk.
 
 Examples:
 
@@ -584,6 +586,9 @@ Examples:
 70 CALL CABPARTSEMISSION("joystick-button", 1)
 80 CALL CABPARTSSETEMISSIONCOLOR("joystick-button", 190, 20, 20)
 90 CALL CABPARTSSETCOLOR("left", 200, 0, 0)
+
+REM swap the display texture on a VCR part to show digit 3
+100 CALL CABPARTSETTEXTURE("vcr-display", "digit_3.png")
 ```
 
 ### Audio parts in cabinets
@@ -604,6 +609,40 @@ Read more about cabinet's programs in [[AGEBasic in cabinets]].
 Functions that interacts with the [[AGEBasic cabinet event system]].
 
 - `EventTrigger(event name string)`: activate an event.
+
+#### Memory-change interface ⚠ Experimental
+
+React to byte-level memory changes in the emulated game, similar to how **MAMEhook** reads MAME output values. Addresses come from Pugsy's cheat XML files. See [[AGEBasic cabinet event system#on-memory-change]] for the full reference and the important disclaimer about core support.
+
+- `ONMEMORY(address, region, "varName")`: Used with `ONEVENT`. Watches a raw memory address in the given region (`0`=SAVE_RAM, `2`=SYSTEM_RAM, etc.) and injects `varName` with the new byte value when it changes.
+- `ONMEMORY("cheat description", "varName")`: Cheat-name form — looks up the address from the cabinet's `cheat.xml` file.
+
+```vb
+10 ONEVENT ONMEMORY(34944, 2, "LIVES") GOTO 1000
+20 END
+
+1000 PRINT "Lives changed to: "; LIVES
+1010 END
+```
+
+> [!warning]
+> This feature is **experimental and probably not working** with current cores. Prefer `on-led-change` / `ONLED` for cabinet light effects.
+
+#### LED interface
+
+React to arcade LED signals (Player Start lamps, coin counters, etc.) emitted by the emulated ROM. Requires a core that implements the LibRetro LED interface (mame2003-plus). See [[AGEBasic LED interface]] for the full reference.
+
+- `LEDSTATE(index)`: Returns the current state of LED `index` (0–7). Returns `1` (on), `0` (off), or `-1` if unavailable or no game is loaded.
+- `ONLED(index, "varName")`: Used with `ONEVENT` to register an `on-led-change` handler at runtime. Injects `varName` with the new LED state when the event fires.
+
+```vb
+10 ONEVENT ONLED(0, "P1_LAMP") GOTO 1000
+20 END
+
+1000 IF P1_LAMP = 1 THEN CALL CABPARTSEMISSION("back", 1)
+1010 IF P1_LAMP = 0 THEN CALL CABPARTSEMISSION("back", 0)
+1020 END
+```
 
 # Room
 
@@ -785,6 +824,58 @@ The name of the file should be:  `myprogram.bas.debug` (the file name of the pro
 
 ---
 
-If you want to use ChatGPT to ask for programs, just follow this [[AGEBasic prompt for ChatGPT]]
+# Video Player
+
+> [!important] Available from version **0.5.0-RC19**
+
+AGEBasic cabinets of type `19i-agebasic` can control video playback directly from scripts. This lets you build a fully scriptable video player cabinet: load a file, play, pause, stop, seek forward or backward, navigate between files, and toggle looping — all driven by button events.
+
+Video files are stored in a dedicated folder on the device. The `VIDEOPATH()` function returns its path so you never have to hardcode it.
+
+During playback the video fills the screen. When you call `VIDEOPAUSE` or `VIDEOSTOP`, the CRT screen is restored and your `PRINT`/`SHOW` drawing commands become visible again — this is how you display a HUD or control menu to the player.
+
+### Streaming from the network
+
+Use `VIDEOLOADURL` to load a video from an HTTP or HTTPS URL instead of a local file. This supports direct media links (`.mp4`, `.mkv`) and HLS adaptive streams (`.m3u8`) served by media servers such as Jellyfin, Plex, or any DLNA server that exposes an HTTP endpoint. Only `http://` and `https://` schemes are accepted.
+
+```vb
+10 VIDEOLOADURL "http://192.168.1.10:8096/Videos/12345/stream.m3u8"
+20 VIDEOPLAY
+```
+
+After `VIDEOLOADURL` all other video commands (`VIDEOPLAY`, `VIDEOPAUSE`, `VIDEOSTOP`, `VIDEOSEEK`, `VIDEOTIME()`, etc.) work exactly the same as with local files.
+
+Limitations: streams requiring custom HTTP headers (auth tokens, cookies) or DRM protection are not supported.
+
+### Reading M3U/M3U8 playlists
+
+Use `READM3UARRAY(path)` to load a `.m3u` or `.m3u8` playlist file into an array. Lines beginning with `#` (M3U directives and comments) and blank lines are skipped; each remaining line (URL or file path) becomes one array element.
+
+```vb
+10 DIM PLAYLIST[200]
+20 PLAYLIST = READM3UARRAY(COMBINEPATH(VIDEOPATH(), "channels.m3u8"))
+30 VIDEOLOADURL PLAYLIST[0]
+40 VIDEOPLAY
+```
+
+Combine with `READM3UARRAY` and `LEN` to iterate through a playlist:
+
+```vb
+10 DIM LIST[200]
+20 LIST = READM3UARRAY(COMBINEPATH(VIDEOPATH(), "movies.m3u"))
+30 LET IDX = 0
+40 LET TOTAL = LEN(LIST)
+50 IF IDX >= TOTAL THEN END
+60 VIDEOLOADURL LIST[IDX]
+70 VIDEOPLAY
+80 LET IDX = IDX + 1
+90 GOTO 50
+```
+
+Read the full reference: [[AGEBasic Video Player]]
+
+---
+
+If you want to use ChatGPT to ask for programs, just follow this [[AGEBasic prompt for AI assistants]]
 
 [[AGEBasic Examples]]

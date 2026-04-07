@@ -164,9 +164,15 @@ It's possible to select cores: [[Cores]]
 - Release candidate 16:
 	- Better texture cache and memory administration.
 - Release candidate 19: new SID audio implementation, read [[AGEBasic Audio Reference]]
+- AGEBasic interpreter performance improvements:
+	- **Fast line lookups**: `GOTO`, `GOSUB` and `FOR...NEXT` jumps now use a binary search on a pre-built line number array instead of a linear scan. Jump resolution is now O(log N) instead of O(N), dramatically speeding up programs with tight loops.
+	- **Reduced GC pressure**: A `BasicValue` object pool eliminates heap allocations during expression evaluation. Math-heavy loops no longer generate thousands of short-lived objects per second, removing GC-induced VR stutter spikes.
+	- **Integer-based variable lookups**: Variables are now resolved at runtime via a flat array indexed by integer IDs assigned during parse, replacing string-based dictionary lookups for near-instantaneous variable access.
 
 #### Bug fixes
 
+- Release candidate 19:
+	- fixed: `MusicLoop(0)` had no effect — music kept looping even after disabling it. The `AudioSource.loop` was hardcoded to `true` on every track play, overriding the `Loop` setting.
 - fixed: `CabDBAssign()` function fails when the name of the cabinet is a number: ex: "1942".
 - Release candidate 4:
 	- fixed: The player couldn't walk close to a cabinet, the space occupied by the cabinet was miscalculated in the previous version.
