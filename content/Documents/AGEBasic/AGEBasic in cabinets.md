@@ -7,7 +7,7 @@
 
 [[Age of Joy]] can be configured to execute AGEBasic programs when the player produces actions on a cabinet, or in events related to a cabinet. 
 
-You can find the AGEBasic subdocument specification in the [[CDL the Cabinet Description Language]]
+You can find the [[AGEBasic]] subdocument specification in the [[AGEBasic in cabinets]] 
 
 Also read the [[AGEBasic cabinet event system]]
 
