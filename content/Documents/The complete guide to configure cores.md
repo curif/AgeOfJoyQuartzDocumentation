@@ -20,7 +20,7 @@ It is important _not_ to rename the .so file and use the original filename.
 The core name is derived from the filename and will be set to the string portion preceding "_libretro_android.so". In our example, the core name that will be used further will therefore be "swanstation".
 If we were using core `mednafen_saturn_libretro_android.so` the core name would be "mednafen_saturn"...
 
-Once you have added a core to `\data\` it will be autodetected by AoJ on startup and you can reference it in you cabinets:
+Once you have added a core to `cores`folder it will be autodetected by [[Age of Joy]] on startup and you can reference it in you cabinets:
 
 `description.yaml`:
 ``` yaml

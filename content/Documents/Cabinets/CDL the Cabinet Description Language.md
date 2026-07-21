@@ -557,16 +557,21 @@ crt:
 ```
 * `crt`: the crt model document (optional)
 	* `type`: 
-		* `19i` (optional - default)
-		* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs. (available in 0.5 and superior).
+		* `19i` (optional - default): standard 19-inch arcade CRT.
+		* `19i-fresnel`: Starblade-style CRT with a Fresnel-bulged front glass. Use it for cabinets whose real screen had a curved, bulging glass.
+		* `19i-agebasic`: a CRT to only process [[AGEBasic]] programs, no game emulation runs on it. (available in 0.5 and superior).
 		* `32i`: 32 inches. Only supports the `CRT` shader (available in 0.5 and superior).
-		* `19i-2x1`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
-		* `19i-1x2`: two 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior).
-		* `19i-3x1`: three 19i CRTs. Only supports the `CRT` shader (available in 0.5 and superior). A variant exists: `19i-3x1-18deg`.
 		* `50i`: 50 inches. Only supports the `CRT` shader (available in 0.5 and superior).
-		* `dome-concave`: A dome concave screen (like a half sphere)
-		* `dome-convex`: Like the concave but convex.
-	* `orientation`: horizontal or vertical.
+		* `circle`: round screen, for vector / oscilloscope-style games.
+		* `square`: 1:1 aspect square screen.
+		* `19i-2x1`: two 19i CRTs, side by side. Only supports the `CRT` shader (available in 0.5 and superior).
+		* `19i-1x2`: two 19i CRTs, stacked (Punch-Out!! layout). Only supports the `CRT` shader (available in 0.5 and superior).
+		* `19i-3x1`: three 19i CRTs in a row. Only supports the `CRT` shader (available in 0.5 and superior). A variant exists: `19i-3x1-18deg`, where the outer two panels are angled 18° toward the player.
+		* `dome-concave`: A dome concave screen (like a half sphere), player sits inside the curve.
+		* `dome-convex`: Like the concave but convex, bulging outward.
+		* `no-crt`: no screen at all. For pinball, mechanical or sound-only cabinets that still need coin handling and [[AGEBasic]].
+		* `custom`: use your own screen mesh, modeled directly in the cabinet model, instead of a built-in shape. See [[#Custom screen meshes (`type custom`)]] below.
+	* `orientation`: horizontal or vertical. Ignored when `type: custom` (there's no placeholder to orient — the screen sits wherever you modeled it).
 	* `screen`: screen description sub-document.
 	* `geometry`: geometry description sub-document.
 	* `gamma`: adjust game color gamma palette. Optional, defaults to 0.5
@@ -760,6 +765,54 @@ If necessary, adjust the size and rotation of the CRT.
 * `rotation`: to configure the rotation optional sub-document. Its possible to configure a rotation for each axis. The value is in degrees, the example rotates the screen -90 degrees in `x` axis. Optional, all axis optional too, defaults to 0.
 * `scalepercentage`: increase or decrease the size of the element by a percentage. Optional, default to 100%. Integer, can be negative.
 * `ratio`: to change the scale (between `0` and `1` - `1`=100%)
+
+### Custom screen meshes (`type: custom`)
+
+Instead of picking a built-in shape, you can supply your **own screen mesh** — a wrap-around screen, an odd aspect ratio, a curved or angled panel — modeled directly in the cabinet model. It plays the game, shows the attraction video/audio, takes coins, runs [[AGEBasic]], and **works with light guns**, exactly like a built-in screen.
+
+```yaml
+crt:
+  type: custom
+  mesh: my-screen  # a top-level part in the cabinet model; this mesh becomes the screen
+  screen:
+    shader: crt    # any screen shader: crt (default), crtlod, clean, projector, …
+    invertx: false
+    inverty: false
+```
+
+* `mesh`: name of the part in the cabinet model that becomes the screen. Required when `type: custom`.
+
+#### How to build one
+
+1. **Model the screen** as a single object with **one material** (one submesh) and UVs mapped 0–1 across the surface the game image should fill. For a wrap-around screen, unwrap the curved face continuously across 0–1.
+2. Export that object as a **top-level part** in the cabinet model, a sibling of `bezel`, `marquee`, `coin-slot`, etc.
+3. In `description.yaml`, set `crt.type: custom` and `crt.mesh:` to that part's name.
+4. **Don't also list that part under `parts:`.** It gets replaced by the live screen, so any `material`/`art`/`color` you configure for it there is discarded.
+5. Configure the game as usual (`rom:`, `core:`, `video:`, `coinslot:`, …). No `screen-mock-vertical`/`screen-mock-horizontal` placeholder is needed — the screen appears exactly where you modeled the part.
+
+`crt.geometry` (scale percentage, ratio, rotation) still applies on top of the part's own transform, if you need to nudge it.
+
+#### Light guns work on it
+
+Custom screens are fully light-gun compatible, including curved and angled surfaces, with no extra work. Just add the normal `light-gun:` block:
+
+```yaml
+light-gun:
+  active: true
+  gun:
+    model: my-gun.glb
+```
+
+Requirements for the light gun to work correctly:
+
+* Normals must face the player.
+* UVs must span 0–1 cleanly, the same UVs the shader uses.
+* `light-gun.crt.invertx`/`inverty` correct the *aim*; `crt.screen.invertx`/`inverty` correct the *picture* — they're independent, adjust whichever looks wrong.
+
+#### Limitations
+
+* **Libretro cabinets only.** `type: custom` runs the emulator path (including light guns). There is no `custom` variant for `19i-agebasic`-style AGEBasic-only screens.
+* **One submesh**, and the part must be **top-level** in the cabinet model. A wrong submesh count or a missing part is reported as a cabinet load error.
 
 ## Coin slot configuration
 

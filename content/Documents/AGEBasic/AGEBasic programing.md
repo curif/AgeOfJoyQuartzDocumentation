@@ -612,9 +612,19 @@ According to the yaml cabinet configuration you can set a `part` of a cabinet to
 Read more about cabinet's programs in [[AGEBasic in cabinets]].
 ### Cabinet events
 
-Functions that interacts with the [[AGEBasic cabinet event system]].
+Functions and commands that interact with the [[AGEBasic cabinet event system]].
 
 - `EventTrigger(event name string)`: activate an event.
+- `OffEvent(name string)`: **command**, not a function — called as `OFFEVENT "name"`, no parentheses, no `CALL`. Unregisters every event previously registered at runtime with `ONEVENT ... NAME "name"`, removing them from the cabinet's active event list. Only events registered with a matching `NAME` are affected; matching is case-sensitive; if several events share the same name, all of them are removed. It's a lighter-weight alternative to `SHUTDOWN` when a script only needs to turn off one handler without tearing down the whole event loop.
+
+```vb
+10 ONEVENT ONTIMER(1) GOTO 100 NAME "blink"
+20 END
+
+100 REM ... blink logic ...
+110 IF DONE = 1 THEN OFFEVENT "blink"
+120 END
+```
 
 #### Memory-change interface ⚠ Experimental
 
