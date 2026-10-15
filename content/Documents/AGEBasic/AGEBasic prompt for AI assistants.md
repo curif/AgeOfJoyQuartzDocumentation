@@ -157,7 +157,7 @@ Read cabinet packs published on archive.org and download their cabinets. Network
 - IADOWNLOAD(id, cabinet): Queues the download of a cabinet of a loaded pack into CABINETSPATH() and returns the cabinet file name. Saved as name.part and renamed only when complete and its md5 matches. A cabinet already downloaded with the same md5 is not downloaded again.
 - IADOWNLOADSTATUS(id, cabinet): "QUEUED", "DOWNLOADING", "COMPLETED", "FAILED" or "NOTFOUND".
 - IADOWNLOADPROGRESS(id, cabinet): Percentage, 0 to 100.
-- A downloaded cabinet zip is unpacked on the next app start or room load.
+- A downloaded cabinet zip is installed on the next app start, or right away with CABDBINSTALL.
 
 Example:
 10 LET PACK = IALOAD("https://archive.org/details/cabinet-pack-1-1")
@@ -174,7 +174,23 @@ Example:
 120 IF IADOWNLOADSTATUS(PACK, CABS[0]) = "QUEUED" || IADOWNLOADSTATUS(PACK, CABS[0]) = "DOWNLOADING" THEN GOTO 110
 130 PRINT 0, 20, "RESULT: " + IADOWNLOADSTATUS(PACK, CABS[0])
 140 SHOW
-150 END
+150 IF IADOWNLOADSTATUS(PACK, CABS[0]) != "COMPLETED" THEN END
+
+Installing a cabinet (no restart needed):
+- CABDBINSTALL(cabinet): Starts installing CABINETSPATH()/<cabinet>.zip ("galaga" or "galaga.zip") on a background thread (never stalls the frame): unpacks it into CABINETSDBPATH()/<cabinet>/ (replacing that folder), deletes the zip, and adds the cabinet to the cabinet list used by CABDBCOUNT/CABDBGETNAME/CABDBSEARCH. Returns 1. Throws a runtime error if the name is empty or "test" (workshop slot), the zip doesn't exist, or it has no description.yaml at its root.
+- CABDBINSTALLSTATUS(cabinet): "INSTALLING", "INSTALLED", "FAILED" or "NOTFOUND" (never requested this session). Poll it with SLEEP until it isn't "INSTALLING": the cabinet joins the in-memory list on the poll that first sees the install finished (if never polled, it is picked up on the next app start).
+- Reinstalling a cabinet already placed in a room replaces its files; the live 3D cabinet changes only after it reloads (CABROOMREPLACE or room reload).
+
+Example (continues the one above):
+160 LET CABNAME = IACABINFO(PACK, CABS[0], "name")
+170 CALL CABDBINSTALL(CABNAME)
+180 SLEEP 0.5
+190 IF CABDBINSTALLSTATUS(CABNAME) = "INSTALLING" THEN GOTO 180
+200 IF CABDBINSTALLSTATUS(CABNAME) != "INSTALLED" THEN PRINT 0, 21, "INSTALL FAILED" : SHOW : END
+210 CALL CABDBASSIGN(ROOMNAME(), 3, CABNAME)
+220 CALL CABDBSAVE()
+230 CALL CABROOMREPLACE(3, CABNAME)
+240 END
 
 ---
 
@@ -239,6 +255,7 @@ Sprites are drawn over the background and retain their Z-order. Loading is async
 - CABDBCOUNT(), CABDBCOUNTINROOM(room), CABDBGETNAME(index), CABDBSEARCH(namePart, separator), CABDBSEARCHARRAY(namePart), CABDBGETASSIGNED(room, position)
 - CABDBGETINFO(cabinetName, path) / CABDBSETINFO(cabinetName, path, value): Read/write a field of the cabinet's description.yaml (dotted/bracketed path, e.g. "parts[3].art.file"). Fail soft: return "" / 0 on error instead of stopping the program.
 - CABDBADD(room, position, cabinetName), CABDBASSIGN(room, position, cabinetName), CABDBDELETE(room, position): change the registry in memory. CABDBSAVE() persists it (required). CABDBRELOAD() re-reads it from disk.
+- CABDBINSTALL(cabinet) / CABDBINSTALLSTATUS(cabinet): install a cabinet zip from CABINETSPATH() into the cabinet DB (see "Installing a cabinet" in §5).
 - CABROOMPARTS* functions (CABROOMPARTSCOUNT, CABROOMPARTSNAME, CABROOMPARTSENABLE, CABROOMPARTSSETROTATION, ...) work like CABPARTS* but take the cabinet position as the first argument, so they reach any cabinet of the room. CABROOMSETROTATION / CABROOMROTATE / CABROOMGETROTATION rotate a whole cabinet by position.
 - WORKSHOPRELOAD([cabinetName]): Workshop room only. Redeploys the workshop cabinet (or summons another). Never call it unconditionally from debug.bas.
 

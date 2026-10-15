@@ -536,7 +536,7 @@ Read cabinet packs shared on [archive.org](https://archive.org) and download the
 - `IADownloadStatus(id, cabinet)` returns `"QUEUED"`, `"DOWNLOADING"`, `"COMPLETED"`, `"FAILED"` or `"NOTFOUND"`.
 - `IADownloadProgress(id, cabinet)` returns the percentage, `0` to `100`.
 
-A downloaded cabinet is installed the next time you start Age of Joy or load a room.
+A downloaded cabinet is installed the next time you start Age of Joy, or right away with `CabDBInstall` (see below).
 
 Example, list a pack and download its first cabinet:
 
@@ -555,7 +555,30 @@ Example, list a pack and download its first cabinet:
 120 IF IADownloadStatus(PACK, CABS[0]) = "QUEUED" || IADownloadStatus(PACK, CABS[0]) = "DOWNLOADING" THEN GOTO 110
 130 PRINT 0, 20, "RESULT: " + IADownloadStatus(PACK, CABS[0])
 140 SHOW
-150 END
+150 IF IADownloadStatus(PACK, CABS[0]) != "COMPLETED" THEN END
+```
+
+#### Installing a downloaded cabinet
+
+You don't need to restart Age of Joy to use a cabinet you just downloaded: install it from your program.
+
+- `CabDBInstall(cabinet)` starts installing the cabinet file `cabinet.zip` waiting in `CabinetsPath()` (use `"galaga"` or `"galaga.zip"`). The work happens in the background, so the game keeps running smoothly. The cabinet is unpacked into its own folder in `CabinetsDBPath()` (replacing it if it was already there), the zip file is deleted, and the cabinet is added to the cabinet list (`CabDBCount`, `CabDBGetName`, `CabDBSearch`...). Returns `1` when the install started. Your program stops with an error if the name is empty or `"test"` (reserved for the Workshop), the zip doesn't exist, or the zip doesn't have a `description.yaml`.
+- `CabDBInstallStatus(cabinet)` returns `"INSTALLING"`, `"INSTALLED"`, `"FAILED"` or `"NOTFOUND"` (you never asked to install it). Check it, with a `Sleep` between checks, until it isn't `"INSTALLING"` anymore: the cabinet joins the cabinet list when this function sees the install finished. If you never check it, don't worry, the cabinet is installed anyway and shows up in the list the next time you start Age of Joy.
+
+If you reinstall a cabinet that is already in a room, its files are replaced but you will see the changes after the cabinet is reloaded (`CabRoomReplace` or entering the room again).
+
+Example, continuing the one above: install the downloaded cabinet and place it in position 3 of the current room:
+
+```
+160 LET CABNAME = IACabInfo(PACK, CABS[0], "name")
+170 CALL CabDBInstall(CABNAME)
+180 SLEEP 0.5
+190 IF CabDBInstallStatus(CABNAME) = "INSTALLING" THEN GOTO 180
+200 IF CabDBInstallStatus(CABNAME) != "INSTALLED" THEN PRINT 0, 21, "INSTALL FAILED" : SHOW : END
+210 CALL CabDBAssign(RoomName(), 3, CABNAME)
+220 CALL CabDBSave()
+230 CALL CabRoomReplace(3, CABNAME)
+240 END
 ```
 
  ## Functions for deployed cabinets in rooms
@@ -615,6 +638,7 @@ Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storag
 - `CabDBAssign(room, cabinetIndex, newCabinetName)`: assign a cabinet to a existent position in DB. 
 - `CabDBSave`: save the database and its changes.
 - `CabDBReload()`: re-reads `registry.yaml` from disk into memory, discarding any unsaved in-memory changes, and re-scans the cabinet DB folder for unassigned cabinets. **Also reconciles the currently loaded room**: any position whose live 3D cabinet no longer matches what the reloaded registry assigns is swapped in-place (the same swap used by `CabRoomReplace`). Positions with no registry entry are left untouched. Use this when `registry.yaml` was modified outside the running script (e.g. by another process or a manual edit) and the script needs to see the current on-disk state, including an immediately updated room.
+- `CabDBInstall(cabinet)` / `CabDBInstallStatus(cabinet)`: install a downloaded cabinet zip into the cabinets storage without restarting, see "Installing a downloaded cabinet" above.
 
 `CabDBDelete`,`CabDBAssign`, `CabDBSave` and `CabDBAdd` returns 0 if fails, 1 if not.
 

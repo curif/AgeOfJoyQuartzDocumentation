@@ -33,6 +33,6 @@ Open `https://archive.org/metadata/<identifier>` in a browser. You should see ev
 
 ## Use a pack from AGEBasic
 
-Functions: `IALoad`, `IAStatus`, `IAInfo`, `IACabs`, `IACabInfo`, `IADownload`, `IADownloadStatus` and `IADownloadProgress`. They are explained, with an example, in [[AGEBasic programing#Internet Archive and downloads]].
+Functions: `IALoad`, `IAStatus`, `IAInfo`, `IACabs`, `IACabInfo`, `IADownload`, `IADownloadStatus` and `IADownloadProgress`, plus `CabDBInstall` and `CabDBInstallStatus` to install a downloaded cabinet. They are explained, with an example, in [[AGEBasic programing#Internet Archive and downloads]].
 
-A downloaded cabinet is checked against the md5 that archive.org publishes, and it is installed the next time you start Age of Joy or load a room. Packs published on itch.io are listed in [[Cabinet packs/index|Cabinet packs]].
+A downloaded cabinet is checked against the md5 that archive.org publishes, and it is installed the next time you start Age of Joy, or right away from your program with `CabDBInstall` (see [[AGEBasic programing#Installing a downloaded cabinet]]). Packs published on itch.io are listed in [[Cabinet packs/index|Cabinet packs]].
