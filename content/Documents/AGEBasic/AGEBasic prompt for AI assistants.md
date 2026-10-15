@@ -67,7 +67,8 @@ Do not invent commands. Do not use features like GOTO with string labels (only l
 | READ | `READ "listName", var1, var2...` | Reads sequential data from a named list into variables. |
 | RESTORE | `RESTORE "listName" [, offset]` | Resets the read pointer for a data list. |
 | RUN | `RUN "path/to/myprogram.bas" [LINE 30]` | Executes another program (switches context). |
-| ONEVENT | `ONEVENT configFunc() GOTO line` | Registers a dynamic event handler. |
+| ONEVENT | `ONEVENT configFunc() GOTO line [NAME "id"]` | Registers a dynamic event handler. Optional NAME labels it so it can be removed with OFFEVENT. |
+| OFFEVENT | `OFFEVENT "id"` | Unregisters every ONEVENT handler registered with that NAME (case-sensitive). Removes nothing if the name doesn't exist. |
 
 ---
 
@@ -90,7 +91,7 @@ Dynamic events are registered using the ONEVENT command combined with a configur
 ### Event Execution Rules
 1. Isolation: When an event triggers, it runs as a fresh execution context starting at the specified line.
 2. Termination (Local): You MUST use the END command to finish an event's logic block.
-3. Termination (Global): Use the STOP command if you want to kill the entire program, including all registered background events.
+3. Termination (Global): Use the SHUTDOWN command if you want to kill the entire program, including all registered background events. To stop only one named handler use OFFEVENT "id".
 4. Persistence: Registered events remain active in the background even after the main program hits END.
 5. Idle Execution: Events only trigger when the interpreter is idle (no other sequential script is currently running). Use SLEEP in long-running scripts to allow events to process.
 
@@ -132,6 +133,49 @@ Dynamic events are registered using the ONEVENT command combined with a configur
   - REMOVEMEMBER(list, member, separator)
   - ADDMEMBER(list, member, separator)
 
+### File Management
+- FILEEXISTS(path): 1 if the file exists, 0 otherwise.
+- FILEDELETE(path): Deletes a file. Returns 1 on success, 0 on failure.
+- FILECOPY(sourcePath, destPath): Copies a file, overwriting destPath. Returns 1 on success, 0 on failure.
+- FILEOPEN(path, mode): mode is "R" (read), "A" (append) or "W" (write/overwrite). Returns a file handle (0-255) or -1 on failure.
+- FILEREAD(handle): Next line of an open file. Returns "" at end of file.
+- FILEWRITE(handle, text): Writes a line.
+- FILEEOF(handle): 1 if at the end of the file.
+- FILECLOSE(handle): Closes the file.
+- GETFILES(path, separator, orderType) / GETFILESARRAY(path, orderType, [wildcard], [pageOffset], [pageCount]): List files. orderType: 0=alphabetic, 1=random, 2=creation date old to new, 3=creation date new to old. wildcard is MS-DOS style ("*" matches any run of characters, default "*"); example GETFILESARRAY(path, 0, "*.zip"). pageOffset (0-based) and pageCount page through big directories.
+- GETDIRSARRAY(path, orderType, [wildcard], [pageOffset], [pageCount]): Same, but lists subdirectories.
+- COMBINEPATH(path1, path2): Joins two path segments, sandboxed to the app's base directory.
+- Path functions (no arguments): ROOTPATH(), CONFIGPATH(), AGEBASICPATH(), CABINETSPATH() (compressed cabinets, .zip), CABINETSDBPATH() (installed cabinets), CABINETPATH() (the running cabinet, only inside a cabinet), MUSICPATH(), DEBUGPATH(), VIDEOPATH().
+
+### Internet Archive & Downloads
+Read cabinet packs published on archive.org and download their cabinets. Network calls never block: start the work, then poll its status with SLEEP between checks. A script that polls without SLEEP wastes the CPU budget.
+- IALOAD(idOrUrl): Starts loading an archive.org item (a cabinet pack). Accepts the identifier ("cabinet-pack-1-1") or the item URL ("https://archive.org/details/cabinet-pack-1-1"). Returns the identifier.
+- IASTATUS(id): "LOADING", "READY", "PROCESSING" (archive.org still processing it), "DARK" (taken down), "NOTFOUND", "FAILED" (network error) or "UNKNOWN" (never loaded).
+- IAINFO(id, field): field is "title", "description", "count" (number of cabinets) or "identifier".
+- IACABS(id): Array with the cabinet zip names ("galaga.zip", ...), or "" if there are none.
+- IACABINFO(id, cabinet, field): cabinet is "galaga" or "galaga.zip". field is "name", "description", "size" (bytes), "md5", "url" (the file address on archive.org) or "downloaded" (0=no, 1=downloaded with the same md5, 2=downloaded but different).
+- IADOWNLOAD(id, cabinet): Queues the download of a cabinet of a loaded pack into CABINETSPATH() and returns the cabinet file name. Saved as name.part and renamed only when complete and its md5 matches. A cabinet already downloaded with the same md5 is not downloaded again.
+- IADOWNLOADSTATUS(id, cabinet): "QUEUED", "DOWNLOADING", "COMPLETED", "FAILED" or "NOTFOUND".
+- IADOWNLOADPROGRESS(id, cabinet): Percentage, 0 to 100.
+- A downloaded cabinet zip is unpacked on the next app start or room load.
+
+Example:
+10 LET PACK = IALOAD("https://archive.org/details/cabinet-pack-1-1")
+20 SLEEP 0.5
+30 IF IASTATUS(PACK) = "LOADING" THEN GOTO 20
+40 IF IASTATUS(PACK) != "READY" THEN PRINT 0, 0, "PACK ERROR: " + IASTATUS(PACK) : END
+50 LET CABS = IACABS(PACK)
+60 FOR I = 0 TO LEN(CABS) - 1
+70   PRINT 0, I, CABS[I] + " " + IACABINFO(PACK, CABS[I], "description")
+80 NEXT I
+90 SHOW
+100 CALL IADOWNLOAD(PACK, CABS[0])
+110 SLEEP 0.5
+120 IF IADOWNLOADSTATUS(PACK, CABS[0]) = "QUEUED" || IADOWNLOADSTATUS(PACK, CABS[0]) = "DOWNLOADING" THEN GOTO 110
+130 PRINT 0, 20, "RESULT: " + IADOWNLOADSTATUS(PACK, CABS[0])
+140 SHOW
+150 END
+
 ---
 
 ## 6. Screen & Drawing Commands
@@ -167,7 +211,7 @@ Sprites are drawn over the background and retain their Z-order. Loading is async
 ## 7. VR & Cabinet Specific Functions
 
 ### Controls & Input
-- CONTROLACTIVE("ID", [port]): Returns true if a specific Libretro button is pressed (e.g., "JOYPAD_UP_0"). Includes automatic 250ms debouncing.
+- CONTROLACTIVE("ID", [port]): Returns true if a specific Libretro button is pressed (e.g., CONTROLACTIVE("JOYPAD_UP"), CONTROLACTIVE("JOYPAD_B", 1)). The port is a separate argument (default 0), never part of the ID string. For the directional pad: port 0 = left controller stick, port 1 = right controller stick. Includes automatic 250ms debouncing.
 - CONTROLRUMBLE("ID", amplitude, duration): Triggers controller haptics.
 
 ### Player & Room
@@ -187,6 +231,16 @@ Sprites are drawn over the background and retain their Z-order. Loading is async
 - CABPARTSEMISSION(part, bool)
 - CABPARTSETTEXTURE(part, "filename.png" [, invertX [, invertY]]): Applies a PNG/JPG from the cabinet folder to the part's main material. Load is async (fires and returns immediately). Only filenames relative to the cabinet folder are accepted — no path traversal.
 - CABPARTSAUDIOPLAY(part) / CABPARTSAUDIOSTOP(part)
+
+### Cabinet Registry & Replacement
+- CABROOMCOUNT(): Number of cabinet positions in the current room.
+- CABROOMGETNAME(position): Cabinet loaded at position ("" if none).
+- CABROOMREPLACE(position, cabinetName): Swaps the live 3D cabinet at position. Not persisted unless you also use CABDBASSIGN + CABDBSAVE.
+- CABDBCOUNT(), CABDBCOUNTINROOM(room), CABDBGETNAME(index), CABDBSEARCH(namePart, separator), CABDBSEARCHARRAY(namePart), CABDBGETASSIGNED(room, position)
+- CABDBGETINFO(cabinetName, path) / CABDBSETINFO(cabinetName, path, value): Read/write a field of the cabinet's description.yaml (dotted/bracketed path, e.g. "parts[3].art.file"). Fail soft: return "" / 0 on error instead of stopping the program.
+- CABDBADD(room, position, cabinetName), CABDBASSIGN(room, position, cabinetName), CABDBDELETE(room, position): change the registry in memory. CABDBSAVE() persists it (required). CABDBRELOAD() re-reads it from disk.
+- CABROOMPARTS* functions (CABROOMPARTSCOUNT, CABROOMPARTSNAME, CABROOMPARTSENABLE, CABROOMPARTSSETROTATION, ...) work like CABPARTS* but take the cabinet position as the first argument, so they reach any cabinet of the room. CABROOMSETROTATION / CABROOMROTATE / CABROOMGETROTATION rotate a whole cabinet by position.
+- WORKSHOPRELOAD([cabinetName]): Workshop room only. Redeploys the workshop cabinet (or summons another). Never call it unconditionally from debug.bas.
 
 ### Emulation & System
 - GAMEISRUNNING(): True if a ROM is currently loaded.

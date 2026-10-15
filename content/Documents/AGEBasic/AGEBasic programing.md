@@ -522,13 +522,81 @@ To get information about rooms
 
 # Cabinets related
 
+### Internet Archive and downloads
+
+Read cabinet packs shared on [archive.org](https://archive.org) and download their cabinets. Read [[AGEBasic Internet Archive]] to know how to publish a pack. Network functions never block your program: you *start* the work and then *poll* the result, using `Sleep` between checks.
+
+- `IALoad(idOrUrl)` starts loading an archive.org item (a cabinet). Use the identifier (`cabinet-pack-1-1`) or the item address (`https://archive.org/details/cabinet-pack-1-1`). Returns the identifier.
+- `IAStatus(id)` returns `"LOADING"`, `"READY"`, `"PROCESSING"` (archive.org is still processing the item, try again later), `"DARK"` (the item was taken down), `"NOTFOUND"`, `"FAILED"` (network problem) or `"UNKNOWN"` (never loaded).
+- `IAInfo(id, field)` returns pack information, `field`: `"title"`, `"description"`, `"count"` (number of cabinets) or `"identifier"`.
+- `IACabs(id)` returns an array with the cabinet file names (`"galaga.zip"`, ...) or `""` if the pack has no cabinets.
+- `IACabInfo(id, cabinet, field)` returns information about one cabinet (`"galaga"` or `"galaga.zip"`). `field`: `"name"`, `"description"`, `"size"` (bytes), `"md5"`, `"url"` (the file address on archive.org) or `"downloaded"`: `0` not downloaded, `1` downloaded with the same version, `2` downloaded but different (there is an update).
+
+- `IADownload(id, cabinet)` queues the download of a cabinet of a loaded pack into `CabinetsPath()` and returns the cabinet file name. The file is saved as `name.part` and renamed when it is complete and its md5 matches, so a cabinet never shows up half downloaded. A cabinet that is already downloaded with the same version is not downloaded again.
+- `IADownloadStatus(id, cabinet)` returns `"QUEUED"`, `"DOWNLOADING"`, `"COMPLETED"`, `"FAILED"` or `"NOTFOUND"`.
+- `IADownloadProgress(id, cabinet)` returns the percentage, `0` to `100`.
+
+A downloaded cabinet is installed the next time you start Age of Joy or load a room.
+
+Example, list a pack and download its first cabinet:
+
+```
+10 LET PACK = IALoad("https://archive.org/details/cabinet-pack-1-1")
+20 SLEEP 0.5
+30 IF IAStatus(PACK) = "LOADING" THEN GOTO 20
+40 IF IAStatus(PACK) != "READY" THEN PRINT 0, 0, "PACK ERROR: " + IAStatus(PACK) : END
+50 LET CABS = IACabs(PACK)
+60 FOR I = 0 TO LEN(CABS) - 1
+70   PRINT 0, I, CABS[I] + " " + IACabInfo(PACK, CABS[I], "description")
+80 NEXT I
+90 SHOW
+100 CALL IADownload(PACK, CABS[0])
+110 SLEEP 0.5
+120 IF IADownloadStatus(PACK, CABS[0]) = "QUEUED" || IADownloadStatus(PACK, CABS[0]) = "DOWNLOADING" THEN GOTO 110
+130 PRINT 0, 20, "RESULT: " + IADownloadStatus(PACK, CABS[0])
+140 SHOW
+150 END
+```
+
  ## Functions for deployed cabinets in rooms
 
 Applies to cabinets deployed in the room where the cabinet controller is loaded.
 
 - `CabRoomCount()`: how many cabinets are in the room
 - `CabRoomGetName(number)`: get the cabinet name by its index in the room.
-- `CabRoomReplace(number, cabinet name)`: replace a cabinet by another.
+- `CabRoomReplace(number, cabinet name)`: replace a cabinet by another. This only affects the currently running room and doesn't persist — the swap reverts the next time the room reloads unless you also assign it in the cabinet database with `CabDBAssign` + `CabDBSave`. Runs asynchronously (fire-and-forget): returns `1` once the swap has started, `0` if the room or cabinet name is invalid.
+
+### Cross-cabinet part manipulation (`CabRoomParts*`)
+
+The `CabParts*` functions below (see "Functions that only applies to a cabinet") only ever act on the cabinet whose own program is currently running — they fail if called from a standalone runner (Workshop, Configuration Room) with no bound cabinet, and there's no way to reach a *different* cabinet with them.
+
+`CabRoomParts*` functions provide the same manipulations, but target **any cabinet in the current room by position** (0-based, same convention as `CabRoomGetName`/`CabRoomReplace` — the room is always the current one, never an explicit parameter). This lets a Workshop script, a Configuration Room script, or one cabinet's program manipulate a *different* cabinet's parts. Every function takes the cabinet `position` as its first argument, followed by the same arguments as its `CabParts*` counterpart. All of them fail if no cabinet is currently loaded at that position (e.g. it's still showing an "out of order" placeholder).
+
+- `CabRoomPartsCount(position)` / `CabRoomPartsName(position, idx)`: enumerate parts of the target cabinet.
+- `CabRoomPartsEnable(position, part, bool)`: enables/disables a part.
+- `CabRoomPartsGetCoordinate(position, part, "X"|"Y"|"Z")` / `CabRoomPartsSetCoordinate(position, part, "X"|"Y"|"Z", value)`: local position.
+- `CabRoomPartsGetGlobalCoordinate(position, part, "X"|"Y"|"Z")` / `CabRoomPartsSetGlobalCoordinate(position, part, "X"|"Y"|"Z", value)`: world position.
+- `CabRoomPartsSetRotation(position, part, "X"|"Y"|"Z", angle)`: sets local rotation on an axis relative to the part's origin.
+- `CabRoomPartsRotate(position, part, "X"|"Y"|"Z", angle)`: rotates the part locally by a relative angle.
+- `CabRoomPartsGetRotation(position, part, "X"|"Y"|"Z")`: reads current local rotation on an axis.
+- `CabRoomPartsSetGlobalRotation(position, part, "X"|"Y"|"Z", angle)` / `CabRoomPartsGetGlobalRotation(position, part, "X"|"Y"|"Z")`: world rotation.
+- `CabRoomPartsGetTransparency(position, part)` / `CabRoomPartsSetTransparency(position, part, percentage)`: transparency 0-100.
+- `CabRoomPartsSetColor(position, part, r, g, b)`: sets base color.
+- `CabRoomPartsEmission(position, part, bool)` / `CabRoomPartsSetEmissionColor(position, part, r, g, b)`: emission.
+
+Example — rotate a neighboring cabinet's door from any running program:
+
+```vb
+10 LET DOOR_POS = 3
+20 CALL CABROOMPARTSSETROTATION(DOOR_POS, "door", "Y", 90)
+30 END
+```
+
+**Whole-cabinet rotation by room position**: the `CabRoom*` equivalents of `CabRotate`/`CabSetRotation`/`CabGetRotation` (and their global variants, see "Functions that only applies to a cabinet"), for rotating a *different* cabinet's root object — not one of its parts — from any running program:
+
+- `CabRoomSetRotation(position, string type, number angle)` / `CabRoomRotate(position, string type, number angle)`: set (absolute, from placement) or rotate (relative) the target cabinet's local rotation.
+- `CabRoomGetRotation(position, string type)`: reads the target cabinet's current local rotation delta.
+- `CabRoomSetGlobalRotation(position, string type, number angle)` / `CabRoomGetGlobalRotation(position, string type)`: same, in world space.
 
 ## Functions for cabinets administration
 
@@ -546,6 +614,7 @@ Applies to cabinet database (`registry.yaml`) and the [[Cabinets database storag
 - `CabDBAdd(room, cabinetIndex, newCabinetName)`: to add a new room/position/cabinet in the database, if the position is taken the program will fail. 
 - `CabDBAssign(room, cabinetIndex, newCabinetName)`: assign a cabinet to a existent position in DB. 
 - `CabDBSave`: save the database and its changes.
+- `CabDBReload()`: re-reads `registry.yaml` from disk into memory, discarding any unsaved in-memory changes, and re-scans the cabinet DB folder for unassigned cabinets. **Also reconciles the currently loaded room**: any position whose live 3D cabinet no longer matches what the reloaded registry assigns is swapped in-place (the same swap used by `CabRoomReplace`). Positions with no registry entry are left untouched. Use this when `registry.yaml` was modified outside the running script (e.g. by another process or a manual edit) and the script needs to see the current on-disk state, including an immediately updated room.
 
 `CabDBDelete`,`CabDBAssign`, `CabDBSave` and `CabDBAdd` returns 0 if fails, 1 if not.
 
@@ -574,6 +643,13 @@ The program fail when you name a part incorrectly or when the index is incorrect
 	- `CabPartsGetRotation(idx, string type)` and `CabPartsSetRotation(number part idx, string type, number angle)` to get and set the rotation of a cabinet part. **NOTE**: The `CabPartsRotate` could get better results.
 	- `CabPartsRotate(idx, string type, number angle)` to rotate locally a part. Available in v0.6.
 	- `CabPartsGetGlobalRotation()` and `CabPartsSetGlobalRotation()` to get set the global rotation. 
+
+`CabParts*` rotation functions always need a part (they only rotate cabinet parts, resolved by name or index — there's no `idx` value meaning "the whole cabinet"). To rotate the **whole cabinet as a single unit** — root object and every part together — use these instead:
+
+- `CabSetRotation(string type, number angle)`: sets the whole cabinet's local rotation on an axis, relative to its placement rotation in the room (absolute, not additive).
+- `CabRotate(string type, number angle)`: rotates the whole cabinet locally by a relative angle.
+- `CabGetRotation(string type)`: reads the whole cabinet's current local rotation delta (degrees) on an axis, relative to its placement rotation.
+- `CabSetGlobalRotation(string type, number angle)` and `CabGetGlobalRotation(string type)`: same, in world space.
 - `CabPartsGetTransparency(idx)`: returns the part's transparency percentage.
 - `CabPartsSetTransparency(idx, percentage)`: set part's transparency to a percentage (0 to 100).
 - `CabPartsSetEmission(idx, true/false)`: activate the emissive material on the part if it's possible. You should probable set an emission color too.
@@ -772,6 +848,17 @@ You could storage information in different "storage" that lives during the progr
 	- `2`: Creation date from old to new
 	- `3`: Creation date from new to old
 		example:  `let f = getFiles("path\\to\\files", ":", 3)` to get `"file1.txt:file2.txt:xxx.bas"` then  `GetMember(f, 1) = "file2.txt"`
+- `GetFilesArray(path, order[, wildcard, pageOffset, pageCount])` get an array with the file names of a path (filenames only, no path — use `CombinePath()` to rebuild the full path). Parameters: path to scan and order (same order values as `GetFiles`, above). An optional wildcard filters by filename pattern, followed by two optional pagination parameters to page through large directories instead of getting every file at once:
+	- `wildcard`: old MS-DOS style filename pattern, `*` matches any run of characters. Defaults to `"*"` (all files). Examples:
+		- `"*zip"` matches all files ending in `zip`
+		- `"abc*"` matches all files starting with `abc`
+		- `"*xy*"` matches all files with `xy` anywhere in the name
+		- `"pepe.zip"` (no `*`) matches only that exact filename
+	- `pageOffset`: 0-based index of the first file to return. Defaults to `0`.
+	- `pageCount`: maximum number of files to return, starting at `pageOffset`. Defaults to all remaining files.
+		example: `let files = GetFilesArray("path\\to\\files", 0)` to get every file, sorted alphabetically, as an array. `let zips = GetFilesArray("path\\to\\files", 0, "*.zip")` to get only `.zip` files. `let page = GetFilesArray("path\\to\\files", 0, "*", 10, 5)` to get files 11-15 of the same alphabetic listing.
+- `GetDirsArray(path, order[, wildcard, pageOffset, pageCount])` same as `GetFilesArray`, above, but lists subdirectories of `path` instead of files, returning bare folder names (no path — use `CombinePath()` to rebuild the full path). Same parameters and semantics as `GetFilesArray`: order, wildcard, and pagination.
+		example: `let dirs = GetDirsArray("path\\to\\folder", 0)` to get every subdirectory, sorted alphabetically, as an array.
 - Path management:
 	- `CombinePath(path1, path2)` given two paths, return a string with the combination. Example: `CombinePath("/sdcard", "file.txt")` returns `/sdcard/file.txt`
 	- `ConfigPath()` returns the path to the configuration files.
@@ -781,6 +868,8 @@ You could storage information in different "storage" that lives during the progr
 	- `CabinetPath()` returns the path to the actual cabinet (only available in [[AGEBasic in cabinets]]).
 	- `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 	- `MusicPath()` the base path to the music folder.
+	- `DebugPath()` the path to the debug output and logs folder.
+	- `VideoPath()` the path to the video files folder (see [[AGEBasic Video Player]]).
 - File management (v0.6 and sup)
 	- `FileOpen(string path, string mode)`: returns an file pointer number to identify the file opened or `-1` if fails. Mode must be: `R` read mode, `W` write mode (will rewrite the file if it exists), `A` to append to the end of the file. Only 256 files can be opened at the same time.
 	- `FileRead(file pointer number)`: Read the next file string line. Use `FileEOF()` to know if you can read a next line. If it is EOF the function return an empty string (`""`). Use Returns the next line or `-1` if it fails. `type(var)` to detect if the result is a number (error) or the read string. 

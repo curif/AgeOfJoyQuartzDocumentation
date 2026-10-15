@@ -75,7 +75,7 @@ material: black
 * `material`: (optional) a material to use for all parts of the cabinet. materials are explained below.
 * `space`: Short of *Occupied Space*. Space in units that the cabinet will fill in the Room: [[Cabinet space sizes]]
 
-#### Optional keys:
+#### Optional keys
 
 - `author`: cabinet author Nik name.
 - `comments`: any extra relevant information
@@ -185,6 +185,25 @@ persistent: true
 ```
 
 It's disabled by default.
+
+## Game audio volume
+
+Games output audio at various levels. It's possible to enter their test modes to adjust in some instances, but `game-volume-decibels` lets you adjust the volume of the **emulated game's** audio for this cabinet only, in decibels:
+
+```yaml
+game-volume-decibels: 8
+```
+
+* `0` (the default) leaves the game audio unchanged.
+* Positive values make the volume **louder** (e.g. `10` is a strong boost); negative values make it quieter.
+* The value is clamped to the range `-40` … `+20` dB.
+
+### Notes
+
+* This affects only the game/emulator sound. It does not touch the [[#Attraction audio clip|attraction audio]] or the cabinet [[Cabinet physical parts manual|speaker parts]] (which have their own linear `volume:`).
+* It works for every core (MAME, FBNeo, Flycast, and others).
+* Because it is a real gain applied to the cabinet's own audio, boosting an **already-loud** game can clip and distort, so use it to lift quiet games rather than to push loud ones higher.
+* It is independent of the in-game volume controlled from AGEBasic (`AUDIOGAMESETVOLUME`). The two combine, so a script can still raise or lower volume on top of this baseline.
 
 ## Configuring cabinet parts
 
