@@ -2,6 +2,8 @@
 
 # AGEBasic and the Internet Archive
 
+![[c493e97c-c99f-4d7b-aed6-b7da08326115.jpg]]
+
 You as a [[Cabinet Artist]] can publish your cabinets on the [Internet Archive](https://archive.org) (archive.org) so other players can download them, and an [[AGEBasic programing|AGEBasic]] program (see below) can list, download and install them from the headset. The players don't need an archive.org account.
 
 You upload your cabinet `.zip` files to an archive.org **item** and share the item's **identifier** (for example `cabinet-pack-1-1`) or its address (`https://archive.org/details/cabinet-pack-1-1`).
