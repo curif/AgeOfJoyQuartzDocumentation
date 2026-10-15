@@ -150,7 +150,9 @@ Dynamic events are registered using the ONEVENT command combined with a configur
 ### Internet Archive & Downloads
 Read cabinet packs published on archive.org and download their cabinets. Network calls never block: start the work, then poll its status with SLEEP between checks. A script that polls without SLEEP wastes the CPU budget.
 - IALOAD(idOrUrl): Starts loading an archive.org item (a cabinet pack). Accepts the identifier ("cabinet-pack-1-1") or the item URL ("https://archive.org/details/cabinet-pack-1-1"). Returns the identifier.
-- IASTATUS(id): "LOADING", "READY", "PROCESSING" (archive.org still processing it), "DARK" (taken down), "NOTFOUND", "FAILED" (network error) or "UNKNOWN" (never loaded).
+- IASEARCH(query): Starts an archive.org search for packs and returns a handle. "" finds every pack tagged with the subject "ageofjoy-cabinets". Any other archive.org query also works.
+- IAPACKS(handle): Array with the pack identifiers found by IASEARCH, newest first, or "" if none or not ready. Pass each one to IALOAD.
+- IASTATUS(id): also accepts an IASEARCH handle ("LOADING", "READY" or "FAILED"). For a pack: "LOADING", "READY", "PROCESSING" (archive.org still processing it), "DARK" (taken down), "NOTFOUND", "FAILED" (network error) or "UNKNOWN" (never loaded).
 - IAINFO(id, field): field is "title", "description", "count" (number of cabinets) or "identifier".
 - IACABS(id): Array with the cabinet zip names ("galaga.zip", ...), or "" if there are none.
 - IACABINFO(id, cabinet, field): cabinet is "galaga" or "galaga.zip". field is "name", "description", "size" (bytes), "md5", "url" (the file address on archive.org) or "downloaded" (0=no, 1=downloaded with the same md5, 2=downloaded but different).

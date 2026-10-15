@@ -524,10 +524,12 @@ To get information about rooms
 
 ### Internet Archive and downloads
 
-Read cabinet packs shared on [archive.org](https://archive.org) and download their cabinets. Read [[AGEBasic Internet Archive]] to know how to publish a pack. Network functions never block your program: you *start* the work and then *poll* the result, using `Sleep` between checks.
+Read cabinet packs shared on [archive.org](https://archive.org) and download their cabinets. Read [[Cabinets Marketplace in Internet Archive org]] to know how to publish a pack. Network functions never block your program: you *start* the work and then *poll* the result, using `Sleep` between checks.
 
+- `IASearch(query)` starts an archive.org search for packs and returns a handle. With `""` it finds every pack tagged with the subject `ageofjoy-cabinets`, which anyone can add to their own item. Any other archive.org query also works.
+- `IAPacks(handle)` returns an array with the identifiers found by `IASearch`, newest first, or `""` if there are none or the search isn't ready. Give each one to `IALoad`.
 - `IALoad(idOrUrl)` starts loading an archive.org item (a cabinet). Use the identifier (`cabinet-pack-1-1`) or the item address (`https://archive.org/details/cabinet-pack-1-1`). Returns the identifier.
-- `IAStatus(id)` returns `"LOADING"`, `"READY"`, `"PROCESSING"` (archive.org is still processing the item, try again later), `"DARK"` (the item was taken down), `"NOTFOUND"`, `"FAILED"` (network problem) or `"UNKNOWN"` (never loaded).
+- `IAStatus(id)` also accepts an `IASearch` handle, then it returns `"LOADING"`, `"READY"` or `"FAILED"`. For a pack it returns `"LOADING"`, `"READY"`, `"PROCESSING"` (archive.org is still processing the item, try again later), `"DARK"` (the item was taken down), `"NOTFOUND"`, `"FAILED"` (network problem) or `"UNKNOWN"` (never loaded).
 - `IAInfo(id, field)` returns pack information, `field`: `"title"`, `"description"`, `"count"` (number of cabinets) or `"identifier"`.
 - `IACabs(id)` returns an array with the cabinet file names (`"galaga.zip"`, ...) or `""` if the pack has no cabinets.
 - `IACabInfo(id, cabinet, field)` returns information about one cabinet (`"galaga"` or `"galaga.zip"`). `field`: `"name"`, `"description"`, `"size"` (bytes), `"md5"`, `"url"` (the file address on archive.org) or `"downloaded"`: `0` not downloaded, `1` downloaded with the same version, `2` downloaded but different (there is an update).

@@ -27,4 +27,4 @@ Essentially, AGEBasic can be used to realize virtually any creative or mechanica
 
 Read [[AGEBasic programing]] to know more about #AGEBasic.
 
-AGEBasic can also read cabinet packs shared on the Internet Archive and download them: [[AGEBasic Internet Archive]].
+AGEBasic can also read cabinet packs shared on the Internet Archive and download them: [[Cabinets Marketplace in Internet Archive org]].
