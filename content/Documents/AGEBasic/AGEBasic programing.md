@@ -520,6 +520,70 @@ To get information about rooms
 - `RoomGetName(number)`: get the name of the room.
 - `RoomGetDesc(number)`: to get the description.
 
+## GitHub releases and updating Age of Joy
+
+Read the releases of any public project on [GitHub](https://github.com) (no GitHub account needed), download their files, and update Age of Joy from inside the headset. Like the archive.org functions, they never block your program: *start* the work and *poll* the result, with `Sleep` between checks.
+
+GitHub lets a device ask for releases 60 times per hour without an account. Call `GHLoad` once, not in a loop; if you ask too often you get `"RATELIMITED"` and must wait.
+
+- `GHLoad(project, [count])` starts loading the newest `count` releases of a project (1 to 100, `10` if you don't say). `project` is `"owner/repo"` (`"curif/AgeOfJoy-2022.1"`) or the project address (`https://github.com/curif/AgeOfJoy-2022.1`). Returns `"owner/repo"`. It also deletes, from the headset's Download folder, the apk of the Age of Joy version you are running: once installed it isn't needed anymore.
+- `GHStatus(project)` returns `"LOADING"`, `"READY"`, `"NOTFOUND"`, `"RATELIMITED"` (too many requests, try later), `"FAILED"` (network problem) or `"UNKNOWN"` (never loaded).
+- `GHReleases(project)` returns an array with the release tags (like `"v0.5.0-rc31"`), newest first, or `""` if there are none.
+- `GHReleaseInfo(project, tag, field)` returns information about one release. `field`:
+	- `"name"`, `"date"` (like `"2026-10-15T21:24:44Z"`), `"notes"` (the release text), `"files"` (how many files it has).
+	- `"prerelease"`: `1` if it is a test version, `0` if not.
+	- `"installed"`: `1` if it is the Age of Joy version you are running (see `AppVersion()`).
+	- About the release's apk: `"apk"` (the file name, `""` if the release has no apk), `"url"`, `"size"` (bytes) and `"sha256"`.
+- `GHFiles(project, tag, [wildcard])` returns an array with the file names of a release, or `""`.
+- `GHFileInfo(project, tag, file, field, [destFolder])` returns information about one file of a release (use `""` as `file` for the apk). `field`: `"name"`, `"size"`, `"url"`, `"sha256"`, `"path"` (where `GHDownload` saves it) or `"downloaded"` (`0` no, `1` same version, `2` different version).
+- `GHDownload(project, tag, [file], [destFolder])` queues the download of a release file (`""` or nothing: the apk) and returns the full path of the saved file. Files are saved in the headset's **Download** folder (the same one you see in the Quest files app), not in the Age of Joy folder, with the name `repo-tag-file` (like `AgeOfJoy-2022.1-v0.5.0-rc31-AgeOfJoy.apk`). Another `destFolder` follows the same rules as `IAFileDownload`. The file is saved as `.part` and checked against GitHub's sha256 before it's ready. An apk is bigger than 1 GB, so only one version of each file is kept: the other versions of the same file in that folder are deleted before downloading. Your program stops with an error if there isn't enough free space.
+- `GHDownloadStatus(project, tag, [file], [destFolder])` returns `"QUEUED"`, `"DOWNLOADING"`, `"COMPLETED"`, `"FAILED"` or `"NOTFOUND"`.
+- `GHDownloadProgress(project, tag, [file], [destFolder])` returns the percentage, `0` to `100`.
+
+### Installing an Age of Joy update
+
+- `APKInstall(path)` starts installing an Age of Joy apk downloaded with `GHDownload` (it must be in the Download folder or in the Age of Joy folder). Apks of other apps are refused. Returns:
+	- `"STARTED"`: check `APKInstallStatus()`.
+	- `"NOPERMISSION"`: the first time, Android must allow Age of Joy to install apps. The function opens the Android "Install unknown apps" screen for Age of Joy: turn it on, come back and call `APKInstall` again.
+	- `"NOTFOUND"` (no file), `"WRONGPACKAGE"` (not an Age of Joy apk), `"NOSPACE"` (not enough free space to install) or `"BUSY"` (another install is running).
+- `APKInstallStatus()` returns:
+	- `"IDLE"`: nothing to install.
+	- `"COPYING"`: the apk is passed to Android, see `APKInstallProgress()`. It takes a while because the apk is big, and the game may run less smoothly meanwhile.
+	- `"COMMITTING"`, then `"WAITINGUSER"`: Android shows its install window, the player must accept it.
+	- When the player accepts, Android closes Age of Joy to update it. Start it again and you are running the new version. Your rooms, cabinets and configuration are kept.
+	- `"ABORTED"` (the player cancelled), `"CONFLICT"` (the apk is signed by someone else), `"STORAGE"` (not enough space), `"INCOMPATIBLE"`, `"INVALID"`, `"BLOCKED"` or `"FAILED"`.
+- `APKInstallProgress()` returns the percentage of the copy, `0` to `100`, while `"COPYING"`.
+- `AppVersion()` returns the Age of Joy version you are running, the same as the release tag (like `"0.5.0-rc31"`).
+
+Any release can be installed, older ones too, and without losing anything: never uninstall Age of Joy to change the version, uninstalling deletes your cabinets and configuration.
+
+The install only works on the Quest (Age of Joy installed from GitHub or SideQuest). On a PC you can list and download, but `APKInstall` doesn't install.
+
+Example, download the newest release and install it:
+
+```
+10 LET P = GHLoad("curif/AgeOfJoy-2022.1", 5)
+20 SLEEP 0.5
+30 IF GHStatus(P) = "LOADING" THEN GOTO 20
+40 IF GHStatus(P) != "READY" THEN PRINT 0, 0, "ERROR: " + GHStatus(P) : SHOW : END
+50 LET TAGS = GHReleases(P)
+60 LET TAG = TAGS[0]
+70 PRINT 0, 0, "running " + AppVersion() + ", newest " + TAG : SHOW
+80 IF GHReleaseInfo(P, TAG, "installed") = 1 THEN END
+90 LET APK = GHDownload(P, TAG)
+100 SLEEP 1
+110 PRINT 0, 1, "download " + STR(INT(GHDownloadProgress(P, TAG))) + "%  " : SHOW
+120 IF GHDownloadStatus(P, TAG) = "QUEUED" || GHDownloadStatus(P, TAG) = "DOWNLOADING" THEN GOTO 100
+130 IF GHDownloadStatus(P, TAG) != "COMPLETED" THEN PRINT 0, 2, "DOWNLOAD FAILED" : SHOW : END
+140 LET R = APKInstall(APK)
+150 IF R = "NOPERMISSION" THEN PRINT 0, 2, "Allow AGE of Joy to install apps and try again" : SHOW : END
+160 IF R != "STARTED" THEN PRINT 0, 2, "INSTALL: " + R : SHOW : END
+170 SLEEP 0.5
+180 PRINT 0, 2, APKInstallStatus() + " " + STR(INT(APKInstallProgress())) + "%  " : SHOW
+190 IF APKInstallStatus() = "COPYING" || APKInstallStatus() = "COMMITTING" || APKInstallStatus() = "WAITINGUSER" THEN GOTO 170
+200 PRINT 0, 3, "RESULT: " + APKInstallStatus() : SHOW
+```
+
 # Cabinets related
 
 ### Internet Archive and downloads
@@ -530,13 +594,21 @@ Read cabinet packs shared on [archive.org](https://archive.org) and download the
 - `IAPacks(handle)` returns an array with the identifiers found by `IASearch`, newest first, or `""` if there are none or the search isn't ready. Give each one to `IALoad`.
 - `IALoad(idOrUrl)` starts loading an archive.org item (a cabinet). Use the identifier (`cabinet-pack-1-1`) or the item address (`https://archive.org/details/cabinet-pack-1-1`). Returns the identifier.
 - `IAStatus(id)` also accepts an `IASearch` handle, then it returns `"LOADING"`, `"READY"` or `"FAILED"`. For a pack it returns `"LOADING"`, `"READY"`, `"PROCESSING"` (archive.org is still processing the item, try again later), `"DARK"` (the item was taken down), `"NOTFOUND"`, `"FAILED"` (network problem) or `"UNKNOWN"` (never loaded).
-- `IAInfo(id, field)` returns pack information, `field`: `"title"`, `"description"`, `"count"` (number of cabinets) or `"identifier"`.
+- `IAInfo(id, field)` returns pack information, `field`: `"title"`, `"description"`, `"count"` (number of cabinets), `"files"` (number of files of any type) or `"identifier"`.
 - `IACabs(id)` returns an array with the cabinet file names (`"galaga.zip"`, ...) or `""` if the pack has no cabinets.
 - `IACabInfo(id, cabinet, field)` returns information about one cabinet (`"galaga"` or `"galaga.zip"`). `field`: `"name"`, `"description"`, `"size"` (bytes), `"md5"`, `"url"` (the file address on archive.org) or `"downloaded"`: `0` not downloaded, `1` downloaded with the same version, `2` downloaded but different (there is an update).
 
 - `IADownload(id, cabinet)` queues the download of a cabinet of a loaded pack into `CabinetsPath()` and returns the cabinet file name. The file is saved as `name.part` and renamed when it is complete and its md5 matches, so a cabinet never shows up half downloaded. A cabinet that is already downloaded with the same version is not downloaded again.
 - `IADownloadStatus(id, cabinet)` returns `"QUEUED"`, `"DOWNLOADING"`, `"COMPLETED"`, `"FAILED"` or `"NOTFOUND"`.
 - `IADownloadProgress(id, cabinet)` returns the percentage, `0` to `100`.
+
+You can also download any other file of an item (ROMs, music, videos...), not only cabinets. Only the files the uploader put in the item are listed (archive.org's own extra files are left out). Files are saved in `DownloadsPath()` unless you give a `destFolder`. `destFolder` must be inside the Age of Joy folder, and it can't be the cabinets, cabinet database, cores, configuration or system folders (use `IADownload` for cabinets). A file inside a folder of the item (`"roms/x.zip"`) is saved without that folder (`destFolder/x.zip`). A file already downloaded with the same md5 in that folder is not downloaded again.
+
+- `IAFiles(id, [wildcard])` returns an array with the names of the files of a loaded item (the full name inside the item, like `"roms/x.zip"`), or `""` if there are none. `wildcard` uses `*` and `?`, for example `"*.zip"` or `"roms/*"`.
+- `IAFileInfo(id, file, field, [destFolder])` returns information about one file. `field`: `"name"`, `"size"` (bytes), `"md5"`, `"url"`, `"format"`, `"mtime"` or `"downloaded"` (`0` no, `1` same version, `2` different version), checked in `destFolder` or `DownloadsPath()`.
+- `IAFileDownload(id, file, [destFolder])` queues the download (saved as `.part` and checked with its md5, like `IADownload`) and returns the saved file name.
+- `IAFileDownloadStatus(id, file, [destFolder])` returns `"QUEUED"`, `"DOWNLOADING"`, `"COMPLETED"`, `"FAILED"` or `"NOTFOUND"`.
+- `IAFileDownloadProgress(id, file, [destFolder])` returns the percentage, `0` to `100`.
 
 A downloaded cabinet is installed the next time you start Age of Joy, or right away with `CabDBInstall` (see below).
 
@@ -891,6 +963,7 @@ You could storage information in different "storage" that lives during the progr
 	- `AGEBasicPath()` returns the path to the AGEBasic programs.
 	- `CabinetsDBPath()` returns the path to the cabinet database.
 	- `CabinetsPath()` returns the path to the new cabinets. (usually empty)
+	- `DownloadsPath()` returns the path to the downloads folder, where `IAFileDownload` saves files.
 	- `CabinetPath()` returns the path to the actual cabinet (only available in [[AGEBasic in cabinets]]).
 	- `RootPath()` the base path of AGE of Joy. Isn't the Android root home.
 	- `MusicPath()` the base path to the music folder.
@@ -904,6 +977,25 @@ You could storage information in different "storage" that lives during the progr
 	- `FileWrite(file pointer number, string line)`: add the line to the file.
 	- `FileDelete(path)`: to delete a file, returns `false` if fail.
 	- `FileExists(path)`: returns `true` if the file exists.
+- Zip files (ex: an AGEBasic suite downloaded with `IAFileDownload`). Extraction never blocks your program: you *start* it and then *poll* the result, using `Sleep` between checks.
+	- `Unzip(zipPath, destFolder[, overwrite])`: starts extracting the zip into `destFolder`. The zip's folders are kept, and `destFolder` is created if it doesn't exist. `overwrite`: `1` (default) replaces existing files, `0` skips the files that already exist. `destFolder` follows the same rules as `IAFileDownload`: it can't be the cabinets, cabinets DB, cores, configuration or system folders. The zip isn't deleted, use `FileDelete` if you want to (keeping it lets `IAFileInfo(..., "downloaded", ...)` detect updates). Returns `1` if the extraction started or is already running. Fails with an error if the zip doesn't exist or the folder isn't allowed.
+		- For safety, if any file of the zip would end up outside `destFolder` (names with `../` or absolute paths) or inside a forbidden folder, nothing is extracted and the status is `"FAILED"`.
+	- `UnzipStatus(zipPath)`: `"UNZIPPING"`, `"DONE"`, `"FAILED"` (damaged zip, unsafe file names, disk full...) or `"NOTFOUND"` (no extraction was requested for that zip since the game started). The failure reason goes to the AGEBasic console (see [[#Debug mode]]).
+	- `UnzipProgress(zipPath)`: extraction percentage, `0` to `100`, by files extracted.
+	- `ZipFiles(zipPath[, wildcard])`: returns an array with the names of the files inside the zip, with their folders (ex: `"lib/util.bas"`), without extracting anything. The optional wildcard works like the `GetFilesArray` one. Returns `""` if there are no matches.
+
+Example: install a suite of programs.
+
+```vb
+10 LET Z = COMBINEPATH(AGEBASICPATH(), "mysuite.zip")
+20 CALL UNZIP(Z, AGEBASICPATH())
+30 SLEEP 0.25
+40 PRINT 0, 0, "UNZIPPING " + STR(INT(UNZIPPROGRESS(Z))) + "%  " : SHOW
+50 IF UNZIPSTATUS(Z) = "UNZIPPING" THEN GOTO 30
+60 IF UNZIPSTATUS(Z) != "DONE" THEN PRINT 0, 1, "UNZIP FAILED" : SHOW : END
+70 PRINT 0, 1, "INSTALLED" : SHOW
+80 END
+```
 
 # CPU control
 
